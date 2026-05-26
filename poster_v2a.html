@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rockwall Fitness — Price List // V2A MAXIMALIST</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bagel+Fat+One&family=Big+Shoulders+Display:wght@400;700;900&family=Caveat:wght@500;700&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     ROCKWALL FITNESS — A3 POSTER VARIANT V2A
+     MAXIMALIST EDITORIAL / ZINE / SHOUT-MODE
+     Brand: #050505 / #CFFF3C   Spark: #FF2E88
+     Built for WeasyPrint — no blend modes, no backdrop-filter,
+     no display:contents, no modern complex masks. Only clip-path
+     polygons + plain SVG.
+     ========================================================= */
+  @page {
+    size: 297mm 420mm;
+    margin: 0;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    width: 297mm;
+    height: 420mm;
+    margin: 0;
+    padding: 0;
+    background: #050505;
+    color: #F6F6F2;
+    font-family: 'Big Shoulders Display', sans-serif;
+    overflow: hidden;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    position: relative;
+    width: 297mm;
+    height: 420mm;
+    overflow: hidden;
+    background: #050505;
+  }
+
+  /* ===== HALFTONE DOT WASH (subtle, behind everything) ===== */
+  .dot-wash {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: radial-gradient(circle, #1c1c1c 0.7mm, transparent 0.8mm);
+    background-size: 5mm 5mm;
+    opacity: 0.55;
+  }
+
+  /* ===== FULL-BLEED BG IMAGE ===== */
+  .bg-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .bg-layer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(170%) brightness(0.42);
+    opacity: 0.18;
+  }
+  .bg-fade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+      rgba(5,5,5,1) 0%,
+      rgba(5,5,5,0.55) 14%,
+      rgba(5,5,5,0.25) 38%,
+      rgba(5,5,5,0.55) 62%,
+      rgba(5,5,5,1) 100%);
+  }
+
+  /* ===== TICKER STRIPS top + middle ===== */
+  .ticker {
+    position: absolute;
+    left: 0;
+    width: 297mm;
+    height: 6.5mm;
+    background: #CFFF3C;
+    color: #050505;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    font-size: 9.5pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    z-index: 15;
+    white-space: nowrap;
+  }
+  .ticker-top    { top: 0; }
+  .ticker-bottom { top: 313mm; transform: rotate(-1.2deg); transform-origin: left center; width: 320mm; }
+  .ticker span { padding: 0 4mm; }
+  .ticker .dot { display: inline-block; width: 1.6mm; height: 1.6mm; background: #050505; border-radius: 50%; margin: 0 2mm; vertical-align: middle; }
+  .ticker .spark { color: #FF2E88; font-weight: 700; }
+
+  /* ===== HEADER BAND ===== */
+  .header {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    height: 40mm;
+    margin-top: 6.5mm;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .header-frame-wrap {
+    position: relative;
+    height: 34mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .header-frame-svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 130mm;
+    height: 34mm;
+    pointer-events: none;
+  }
+  .header-logo {
+    height: 24mm;
+    position: relative;
+    z-index: 2;
+  }
+  .header-tag-left, .header-tag-right {
+    position: absolute;
+    top: 14mm;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    font-size: 7.5pt;
+    color: #F6F6F2;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    line-height: 1.3;
+    z-index: 6;
+  }
+  .header-tag-left { left: 10mm; text-align: left; }
+  .header-tag-right { right: 10mm; text-align: right; color: #CFFF3C; }
+  .header-tag-left .spark, .header-tag-right .spark { color: #FF2E88; }
+
+  /* ===== TIRED OF EXCUSES SLAB ===== */
+  .agit-slab {
+    position: absolute;
+    top: 53mm;
+    left: 0;
+    width: 100%;
+    z-index: 8;
+    text-align: center;
+    font-family: 'Bagel Fat One', system-ui, sans-serif;
+    font-size: 56pt;
+    line-height: 0.86;
+    color: #CFFF3C;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    text-shadow: 0 0 3mm rgba(207,255,60,0.4);
+  }
+  .agit-slab .row1 { display: inline-block; transform: rotate(-1.4deg); }
+  .agit-slab .questionmark {
+    display: inline-block;
+    color: #FF2E88;
+    transform: rotate(8deg) translateY(-2mm);
+    font-size: 70pt;
+    margin-left: 1mm;
+  }
+  .agit-slab .row2 {
+    display: block;
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 28pt;
+    color: #F6F6F2;
+    letter-spacing: 0;
+    text-transform: none;
+    margin-top: 3mm;
+    transform: rotate(-1deg);
+    text-shadow: none;
+  }
+  .agit-slab .row2 .spark { color: #FF2E88; }
+
+  /* ===== HAND-DRAWN ARROW SVG (between agit + services) ===== */
+  .hand-arrow-1 {
+    position: absolute;
+    top: 102mm;
+    left: 32mm;
+    width: 70mm;
+    height: 18mm;
+    z-index: 9;
+    pointer-events: none;
+  }
+  .hand-arrow-1 svg { width: 100%; height: 100%; display: block; }
+
+  /* ===== "OUR SERVICES" labelhead ===== */
+  .services-head {
+    position: absolute;
+    top: 112mm;
+    right: 10mm;
+    z-index: 9;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+  }
+  .services-head .small {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    font-size: 9pt;
+    letter-spacing: 0.3em;
+    color: #FF2E88;
+    text-transform: uppercase;
+  }
+  .services-head .big {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 32pt;
+    line-height: 0.9;
+    color: #CFFF3C;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin-top: 1mm;
+  }
+  .services-head .big .strike {
+    text-decoration: line-through;
+    text-decoration-color: #FF2E88;
+    text-decoration-thickness: 3mm;
+    color: #F6F6F2;
+    margin-right: 2mm;
+  }
+
+  /* ===== SERVICES LIST — asymmetric 2-col editorial ===== */
+  .services {
+    position: absolute;
+    top: 138mm;
+    left: 12mm;
+    width: 273mm;
+    z-index: 6;
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    column-gap: 12mm;
+    row-gap: 4.5mm;
+  }
+  .svc {
+    display: flex;
+    align-items: baseline;
+    gap: 3.5mm;
+    border-bottom: 0.4mm dashed rgba(207,255,60,0.45);
+    padding-bottom: 3mm;
+  }
+  .svc .num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    font-size: 10pt;
+    color: #FF2E88;
+    letter-spacing: 0.05em;
+    flex: 0 0 auto;
+    width: 10mm;
+  }
+  .svc .label {
+    font-family: 'Archivo Black', sans-serif;
+    font-weight: 900;
+    color: #F6F6F2;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 0.95;
+    flex: 1;
+  }
+  .svc.size-xl .label { font-size: 22pt; color: #CFFF3C; }
+  .svc.size-lg .label { font-size: 17pt; }
+  .svc.size-md .label { font-size: 14pt; }
+  .svc.size-sm .label { font-size: 11.5pt; }
+  .svc.acid .label { color: #CFFF3C; }
+  .svc.spark .label { color: #FF2E88; }
+  .svc .kicker {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 400;
+    font-size: 7pt;
+    color: #B0B0A8;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-top: 1.5mm;
+  }
+  .svc .scribble {
+    display: inline-block;
+    width: 9mm; height: 4mm;
+    margin-left: 2mm;
+    vertical-align: middle;
+  }
+  .svc .scribble svg { width: 100%; height: 100%; display: block; }
+
+  /* ===== STACKED PRICE LIST HERO TYPE ===== */
+  .price-hero {
+    position: absolute;
+    top: 218mm;
+    left: 0;
+    right: 0;
+    z-index: 8;
+    text-align: center;
+    pointer-events: none;
+  }
+  .price-hero .stretched {
+    display: block;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 168pt;
+    line-height: 0.78;
+    color: transparent;
+    -webkit-text-stroke: 0.6mm #CFFF3C;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    transform: scaleX(1.55) scaleY(0.78);
+    transform-origin: center center;
+  }
+  .price-hero .condensed {
+    display: block;
+    font-family: 'Bagel Fat One', system-ui, sans-serif;
+    font-size: 86pt;
+    line-height: 0.85;
+    color: #FF2E88;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin-top: -54mm;
+    transform: scaleX(0.55);
+    transform-origin: center center;
+    text-shadow:
+      0.6mm 0.6mm 0 #050505,
+      1.2mm 1.2mm 0 #CFFF3C;
+  }
+  .price-hero .underline {
+    display: block;
+    margin: -8mm auto 0;
+    width: 180mm;
+    height: 2mm;
+    background: #CFFF3C;
+    transform: rotate(-1.2deg);
+  }
+  .price-hero .underline-2 {
+    display: block;
+    margin: 1mm auto 0;
+    width: 110mm;
+    height: 1mm;
+    background: #FF2E88;
+    transform: rotate(1deg);
+  }
+
+  /* ===== PRICE BLOCK — torn newspaper clipping ===== */
+  .price-block-wrap {
+    position: absolute;
+    top: 250mm;
+    left: 0;
+    right: 0;
+    height: 70mm;
+    z-index: 7;
+  }
+  .price-paper {
+    position: absolute;
+    top: 4mm;
+    left: 18mm;
+    width: 222mm;
+    height: 62mm;
+    background: #F1ECDE;
+    clip-path: polygon(
+      0% 4%,   2% 0%,   8% 4%,   14% 0%,   21% 5%,   28% 1%,
+      35% 6%,  42% 0%,  49% 5%,   56% 0%,   63% 6%,   70% 1%,
+      77% 5%,  84% 0%,  91% 6%,   97% 1%,   100% 5%,
+      99% 14%, 100% 22%, 96% 30%, 100% 38%, 97% 47%,
+      100% 56%,96% 65%, 100% 74%, 97% 82%, 100% 91%,
+      94% 100%,
+      87% 95%, 80% 100%, 73% 95%, 66% 100%, 59% 95%,
+      52% 100%,45% 95%, 38% 100%, 31% 95%, 24% 100%,
+      17% 96%, 10% 100%, 3% 96%, 0% 100%,
+      3% 90%,  0% 80%,  4% 70%,  0% 60%,  3% 50%,
+      0% 40%,  4% 30%,  0% 20%,  3% 12%
+    );
+    box-shadow: 0 2mm 8mm rgba(0,0,0,0.4);
+    transform: rotate(-1deg);
+  }
+  .price-paper::before {
+    /* tape strip */
+    content: "";
+    position: absolute;
+    top: -3mm;
+    left: 50%;
+    width: 26mm;
+    height: 7mm;
+    background: rgba(207,255,60,0.55);
+    transform: translateX(-50%) rotate(-3deg);
+    border-left: 0.3mm dashed rgba(0,0,0,0.2);
+    border-right: 0.3mm dashed rgba(0,0,0,0.2);
+  }
+  .price-inner {
+    position: absolute;
+    inset: 0;
+    padding: 7mm 14mm 7mm 20mm;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 6mm;
+    row-gap: 1mm;
+    color: #050505;
+  }
+  .price-cell {
+    text-align: center;
+    border-right: 0.4mm dashed rgba(5,5,5,0.4);
+    padding: 0 2mm;
+  }
+  .price-cell:last-child { border-right: none; }
+  .price-cell .mo-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    font-size: 7.5pt;
+    color: #FF2E88;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .price-cell .mo {
+    display: block;
+    font-family: 'Bagel Fat One', system-ui, sans-serif;
+    font-size: 38pt;
+    line-height: 1;
+    color: #050505;
+    letter-spacing: -0.02em;
+    margin: 1mm 0 1mm;
+  }
+  .price-cell .amt {
+    display: block;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 19pt;
+    line-height: 1;
+    color: #050505;
+    letter-spacing: -0.02em;
+  }
+  .price-cell .amt .rupee { color: #FF2E88; }
+  .price-header {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    font-size: 8pt;
+    color: #050505;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    border-bottom: 0.5mm solid #050505;
+    padding-bottom: 1.5mm;
+    margin-bottom: 2mm;
+  }
+  .price-header .spark { color: #FF2E88; }
+
+  /* Hand-drawn arrow pointing AT price block */
+  .arrow-to-price {
+    position: absolute;
+    top: 244mm;
+    left: 20mm;
+    width: 45mm;
+    height: 26mm;
+    z-index: 11;
+    pointer-events: none;
+  }
+  .arrow-to-price svg { width: 100%; height: 100%; display: block; }
+  .arrow-to-price .caption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 18pt;
+    color: #FF2E88;
+    transform: rotate(-8deg);
+    line-height: 0.95;
+  }
+
+  /* ===== STICKER CLUSTER — 4 layers ===== */
+  .sticker-cluster {
+    position: absolute;
+    z-index: 14;
+    top: 200mm;
+    right: 6mm;
+    width: 100mm;
+    height: 110mm;
+    pointer-events: none;
+  }
+  .stk-starburst {
+    position: absolute;
+    top: 2mm; left: 2mm;
+    width: 88mm; height: 88mm;
+    transform: rotate(-8deg);
+    filter: drop-shadow(0 0 6mm rgba(255,46,136,0.6));
+  }
+  .stk-starburst svg { width: 100%; height: 100%; display: block; }
+  .stk-photo {
+    position: absolute;
+    top: 10mm; left: 14mm;
+    width: 62mm; height: 62mm;
+    border: 1.4mm solid #050505;
+    outline: 1.2mm solid #CFFF3C;
+    overflow: hidden;
+    transform: rotate(6deg);
+    background: #050505;
+    box-shadow: 3mm 3mm 0 #FF2E88;
+  }
+  .stk-photo img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: grayscale(1) contrast(190%) brightness(0.75);
+  }
+  .stk-photo .corner-clip {
+    position: absolute;
+    top: -2mm; right: -2mm;
+    width: 14mm; height: 14mm;
+    background: #050505;
+    transform: rotate(45deg);
+    border-bottom: 1mm solid #CFFF3C;
+  }
+  .stk-tag {
+    position: absolute;
+    top: 56mm; left: -2mm;
+    width: 62mm; height: 26mm;
+    transform: rotate(-9deg);
+    filter: drop-shadow(0 1.5mm 2mm rgba(0,0,0,0.7));
+  }
+  .stk-tag svg {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+  }
+  .stk-tag-text {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bagel Fat One', system-ui, sans-serif;
+    font-size: 28pt;
+    color: #050505;
+    letter-spacing: -0.01em;
+  }
+  .stk-rated {
+    position: absolute;
+    top: 72mm; left: 48mm;
+    width: 38mm; height: 38mm;
+    transform: rotate(14deg);
+  }
+  .stk-rated svg { width: 100%; height: 100%; display: block; }
+  .stk-rated .text-wrap {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    font-family: 'Archivo Black', sans-serif;
+    color: #CFFF3C;
+    text-transform: uppercase;
+    line-height: 0.95;
+  }
+  .stk-rated .num {
+    font-family: 'Bagel Fat One', system-ui, sans-serif;
+    font-size: 30pt;
+    color: #CFFF3C;
+    line-height: 0.9;
+  }
+  .stk-rated .sub {
+    font-size: 7pt;
+    letter-spacing: 0.2em;
+    color: #F6F6F2;
+  }
+  .stk-lightning {
+    position: absolute;
+    top: -2mm; right: 12mm;
+    width: 18mm; height: 28mm;
+    transform: rotate(22deg);
+    filter: drop-shadow(0 0 3mm #CFFF3C);
+    z-index: 5;
+  }
+  .stk-lightning svg { width: 100%; height: 100%; }
+  .stk-asterisk-1, .stk-asterisk-2 {
+    position: absolute;
+    font-family: 'Bagel Fat One', system-ui, sans-serif;
+    color: #FF2E88;
+    line-height: 1;
+  }
+  .stk-asterisk-1 { top: -4mm; left: -2mm; font-size: 32pt; transform: rotate(-15deg); }
+  .stk-asterisk-2 { bottom: 4mm; right: -2mm; font-size: 24pt; color: #CFFF3C; transform: rotate(10deg); }
+
+  /* scattered decorative marks across page */
+  .deco-star-1, .deco-star-2, .deco-bolt {
+    position: absolute;
+    z-index: 10;
+    pointer-events: none;
+  }
+  .deco-star-1 { top: 158mm; left: 4mm; width: 14mm; height: 14mm; transform: rotate(20deg); }
+  .deco-star-2 { top: 198mm; left: 142mm; width: 10mm; height: 10mm; transform: rotate(-15deg); }
+  .deco-bolt   { top: 92mm;  left: 8mm;  width: 12mm; height: 18mm; transform: rotate(-10deg); }
+  .deco-star-1 svg, .deco-star-2 svg, .deco-bolt svg { width: 100%; height: 100%; display: block; }
+
+  .est-badge {
+    position: absolute;
+    top: 76mm;
+    right: 14mm;
+    z-index: 10;
+    width: 26mm;
+    height: 26mm;
+    transform: rotate(12deg);
+  }
+  .est-badge svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .est-badge .est-text {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-family: 'Archivo Black', sans-serif;
+    color: #050505;
+    text-transform: uppercase;
+    line-height: 0.95;
+  }
+  .est-badge .est-text .top { font-size: 7pt; letter-spacing: 0.2em; }
+  .est-badge .est-text .yr { font-family: 'Bagel Fat One', system-ui, sans-serif; font-size: 19pt; color: #050505; }
+  .est-badge .est-text .bot { font-size: 6pt; letter-spacing: 0.25em; }
+
+  /* members only stamp */
+  .members-stamp {
+    position: absolute;
+    top: 200mm;
+    left: 4mm;
+    z-index: 10;
+    transform: rotate(-12deg);
+    font-family: 'Archivo Black', sans-serif;
+    text-transform: uppercase;
+    color: #FF2E88;
+    border: 0.8mm solid #FF2E88;
+    padding: 1.5mm 3mm;
+    font-size: 9pt;
+    letter-spacing: 0.18em;
+    background: rgba(5,5,5,0.5);
+  }
+
+  /* ===== ADDRESS + QR + SOCIAL — bottom slab ===== */
+  .bottom-slab {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 297mm;
+    height: 92mm;
+    z-index: 13;
+    background: #050505;
+    border-top: 0.6mm solid #CFFF3C;
+  }
+  .bottom-deco-strip {
+    position: absolute;
+    top: -10mm;
+    left: 0;
+    width: 297mm;
+    height: 8mm;
+    background: #FF2E88;
+    transform: rotate(-1.4deg);
+    transform-origin: left center;
+    z-index: -1;
+    overflow: hidden;
+    color: #050505;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    font-size: 8.5pt;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    padding-left: 4mm;
+  }
+  .bottom-deco-strip span { padding-right: 4mm; }
+  .bottom-deco-strip .dot { display: inline-block; width: 1.4mm; height: 1.4mm; background: #050505; border-radius: 50%; margin: 0 2mm; vertical-align: middle; }
+
+  .address-block {
+    position: absolute;
+    top: 8mm;
+    left: 12mm;
+    width: 170mm;
+    color: #F6F6F2;
+  }
+  .address-block .city {
+    font-family: 'Bagel Fat One', system-ui, sans-serif;
+    font-size: 38pt;
+    line-height: 0.9;
+    color: #CFFF3C;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+  }
+  .address-block .city .spark { color: #FF2E88; }
+  .address-block .street {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 11pt;
+    line-height: 1.25;
+    color: #F6F6F2;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 3mm;
+  }
+  .address-block .note {
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 16pt;
+    color: #FF2E88;
+    margin-top: 2mm;
+    transform: rotate(-1deg);
+    display: inline-block;
+  }
+  .address-block .pin {
+    display: inline-block;
+    width: 5mm;
+    height: 5mm;
+    background: #CFFF3C;
+    margin-right: 3mm;
+    vertical-align: middle;
+    clip-path: polygon(50% 0%, 100% 38%, 78% 100%, 22% 100%, 0% 38%);
+  }
+
+  .qr-cluster {
+    position: absolute;
+    top: 6mm;
+    right: 8mm;
+    width: 92mm;
+    height: 70mm;
+    z-index: 14;
+  }
+  .qr-torn {
+    position: absolute;
+    top: 0;
+    left: 8mm;
+    width: 60mm;
+    height: 60mm;
+    background: #F1ECDE;
+    clip-path: polygon(
+      0% 3%,   6% 0%,   13% 4%,   22% 1%,   30% 5%,   38% 1%,
+      48% 6%,  58% 0%,  68% 5%,    78% 1%,   88% 5%,   100% 2%,
+      99% 12%, 100% 22%, 96% 32%, 100% 42%,
+      97% 52%, 100% 62%, 96% 72%, 100% 82%,
+      96% 92%, 100% 100%,
+      88% 96%, 78% 100%, 66% 96%, 54% 100%, 42% 96%,
+      30% 100%, 18% 96%, 6% 100%, 0% 96%,
+      3% 86%,  0% 76%,  4% 66%,  0% 56%,  3% 46%,
+      0% 36%,  4% 26%,  0% 16%
+    );
+    box-shadow: 3mm 3mm 0 #CFFF3C;
+    transform: rotate(2deg);
+  }
+  .qr-torn::before {
+    content: "";
+    position: absolute;
+    top: -2mm;
+    left: 6mm;
+    width: 14mm;
+    height: 5mm;
+    background: rgba(255,46,136,0.55);
+    transform: rotate(-6deg);
+  }
+  .qr-torn::after {
+    content: "";
+    position: absolute;
+    top: -2mm;
+    right: 8mm;
+    width: 10mm;
+    height: 5mm;
+    background: rgba(207,255,60,0.7);
+    transform: rotate(7deg);
+  }
+  .qr-inner {
+    position: absolute;
+    top: 8mm; left: 8mm;
+    width: 44mm; height: 44mm;
+    background: #ffffff;
+    padding: 2mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .qr-inner img {
+    width: 100%; height: 100%;
+    image-rendering: pixelated;
+  }
+  .qr-caption {
+    position: absolute;
+    top: 62mm;
+    left: 0;
+    width: 90mm;
+    text-align: center;
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 18pt;
+    color: #CFFF3C;
+    transform: rotate(-1deg);
+    line-height: 1;
+  }
+  .qr-caption .small {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    font-size: 7.5pt;
+    letter-spacing: 0.25em;
+    color: #F6F6F2;
+    margin-top: 1mm;
+    text-transform: uppercase;
+  }
+  .qr-arrow {
+    position: absolute;
+    top: -4mm;
+    left: -22mm;
+    width: 30mm;
+    height: 24mm;
+  }
+  .qr-arrow svg { width: 100%; height: 100%; display: block; }
+  .qr-arrow .label {
+    position: absolute;
+    top: -1mm;
+    left: 0mm;
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 16pt;
+    color: #FF2E88;
+    transform: rotate(-6deg);
+  }
+
+  /* Bottom footer strip */
+  .foot-strip {
+    position: absolute;
+    left: 0; right: 0;
+    bottom: 0;
+    height: 12mm;
+    background: #CFFF3C;
+    color: #050505;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8mm;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    font-size: 10pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    z-index: 15;
+  }
+  .foot-strip .left, .foot-strip .right {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+  }
+  .foot-strip .social-icon {
+    width: 6mm;
+    height: 6mm;
+    display: inline-block;
+  }
+  .foot-strip .social-icon svg { width: 100%; height: 100%; display: block; }
+  .foot-strip .pipe { color: #FF2E88; margin: 0 2mm; }
+
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ===== BACKGROUND LAYERS ===== -->
+  <div class="dot-wash"></div>
+  <div class="bg-layer">
+    <img src="assets/bg.jpg" alt="">
+    <div class="bg-fade"></div>
+  </div>
+
+  <!-- ===== TOP TICKER ===== -->
+  <div class="ticker ticker-top">
+    <span>// ROCKWALL FITNESS</span><span class="dot"></span>
+    <span>EST. 2018</span><span class="dot"></span>
+    <span class="spark">SHUT UP AND TRAIN</span><span class="dot"></span>
+    <span>BANGALORE / KORAMANGALA</span><span class="dot"></span>
+    <span>NO EXCUSES // NO REFUNDS // NO MERCY</span><span class="dot"></span>
+    <span>RATED #1</span><span class="dot"></span>
+    <span class="spark">JOIN. SWEAT. REPEAT.</span><span class="dot"></span>
+    <span>// 2026 PRICE LIST //</span>
+  </div>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="header-tag-left">
+      EST.<br>
+      <span class="spark">2018</span><br>
+      KORAMANGALA<br>
+      INDIA
+    </div>
+    <div class="header-frame-wrap">
+      <svg class="header-frame-svg" viewBox="0 0 1300 340" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="60,170 200,30 1100,30 1240,170 1100,310 200,310"
+                 stroke="#CFFF3C" stroke-width="6" fill="none"/>
+        <polygon points="80,170 220,50 1080,50 1220,170 1080,290 220,290"
+                 stroke="#CFFF3C" stroke-width="1.4" fill="none" opacity="0.45"/>
+        <polygon points="100,170 240,70 1060,70 1200,170 1060,270 240,270"
+                 stroke="#FF2E88" stroke-width="1" fill="none" opacity="0.6"/>
+        <line x1="60" y1="170" x2="20" y2="170" stroke="#CFFF3C" stroke-width="6"/>
+        <line x1="1240" y1="170" x2="1280" y2="170" stroke="#CFFF3C" stroke-width="6"/>
+        <line x1="40" y1="170" x2="20" y2="170" stroke="#FF2E88" stroke-width="4"/>
+        <line x1="1260" y1="170" x2="1280" y2="170" stroke="#FF2E88" stroke-width="4"/>
+        <!-- tiny ornament dots -->
+        <circle cx="200" cy="30"  r="3" fill="#CFFF3C"/>
+        <circle cx="1100" cy="30" r="3" fill="#CFFF3C"/>
+        <circle cx="200" cy="310" r="3" fill="#CFFF3C"/>
+        <circle cx="1100" cy="310" r="3" fill="#CFFF3C"/>
+      </svg>
+      <img class="header-logo" src="assets/logo.png" alt="Rockwall Fitness">
+    </div>
+    <div class="header-tag-right">
+      2026<br>
+      PRICE<br>
+      <span class="spark">CARD</span><br>
+      VOL.II
+    </div>
+  </header>
+
+  <!-- decorative bolt near header -->
+  <div class="deco-bolt">
+    <svg viewBox="0 0 40 60" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="22,0 4,34 16,34 10,60 36,22 22,22 28,0" fill="#FF2E88" stroke="#050505" stroke-width="1.4"/>
+    </svg>
+  </div>
+
+  <!-- ===== EST BADGE ===== -->
+  <div class="est-badge">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <polygon fill="#CFFF3C" points="
+        50,0 58,12 70,4 72,18 86,14 84,28 98,30 90,42 100,50
+        90,58 98,70 84,72 86,86 72,82 70,96 58,88 50,100
+        42,88 30,96 28,82 14,86 16,72 2,70 10,58 0,50
+        10,42 2,30 16,28 14,14 28,18 30,4 42,12"/>
+    </svg>
+    <div class="est-text">
+      <div class="top">EST.</div>
+      <div class="yr">'18</div>
+      <div class="bot">B'LURU</div>
+    </div>
+  </div>
+
+  <!-- ===== AGITATIONAL SLAB ===== -->
+  <div class="agit-slab">
+    <span class="row1">TIRED OF EXCUSES</span><span class="questionmark">?</span>
+    <span class="row2">good. <span class="spark">we don't sell those.</span></span>
+  </div>
+
+  <!-- hand-drawn arrow -->
+  <div class="hand-arrow-1">
+    <svg viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <path d="M 10 90 C 120 30, 260 150, 380 70 S 580 130, 660 60"
+            stroke="#CFFF3C" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <path d="M 660 60 L 630 50 M 660 60 L 645 84"
+            stroke="#CFFF3C" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <circle cx="20" cy="90" r="5" fill="#FF2E88"/>
+    </svg>
+  </div>
+
+  <!-- ===== SERVICES HEAD ===== -->
+  <div class="services-head">
+    <div class="small">// FULL MENU // 08 WAYS TO HURT</div>
+    <div class="big"><span class="strike">OUR</span>YOUR<br>SERVICES.</div>
+  </div>
+
+  <!-- ===== SERVICES LIST — asymmetric editorial 2-col ===== -->
+  <section class="services">
+    <div class="svc size-xl acid">
+      <span class="num">01</span>
+      <span class="label">PERSONAL<br>FITNESS<br>TRAINING
+        <span class="kicker">1:1 // CERTIFIED COACHES</span>
+        <span class="scribble">
+          <svg viewBox="0 0 60 20" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <path d="M2 12 Q 10 2, 20 12 T 38 12 T 58 8" stroke="#FF2E88" stroke-width="2.4" stroke-linecap="round"/>
+          </svg>
+        </span>
+      </span>
+    </div>
+    <div class="svc size-md">
+      <span class="num">02</span>
+      <span class="label">MODERN EQUIPMENT &amp; AMBIANCE
+        <span class="kicker">NEW MACHINES // CLIMATE-CTRL</span>
+      </span>
+    </div>
+
+    <div class="svc size-lg spark">
+      <span class="num">03</span>
+      <span class="label">HIIT &mdash; HIGH INTENSITY<br>INTERVAL TRAINING
+        <span class="kicker">45 MIN // ALL OUT</span>
+      </span>
+    </div>
+    <div class="svc size-md">
+      <span class="num">04</span>
+      <span class="label">DIET CONSULTATION
+        <span class="kicker">CUSTOM MACROS // NUTRITIONIST</span>
+      </span>
+    </div>
+
+    <div class="svc size-lg acid">
+      <span class="num">05</span>
+      <span class="label">BODY BUILDING
+        <span class="kicker">PUSH / PULL / LEGS / REPEAT</span>
+      </span>
+    </div>
+    <div class="svc size-sm">
+      <span class="num">06</span>
+      <span class="label">FAT LOSS &mdash; BODY TONING
+        <span class="kicker">CARDIO + STRENGTH STACK</span>
+      </span>
+    </div>
+
+    <div class="svc size-md spark">
+      <span class="num">07</span>
+      <span class="label">ZUMBA DANCE
+        <span class="kicker">GROUP // MWF EVENINGS</span>
+      </span>
+    </div>
+    <div class="svc size-xl acid">
+      <span class="num">08</span>
+      <span class="label">BOXING<br>TRAINING
+        <span class="kicker">BAG WORK // PADS // SPARRING</span>
+        <span class="scribble">
+          <svg viewBox="0 0 60 20" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <path d="M2 10 L 12 16 L 22 6 L 32 16 L 42 6 L 52 14 L 58 8" stroke="#FF2E88" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+          </svg>
+        </span>
+      </span>
+    </div>
+  </section>
+
+  <!-- scattered stars -->
+  <div class="deco-star-1">
+    <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+      <polygon fill="#CFFF3C" points="25,0 30,18 50,20 35,32 40,50 25,40 10,50 15,32 0,20 20,18"/>
+    </svg>
+  </div>
+  <div class="deco-star-2">
+    <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+      <polygon fill="#FF2E88" points="25,0 30,18 50,20 35,32 40,50 25,40 10,50 15,32 0,20 20,18"/>
+    </svg>
+  </div>
+
+  <!-- members only stamp -->
+  <div class="members-stamp">// MEMBERS ONLY //</div>
+
+  <!-- ===== MIDDLE TICKER (rotated) ===== -->
+  <div class="ticker ticker-bottom">
+    <span>** PRICE LIST 2026 **</span><span class="dot"></span>
+    <span class="spark">SCAN. JOIN. LIFT.</span><span class="dot"></span>
+    <span>100% RESULTS</span><span class="dot"></span>
+    <span>NO MERCY</span><span class="dot"></span>
+    <span>BANGALORE</span><span class="dot"></span>
+    <span class="spark">ROCKWALLFITNESS.IN</span><span class="dot"></span>
+    <span>// MEMBERS ONLY //</span><span class="dot"></span>
+    <span>EST. '18</span>
+  </div>
+
+  <!-- ===== STACKED PRICE LIST HERO ===== -->
+  <div class="price-hero">
+    <span class="stretched">PRICE LIST</span>
+    <span class="condensed">PRICE LIST</span>
+    <span class="underline"></span>
+    <span class="underline-2"></span>
+  </div>
+
+  <!-- ===== ARROW TO PRICE BLOCK ===== -->
+  <div class="arrow-to-price">
+    <span class="caption">all-in!<br>read this&darr;</span>
+    <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" fill="none" style="margin-top:14mm">
+      <path d="M 10 20 C 60 60, 100 10, 140 50 S 180 90, 180 100"
+            stroke="#CFFF3C" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M 180 100 L 168 86 M 180 100 L 196 92"
+            stroke="#CFFF3C" stroke-width="3.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <!-- ===== PRICE BLOCK — torn newspaper ===== -->
+  <div class="price-block-wrap">
+    <div class="price-paper">
+      <div class="price-inner">
+        <div class="price-header">// THE ROCKWALL PRICE LIST <span class="spark">**</span> ALL TAXES INCLUDED <span class="spark">**</span> CARD / UPI / CASH //</div>
+
+        <div class="price-cell">
+          <span class="mo-label">MONTH</span>
+          <span class="mo">1</span>
+          <span class="amt"><span class="rupee">&#8377;</span>2,999</span>
+        </div>
+        <div class="price-cell">
+          <span class="mo-label">MONTHS</span>
+          <span class="mo">3+1</span>
+          <span class="amt"><span class="rupee">&#8377;</span>6,499</span>
+        </div>
+        <div class="price-cell">
+          <span class="mo-label">MONTHS</span>
+          <span class="mo">6+2</span>
+          <span class="amt"><span class="rupee">&#8377;</span>9,499</span>
+        </div>
+        <div class="price-cell">
+          <span class="mo-label">MONTHS</span>
+          <span class="mo">12+2</span>
+          <span class="amt"><span class="rupee">&#8377;</span>12,499</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STICKER CLUSTER (4 layers) ===== -->
+  <div class="sticker-cluster">
+
+    <div class="stk-asterisk-1">*</div>
+
+    <!-- starburst halo (magenta) -->
+    <div class="stk-starburst">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <polygon fill="#FF2E88" points="
+          100,0 112,72 145,12 130,78 180,28 145,88 195,60 150,100
+          200,100 150,115 188,150 138,118 170,180 125,128 138,195 108,130
+          100,200 90,128 58,195 70,170 30,180 62,128 12,170 50,115
+          0,100 50,100 5,60 55,88 20,28 70,78 55,12 88,72"/>
+      </svg>
+    </div>
+
+    <!-- lightning -->
+    <div class="stk-lightning">
+      <svg viewBox="0 0 40 60" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="22,0 4,34 16,34 10,60 36,22 22,22 28,0" fill="#CFFF3C" stroke="#050505" stroke-width="1.6"/>
+      </svg>
+    </div>
+
+    <!-- main photo -->
+    <div class="stk-photo">
+      <img src="assets/sticker-src.jpg" alt="">
+      <div class="corner-clip"></div>
+    </div>
+
+    <!-- torn-paper OFFER tag -->
+    <div class="stk-tag">
+      <svg viewBox="0 0 220 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon fill="#CFFF3C" stroke="#050505" stroke-width="2"
+          points="6,18 18,4 34,14 48,2 62,16 78,4 92,18 110,6 126,16 142,4 158,18 174,6 192,16 212,8 216,28 208,46 218,62 210,80 216,98 198,104 178,98 160,106 142,98 122,108 102,100 84,108 66,100 48,106 30,100 14,104 4,90 12,72 2,54 10,36"/>
+      </svg>
+      <div class="stk-tag-text">OFFER!!</div>
+    </div>
+
+    <!-- RATED #1 round stamp -->
+    <div class="stk-rated">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="48" fill="#050505" stroke="#CFFF3C" stroke-width="2"/>
+        <circle cx="50" cy="50" r="42" fill="none" stroke="#FF2E88" stroke-width="1" stroke-dasharray="2 2"/>
+      </svg>
+      <div class="text-wrap">
+        <div class="num">#1</div>
+        <div class="sub">RATED</div>
+      </div>
+    </div>
+
+    <div class="stk-asterisk-2">*</div>
+  </div>
+
+  <!-- ===== BOTTOM SLAB (address + QR + footer) ===== -->
+  <div class="bottom-slab">
+
+    <div class="bottom-deco-strip">
+      <span>// JOIN NOW //</span><span class="dot"></span>
+      <span>ROCKWALLFITNESS.IN</span><span class="dot"></span>
+      <span>NO EXCUSES //</span><span class="dot"></span>
+      <span>EST. 2018</span><span class="dot"></span>
+      <span>// SHUT UP &amp; LIFT //</span><span class="dot"></span>
+      <span>NO REFUNDS</span><span class="dot"></span>
+      <span>BANGALORE //</span>
+    </div>
+
+    <div class="address-block">
+      <div class="city"><span class="pin"></span>BAN<span class="spark">GA</span>LORE</div>
+      <div class="street">
+        SV TOWERS, 2ND FLOOR, KRISHNANAGAR INDUSTRIAL AREA,<br>
+        HOSUR ROAD, BANGALORE 560029
+      </div>
+      <div class="note">&rarr; next to the Royal Enfield showroom.</div>
+    </div>
+
+    <div class="qr-cluster">
+      <div class="qr-arrow">
+        <span class="label">scan me!</span>
+        <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg" fill="none" style="margin-top:6mm">
+          <path d="M 10 30 C 50 10, 110 90, 160 70 S 190 110, 190 120"
+                stroke="#FF2E88" stroke-width="3" stroke-linecap="round"/>
+          <path d="M 190 120 L 178 108 M 190 120 L 200 104"
+                stroke="#FF2E88" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="qr-torn">
+        <div class="qr-inner">
+          <img src="assets/qr.png" alt="QR rockwallfitness.in">
+        </div>
+      </div>
+      <div class="qr-caption">
+        JOIN NOW
+        <span class="small">// ROCKWALLFITNESS.IN //</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== FOOT STRIP ===== -->
+  <footer class="foot-strip">
+    <div class="left">
+      <span class="social-icon">
+        <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="15" cy="15" r="14" fill="#050505"/>
+          <path d="M17.5 10.5h2V7.5h-2.5c-2 0-3.5 1.4-3.5 3.5v2h-2v3h2v7h3v-7h2.3l0.4-3H16.5v-1.7c0-0.5 0.3-0.8 1-0.8z" fill="#CFFF3C"/>
+        </svg>
+      </span>
+      <span class="social-icon">
+        <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="15" cy="15" r="14" fill="#050505"/>
+          <rect x="8" y="8" width="14" height="14" rx="4" ry="4" fill="none" stroke="#CFFF3C" stroke-width="1.6"/>
+          <circle cx="15" cy="15" r="3.2" fill="none" stroke="#CFFF3C" stroke-width="1.6"/>
+          <circle cx="19.2" cy="10.8" r="0.9" fill="#CFFF3C"/>
+        </svg>
+      </span>
+      <span>@ROCKWALLFITNESS</span>
+    </div>
+    <div class="right">
+      <span>+91 99727 67936</span>
+      <span class="pipe">//</span>
+      <span>+91 80499 15898</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

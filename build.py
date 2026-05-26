@@ -2,8 +2,9 @@
 """Build Rockwall Fitness Price Card poster PDF.
 
 Usage:
-  python3 build.py              # render PDF + preview
-  python3 build.py --regen-qr   # also regenerate assets/qr.png
+  python3 build.py                    # render poster.html -> Rockwall-Price-Card-2026.pdf
+  python3 build.py poster_v2a.html    # render any variant by filename
+  python3 build.py --regen-qr         # also regenerate assets/qr.png
 """
 import subprocess, shutil, sys
 from pathlib import Path
@@ -12,9 +13,6 @@ import qrcode
 from qrcode.constants import ERROR_CORRECT_H
 
 HERE = Path(__file__).resolve().parent
-HTML_IN = HERE / "poster.html"
-PDF_OUT = HERE / "Rockwall-Price-Card-2026.pdf"
-PREVIEW = HERE / "preview"
 QR_PATH = HERE / "assets" / "qr.png"
 QR_URL  = "https://rockwallfitness.in"
 
@@ -33,25 +31,49 @@ def make_qr():
     img.save(str(QR_PATH))
     print(f"  Wrote {QR_PATH.name} ({QR_PATH.stat().st_size/1024:.1f} KB)")
 
-def build():
-    print(f"Rendering {HTML_IN.name} -> {PDF_OUT.name}")
-    HTML(filename=str(HTML_IN), base_url=str(HERE)).write_pdf(target=str(PDF_OUT))
-    print(f"  Wrote {PDF_OUT.name} ({PDF_OUT.stat().st_size/1024:.0f} KB)")
+def pdf_name(html_path: Path) -> Path:
+    stem = html_path.stem
+    if stem == "poster":
+        return HERE / "Rockwall-Price-Card-2026.pdf"
+    suffix = stem.replace("poster_", "")
+    return HERE / f"Rockwall-Price-Card-2026-{suffix}.pdf"
 
-def previews():
-    if PREVIEW.exists(): shutil.rmtree(PREVIEW)
-    PREVIEW.mkdir()
-    subprocess.run(["pdftoppm", "-png", "-r", "200", str(PDF_OUT), str(PREVIEW/"page")], check=True)
-    pages = len(list(PREVIEW.glob('page-*.png')))
-    print(f"  {pages} preview page(s) at {PREVIEW.name}/")
+def preview_dir(html_path: Path) -> Path:
+    stem = html_path.stem
+    if stem == "poster":
+        return HERE / "preview"
+    suffix = stem.replace("poster_", "")
+    return HERE / f"preview-{suffix}"
+
+def build(html_path: Path) -> Path:
+    pdf = pdf_name(html_path)
+    print(f"Rendering {html_path.name} -> {pdf.name}")
+    HTML(filename=str(html_path), base_url=str(HERE)).write_pdf(target=str(pdf))
+    print(f"  Wrote {pdf.name} ({pdf.stat().st_size/1024:.0f} KB)")
+    return pdf
+
+def previews(html_path: Path, pdf: Path) -> int:
+    p = preview_dir(html_path)
+    if p.exists(): shutil.rmtree(p)
+    p.mkdir()
+    subprocess.run(["pdftoppm", "-png", "-r", "200", str(pdf), str(p/"page")], check=True)
+    pages = len(list(p.glob('page-*.png')))
+    print(f"  {pages} preview page(s) at {p.name}/")
     return pages
 
 if __name__ == "__main__":
-    regen = "--regen-qr" in sys.argv
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    flags = [a for a in sys.argv[1:] if a.startswith("--")]
+    html_name = args[0] if args else "poster.html"
+    html_path = HERE / html_name
+    if not html_path.exists():
+        raise SystemExit(f"Not found: {html_path}")
+
+    regen = "--regen-qr" in flags
     if regen or not QR_PATH.exists():
         make_qr()
     else:
         print(f"QR exists, skipping ({QR_PATH.name})")
-    build()
-    pages = previews()
-    print(f"\nDone. PDF {PDF_OUT.stat().st_size/1024:.0f} KB, {pages} preview page(s).")
+    pdf = build(html_path)
+    pages = previews(html_path, pdf)
+    print(f"\nDone. {pdf.name} {pdf.stat().st_size/1024:.0f} KB, {pages} preview page(s).")

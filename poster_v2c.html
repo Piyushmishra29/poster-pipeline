@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RWF://MEMBERSHIP.SYS — v2026.05</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&family=Orbitron:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* ===== PAGE SETUP ===== */
+  @page {
+    size: 297mm 420mm;
+    margin: 0;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    width: 297mm;
+    height: 420mm;
+    margin: 0;
+    padding: 0;
+    background: #050505;
+    color: #CFFF3C;
+    font-family: 'Share Tech Mono', monospace;
+    overflow: hidden;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    position: relative;
+    width: 297mm;
+    height: 420mm;
+    overflow: hidden;
+    background: #050505;
+  }
+
+  /* ===== SCAN LINES OVERLAY (entire page) ===== */
+  .scanlines {
+    position: absolute;
+    inset: 0;
+    z-index: 30;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      rgba(207, 255, 60, 0.06) 0,
+      rgba(207, 255, 60, 0.06) 0.18mm,
+      rgba(0, 0, 0, 0) 0.18mm,
+      rgba(0, 0, 0, 0) 0.5mm
+    );
+  }
+
+  /* ===== CRT vignette (radial darken at edges) ===== */
+  .vignette {
+    position: absolute;
+    inset: 0;
+    z-index: 28;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center,
+      rgba(5,5,5,0) 55%,
+      rgba(5,5,5,0.55) 85%,
+      rgba(5,5,5,0.92) 100%);
+  }
+
+  /* ===== Full-bleed BG photo, deep faded ===== */
+  .bg-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .bg-layer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(180%) brightness(0.35);
+    opacity: 0.18;
+  }
+  .bg-tint {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(5,5,5,0.88) 0%,
+      rgba(5,5,5,0.55) 30%,
+      rgba(5,5,5,0.55) 70%,
+      rgba(5,5,5,0.92) 100%);
+  }
+
+  /* ===== Big page outer frame brackets ===== */
+  .page-frame {
+    position: absolute;
+    top: 6mm;
+    left: 6mm;
+    right: 6mm;
+    bottom: 6mm;
+    z-index: 5;
+    pointer-events: none;
+    border: 0.25mm dashed rgba(207,255,60,0.18);
+  }
+  .page-corner {
+    position: absolute;
+    width: 14mm;
+    height: 14mm;
+  }
+  .page-corner.tl { top: 4mm; left: 4mm; }
+  .page-corner.tr { top: 4mm; right: 4mm; }
+  .page-corner.bl { bottom: 4mm; left: 4mm; }
+  .page-corner.br { bottom: 4mm; right: 4mm; }
+  .page-corner svg { width: 100%; height: 100%; display: block; }
+
+  /* ===== 1. SYSTEM HEADER (terminal-style top bar) ===== */
+  .sys-header {
+    position: relative;
+    z-index: 10;
+    margin: 10mm 12mm 0;
+    height: 6mm;
+    border-top: 0.4mm solid #CFFF3C;
+    border-bottom: 0.4mm solid rgba(207,255,60,0.45);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3mm;
+    font-family: 'VT323', monospace;
+    font-size: 13pt;
+    color: #CFFF3C;
+    letter-spacing: 0.05em;
+    background: rgba(207,255,60,0.04);
+  }
+  .sys-header .blink {
+    color: #00FFFF;
+    margin-right: 1.5mm;
+  }
+  .sys-header .right { color: #00FFFF; }
+  .sys-header .right .ok {
+    background: #CFFF3C;
+    color: #050505;
+    padding: 0 1.5mm;
+    margin-left: 2mm;
+    font-weight: 700;
+  }
+
+  /* ===== 2. LOGO/HERO PANEL (replaces v1 header) ===== */
+  .hero-panel {
+    position: relative;
+    z-index: 10;
+    margin: 4mm 12mm 0;
+    height: 44mm;
+    border: 0.4mm solid #CFFF3C;
+    background: rgba(207,255,60,0.03);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6mm;
+    box-shadow: inset 0 0 6mm rgba(207,255,60,0.08);
+  }
+  .corner-bracket {
+    position: absolute;
+    width: 7mm;
+    height: 7mm;
+  }
+  .corner-bracket.tl { top: -0.4mm; left: -0.4mm; }
+  .corner-bracket.tr { top: -0.4mm; right: -0.4mm; }
+  .corner-bracket.bl { bottom: -0.4mm; left: -0.4mm; }
+  .corner-bracket.br { bottom: -0.4mm; right: -0.4mm; }
+  .corner-bracket svg { width: 100%; height: 100%; display: block; }
+
+  .hero-left {
+    display: flex;
+    align-items: center;
+    gap: 5mm;
+  }
+  .hero-logo {
+    height: 28mm;
+    filter: drop-shadow(0 0 3mm rgba(207,255,60,0.7))
+            drop-shadow(0 0 1mm rgba(207,255,60,0.9));
+  }
+  .hero-meta {
+    font-family: 'VT323', monospace;
+    color: #CFFF3C;
+    font-size: 12pt;
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+  }
+  .hero-meta .lbl { color: rgba(207,255,60,0.55); }
+  .hero-meta .cyan { color: #00FFFF; }
+
+  .hero-right {
+    text-align: right;
+    font-family: 'VT323', monospace;
+    font-size: 12pt;
+    color: #CFFF3C;
+    line-height: 1.25;
+  }
+  .hero-right .tag {
+    display: inline-block;
+    border: 0.3mm solid #00FFFF;
+    color: #00FFFF;
+    padding: 0 1.5mm;
+    margin-left: 1.5mm;
+    font-size: 11pt;
+    letter-spacing: 0.05em;
+  }
+  .hero-right .tag.lime {
+    border-color: #CFFF3C;
+    color: #050505;
+    background: #CFFF3C;
+  }
+
+  /* Reticle in middle of hero */
+  .reticle {
+    position: absolute;
+    width: 30mm;
+    height: 30mm;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.85;
+  }
+  .reticle svg { width: 100%; height: 100%; display: block; }
+
+  /* ===== 3. SERVICES MODULE ===== */
+  .services-wrap {
+    position: relative;
+    z-index: 10;
+    margin: 6mm 12mm 0;
+    border: 0.4mm solid #CFFF3C;
+    padding: 5mm 6mm 5mm;
+    background: rgba(207,255,60,0.025);
+  }
+  .module-title {
+    position: absolute;
+    top: -3.5mm;
+    left: 5mm;
+    background: #050505;
+    padding: 0 2mm;
+    font-family: 'VT323', monospace;
+    font-size: 14pt;
+    color: #CFFF3C;
+    letter-spacing: 0.1em;
+  }
+  .module-title .cyan { color: #00FFFF; }
+  .module-meta {
+    position: absolute;
+    top: -3.5mm;
+    right: 5mm;
+    background: #050505;
+    padding: 0 2mm;
+    font-family: 'VT323', monospace;
+    font-size: 12pt;
+    color: #00FFFF;
+    letter-spacing: 0.08em;
+  }
+
+  .services-head {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 800;
+    color: #CFFF3C;
+    font-size: 18pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-shadow: 0 0 3px rgba(207,255,60,0.55);
+    margin-bottom: 4mm;
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+  }
+  .services-head .chev {
+    color: #00FFFF;
+    font-family: 'VT323', monospace;
+    font-size: 18pt;
+    letter-spacing: -0.05em;
+  }
+  .services-head .small {
+    margin-left: auto;
+    font-family: 'VT323', monospace;
+    font-weight: 400;
+    color: rgba(207,255,60,0.55);
+    font-size: 12pt;
+    letter-spacing: 0.1em;
+  }
+
+  .services {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 6mm;
+    row-gap: 2.6mm;
+  }
+  .service-cell {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+    border: 0.25mm solid rgba(207,255,60,0.35);
+    padding: 2mm 3mm;
+    background: rgba(207,255,60,0.02);
+    min-height: 9mm;
+  }
+  .svc-num {
+    font-family: 'VT323', monospace;
+    color: #00FFFF;
+    font-size: 13pt;
+    width: 8mm;
+    letter-spacing: 0.05em;
+  }
+  .svc-label {
+    flex: 1;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: #CFFF3C;
+    font-size: 9.5pt;
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .svc-bars {
+    font-family: 'VT323', monospace;
+    color: #CFFF3C;
+    font-size: 14pt;
+    letter-spacing: -0.02em;
+    text-shadow: 0 0 2px rgba(207,255,60,0.6);
+  }
+  .svc-bars .off { color: rgba(207,255,60,0.18); }
+  .svc-status {
+    font-family: 'VT323', monospace;
+    color: #00FFFF;
+    font-size: 10pt;
+    letter-spacing: 0.04em;
+    margin-left: 1mm;
+  }
+
+  /* ===== 4. PRICE LIST MODULE ===== */
+  .price-wrap {
+    position: relative;
+    z-index: 10;
+    margin: 8mm 12mm 0;
+    border: 0.5mm solid #CFFF3C;
+    padding: 8mm 6mm 6mm;
+    background: linear-gradient(180deg, rgba(207,255,60,0.06), rgba(207,255,60,0.02));
+    box-shadow: inset 0 0 8mm rgba(207,255,60,0.1);
+  }
+  .price-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 5mm;
+  }
+  .price-head .cmd {
+    font-family: 'VT323', monospace;
+    color: #CFFF3C;
+    font-size: 30pt;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 4px rgba(207,255,60,0.55);
+  }
+  .price-head .cmd .prompt { color: #00FFFF; margin-right: 2mm; }
+  .price-head .cmd .ext { color: rgba(207,255,60,0.55); }
+  .price-head .blink-caret {
+    display: inline-block;
+    width: 3mm;
+    height: 6mm;
+    background: #CFFF3C;
+    margin-left: 1mm;
+    vertical-align: -1mm;
+  }
+  .price-head .meta {
+    font-family: 'VT323', monospace;
+    font-size: 13pt;
+    color: #00FFFF;
+    letter-spacing: 0.06em;
+    text-align: right;
+    line-height: 1.2;
+  }
+  .price-head .meta .lime { color: #CFFF3C; }
+
+  .price-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4mm 5mm;
+  }
+  .price-module {
+    position: relative;
+    border: 0.4mm solid #CFFF3C;
+    padding: 4mm 5mm;
+    background: rgba(207,255,60,0.04);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    column-gap: 4mm;
+    min-height: 26mm;
+  }
+  .pm-corner {
+    position: absolute;
+    width: 4.5mm;
+    height: 4.5mm;
+  }
+  .pm-corner.tl { top: -0.3mm; left: -0.3mm; }
+  .pm-corner.tr { top: -0.3mm; right: -0.3mm; }
+  .pm-corner.bl { bottom: -0.3mm; left: -0.3mm; }
+  .pm-corner.br { bottom: -0.3mm; right: -0.3mm; }
+  .pm-corner svg { width: 100%; height: 100%; display: block; }
+
+  .pm-months {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    color: #CFFF3C;
+    font-size: 30pt;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    text-shadow: 0 0 4px rgba(207,255,60,0.55);
+  }
+  .pm-mid {
+    font-family: 'VT323', monospace;
+    color: rgba(207,255,60,0.7);
+    font-size: 12pt;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+  }
+  .pm-mid .row-label { color: #00FFFF; }
+  .pm-mid .bars {
+    color: #CFFF3C;
+    font-size: 14pt;
+    letter-spacing: -0.02em;
+  }
+  .pm-mid .bars .off { color: rgba(207,255,60,0.2); }
+  .pm-price {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    color: #CFFF3C;
+    font-size: 26pt;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    text-align: right;
+    text-shadow: 0 0 4px rgba(207,255,60,0.55);
+  }
+  .pm-price .cur {
+    font-family: 'VT323', monospace;
+    font-size: 18pt;
+    color: #00FFFF;
+    vertical-align: 2mm;
+    margin-right: 1mm;
+  }
+
+  /* ===== 5. TARGET ACQUIRED + ADDRESS + QR row ===== */
+  .bottom-row {
+    position: relative;
+    z-index: 10;
+    margin: 7mm 12mm 0;
+    display: grid;
+    grid-template-columns: 84mm 1fr 72mm;
+    gap: 5mm;
+  }
+
+  .target-panel {
+    position: relative;
+    border: 0.4mm solid #CFFF3C;
+    height: 84mm;
+    padding: 4mm;
+    background: rgba(207,255,60,0.03);
+    display: flex;
+    flex-direction: column;
+  }
+  .target-title {
+    font-family: 'VT323', monospace;
+    color: #00FFFF;
+    font-size: 12pt;
+    letter-spacing: 0.06em;
+    display: flex;
+    justify-content: space-between;
+  }
+  .target-title .lime { color: #CFFF3C; }
+  .target-stage {
+    position: relative;
+    flex: 1;
+    margin-top: 2mm;
+    overflow: hidden;
+  }
+  .target-photo {
+    position: absolute;
+    inset: 6mm;
+    border: 0.3mm solid #CFFF3C;
+    overflow: hidden;
+    background: #050505;
+  }
+  .target-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(190%) brightness(0.55);
+    opacity: 0.85;
+  }
+  .target-reticle {
+    position: absolute;
+    inset: 2mm;
+    pointer-events: none;
+  }
+  .target-reticle svg { width: 100%; height: 100%; display: block; }
+  .target-foot {
+    font-family: 'VT323', monospace;
+    color: #CFFF3C;
+    font-size: 11pt;
+    letter-spacing: 0.05em;
+    margin-top: 2mm;
+    display: flex;
+    justify-content: space-between;
+  }
+  .target-foot .cyan { color: #00FFFF; }
+
+  .address-panel {
+    position: relative;
+    border: 0.4mm solid #CFFF3C;
+    height: 84mm;
+    padding: 5mm 5mm;
+    background: rgba(207,255,60,0.025);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .addr-title {
+    font-family: 'VT323', monospace;
+    color: #00FFFF;
+    font-size: 13pt;
+    letter-spacing: 0.08em;
+  }
+  .addr-title .lime { color: #CFFF3C; }
+  .addr-body {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: #CFFF3C;
+    font-size: 10pt;
+    line-height: 1.45;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-shadow: 0 0 2px rgba(207,255,60,0.45);
+  }
+  .addr-body .pin {
+    display: inline-block;
+    width: 3mm;
+    height: 3mm;
+    background: #CFFF3C;
+    margin-right: 2mm;
+    vertical-align: middle;
+    clip-path: polygon(50% 0%, 100% 38%, 78% 100%, 22% 100%, 0% 38%);
+  }
+  .addr-body strong {
+    color: #00FFFF;
+    font-weight: 800;
+  }
+  .addr-meta {
+    font-family: 'VT323', monospace;
+    color: rgba(207,255,60,0.7);
+    font-size: 11pt;
+    letter-spacing: 0.06em;
+    line-height: 1.3;
+  }
+  .addr-meta .cyan { color: #00FFFF; }
+  .addr-meta .lime { color: #CFFF3C; }
+  .addr-coords {
+    font-family: 'VT323', monospace;
+    color: #00FFFF;
+    font-size: 11pt;
+    letter-spacing: 0.04em;
+    border-top: 0.25mm dashed rgba(207,255,60,0.35);
+    padding-top: 2mm;
+  }
+
+  .qr-panel {
+    position: relative;
+    border: 0.4mm solid #CFFF3C;
+    height: 84mm;
+    padding: 4mm;
+    background: rgba(207,255,60,0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .qr-title {
+    width: 100%;
+    font-family: 'VT323', monospace;
+    color: #00FFFF;
+    font-size: 13pt;
+    letter-spacing: 0.08em;
+    display: flex;
+    justify-content: space-between;
+  }
+  .qr-title .lime { color: #CFFF3C; }
+  .qr-arrows {
+    font-family: 'VT323', monospace;
+    color: #00FFFF;
+    font-size: 18pt;
+    line-height: 1;
+    letter-spacing: 0.3em;
+  }
+  .qr-arrows .lime { color: #CFFF3C; }
+  .qr-box {
+    width: 48mm;
+    height: 48mm;
+    background: #F6F6F2;
+    padding: 2.5mm;
+    border: 0.4mm solid #CFFF3C;
+    box-shadow: 0 0 4mm rgba(207,255,60,0.4);
+  }
+  .qr-box img {
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+  }
+  .qr-foot {
+    width: 100%;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: #CFFF3C;
+    font-size: 9pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .qr-foot .cyan { color: #00FFFF; }
+
+  /* ===== 6. FOOTER POWER BAR ===== */
+  .footer {
+    position: absolute;
+    bottom: 8mm;
+    left: 12mm;
+    right: 12mm;
+    z-index: 10;
+    border-top: 0.4mm solid #CFFF3C;
+    padding-top: 3mm;
+  }
+  .power-row {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+    margin-bottom: 2.5mm;
+  }
+  .power-label {
+    font-family: 'VT323', monospace;
+    color: #00FFFF;
+    font-size: 12pt;
+    letter-spacing: 0.05em;
+    flex: 0 0 auto;
+  }
+  .power-track {
+    flex: 1;
+    height: 4mm;
+    border: 0.3mm solid #CFFF3C;
+    position: relative;
+    background: rgba(207,255,60,0.04);
+    overflow: hidden;
+  }
+  .power-fill {
+    position: absolute;
+    inset: 0.4mm;
+    background:
+      repeating-linear-gradient(90deg,
+        #CFFF3C 0,
+        #CFFF3C 1.5mm,
+        rgba(5,5,5,0.5) 1.5mm,
+        rgba(5,5,5,0.5) 1.8mm);
+    box-shadow: 0 0 3mm rgba(207,255,60,0.6);
+  }
+  .power-pct {
+    font-family: 'VT323', monospace;
+    color: #CFFF3C;
+    font-size: 12pt;
+    letter-spacing: 0.05em;
+    flex: 0 0 auto;
+    text-shadow: 0 0 2px rgba(207,255,60,0.7);
+  }
+
+  .micro-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'VT323', monospace;
+    font-size: 12pt;
+    color: #CFFF3C;
+    letter-spacing: 0.05em;
+  }
+  .micro-tags {
+    display: flex;
+    gap: 2mm;
+  }
+  .micro-tag {
+    border: 0.25mm solid #00FFFF;
+    color: #00FFFF;
+    padding: 0 1.5mm;
+    letter-spacing: 0.1em;
+  }
+  .micro-tag.lime {
+    border-color: #CFFF3C;
+    color: #050505;
+    background: #CFFF3C;
+  }
+  .micro-row .socials {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+  }
+  .micro-row .socials .cyan { color: #00FFFF; }
+  .micro-row .socials .pipe { color: rgba(207,255,60,0.4); }
+
+  /* small chevrons stream */
+  .chev-stream {
+    position: absolute;
+    z-index: 6;
+    font-family: 'VT323', monospace;
+    color: rgba(207,255,60,0.3);
+    font-size: 16pt;
+    letter-spacing: 0.1em;
+    pointer-events: none;
+  }
+  .chev-stream.left {
+    left: 2mm;
+    top: 50%;
+    transform: rotate(-90deg) translateX(50%);
+    transform-origin: left top;
+  }
+  .chev-stream.right {
+    right: 2mm;
+    top: 50%;
+    transform: rotate(90deg) translateX(-50%);
+    transform-origin: right top;
+  }
+
+  /* axis ticks */
+  .axis-ticks {
+    position: absolute;
+    z-index: 6;
+    font-family: 'VT323', monospace;
+    color: rgba(0,255,255,0.4);
+    font-size: 9pt;
+    letter-spacing: 0.05em;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ===== BG ===== -->
+  <div class="bg-layer">
+    <img src="assets/bg.jpg" alt="">
+    <div class="bg-tint"></div>
+  </div>
+
+  <!-- ===== Outer dashed page frame + corners ===== -->
+  <div class="page-frame"></div>
+  <div class="page-corner tl">
+    <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+      <polyline points="2,18 2,2 18,2" fill="none" stroke="#CFFF3C" stroke-width="2"/>
+      <polyline points="6,28 6,6 28,6" fill="none" stroke="#CFFF3C" stroke-width="1" opacity="0.5"/>
+      <circle cx="2" cy="2" r="1.6" fill="#00FFFF"/>
+    </svg>
+  </div>
+  <div class="page-corner tr">
+    <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+      <polyline points="22,2 38,2 38,18" fill="none" stroke="#CFFF3C" stroke-width="2"/>
+      <polyline points="12,6 34,6 34,28" fill="none" stroke="#CFFF3C" stroke-width="1" opacity="0.5"/>
+      <circle cx="38" cy="2" r="1.6" fill="#00FFFF"/>
+    </svg>
+  </div>
+  <div class="page-corner bl">
+    <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+      <polyline points="2,22 2,38 18,38" fill="none" stroke="#CFFF3C" stroke-width="2"/>
+      <polyline points="6,12 6,34 28,34" fill="none" stroke="#CFFF3C" stroke-width="1" opacity="0.5"/>
+      <circle cx="2" cy="38" r="1.6" fill="#00FFFF"/>
+    </svg>
+  </div>
+  <div class="page-corner br">
+    <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+      <polyline points="22,38 38,38 38,22" fill="none" stroke="#CFFF3C" stroke-width="2"/>
+      <polyline points="12,34 34,34 34,12" fill="none" stroke="#CFFF3C" stroke-width="1" opacity="0.5"/>
+      <circle cx="38" cy="38" r="1.6" fill="#00FFFF"/>
+    </svg>
+  </div>
+
+  <!-- side chevron streams -->
+  <div class="chev-stream left">&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;</div>
+  <div class="chev-stream right">&gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt; &gt;</div>
+
+  <!-- ===== 1. SYSTEM HEADER ===== -->
+  <div class="sys-header">
+    <span><span class="blink">&#9608;</span>RWF://MEMBERSHIP.SYS &mdash; v2026.05 &mdash; UPLINK: 100%</span>
+    <span class="right">STATUS<span class="ok">ACTIVE</span></span>
+  </div>
+
+  <!-- ===== 2. HERO PANEL with logo ===== -->
+  <section class="hero-panel">
+    <div class="corner-bracket tl">
+      <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="0,12 0,0 12,0" fill="none" stroke="#CFFF3C" stroke-width="2.5"/>
+      </svg>
+    </div>
+    <div class="corner-bracket tr">
+      <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="18,0 30,0 30,12" fill="none" stroke="#CFFF3C" stroke-width="2.5"/>
+      </svg>
+    </div>
+    <div class="corner-bracket bl">
+      <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="0,18 0,30 12,30" fill="none" stroke="#CFFF3C" stroke-width="2.5"/>
+      </svg>
+    </div>
+    <div class="corner-bracket br">
+      <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="18,30 30,30 30,18" fill="none" stroke="#CFFF3C" stroke-width="2.5"/>
+      </svg>
+    </div>
+
+    <div class="hero-left">
+      <img class="hero-logo" src="assets/logo.png" alt="Rockwall Fitness">
+      <div class="hero-meta">
+        <div class="lbl">// UNIT_ID</div>
+        <div>RWF&minus;BLR&minus;001</div>
+        <div class="lbl">// LOCALE</div>
+        <div class="cyan">BANGALORE.IN</div>
+      </div>
+    </div>
+
+    <div class="reticle">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="46" fill="none" stroke="#CFFF3C" stroke-width="0.8" stroke-dasharray="2,2"/>
+        <circle cx="50" cy="50" r="34" fill="none" stroke="#CFFF3C" stroke-width="0.6" opacity="0.7"/>
+        <circle cx="50" cy="50" r="22" fill="none" stroke="#CFFF3C" stroke-width="0.5" opacity="0.5"/>
+        <circle cx="50" cy="50" r="2" fill="#CFFF3C"/>
+        <line x1="50" y1="0" x2="50" y2="18" stroke="#CFFF3C" stroke-width="0.7"/>
+        <line x1="50" y1="82" x2="50" y2="100" stroke="#CFFF3C" stroke-width="0.7"/>
+        <line x1="0" y1="50" x2="18" y2="50" stroke="#CFFF3C" stroke-width="0.7"/>
+        <line x1="82" y1="50" x2="100" y2="50" stroke="#CFFF3C" stroke-width="0.7"/>
+        <line x1="50" y1="38" x2="50" y2="46" stroke="#00FFFF" stroke-width="0.8"/>
+        <line x1="50" y1="54" x2="50" y2="62" stroke="#00FFFF" stroke-width="0.8"/>
+        <line x1="38" y1="50" x2="46" y2="50" stroke="#00FFFF" stroke-width="0.8"/>
+        <line x1="54" y1="50" x2="62" y2="50" stroke="#00FFFF" stroke-width="0.8"/>
+      </svg>
+    </div>
+
+    <div class="hero-right">
+      <div>MEMBERSHIP.SYS</div>
+      <div>FY 2026.05 &mdash; Q2</div>
+      <div style="margin-top:1.5mm">
+        <span class="tag lime">LIVE</span>
+        <span class="tag">24/7</span>
+      </div>
+      <div style="margin-top:1.5mm">
+        <span class="tag">ONLINE</span>
+        <span class="tag">VERIFIED</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3. SERVICES MODULE ===== -->
+  <section class="services-wrap">
+    <span class="module-title"><span class="cyan">[</span> MODULE_03 / SERVICES.LST <span class="cyan">]</span></span>
+    <span class="module-meta">// 08 NODES &middot; ALL ACTIVE</span>
+
+    <div class="services-head">
+      <span class="chev">&gt;&gt;</span>
+      <span>OUR / SERVICE / MATRIX</span>
+      <span class="small">[ SIGNAL_STRENGTH ]</span>
+    </div>
+
+    <div class="services">
+      <div class="service-cell">
+        <span class="svc-num">N-01</span>
+        <span class="svc-label">PERSONAL FITNESS TRAINING</span>
+        <span class="svc-bars">&#9646;&#9646;&#9646;&#9646;&#9646;</span>
+        <span class="svc-status">[LIVE]</span>
+      </div>
+      <div class="service-cell">
+        <span class="svc-num">N-02</span>
+        <span class="svc-label">MODERN EQUIPMENT &amp; AMBIANCE</span>
+        <span class="svc-bars">&#9646;&#9646;&#9646;&#9646;&#9646;</span>
+        <span class="svc-status">[24/7]</span>
+      </div>
+      <div class="service-cell">
+        <span class="svc-num">N-03</span>
+        <span class="svc-label">HIGH INTENSITY INTERVAL TRAINING (HIIT)</span>
+        <span class="svc-bars">&#9646;&#9646;&#9646;&#9646;<span class="off">&#9646;</span></span>
+        <span class="svc-status">[NEW]</span>
+      </div>
+      <div class="service-cell">
+        <span class="svc-num">N-04</span>
+        <span class="svc-label">DIET CONSULTATION</span>
+        <span class="svc-bars">&#9646;&#9646;&#9646;&#9646;<span class="off">&#9646;</span></span>
+        <span class="svc-status">[ONLINE]</span>
+      </div>
+      <div class="service-cell">
+        <span class="svc-num">N-05</span>
+        <span class="svc-label">BODY BUILDING</span>
+        <span class="svc-bars">&#9646;&#9646;&#9646;&#9646;&#9646;</span>
+        <span class="svc-status">[CORE]</span>
+      </div>
+      <div class="service-cell">
+        <span class="svc-num">N-06</span>
+        <span class="svc-label">FAT LOSS / BODY TONING</span>
+        <span class="svc-bars">&#9646;&#9646;&#9646;&#9646;<span class="off">&#9646;</span></span>
+        <span class="svc-status">[LIVE]</span>
+      </div>
+      <div class="service-cell">
+        <span class="svc-num">N-07</span>
+        <span class="svc-label">ZUMBA DANCE</span>
+        <span class="svc-bars">&#9646;&#9646;&#9646;<span class="off">&#9646;&#9646;</span></span>
+        <span class="svc-status">[NEW]</span>
+      </div>
+      <div class="service-cell">
+        <span class="svc-num">N-08</span>
+        <span class="svc-label">BOXING TRAINING</span>
+        <span class="svc-bars">&#9646;&#9646;&#9646;&#9646;&#9646;</span>
+        <span class="svc-status">[ONLINE]</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4. PRICE LIST MODULE ===== -->
+  <section class="price-wrap">
+    <span class="module-title"><span class="cyan">[</span> MODULE_07 / PRICING.MAP <span class="cyan">]</span></span>
+    <span class="module-meta">// PAYLOAD &times;04 &middot; INR</span>
+
+    <div class="price-head">
+      <div class="cmd">
+        <span class="prompt">&gt;_</span>PRICE_LIST<span class="ext">.exe</span><span class="blink-caret"></span>
+      </div>
+      <div class="meta">
+        EXEC: SECURE<br>
+        FX: <span class="lime">INR</span> &middot; TAX: INCL.
+      </div>
+    </div>
+
+    <div class="price-grid">
+
+      <!-- TIER 1: 1 month -->
+      <div class="price-module">
+        <div class="pm-corner tl"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><polyline points="0,7 0,0 7,0" fill="none" stroke="#CFFF3C" stroke-width="2"/></svg></div>
+        <div class="pm-corner tr"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><polyline points="13,0 20,0 20,7" fill="none" stroke="#CFFF3C" stroke-width="2"/></svg></div>
+        <div class="pm-corner bl"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><polyline points="0,13 0,20 7,20" fill="none" stroke="#CFFF3C" stroke-width="2"/></svg></div>
+        <div class="pm-corner br"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><polyline points="13,20 20,20 20,13" fill="none" stroke="#CFFF3C" stroke-width="2"/></svg></div>
+
+        <div class="pm-months">01</div>
+        <div class="pm-mid">
+          <div><span class="row-label">// TIER_01</span></div>
+          <div>MONTH</div>
+          <div class="bars">&#9646;&#9646;<span class="off">&#9646;&#9646;&#9646;</span></div>
+        </div>
+        <div class="pm-price"><span class="cur">&#8377;</span>2,999</div>
+      </div>
+
+      <!-- TIER 2: 3+1 -->
+      <div class="price-module">
+        <div class="pm-corner tl"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><polyline points="0,7 0,0 7,0" fill="none" stroke="#CFFF3C" stroke-width="2"/></svg></div>
+        <div class="pm-corner tr"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><polyline points="13,0 20,0 20,7" fill="none" stroke="#CFFF3C" stroke-width="2"/></svg></div>
+        <div class="pm-corner bl"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><polyline points="0,13 0,20 7,20" fill="none" stroke="#CFFF3C" stroke-width="2"/></svg></div>
+        <div class="pm-corner br"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><polyline points="13,20 20,20 20,13" fill="none" stroke="#CFFF3C" stroke-width="2"/></svg></div>
+
+        <div class="pm-months">03+1</div>
+        <div class="pm-mid">
+          <div><span class="row-label">// TIER_02</span></div>
+          <div>MONTHS &middot; <span class="bars">[BONUS]</span></div>
+          <div class="bars">&#9646;&#9646;&#9646;<span class="off">&#9646;&#9646;</span></div>
+        </div>
+        <div class="pm-price"><span class="cur">&#8377;</span>6,499</div>
+      </div>
+
+      <!-- TIER 3: 6+2 -->
+      <div class="price-module">
+        <div class="pm-corner tl"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><polyline points="0,7 0,0 7,0" fill="none" stroke="#CFFF3C" stroke-width="2"/></svg></div>
+        <div class="pm-corner tr"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><polyline points="13,0 20,0 20,7" fill="none" stroke="#CFFF3C" stroke-width="2"/></svg></div>
+        <div class="pm-corner bl"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><polyline points="0,13 0,20 7,20" fill="none" stroke="#CFFF3C" stroke-width="2"/></svg></div>
+        <div class="pm-corner br"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><polyline points="13,20 20,20 20,13" fill="none" stroke="#CFFF3C" stroke-width="2"/></svg></div>
+
+        <div class="pm-months">06+2</div>
+        <div class="pm-mid">
+          <div><span class="row-label">// TIER_03</span></div>
+          <div>MONTHS &middot; <span class="bars">[BONUS]</span></div>
+          <div class="bars">&#9646;&#9646;&#9646;&#9646;<span class="off">&#9646;</span></div>
+        </div>
+        <div class="pm-price"><span class="cur">&#8377;</span>9,499</div>
+      </div>
+
+      <!-- TIER 4: 12+2 -->
+      <div class="price-module">
+        <div class="pm-corner tl"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><polyline points="0,7 0,0 7,0" fill="none" stroke="#CFFF3C" stroke-width="2"/></svg></div>
+        <div class="pm-corner tr"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><polyline points="13,0 20,0 20,7" fill="none" stroke="#CFFF3C" stroke-width="2"/></svg></div>
+        <div class="pm-corner bl"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><polyline points="0,13 0,20 7,20" fill="none" stroke="#CFFF3C" stroke-width="2"/></svg></div>
+        <div class="pm-corner br"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><polyline points="13,20 20,20 20,13" fill="none" stroke="#CFFF3C" stroke-width="2"/></svg></div>
+
+        <div class="pm-months">12+2</div>
+        <div class="pm-mid">
+          <div><span class="row-label">// TIER_04 [MAX]</span></div>
+          <div>MONTHS &middot; <span class="bars">[BEST]</span></div>
+          <div class="bars">&#9646;&#9646;&#9646;&#9646;&#9646;</div>
+        </div>
+        <div class="pm-price"><span class="cur">&#8377;</span>12,499</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== 5. BOTTOM ROW: target / address / qr ===== -->
+  <div class="bottom-row">
+
+    <!-- TARGET PANEL -->
+    <div class="target-panel">
+      <div class="target-title">
+        <span><span class="lime">&gt;</span> TARGET_ACQUIRED</span>
+        <span>LOCK: 100%</span>
+      </div>
+      <div class="target-stage">
+        <div class="target-photo">
+          <img src="assets/sticker-src.jpg" alt="">
+        </div>
+        <div class="target-reticle">
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer brackets -->
+            <polyline points="2,12 2,2 12,2" fill="none" stroke="#CFFF3C" stroke-width="1.2"/>
+            <polyline points="88,2 98,2 98,12" fill="none" stroke="#CFFF3C" stroke-width="1.2"/>
+            <polyline points="2,88 2,98 12,98" fill="none" stroke="#CFFF3C" stroke-width="1.2"/>
+            <polyline points="88,98 98,98 98,88" fill="none" stroke="#CFFF3C" stroke-width="1.2"/>
+            <!-- center crosshair -->
+            <circle cx="50" cy="50" r="14" fill="none" stroke="#00FFFF" stroke-width="0.5" stroke-dasharray="1.5,1.5"/>
+            <circle cx="50" cy="50" r="6" fill="none" stroke="#CFFF3C" stroke-width="0.8"/>
+            <line x1="50" y1="34" x2="50" y2="44" stroke="#CFFF3C" stroke-width="0.6"/>
+            <line x1="50" y1="56" x2="50" y2="66" stroke="#CFFF3C" stroke-width="0.6"/>
+            <line x1="34" y1="50" x2="44" y2="50" stroke="#CFFF3C" stroke-width="0.6"/>
+            <line x1="56" y1="50" x2="66" y2="50" stroke="#CFFF3C" stroke-width="0.6"/>
+            <!-- corner labels -->
+            <text x="4" y="22" fill="#00FFFF" font-family="VT323" font-size="4">[A1]</text>
+            <text x="84" y="22" fill="#00FFFF" font-family="VT323" font-size="4">[A2]</text>
+            <text x="4" y="94" fill="#00FFFF" font-family="VT323" font-size="4">[B1]</text>
+            <text x="84" y="94" fill="#00FFFF" font-family="VT323" font-size="4">[B2]</text>
+          </svg>
+        </div>
+      </div>
+      <div class="target-foot">
+        <span><span class="cyan">&gt;</span> SUBJECT: IRON</span>
+        <span>RNG 0.0m</span>
+      </div>
+    </div>
+
+    <!-- ADDRESS PANEL -->
+    <div class="address-panel">
+      <div>
+        <div class="addr-title"><span class="lime">&gt;</span> COORDINATES_/_LOCATION</div>
+      </div>
+      <div class="addr-body">
+        <span class="pin"></span><strong>SV TOWERS</strong>, 2ND FLOOR<br>
+        KRISHNANAGAR INDUSTRIAL AREA<br>
+        HOSUR ROAD<br>
+        BANGALORE &mdash; 560029<br>
+        <span style="font-size:8pt;color:rgba(207,255,60,0.7)">// NEXT TO ROYAL ENFIELD SHOWROOM</span>
+      </div>
+      <div class="addr-meta">
+        <span class="cyan">&gt; CHANNELS</span><br>
+        <span class="lime">@rockwallfitness</span><br>
+        +91 99727 67936<br>
+        +91 80499 15898
+      </div>
+      <div class="addr-coords">
+        LAT 12.9420&deg; N &middot; LON 77.6210&deg; E
+      </div>
+    </div>
+
+    <!-- QR PANEL -->
+    <div class="qr-panel">
+      <div class="qr-title">
+        <span><span class="lime">&gt;</span> SCAN</span>
+        <span>[BOOK_NOW]</span>
+      </div>
+      <div class="qr-arrows"><span class="lime">&#9662;</span> &#9662; <span class="lime">&#9662;</span></div>
+      <div class="qr-box">
+        <img src="assets/qr.png" alt="QR rockwallfitness.in">
+      </div>
+      <div class="qr-arrows">&#9656; <span class="lime">JOIN</span> &#9666;</div>
+      <div class="qr-foot">
+        rockwallfitness.in<br>
+        <span class="cyan">// UPLINK CONFIRMED</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 6. FOOTER POWER BAR ===== -->
+  <div class="footer">
+    <div class="power-row">
+      <span class="power-label">PWR</span>
+      <div class="power-track"><div class="power-fill"></div></div>
+      <span class="power-pct">100%</span>
+    </div>
+    <div class="micro-row">
+      <div class="micro-tags">
+        <span class="micro-tag lime">[SIGNAL]</span>
+        <span class="micro-tag">[SECURE]</span>
+        <span class="micro-tag">[VERIFIED]</span>
+        <span class="micro-tag">[ONLINE]</span>
+      </div>
+      <div class="socials">
+        <span class="cyan">@ROCKWALLFITNESS</span>
+        <span class="pipe">|</span>
+        <span>+91 99727 67936</span>
+        <span class="pipe">|</span>
+        <span>+91 80499 15898</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Overlays last ===== -->
+  <div class="vignette"></div>
+  <div class="scanlines"></div>
+
+</div>
+</body>
+</html>

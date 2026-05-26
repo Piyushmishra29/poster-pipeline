@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rockwall Fitness — PRICE_LIST [v2b/BRUTALIST]</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800&family=Archivo+Black&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     ROCKWALL FITNESS — PRICE_LIST POSTER v2b
+     AESTHETIC : BRUTALIST MONOSPACE
+     SUBSTRATE : 297mm x 420mm (A3)
+     PALETTE   : #050505 / #CFFF3C / grayscale type
+     ============================================================ */
+
+  @page {
+    size: 297mm 420mm;
+    margin: 0;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    width: 297mm;
+    height: 420mm;
+    margin: 0;
+    padding: 0;
+    background: #050505;
+    color: #E8E8E2;
+    font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+    overflow: hidden;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    position: relative;
+    width: 297mm;
+    height: 420mm;
+    overflow: hidden;
+    background: #050505;
+  }
+
+  /* ---------- BACKGROUND PHOTO (heavily reduced texture) ---------- */
+  .bg-photo {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .bg-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(180%) brightness(0.35);
+    opacity: 0.08;
+  }
+
+  /* ---------- CAD MEASUREMENT GRID ---------- */
+  .grid-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .grid-layer svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  /* ---------- OUTER FRAME (architectural border) ---------- */
+  .frame {
+    position: absolute;
+    top: 10mm;
+    left: 10mm;
+    right: 10mm;
+    bottom: 10mm;
+    border: 0.4mm solid #CFFF3C;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .frame::before,
+  .frame::after {
+    content: '';
+    position: absolute;
+    background: #CFFF3C;
+  }
+  .frame::before {
+    top: -1.5mm; left: -1.5mm;
+    width: 6mm; height: 6mm;
+  }
+  .frame::after {
+    bottom: -1.5mm; right: -1.5mm;
+    width: 6mm; height: 6mm;
+  }
+  .frame-tl, .frame-tr, .frame-bl, .frame-br {
+    position: absolute;
+    width: 8mm;
+    height: 8mm;
+    border: 0.4mm solid #CFFF3C;
+    z-index: 2;
+  }
+  .frame-tl { top: 14mm; left: 14mm; border-right: none; border-bottom: none; }
+  .frame-tr { top: 14mm; right: 14mm; border-left: none; border-bottom: none; }
+  .frame-bl { bottom: 14mm; left: 14mm; border-right: none; border-top: none; }
+  .frame-br { bottom: 14mm; right: 14mm; border-left: none; border-top: none; }
+
+  /* ---------- PAGE INNER ---------- */
+  .inner {
+    position: absolute;
+    top: 10mm;
+    left: 10mm;
+    right: 10mm;
+    bottom: 10mm;
+    padding: 6mm 10mm 6mm 10mm;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ---------- FILE HEADER STRIP ---------- */
+  .file-strip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 6.8pt;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: #CFFF3C;
+    text-transform: uppercase;
+    padding-bottom: 2mm;
+    border-bottom: 0.25mm solid rgba(207,255,60,0.5);
+  }
+  .file-strip .dot {
+    display: inline-block;
+    width: 1.6mm;
+    height: 1.6mm;
+    background: #CFFF3C;
+    vertical-align: middle;
+    margin: 0 1.5mm 0.4mm 0;
+  }
+  .file-strip span.mute { color: #8A8A82; }
+
+  /* ---------- TOP MASTHEAD ---------- */
+  .masthead {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 5mm 0 4mm 0;
+    border-bottom: 0.25mm solid rgba(207,255,60,0.35);
+  }
+  .masthead-left {
+    font-size: 7pt;
+    color: #8A8A82;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1.5;
+  }
+  .masthead-left b { color: #E8E8E2; font-weight: 700; }
+  .masthead-logo {
+    height: 14mm;
+    display: block;
+  }
+  .masthead-right {
+    text-align: right;
+    font-size: 7pt;
+    color: #8A8A82;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1.5;
+  }
+  .masthead-right b { color: #CFFF3C; font-weight: 700; }
+
+  /* ---------- TITLE BLOCK ---------- */
+  .title-block {
+    padding: 6mm 0 4mm 0;
+    border-bottom: 0.4mm solid #CFFF3C;
+  }
+  .title-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2mm;
+  }
+  .title-tag {
+    font-size: 8pt;
+    font-weight: 700;
+    color: #CFFF3C;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .title-meta {
+    font-size: 7pt;
+    color: #8A8A82;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .title-headline {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 84pt;
+    line-height: 0.88;
+    color: #E8E8E2;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 2mm 0 0 0;
+  }
+  .title-headline .bracket { color: #CFFF3C; }
+  .title-sub {
+    margin-top: 3mm;
+    font-size: 8pt;
+    font-weight: 500;
+    color: #8A8A82;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- SECTION LABEL ---------- */
+  .sec-label {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+    margin-top: 6mm;
+    margin-bottom: 3mm;
+    font-size: 8pt;
+    font-weight: 700;
+    color: #CFFF3C;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+  .sec-label .num {
+    background: #CFFF3C;
+    color: #050505;
+    padding: 0.8mm 2mm 0.6mm 2mm;
+    font-weight: 800;
+  }
+  .sec-label .rule {
+    flex: 1;
+    height: 0.25mm;
+    background: rgba(207,255,60,0.55);
+  }
+  .sec-label .end {
+    font-size: 7pt;
+    color: #8A8A82;
+    letter-spacing: 0.2em;
+  }
+
+  /* ---------- SERVICES LIST ---------- */
+  .services {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 8mm;
+    row-gap: 0;
+    border-top: 0.25mm solid rgba(207,255,60,0.4);
+    border-bottom: 0.25mm solid rgba(207,255,60,0.4);
+  }
+  .svc {
+    display: grid;
+    grid-template-columns: 10mm 1fr auto;
+    align-items: center;
+    padding: 3mm 0;
+    border-bottom: 0.15mm dashed rgba(207,255,60,0.25);
+    font-size: 9.5pt;
+    font-weight: 500;
+    color: #E8E8E2;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .svc:nth-last-child(-n+2) { border-bottom: none; }
+  .svc .id {
+    color: #CFFF3C;
+    font-weight: 700;
+    font-size: 8.5pt;
+    letter-spacing: 0.1em;
+  }
+  .svc .sep {
+    color: #CFFF3C;
+    font-weight: 700;
+    margin-right: 3mm;
+    letter-spacing: 0;
+  }
+  .svc .tag {
+    color: #8A8A82;
+    font-size: 7pt;
+    letter-spacing: 0.2em;
+  }
+
+  /* ---------- PRICING TABLE ---------- */
+  .price-wrap {
+    margin-top: 0;
+  }
+  table.price-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 1mm;
+  }
+  .price-table th,
+  .price-table td {
+    border: 0.3mm solid #CFFF3C;
+    padding: 4mm 4mm;
+    text-align: left;
+    font-variant-numeric: tabular-nums;
+  }
+  .price-table thead th {
+    background: #CFFF3C;
+    color: #050505;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    font-size: 8pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 3mm 4mm;
+  }
+  .price-table tbody td {
+    color: #E8E8E2;
+    background: rgba(207,255,60,0.02);
+  }
+  .price-table tbody tr:nth-child(odd) td {
+    background: rgba(207,255,60,0.05);
+  }
+  .price-table td.col-code {
+    color: #CFFF3C;
+    font-weight: 700;
+    font-size: 9pt;
+    letter-spacing: 0.15em;
+    width: 22%;
+  }
+  .price-table td.col-dur {
+    font-weight: 700;
+    font-size: 14pt;
+    letter-spacing: 0.02em;
+    width: 22%;
+  }
+  .price-table td.col-desc {
+    color: #8A8A82;
+    font-size: 7.5pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    width: 30%;
+  }
+  .price-table td.col-mrp {
+    text-align: right;
+    color: #CFFF3C;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 22pt;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    width: 26%;
+  }
+
+  /* ---------- CTA STRIP (replaces sticker cluster) ---------- */
+  .cta-strip {
+    margin-top: 5mm;
+    background: #CFFF3C;
+    color: #050505;
+    padding: 6mm 8mm;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 8mm;
+  }
+  .cta-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    font-size: 7.5pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    background: #050505;
+    color: #CFFF3C;
+    padding: 1.5mm 3mm;
+  }
+  .cta-headline {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 30pt;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: #050505;
+  }
+  .cta-arrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    font-size: 42pt;
+    line-height: 1;
+    color: #050505;
+    letter-spacing: -0.05em;
+  }
+
+  /* ---------- BOTTOM ROW: ADDRESS + QR + CONNECT ---------- */
+  .bottom-row {
+    display: grid;
+    grid-template-columns: 1.45fr 0.95fr;
+    column-gap: 8mm;
+    margin-top: 5mm;
+    flex: 1;
+    align-content: start;
+  }
+
+  .panel {
+    border: 0.3mm solid rgba(207,255,60,0.55);
+    padding: 5mm 5mm 5mm 5mm;
+    position: relative;
+  }
+  .panel-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4mm;
+    padding-bottom: 2mm;
+    border-bottom: 0.2mm dashed rgba(207,255,60,0.45);
+  }
+  .panel-head .lbl {
+    font-size: 7pt;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    color: #CFFF3C;
+    text-transform: uppercase;
+  }
+  .panel-head .lbl .num {
+    background: #CFFF3C;
+    color: #050505;
+    padding: 0.6mm 1.6mm 0.4mm 1.6mm;
+    margin-right: 2mm;
+    font-weight: 800;
+  }
+  .panel-head .meta {
+    font-size: 6.5pt;
+    color: #8A8A82;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- ADDRESS TERMINAL ---------- */
+  .addr-terminal {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5pt;
+    line-height: 1.7;
+    color: #E8E8E2;
+    letter-spacing: 0.04em;
+  }
+  .addr-terminal .ln {
+    display: grid;
+    grid-template-columns: 8mm 4mm 1fr;
+    align-items: baseline;
+  }
+  .addr-terminal .ln-no {
+    color: #5A5A52;
+    font-weight: 500;
+    text-align: right;
+    padding-right: 2mm;
+  }
+  .addr-terminal .ln-mk {
+    color: #CFFF3C;
+    font-weight: 700;
+  }
+  .addr-terminal .ln-txt b {
+    color: #CFFF3C;
+    font-weight: 700;
+  }
+  .addr-terminal .ln-txt .mute {
+    color: #8A8A82;
+  }
+
+  .addr-foot {
+    margin-top: 4mm;
+    padding-top: 2mm;
+    border-top: 0.2mm dashed rgba(207,255,60,0.4);
+    display: flex;
+    justify-content: space-between;
+    font-size: 6.5pt;
+    color: #8A8A82;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .addr-foot b { color: #CFFF3C; font-weight: 700; }
+
+  /* ---------- QR PANEL ---------- */
+  .qr-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3mm;
+  }
+  .qr-box {
+    width: 44mm;
+    height: 44mm;
+    border: 0.5mm solid #CFFF3C;
+    padding: 2.4mm;
+    background: #F6F6F2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .qr-box img {
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+    display: block;
+  }
+  .qr-cmd {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 8pt;
+    color: #CFFF3C;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .qr-url {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-size: 7pt;
+    color: #8A8A82;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- CONNECT STRIP ---------- */
+  .connect {
+    margin-top: 4mm;
+    border: 0.3mm solid rgba(207,255,60,0.55);
+    padding: 4mm 6mm;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 5mm;
+  }
+  .connect .lbl {
+    font-size: 7pt;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    color: #CFFF3C;
+    text-transform: uppercase;
+  }
+  .connect .lbl .num {
+    background: #CFFF3C;
+    color: #050505;
+    padding: 0.6mm 1.6mm 0.4mm 1.6mm;
+    margin-right: 2mm;
+    font-weight: 800;
+  }
+  .connect .handles {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 9pt;
+    color: #E8E8E2;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .connect .handles .at { color: #CFFF3C; }
+  .connect .handles .sep {
+    color: #5A5A52;
+    margin: 0 3mm;
+    font-weight: 500;
+  }
+  .connect .phones {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 9pt;
+    color: #CFFF3C;
+    letter-spacing: 0.1em;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .connect .phones .mute { color: #8A8A82; font-weight: 500; }
+  .connect .phones .ph-sep { color: #5A5A52; margin: 0 2mm; }
+
+  /* ---------- FOOTER ---------- */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5mm;
+    padding-top: 3mm;
+    border-top: 0.4mm solid #CFFF3C;
+    font-size: 7pt;
+    color: #8A8A82;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .footer b { color: #CFFF3C; font-weight: 700; }
+  .footer .eof {
+    background: #CFFF3C;
+    color: #050505;
+    padding: 1mm 3mm;
+    font-weight: 800;
+    letter-spacing: 0.3em;
+  }
+
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ===== LAYER 0: BG photo (muted) ===== -->
+  <div class="bg-photo">
+    <img src="assets/bg.jpg" alt="">
+  </div>
+
+  <!-- ===== LAYER 1: CAD measurement grid ===== -->
+  <div class="grid-layer">
+    <svg viewBox="0 0 297 420" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="finegrid" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+          <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#CFFF3C" stroke-width="0.08" opacity="0.12"/>
+        </pattern>
+        <pattern id="coarsegrid" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+          <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#CFFF3C" stroke-width="0.18" opacity="0.22"/>
+        </pattern>
+      </defs>
+      <rect x="0" y="0" width="297" height="420" fill="url(#finegrid)"/>
+      <rect x="0" y="0" width="297" height="420" fill="url(#coarsegrid)"/>
+      <!-- center crosshairs -->
+      <line x1="148.5" y1="0" x2="148.5" y2="420" stroke="#CFFF3C" stroke-width="0.1" opacity="0.18" stroke-dasharray="2 2"/>
+      <line x1="0" y1="210" x2="297" y2="210" stroke="#CFFF3C" stroke-width="0.1" opacity="0.18" stroke-dasharray="2 2"/>
+      <!-- top ruler ticks -->
+      <g opacity="0.5">
+        <line x1="10" y1="6" x2="287" y2="6" stroke="#CFFF3C" stroke-width="0.12"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- ===== LAYER 2: outer frame ===== -->
+  <div class="frame"></div>
+  <div class="frame-tl"></div>
+  <div class="frame-tr"></div>
+  <div class="frame-bl"></div>
+  <div class="frame-br"></div>
+
+  <!-- ===== LAYER 5: content ===== -->
+  <div class="inner">
+
+    <!-- FILE strip -->
+    <div class="file-strip">
+      <div><span class="dot"></span>FILE :: ROCKWALL-FITNESS/MEMBERSHIP/2026</div>
+      <div><span class="mute">FMT_</span>A3 &nbsp;//&nbsp; <span class="mute">REV_</span>2.B &nbsp;//&nbsp; <span class="mute">DOC_</span>0001</div>
+    </div>
+
+    <!-- Masthead -->
+    <div class="masthead">
+      <div class="masthead-left">
+        <b>ROCKWALL FITNESS</b><br>
+        STRENGTH &middot; CONDITIONING &middot; COMMUNITY
+      </div>
+      <img class="masthead-logo" src="assets/logo.png" alt="Rockwall Fitness">
+      <div class="masthead-right">
+        <b>EST. BANGALORE</b><br>
+        OPEN 05:00 &mdash; 23:00 &middot; 7/7
+      </div>
+    </div>
+
+    <!-- Title block -->
+    <div class="title-block">
+      <div class="title-line">
+        <div class="title-tag">// PRINT_VARIANT 2B &mdash; BRUTALIST</div>
+        <div class="title-meta">SHEET 297&times;420MM &middot; CMYK_OK</div>
+      </div>
+      <div class="title-headline"><span class="bracket">[</span> PRICE / LIST <span class="bracket">]</span></div>
+      <div class="title-sub">MEMBERSHIP RATES &middot; FY 2026 &middot; ALL TAXES INCLUSIVE</div>
+    </div>
+
+    <!-- 01 / SERVICES -->
+    <div class="sec-label">
+      <span class="num">01</span>
+      <span>SERVICES</span>
+      <span class="rule"></span>
+      <span class="end">08 MODULES</span>
+    </div>
+
+    <div class="services">
+      <div class="svc">
+        <span class="id">S.01</span>
+        <span><span class="sep">///</span>PERSONAL FITNESS TRAINING</span>
+        <span class="tag">1:1</span>
+      </div>
+      <div class="svc">
+        <span class="id">S.02</span>
+        <span><span class="sep">///</span>MODERN EQUIPMENT &amp; AMBIANCE</span>
+        <span class="tag">A/C</span>
+      </div>
+      <div class="svc">
+        <span class="id">S.03</span>
+        <span><span class="sep">///</span>HIGH INTENSITY INTERVAL TRAINING</span>
+        <span class="tag">HIIT</span>
+      </div>
+      <div class="svc">
+        <span class="id">S.04</span>
+        <span><span class="sep">///</span>DIET CONSULTATION</span>
+        <span class="tag">NUTR</span>
+      </div>
+      <div class="svc">
+        <span class="id">S.05</span>
+        <span><span class="sep">///</span>BODY BUILDING</span>
+        <span class="tag">STR</span>
+      </div>
+      <div class="svc">
+        <span class="id">S.06</span>
+        <span><span class="sep">///</span>FAT LOSS &mdash; BODY TONING</span>
+        <span class="tag">CUT</span>
+      </div>
+      <div class="svc">
+        <span class="id">S.07</span>
+        <span><span class="sep">///</span>ZUMBA DANCE</span>
+        <span class="tag">CRD</span>
+      </div>
+      <div class="svc">
+        <span class="id">S.08</span>
+        <span><span class="sep">///</span>BOXING TRAINING</span>
+        <span class="tag">BOX</span>
+      </div>
+    </div>
+
+    <!-- 02 / PRICING -->
+    <div class="sec-label">
+      <span class="num">02</span>
+      <span>PRICING</span>
+      <span class="rule"></span>
+      <span class="end">INR &middot; INC GST</span>
+    </div>
+
+    <div class="price-wrap">
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>CODE</th>
+            <th>DURATION</th>
+            <th>DESCRIPTION</th>
+            <th style="text-align:right;">MRP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-code">P.01</td>
+            <td class="col-dur">1 MO</td>
+            <td class="col-desc">SINGLE MONTH</td>
+            <td class="col-mrp">&#8377;2,999</td>
+          </tr>
+          <tr>
+            <td class="col-code">P.02</td>
+            <td class="col-dur">3 + 1</td>
+            <td class="col-desc">QUARTER &middot; +1 BONUS</td>
+            <td class="col-mrp">&#8377;6,499</td>
+          </tr>
+          <tr>
+            <td class="col-code">P.03</td>
+            <td class="col-dur">6 + 2</td>
+            <td class="col-desc">HALF YEAR &middot; +2 BONUS</td>
+            <td class="col-mrp">&#8377;9,499</td>
+          </tr>
+          <tr>
+            <td class="col-code">P.04</td>
+            <td class="col-dur">12 + 2</td>
+            <td class="col-desc">ANNUAL &middot; +2 BONUS</td>
+            <td class="col-mrp">&#8377;12,499</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- CTA strip (replaces sticker) -->
+    <div class="cta-strip">
+      <div class="cta-tag">EXEC :: ENROL_NOW</div>
+      <div class="cta-headline">SIGN UP &mdash; START LIFTING</div>
+      <div class="cta-arrow">&rarr;</div>
+    </div>
+
+    <!-- Bottom row: address + QR -->
+    <div class="bottom-row">
+
+      <!-- 03 / VISIT US (terminal) -->
+      <div class="panel">
+        <div class="panel-head">
+          <div class="lbl"><span class="num">03</span>VISIT US</div>
+          <div class="meta">GEO &middot; 12.9325&deg;N 77.6112&deg;E</div>
+        </div>
+        <div class="addr-terminal">
+          <div class="ln">
+            <span class="ln-no">001</span>
+            <span class="ln-mk">&gt;</span>
+            <span class="ln-txt"><b>SV TOWERS</b>, 2ND FLOOR</span>
+          </div>
+          <div class="ln">
+            <span class="ln-no">002</span>
+            <span class="ln-mk">&gt;</span>
+            <span class="ln-txt">KRISHNANAGAR INDUSTRIAL AREA</span>
+          </div>
+          <div class="ln">
+            <span class="ln-no">003</span>
+            <span class="ln-mk">&gt;</span>
+            <span class="ln-txt">HOSUR ROAD, BANGALORE &mdash; <b>560029</b></span>
+          </div>
+          <div class="ln">
+            <span class="ln-no">004</span>
+            <span class="ln-mk">&gt;</span>
+            <span class="ln-txt"><span class="mute">// LANDMARK ::</span> NEXT TO ROYAL ENFIELD SHOWROOM</span>
+          </div>
+          <div class="ln">
+            <span class="ln-no">005</span>
+            <span class="ln-mk">&gt;</span>
+            <span class="ln-txt"><span class="mute">// HOURS ::</span> 05:00 &mdash; 23:00 IST &middot; 365/365</span>
+          </div>
+        </div>
+        <div class="addr-foot">
+          <span><b>STATUS_</b>OPERATIONAL</span>
+          <span><b>PARKING_</b>AVAILABLE</span>
+          <span><b>AC_</b>ON</span>
+        </div>
+      </div>
+
+      <!-- QR panel -->
+      <div class="panel qr-panel">
+        <div class="panel-head" style="width:100%;">
+          <div class="lbl"><span class="num">04</span>SCAN</div>
+          <div class="meta">PNG &middot; 600 DPI</div>
+        </div>
+        <div class="qr-box">
+          <img src="assets/qr.png" alt="QR rockwallfitness.in">
+        </div>
+        <div class="qr-cmd">&gt;&gt;&gt; SCAN</div>
+        <div class="qr-url">ROCKWALLFITNESS.IN</div>
+      </div>
+    </div>
+
+    <!-- CONNECT strip -->
+    <div class="connect">
+      <div class="lbl"><span class="num">05</span>CONNECT</div>
+      <div class="handles">
+        <span class="at">@</span>ROCKWALLFITNESS
+        <span class="sep">//</span>
+        <span class="at">IG</span>&nbsp;&middot;&nbsp;<span class="at">FB</span>
+      </div>
+      <div class="phones">
+        <span class="mute">TEL_01</span>&nbsp;+91 99727 67936
+        <span class="ph-sep">|</span>
+        <span class="mute">TEL_02</span>&nbsp;+91 80499 15898
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div>&copy; 2026 ROCKWALL FITNESS &middot; <b>BANGALORE</b> &middot; ALL RIGHTS RESERVED</div>
+      <div>BUILT_FOR_PRINT &middot; 297&times;420MM</div>
+      <div class="eof">// EOF</div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
