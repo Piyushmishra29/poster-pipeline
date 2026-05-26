@@ -64,7 +64,7 @@
     min-height: 50mm;
     height: 50mm;
     flex: 0 0 50mm;
-    border: 0.4mm solid #CFFF3C;
+    border: 0.7mm solid #CFFF3C;
     overflow: hidden;
   }
   .hero-band-photo {
@@ -167,7 +167,7 @@
     margin-top: 3mm;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    border: 0.4mm solid #CFFF3C;
+    border: 0.7mm solid #CFFF3C;
   }
   .stat-cell {
     padding: 2mm 4mm;
@@ -209,11 +209,11 @@
   /* ---------- OUTER FRAME (architectural border) ---------- */
   .frame {
     position: absolute;
-    top: 10mm;
-    left: 10mm;
-    right: 10mm;
-    bottom: 10mm;
-    border: 0.4mm solid #CFFF3C;
+    top: 8mm;
+    left: 8mm;
+    right: 8mm;
+    bottom: 8mm;
+    border: 0.9mm solid #CFFF3C;
     z-index: 2;
     pointer-events: none;
   }
@@ -224,24 +224,52 @@
     background: #CFFF3C;
   }
   .frame::before {
-    top: -1.5mm; left: -1.5mm;
-    width: 6mm; height: 6mm;
+    top: -2mm; left: -2mm;
+    width: 8mm; height: 8mm;
   }
   .frame::after {
-    bottom: -1.5mm; right: -1.5mm;
-    width: 6mm; height: 6mm;
+    bottom: -2mm; right: -2mm;
+    width: 8mm; height: 8mm;
   }
   .frame-tl, .frame-tr, .frame-bl, .frame-br {
     position: absolute;
-    width: 8mm;
-    height: 8mm;
-    border: 0.4mm solid #CFFF3C;
+    width: 10mm;
+    height: 10mm;
+    border: 0.7mm solid #CFFF3C;
     z-index: 2;
   }
-  .frame-tl { top: 14mm; left: 14mm; border-right: none; border-bottom: none; }
-  .frame-tr { top: 14mm; right: 14mm; border-left: none; border-bottom: none; }
-  .frame-bl { bottom: 14mm; left: 14mm; border-right: none; border-top: none; }
-  .frame-br { bottom: 14mm; right: 14mm; border-left: none; border-top: none; }
+  .frame-tl { top: 13mm; left: 13mm; border-right: none; border-bottom: none; }
+  .frame-tr { top: 13mm; right: 13mm; border-left: none; border-bottom: none; }
+  .frame-bl { bottom: 13mm; left: 13mm; border-right: none; border-top: none; }
+  .frame-br { bottom: 13mm; right: 13mm; border-left: none; border-top: none; }
+
+  /* ---------- PRINT CROP MARKS (4 corners outside the frame) ---------- */
+  .crop-mark {
+    position: absolute;
+    width: 6mm;
+    height: 6mm;
+    z-index: 3;
+    pointer-events: none;
+  }
+  .crop-mark::before, .crop-mark::after {
+    content: '';
+    position: absolute;
+    background: #CFFF3C;
+  }
+  .crop-mark::before { /* horizontal tick */
+    top: 50%; left: 0; right: 0;
+    height: 0.4mm;
+    margin-top: -0.2mm;
+  }
+  .crop-mark::after { /* vertical tick */
+    left: 50%; top: 0; bottom: 0;
+    width: 0.4mm;
+    margin-left: -0.2mm;
+  }
+  .crop-tl { top: 3mm; left: 3mm; }
+  .crop-tr { top: 3mm; right: 3mm; }
+  .crop-bl { bottom: 3mm; left: 3mm; }
+  .crop-br { bottom: 3mm; right: 3mm; }
 
   /* ---------- PAGE INNER ---------- */
   .inner {
@@ -262,7 +290,7 @@
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
     padding: 0 0 5mm 0;
-    border-bottom: 0.4mm solid #CFFF3C;
+    border-bottom: 0.7mm solid #CFFF3C;
   }
   .masthead-left {
     font-size: 8.5pt;
@@ -291,7 +319,7 @@
   /* ---------- TITLE BLOCK ---------- */
   .title-block {
     padding: 4mm 0 3mm 0;
-    border-bottom: 0.4mm solid #CFFF3C;
+    border-bottom: 0.7mm solid #CFFF3C;
   }
   .title-headline {
     font-family: 'Archivo Black', sans-serif;
@@ -396,8 +424,8 @@
     grid-template-columns: 1fr 1fr;
     column-gap: 6mm;
     row-gap: 0;
-    border-top: 0.4mm solid #CFFF3C;
-    border-bottom: 0.4mm solid #CFFF3C;
+    border-top: 0.7mm solid #CFFF3C;
+    border-bottom: 0.7mm solid #CFFF3C;
   }
   .svc {
     display: flex;
@@ -530,7 +558,7 @@
   }
 
   .panel {
-    border: 0.4mm solid #CFFF3C;
+    border: 0.7mm solid #CFFF3C;
     padding: 2.5mm 4mm;
     position: relative;
   }
@@ -643,7 +671,7 @@
     align-items: center;
     margin-top: 3mm;
     padding-top: 2.5mm;
-    border-top: 0.4mm solid #CFFF3C;
+    border-top: 0.7mm solid #CFFF3C;
     font-family: 'JetBrains Mono', monospace;
     font-size: 8.5pt;
     color: #CFFF3C;
@@ -687,6 +715,12 @@
   <div class="frame-tr"></div>
   <div class="frame-bl"></div>
   <div class="frame-br"></div>
+
+  <!-- ===== LAYER 2.5: print crop marks ===== -->
+  <div class="crop-mark crop-tl"></div>
+  <div class="crop-mark crop-tr"></div>
+  <div class="crop-mark crop-bl"></div>
+  <div class="crop-mark crop-br"></div>
 
   <!-- ===== LAYER 5: content ===== -->
   <div class="inner">
