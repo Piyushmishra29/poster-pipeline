@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rockwall Fitness — Price List</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Departure+Mono&family=Inter+Tight:wght@400;500;700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,400..900&display=swap" rel="stylesheet">
+<style>
+  /* ===== PAGE SETUP ===== */
+  @page {
+    size: 297mm 420mm;
+    margin: 0;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    width: 297mm;
+    height: 420mm;
+    margin: 0;
+    padding: 0;
+    background: #050505;
+    color: #F6F6F2;
+    font-family: 'Inter Tight', sans-serif;
+    overflow: hidden;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    position: relative;
+    width: 297mm;
+    height: 420mm;
+    overflow: hidden;
+    background: #050505;
+  }
+
+  /* ===== FULL-BLEED BG IMAGE (sections 2-4) ===== */
+  .bg-layer {
+    position: absolute;
+    top: 35mm;             /* below header */
+    left: 0;
+    width: 297mm;
+    height: 260mm;         /* spans services + price banner area */
+    z-index: 0;
+    overflow: hidden;
+  }
+  .bg-layer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(160%) brightness(0.45);
+    opacity: 0.22;
+  }
+  .bg-fade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(5,5,5,1) 0%,
+      rgba(5,5,5,0.1) 18%,
+      rgba(5,5,5,0.1) 82%,
+      rgba(5,5,5,1) 100%);
+    z-index: 1;
+  }
+
+  /* ===== 1. HEADER BAND ===== */
+  .header {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    height: 35mm;
+    background: #050505;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .header-keyline {
+    position: absolute;
+    top: 3mm;
+    left: 8mm;
+    right: 8mm;
+    height: 1mm;
+    background: #CFFF3C;
+  }
+  .header-keyline-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0.4mm;
+    background: #CFFF3C;
+    opacity: 0.6;
+  }
+  .header-frame-wrap {
+    position: relative;
+    height: 30mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .header-frame-svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 110mm;
+    height: 30mm;
+    pointer-events: none;
+  }
+  .header-logo {
+    height: 22mm;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ===== 2. PIXEL BANNER ===== */
+  .pixel-banner {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    padding: 6mm 0 3mm;
+    text-align: center;
+  }
+  .pixel-banner .here-we-go {
+    font-family: 'Departure Mono', monospace;
+    color: #CFFF3C;
+    font-size: 44pt;
+    letter-spacing: 0.4em;
+    line-height: 1;
+    text-shadow: 0 0 6px rgba(207,255,60,0.45);
+    margin-left: 0.4em; /* compensate trailing letter-spacing */
+  }
+  .pixel-banner .our-service {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    color: #F6F6F2;
+    font-size: 14pt;
+    letter-spacing: 0.6em;
+    text-transform: uppercase;
+    margin-top: 3mm;
+    margin-left: 0.6em;
+  }
+  .pixel-banner .our-service .lime { color: #CFFF3C; }
+
+  /* ===== 3. SERVICES GRID ===== */
+  .services {
+    position: relative;
+    z-index: 5;
+    margin: 6mm 10mm;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 6mm 6mm;
+  }
+  .service-cell {
+    display: flex;
+    align-items: flex-start;
+    gap: 4mm;
+    min-height: 18mm;
+  }
+  .service-cell.empty { visibility: hidden; }
+  .service-bullet {
+    flex: 0 0 auto;
+    width: 8mm;
+    height: 8mm;
+    margin-top: 1mm;
+  }
+  .service-bullet svg { display: block; width: 100%; height: 100%; }
+  .service-label {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    color: #CFFF3C;
+    font-size: 11pt;
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+
+  /* ===== 5. PRICE LIST GLITCH BANNER ===== */
+  .price-list-banner {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    height: 48mm;
+    margin-top: 4mm;
+    padding: 0 6mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .glitch-wrap {
+    position: relative;
+    display: inline-block;
+    transform: scaleX(1.05);
+    transform-origin: center center;
+  }
+  .glitch {
+    position: relative;
+    display: inline-block;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-stretch: 150%;
+    font-variation-settings: "wdth" 150;
+    font-size: 104pt;
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    color: #F6F6F2;
+    text-transform: uppercase;
+  }
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-transform: uppercase;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-stretch: 150%;
+    font-variation-settings: "wdth" 150;
+    letter-spacing: 0.02em;
+    pointer-events: none;
+  }
+  .glitch::before {
+    color: #CFFF3C;
+    transform: translate(1.2mm, 0);
+    z-index: -1;
+  }
+  .glitch::after {
+    color: #5BD7C7;
+    transform: translate(-0.8mm, 0.3mm);
+    z-index: -2;
+    opacity: 0.85;
+  }
+  .glitch-bar {
+    position: absolute;
+    top: 45%;
+    left: -3mm;
+    right: -3mm;
+    height: 1.4mm;
+    background: #CFFF3C;
+    transform: translate(2mm, 0);
+    z-index: 3;
+    box-shadow: 0 0 2mm rgba(207,255,60,0.6);
+  }
+
+  /* ===== 6. STICKER CLUSTER (sits to the RIGHT of the price block content, doesn't cover prices) ===== */
+  .sticker-cluster {
+    position: absolute;
+    z-index: 12;
+    width: 88mm;
+    height: 88mm;
+    top: 222mm;
+    right: 10mm;
+    pointer-events: none;
+  }
+  .starburst {
+    position: absolute;
+    top: -4mm; left: -4mm;
+    width: 96mm; height: 96mm;
+    transform: rotate(-15deg);
+    filter: drop-shadow(0 0 6mm rgba(207,255,60,0.7));
+    z-index: 1;
+  }
+  .starburst svg { width: 100%; height: 100%; display: block; }
+  .sticker-photo {
+    position: absolute;
+    top: 6mm; left: 10mm;
+    width: 64mm; height: 64mm;
+    border: 1.4mm solid #CFFF3C;
+    overflow: hidden;
+    transform: rotate(5deg);
+    filter: drop-shadow(0 0 4mm rgba(207,255,60,0.5));
+    background: #050505;
+    z-index: 2;
+  }
+  .sticker-photo img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: grayscale(1) contrast(180%) brightness(0.7);
+  }
+  .offer-tag {
+    position: absolute;
+    top: 54mm; left: 0mm;
+    width: 58mm; height: 28mm;
+    transform: rotate(-10deg);
+    filter: drop-shadow(0 1.5mm 2.5mm rgba(0,0,0,0.7));
+    z-index: 3;
+  }
+  .offer-tag svg {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+  }
+  .offer-tag-text {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 900;
+    font-size: 32pt;
+    color: #050505;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .lightning {
+    position: absolute;
+    top: -2mm; right: -2mm;
+    width: 20mm; height: 28mm;
+    transform: rotate(18deg);
+    filter: drop-shadow(0 0 3mm #CFFF3C);
+    z-index: 4;
+  }
+  .lightning svg { width: 100%; height: 100%; }
+
+  /* ===== 7. PRICE BLOCK (torn lime shape) ===== */
+  .price-block-wrap {
+    position: relative;
+    z-index: 6;
+    width: 100%;
+    height: 112mm;
+    margin-top: 2mm;
+  }
+  .price-shape {
+    position: absolute;
+    top: 4mm;
+    left: 24mm;
+    width: 249mm;
+    height: 104mm;
+    background: #CFFF3C;
+    /* torn jagged edges via polygon */
+    clip-path: polygon(
+      0% 4%,   3% 0%,   8% 5%,   14% 1%,   20% 6%,   26% 2%,
+      33% 7%,  40% 1%,  47% 6%,   54% 0%,   60% 7%,   67% 2%,
+      74% 6%,  81% 0%,  88% 5%,   94% 1%,   100% 6%,
+      99% 12%, 100% 19%, 96% 26%, 100% 33%, 97% 41%,
+      100% 48%,96% 56%, 100% 63%, 97% 71%, 100% 79%,
+      96% 86%, 100% 93%, 96% 100%,
+      90% 96%, 84% 100%, 77% 95%, 70% 100%, 63% 95%,
+      56% 100%,49% 95%, 42% 100%, 35% 95%, 28% 100%,
+      21% 96%, 14% 100%, 7% 96%, 0% 100%,
+      4% 92%,  0% 85%,  3% 78%,  0% 70%,  4% 63%,
+      0% 55%,  3% 47%,  0% 40%,  4% 32%,  0% 24%,
+      3% 16%,  0% 9%
+    );
+    box-shadow: 0 0 18mm rgba(207,255,60,0.18);
+  }
+  .price-shape-inner {
+    position: absolute;
+    inset: 0;
+    padding: 10mm 42mm;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    grid-template-rows: repeat(4, 1fr);
+    align-items: center;
+    column-gap: 14mm;
+    color: #050505;
+  }
+  .price-months {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 32pt;
+    line-height: 1;
+    text-align: center;
+    letter-spacing: -0.01em;
+    padding: 3mm 0;
+    border-bottom: 0.5mm solid rgba(5,5,5,0.55);
+  }
+  .price-mrp {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 32pt;
+    line-height: 1;
+    text-align: center;
+    letter-spacing: -0.01em;
+    padding: 3mm 0;
+    border-bottom: 0.5mm solid rgba(5,5,5,0.55);
+  }
+  .price-months.price-last,
+  .price-mrp.price-last {
+    border-bottom: none;
+  }
+  .price-label-left, .price-label-right {
+    position: absolute;
+    top: 50%;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    color: #050505;
+    font-size: 14pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    z-index: 7;
+  }
+  .price-label-left {
+    left: 30mm;
+    transform-origin: left center;
+    transform: translateY(-50%) rotate(-90deg);
+  }
+  .price-label-right {
+    right: 30mm;
+    transform-origin: right center;
+    transform: translateY(-50%) rotate(90deg);
+  }
+
+  /* ===== 8. ADDRESS BAND, QR + FOOTER ===== */
+  .address-band {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 88mm;
+    z-index: 6;
+    text-align: center;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 500;
+    color: #F6F6F2;
+    font-size: 10pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1.5;
+  }
+  .address-band .pin {
+    display: inline-block;
+    width: 4mm;
+    height: 4mm;
+    background: #CFFF3C;
+    margin-right: 3mm;
+    vertical-align: middle;
+    clip-path: polygon(50% 0%, 100% 38%, 78% 100%, 22% 100%, 0% 38%);
+  }
+  .address-band strong {
+    color: #CFFF3C;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+  }
+  .qr-section {
+    position: absolute;
+    bottom: 22mm;
+    left: 0;
+    right: 0;
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3mm;
+  }
+  .join-now {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-stretch: 150%;
+    font-variation-settings: "wdth" 150;
+    font-size: 26pt;
+    color: #CFFF3C;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-shadow: 0 0 4px rgba(207,255,60,0.45);
+    margin-bottom: 1mm;
+  }
+  .qr-box {
+    width: 34mm;
+    height: 34mm;
+    background: #F6F6F2;
+    padding: 3mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 4mm rgba(207,255,60,0.25);
+  }
+  .qr-box img {
+    width: 100%; height: 100%;
+    image-rendering: pixelated;
+  }
+  .qr-caption {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 500;
+    color: #F6F6F2;
+    font-size: 9pt;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 12mm;
+    background: #050505;
+    border-top: 0.5mm solid #CFFF3C;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8mm;
+    z-index: 7;
+  }
+  .footer-left, .footer-right {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 500;
+    color: #F6F6F2;
+    font-size: 10pt;
+    letter-spacing: 0.08em;
+  }
+  .social-icon {
+    width: 6mm;
+    height: 6mm;
+    display: inline-block;
+  }
+  .social-icon svg { width: 100%; height: 100%; display: block; }
+
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ===== FULL-BLEED BG (behind sections 2-5) ===== -->
+  <div class="bg-layer">
+    <img src="assets/bg.jpg" alt="">
+    <div class="bg-fade"></div>
+  </div>
+
+  <!-- ===== 1. HEADER ===== -->
+  <header class="header">
+    <div class="header-keyline"></div>
+    <div class="header-frame-wrap">
+      <svg class="header-frame-svg" viewBox="0 0 1100 300" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="60,150 180,30 920,30 1040,150 920,270 180,270"
+                 stroke="#CFFF3C" stroke-width="6" fill="none"/>
+        <polygon points="70,150 190,40 910,40 1030,150 910,260 190,260"
+                 stroke="#CFFF3C" stroke-width="1.2" fill="none" opacity="0.4"/>
+        <!-- corner ticks -->
+        <line x1="60" y1="150" x2="30" y2="150" stroke="#CFFF3C" stroke-width="6"/>
+        <line x1="1040" y1="150" x2="1070" y2="150" stroke="#CFFF3C" stroke-width="6"/>
+      </svg>
+      <img class="header-logo" src="assets/logo.png" alt="Rockwall Fitness">
+    </div>
+    <div class="header-keyline-bottom"></div>
+  </header>
+
+  <!-- ===== 2. PIXEL BANNER ===== -->
+  <section class="pixel-banner">
+    <div class="here-we-go">HERE WE GO!!</div>
+    <div class="our-service">OUR SERVICE</div>
+  </section>
+
+  <!-- ===== 3. SERVICES GRID ===== -->
+  <section class="services">
+    <!-- Row 1 -->
+    <div class="service-cell">
+      <span class="service-bullet">
+        <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="6,15 15,4 24,15 15,26" fill="#F6F6F2" transform="rotate(30 15 15)"/>
+        </svg>
+      </span>
+      <span class="service-label">PERSONAL FITNESS TRAINING</span>
+    </div>
+    <div class="service-cell">
+      <span class="service-bullet">
+        <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="6,15 15,4 24,15 15,26" fill="#F6F6F2" transform="rotate(30 15 15)"/>
+        </svg>
+      </span>
+      <span class="service-label">MODERN EQUIPMENT AND AMBIANCE</span>
+    </div>
+    <div class="service-cell">
+      <span class="service-bullet">
+        <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="6,15 15,4 24,15 15,26" fill="#F6F6F2" transform="rotate(30 15 15)"/>
+        </svg>
+      </span>
+      <span class="service-label">HIGH INTENSITY INTERVAL TRAINING (HIIT)</span>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="service-cell">
+      <span class="service-bullet">
+        <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="6,15 15,4 24,15 15,26" fill="#F6F6F2" transform="rotate(30 15 15)"/>
+        </svg>
+      </span>
+      <span class="service-label">DIET CONSULTATION</span>
+    </div>
+    <div class="service-cell">
+      <span class="service-bullet">
+        <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="6,15 15,4 24,15 15,26" fill="#F6F6F2" transform="rotate(30 15 15)"/>
+        </svg>
+      </span>
+      <span class="service-label">BODY BUILDING</span>
+    </div>
+    <div class="service-cell">
+      <span class="service-bullet">
+        <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="6,15 15,4 24,15 15,26" fill="#F6F6F2" transform="rotate(30 15 15)"/>
+        </svg>
+      </span>
+      <span class="service-label">FAT LOSS - BODY TONING</span>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="service-cell">
+      <span class="service-bullet">
+        <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="6,15 15,4 24,15 15,26" fill="#F6F6F2" transform="rotate(30 15 15)"/>
+        </svg>
+      </span>
+      <span class="service-label">ZUMBA DANCE</span>
+    </div>
+    <div class="service-cell">
+      <span class="service-bullet">
+        <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="6,15 15,4 24,15 15,26" fill="#F6F6F2" transform="rotate(30 15 15)"/>
+        </svg>
+      </span>
+      <span class="service-label">BOXING TRAINING</span>
+    </div>
+    <div class="service-cell empty"></div>
+  </section>
+
+  <!-- ===== 5. PRICE LIST GLITCH BANNER ===== -->
+  <section class="price-list-banner">
+    <span class="glitch-wrap">
+      <span class="glitch" data-text="PRICE LIST">PRICE LIST</span>
+      <span class="glitch-bar"></span>
+    </span>
+  </section>
+
+  <!-- ===== 7. PRICE BLOCK ===== -->
+  <div class="price-block-wrap">
+    <div class="price-shape">
+      <div class="price-shape-inner">
+        <div class="price-months">1</div>
+        <div class="price-mrp">&#8377;2,999</div>
+        <div class="price-months">3+1</div>
+        <div class="price-mrp">&#8377;6,499</div>
+        <div class="price-months">6+2</div>
+        <div class="price-mrp">&#8377;9,499</div>
+        <div class="price-months price-last">12+2</div>
+        <div class="price-mrp price-last">&#8377;12,499</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 6. STICKER CLUSTER (positioned absolutely, overlapping price block top) ===== -->
+  <div class="sticker-cluster">
+    <!-- 16-point starburst halo -->
+    <div class="starburst">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <polygon fill="#CFFF3C" points="
+          100,0
+          112,72
+          145,12
+          130,78
+          180,28
+          145,88
+          195,60
+          150,100
+          200,100
+          150,115
+          188,150
+          138,118
+          170,180
+          125,128
+          138,195
+          108,130
+          100,200
+          90,128
+          58,195
+          70,170
+          30,180
+          62,128
+          12,170
+          50,115
+          0,100
+          50,100
+          5,60
+          55,88
+          20,28
+          70,78
+          55,12
+          88,72
+        "/>
+      </svg>
+    </div>
+
+    <!-- halftone-style photo (heavy contrast filter + lime border) -->
+    <div class="sticker-photo">
+      <img src="assets/sticker-src.jpg" alt="">
+    </div>
+
+    <!-- Lightning bolt -->
+    <div class="lightning">
+      <svg viewBox="0 0 40 60" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="22,0 4,34 16,34 10,60 36,22 22,22 28,0" fill="#CFFF3C" stroke="#050505" stroke-width="1.5"/>
+      </svg>
+    </div>
+
+    <!-- Torn-paper OFFER!! tag -->
+    <div class="offer-tag">
+      <svg viewBox="0 0 220 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon fill="#CFFF3C" stroke="#050505" stroke-width="2"
+          points="6,18 18,4 34,14 48,2 62,16 78,4 92,18 110,6 126,16 142,4 158,18 174,6 192,16 212,8 216,28 208,46 218,62 210,80 216,98 198,104 178,98 160,106 142,98 122,108 102,100 84,108 66,100 48,106 30,100 14,104 4,90 12,72 2,54 10,36"/>
+      </svg>
+      <div class="offer-tag-text">OFFER!!</div>
+    </div>
+  </div>
+
+  <!-- ===== ADDRESS BAND ===== -->
+  <div class="address-band">
+    <span class="pin"></span><strong>SV TOWERS</strong>, 2ND FLOOR, KRISHNANAGAR INDUSTRIAL AREA<br>
+    HOSUR ROAD, BANGALORE 560029 &nbsp;·&nbsp; NEXT TO ROYAL ENFIELD SHOWROOM
+  </div>
+
+  <!-- ===== 8. QR + FOOTER ===== -->
+  <div class="qr-section">
+    <div class="join-now">JOIN NOW</div>
+    <div class="qr-box">
+      <img src="assets/qr.png" alt="QR rockwallfitness.in">
+    </div>
+    <div class="qr-caption">SCAN TO VISIT &nbsp;·&nbsp; ROCKWALLFITNESS.IN</div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-left">
+      <span class="social-icon">
+        <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="15" cy="15" r="14" fill="#CFFF3C"/>
+          <path d="M17.5 10.5h2V7.5h-2.5c-2 0-3.5 1.4-3.5 3.5v2h-2v3h2v7h3v-7h2.3l0.4-3H16.5v-1.7c0-0.5 0.3-0.8 1-0.8z" fill="#050505"/>
+        </svg>
+      </span>
+      <span class="social-icon">
+        <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="15" cy="15" r="14" fill="#CFFF3C"/>
+          <rect x="8" y="8" width="14" height="14" rx="4" ry="4" fill="none" stroke="#050505" stroke-width="1.6"/>
+          <circle cx="15" cy="15" r="3.2" fill="none" stroke="#050505" stroke-width="1.6"/>
+          <circle cx="19.2" cy="10.8" r="0.9" fill="#050505"/>
+        </svg>
+      </span>
+      <span>@ROCKWALLFITNESS</span>
+    </div>
+    <div class="footer-right">
+      <span>+91 99727 67936 &nbsp;&nbsp;&nbsp; +91 80499 15898</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
