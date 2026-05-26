@@ -45,7 +45,7 @@
   /* ---------- BACKGROUND PHOTO (heavily reduced texture) ---------- */
   .bg-photo {
     position: absolute;
-    inset: 0;
+    top: 0; right: 0; bottom: 0; left: 0;
     z-index: 0;
     overflow: hidden;
   }
@@ -54,13 +54,149 @@
     height: 100%;
     object-fit: cover;
     filter: grayscale(1) contrast(180%) brightness(0.35);
-    opacity: 0.08;
+    opacity: 0.06;
+  }
+
+  /* ---------- HERO ATHLETE BAND ---------- */
+  .hero-band {
+    position: relative;
+    margin-top: 3mm;
+    min-height: 50mm;
+    height: 50mm;
+    flex: 0 0 50mm;
+    border: 0.4mm solid #CFFF3C;
+    overflow: hidden;
+  }
+  .hero-band-photo {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    overflow: hidden;
+  }
+  .hero-band-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: 75% 30%;
+    filter: grayscale(1) contrast(220%) brightness(0.45);
+  }
+  .hero-band-tint {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #CFFF3C;
+    opacity: 0.32;
+  }
+  .hero-band-vignette {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg,
+      rgba(5,5,5,0.85) 0%,
+      rgba(5,5,5,0.25) 35%,
+      rgba(5,5,5,0.15) 65%,
+      rgba(5,5,5,0.6) 100%);
+  }
+  .hero-band-year {
+    position: absolute;
+    top: 3mm; left: 6mm;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 74pt;
+    line-height: 0.82;
+    color: #CFFF3C;
+    letter-spacing: -0.05em;
+    z-index: 3;
+  }
+  .hero-band-year small {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 8pt;
+    letter-spacing: 0.35em;
+    color: #E8E8E2;
+    margin-top: 2mm;
+  }
+  .hero-band-tag {
+    position: absolute;
+    right: 6mm; top: 6mm;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 8pt;
+    letter-spacing: 0.3em;
+    color: #050505;
+    background: #CFFF3C;
+    padding: 1.5mm 3mm;
+    text-transform: uppercase;
+    z-index: 3;
+  }
+  .hero-band-pose {
+    position: absolute;
+    right: 6mm; bottom: 6mm;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    font-size: 7pt;
+    letter-spacing: 0.4em;
+    color: #CFFF3C;
+    text-transform: uppercase;
+    z-index: 3;
+  }
+  .hero-band-pose .dot {
+    display: inline-block;
+    width: 1.4mm; height: 1.4mm;
+    background: #CFFF3C;
+    border-radius: 50%;
+    margin-right: 2mm;
+    vertical-align: 1px;
+  }
+  .hero-band-caption {
+    position: absolute;
+    left: 6mm; bottom: 5mm;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 7.5pt;
+    letter-spacing: 0.3em;
+    color: #E8E8E2;
+    text-transform: uppercase;
+    z-index: 3;
+    max-width: 75mm;
+    line-height: 1.4;
+  }
+  .hero-band-caption b { color: #CFFF3C; }
+
+  /* ---------- STATS STRIP ---------- */
+  .stats-strip {
+    margin-top: 3mm;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 0.4mm solid #CFFF3C;
+  }
+  .stat-cell {
+    padding: 2mm 4mm;
+    border-right: 0.3mm solid rgba(207,255,60,0.45);
+    text-align: left;
+  }
+  .stat-cell:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 20pt;
+    line-height: 0.95;
+    color: #CFFF3C;
+    letter-spacing: -0.02em;
+  }
+  .stat-num .small { font-size: 11pt; }
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 7.2pt;
+    letter-spacing: 0.28em;
+    color: #E8E8E2;
+    text-transform: uppercase;
+    margin-top: 1.5mm;
   }
 
   /* ---------- CAD MEASUREMENT GRID ---------- */
   .grid-layer {
     position: absolute;
-    inset: 0;
+    top: 0; right: 0; bottom: 0; left: 0;
     z-index: 1;
     pointer-events: none;
   }
@@ -114,107 +250,112 @@
     left: 10mm;
     right: 10mm;
     bottom: 10mm;
-    padding: 6mm 10mm 6mm 10mm;
+    padding: 7mm 10mm 7mm 10mm;
     z-index: 5;
     display: flex;
     flex-direction: column;
   }
-
-  /* ---------- FILE HEADER STRIP ---------- */
-  .file-strip {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 6.8pt;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    color: #CFFF3C;
-    text-transform: uppercase;
-    padding-bottom: 2mm;
-    border-bottom: 0.25mm solid rgba(207,255,60,0.5);
-  }
-  .file-strip .dot {
-    display: inline-block;
-    width: 1.6mm;
-    height: 1.6mm;
-    background: #CFFF3C;
-    vertical-align: middle;
-    margin: 0 1.5mm 0.4mm 0;
-  }
-  .file-strip span.mute { color: #8A8A82; }
 
   /* ---------- TOP MASTHEAD ---------- */
   .masthead {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    padding: 5mm 0 4mm 0;
-    border-bottom: 0.25mm solid rgba(207,255,60,0.35);
-  }
-  .masthead-left {
-    font-size: 7pt;
-    color: #8A8A82;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    line-height: 1.5;
-  }
-  .masthead-left b { color: #E8E8E2; font-weight: 700; }
-  .masthead-logo {
-    height: 14mm;
-    display: block;
-  }
-  .masthead-right {
-    text-align: right;
-    font-size: 7pt;
-    color: #8A8A82;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    line-height: 1.5;
-  }
-  .masthead-right b { color: #CFFF3C; font-weight: 700; }
-
-  /* ---------- TITLE BLOCK ---------- */
-  .title-block {
-    padding: 6mm 0 4mm 0;
+    padding: 0 0 5mm 0;
     border-bottom: 0.4mm solid #CFFF3C;
   }
-  .title-line {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 2mm;
-  }
-  .title-tag {
-    font-size: 8pt;
+  .masthead-left {
+    font-size: 8.5pt;
     font-weight: 700;
     color: #CFFF3C;
     letter-spacing: 0.22em;
     text-transform: uppercase;
+    line-height: 1.4;
   }
-  .title-meta {
-    font-size: 7pt;
-    color: #8A8A82;
-    letter-spacing: 0.18em;
+  .masthead-left b { color: #E8E8E2; font-weight: 800; display:block; font-size: 9.5pt; margin-bottom: 1mm;}
+  .masthead-logo {
+    height: 16mm;
+    display: block;
+  }
+  .masthead-right {
+    text-align: right;
+    font-size: 8.5pt;
+    font-weight: 700;
+    color: #CFFF3C;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
+    line-height: 1.4;
+  }
+  .masthead-right b { color: #E8E8E2; font-weight: 800; display:block; font-size: 9.5pt; margin-bottom: 1mm;}
+
+  /* ---------- TITLE BLOCK ---------- */
+  .title-block {
+    padding: 4mm 0 3mm 0;
+    border-bottom: 0.4mm solid #CFFF3C;
   }
   .title-headline {
     font-family: 'Archivo Black', sans-serif;
-    font-size: 84pt;
-    line-height: 0.88;
+    font-size: 86pt;
+    line-height: 0.85;
     color: #E8E8E2;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.035em;
     text-transform: uppercase;
     margin: 0;
-    padding: 2mm 0 0 0;
+    padding: 0;
+    white-space: nowrap;
+    text-align: center;
   }
   .title-headline .bracket { color: #CFFF3C; }
+  .title-headline .slash { color: #CFFF3C; }
+  .title-sub-row {
+    margin-top: 4mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   .title-sub {
-    margin-top: 3mm;
-    font-size: 8pt;
-    font-weight: 500;
-    color: #8A8A82;
+    font-size: 9pt;
+    font-weight: 700;
+    color: #E8E8E2;
     letter-spacing: 0.3em;
     text-transform: uppercase;
+  }
+  .title-sub b { color: #CFFF3C; }
+  .title-stamp {
+    background: #CFFF3C;
+    color: #050505;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 11pt;
+    letter-spacing: 0.1em;
+    padding: 1.5mm 4mm;
+    text-transform: uppercase;
+  }
+
+  /* ---------- PULL QUOTE STRIP ---------- */
+  .pullquote {
+    margin-top: 3mm;
+    background: #CFFF3C;
+    color: #050505;
+    padding: 2.5mm 6mm;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 16pt;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .pullquote .slash {
+    color: #050505;
+    opacity: 0.35;
+    margin: 0 3mm;
+  }
+  .pullquote .mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10pt;
+    font-weight: 800;
+    letter-spacing: 0.25em;
   }
 
   /* ---------- SECTION LABEL ---------- */
@@ -222,10 +363,10 @@
     display: flex;
     align-items: center;
     gap: 3mm;
-    margin-top: 6mm;
-    margin-bottom: 3mm;
-    font-size: 8pt;
-    font-weight: 700;
+    margin-top: 4mm;
+    margin-bottom: 2.5mm;
+    font-size: 11pt;
+    font-weight: 800;
     color: #CFFF3C;
     letter-spacing: 0.28em;
     text-transform: uppercase;
@@ -233,17 +374,19 @@
   .sec-label .num {
     background: #CFFF3C;
     color: #050505;
-    padding: 0.8mm 2mm 0.6mm 2mm;
+    padding: 1.2mm 3mm 1mm 3mm;
     font-weight: 800;
+    font-size: 11pt;
   }
   .sec-label .rule {
     flex: 1;
-    height: 0.25mm;
-    background: rgba(207,255,60,0.55);
+    height: 0.4mm;
+    background: #CFFF3C;
   }
   .sec-label .end {
-    font-size: 7pt;
-    color: #8A8A82;
+    font-size: 9pt;
+    color: #CFFF3C;
+    font-weight: 700;
     letter-spacing: 0.2em;
   }
 
@@ -251,40 +394,30 @@
   .services {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 8mm;
+    column-gap: 6mm;
     row-gap: 0;
-    border-top: 0.25mm solid rgba(207,255,60,0.4);
-    border-bottom: 0.25mm solid rgba(207,255,60,0.4);
+    border-top: 0.4mm solid #CFFF3C;
+    border-bottom: 0.4mm solid #CFFF3C;
   }
   .svc {
-    display: grid;
-    grid-template-columns: 10mm 1fr auto;
+    display: flex;
     align-items: center;
-    padding: 3mm 0;
-    border-bottom: 0.15mm dashed rgba(207,255,60,0.25);
-    font-size: 9.5pt;
-    font-weight: 500;
+    padding: 1.8mm 2mm;
+    border-bottom: 0.2mm solid rgba(207,255,60,0.35);
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 10.5pt;
     color: #E8E8E2;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.01em;
+    line-height: 1;
   }
   .svc:nth-last-child(-n+2) { border-bottom: none; }
-  .svc .id {
-    color: #CFFF3C;
-    font-weight: 700;
-    font-size: 8.5pt;
-    letter-spacing: 0.1em;
-  }
   .svc .sep {
     color: #CFFF3C;
-    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
     margin-right: 3mm;
-    letter-spacing: 0;
-  }
-  .svc .tag {
-    color: #8A8A82;
-    font-size: 7pt;
-    letter-spacing: 0.2em;
+    font-size: 12pt;
   }
 
   /* ---------- PRICING TABLE ---------- */
@@ -299,8 +432,8 @@
   }
   .price-table th,
   .price-table td {
-    border: 0.3mm solid #CFFF3C;
-    padding: 4mm 4mm;
+    border: 0.5mm solid #CFFF3C;
+    padding: 2.4mm 5mm;
     text-align: left;
     font-variant-numeric: tabular-nums;
   }
@@ -309,37 +442,35 @@
     color: #050505;
     font-family: 'JetBrains Mono', monospace;
     font-weight: 800;
-    font-size: 8pt;
+    font-size: 9pt;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    padding: 3mm 4mm;
+    padding: 2.8mm 5mm;
+    border-color: #CFFF3C;
   }
   .price-table tbody td {
     color: #E8E8E2;
-    background: rgba(207,255,60,0.02);
+    background: #050505;
   }
-  .price-table tbody tr:nth-child(odd) td {
-    background: rgba(207,255,60,0.05);
+  .price-table tbody tr.alt td {
+    background: #CFFF3C;
+    color: #050505;
   }
-  .price-table td.col-code {
-    color: #CFFF3C;
-    font-weight: 700;
-    font-size: 9pt;
-    letter-spacing: 0.15em;
-    width: 22%;
-  }
+  .price-table tbody tr.alt td.col-mrp { color: #050505; }
   .price-table td.col-dur {
-    font-weight: 700;
-    font-size: 14pt;
-    letter-spacing: 0.02em;
-    width: 22%;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 18pt;
+    letter-spacing: 0;
+    width: 28%;
+    line-height: 1;
   }
   .price-table td.col-desc {
-    color: #8A8A82;
-    font-size: 7.5pt;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 10pt;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    width: 30%;
+    width: 40%;
   }
   .price-table td.col-mrp {
     text-align: right;
@@ -347,74 +478,73 @@
     font-family: 'Archivo Black', sans-serif;
     font-size: 22pt;
     font-weight: 800;
-    letter-spacing: -0.01em;
-    width: 26%;
+    letter-spacing: -0.02em;
+    width: 32%;
+    line-height: 1;
   }
 
   /* ---------- CTA STRIP (replaces sticker cluster) ---------- */
   .cta-strip {
-    margin-top: 5mm;
+    margin-top: 4mm;
     background: #CFFF3C;
     color: #050505;
-    padding: 6mm 8mm;
+    padding: 4mm 8mm;
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 1fr auto;
     align-items: center;
-    gap: 8mm;
-  }
-  .cta-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 800;
-    font-size: 7.5pt;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    background: #050505;
-    color: #CFFF3C;
-    padding: 1.5mm 3mm;
+    gap: 6mm;
+    border: 0.6mm solid #CFFF3C;
   }
   .cta-headline {
     font-family: 'Archivo Black', sans-serif;
-    font-size: 30pt;
-    line-height: 0.95;
-    letter-spacing: -0.01em;
+    font-size: 34pt;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
     text-transform: uppercase;
     color: #050505;
   }
-  .cta-arrow {
+  .cta-headline .sub {
+    display: block;
     font-family: 'JetBrains Mono', monospace;
     font-weight: 800;
-    font-size: 42pt;
-    line-height: 1;
+    font-size: 8pt;
+    letter-spacing: 0.28em;
+    margin-top: 2mm;
+  }
+  .cta-arrow {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 78pt;
+    line-height: 0.8;
     color: #050505;
     letter-spacing: -0.05em;
+    padding: 0 4mm;
   }
 
-  /* ---------- BOTTOM ROW: ADDRESS + QR + CONNECT ---------- */
+  /* ---------- BOTTOM ROW: ADDRESS + QR ---------- */
   .bottom-row {
     display: grid;
-    grid-template-columns: 1.45fr 0.95fr;
-    column-gap: 8mm;
-    margin-top: 5mm;
-    flex: 1;
+    grid-template-columns: 1.55fr 0.85fr;
+    column-gap: 5mm;
+    margin-top: 3mm;
     align-content: start;
   }
 
   .panel {
-    border: 0.3mm solid rgba(207,255,60,0.55);
-    padding: 5mm 5mm 5mm 5mm;
+    border: 0.4mm solid #CFFF3C;
+    padding: 2.5mm 4mm;
     position: relative;
   }
   .panel-head {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 4mm;
-    padding-bottom: 2mm;
-    border-bottom: 0.2mm dashed rgba(207,255,60,0.45);
+    margin-bottom: 2mm;
+    padding-bottom: 1.5mm;
+    border-bottom: 0.3mm solid #CFFF3C;
   }
   .panel-head .lbl {
-    font-size: 7pt;
-    font-weight: 700;
+    font-size: 9pt;
+    font-weight: 800;
     letter-spacing: 0.28em;
     color: #CFFF3C;
     text-transform: uppercase;
@@ -422,73 +552,62 @@
   .panel-head .lbl .num {
     background: #CFFF3C;
     color: #050505;
-    padding: 0.6mm 1.6mm 0.4mm 1.6mm;
+    padding: 0.8mm 2mm 0.6mm 2mm;
     margin-right: 2mm;
     font-weight: 800;
   }
   .panel-head .meta {
-    font-size: 6.5pt;
-    color: #8A8A82;
+    font-size: 8pt;
+    font-weight: 700;
+    color: #CFFF3C;
     letter-spacing: 0.18em;
     text-transform: uppercase;
   }
 
-  /* ---------- ADDRESS TERMINAL ---------- */
-  .addr-terminal {
+  /* ---------- ADDRESS BLOCK ---------- */
+  .addr-block {
     font-family: 'JetBrains Mono', monospace;
     font-size: 8.5pt;
-    line-height: 1.7;
+    line-height: 1.35;
     color: #E8E8E2;
-    letter-spacing: 0.04em;
-  }
-  .addr-terminal .ln {
-    display: grid;
-    grid-template-columns: 8mm 4mm 1fr;
-    align-items: baseline;
-  }
-  .addr-terminal .ln-no {
-    color: #5A5A52;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
     font-weight: 500;
-    text-align: right;
-    padding-right: 2mm;
   }
-  .addr-terminal .ln-mk {
-    color: #CFFF3C;
-    font-weight: 700;
+  .addr-block b { color: #CFFF3C; font-weight: 800; }
+  .addr-block .big {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 12pt;
+    color: #E8E8E2;
+    letter-spacing: 0.02em;
+    display: block;
+    margin-bottom: 1mm;
   }
-  .addr-terminal .ln-txt b {
-    color: #CFFF3C;
-    font-weight: 700;
-  }
-  .addr-terminal .ln-txt .mute {
-    color: #8A8A82;
-  }
-
-  .addr-foot {
-    margin-top: 4mm;
-    padding-top: 2mm;
-    border-top: 0.2mm dashed rgba(207,255,60,0.4);
+  .addr-block .row {
     display: flex;
     justify-content: space-between;
-    font-size: 6.5pt;
-    color: #8A8A82;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+    margin-top: 2mm;
+    padding-top: 1.5mm;
+    border-top: 0.3mm solid rgba(207,255,60,0.5);
+    font-size: 8pt;
+    font-weight: 700;
+    color: #CFFF3C;
+    letter-spacing: 0.18em;
   }
-  .addr-foot b { color: #CFFF3C; font-weight: 700; }
+  .addr-block .row .v { color: #E8E8E2; }
 
   /* ---------- QR PANEL ---------- */
   .qr-panel {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3mm;
+    gap: 2mm;
+    padding: 3mm 3mm 3mm 3mm;
   }
   .qr-box {
-    width: 44mm;
-    height: 44mm;
-    border: 0.5mm solid #CFFF3C;
-    padding: 2.4mm;
+    width: 30mm;
+    height: 30mm;
+    padding: 1.5mm;
     background: #F6F6F2;
     display: flex;
     align-items: center;
@@ -502,94 +621,43 @@
   }
   .qr-cmd {
     font-family: 'JetBrains Mono', monospace;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 8pt;
     color: #CFFF3C;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
+    margin-top: 1mm;
   }
   .qr-url {
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 500;
-    font-size: 7pt;
-    color: #8A8A82;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-  }
-
-  /* ---------- CONNECT STRIP ---------- */
-  .connect {
-    margin-top: 4mm;
-    border: 0.3mm solid rgba(207,255,60,0.55);
-    padding: 4mm 6mm;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: 5mm;
-  }
-  .connect .lbl {
-    font-size: 7pt;
-    font-weight: 700;
-    letter-spacing: 0.28em;
-    color: #CFFF3C;
-    text-transform: uppercase;
-  }
-  .connect .lbl .num {
-    background: #CFFF3C;
-    color: #050505;
-    padding: 0.6mm 1.6mm 0.4mm 1.6mm;
-    margin-right: 2mm;
-    font-weight: 800;
-  }
-  .connect .handles {
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 700;
-    font-size: 9pt;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 10pt;
     color: #E8E8E2;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    text-align: center;
   }
-  .connect .handles .at { color: #CFFF3C; }
-  .connect .handles .sep {
-    color: #5A5A52;
-    margin: 0 3mm;
-    font-weight: 500;
-  }
-  .connect .phones {
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 700;
-    font-size: 9pt;
-    color: #CFFF3C;
-    letter-spacing: 0.1em;
-    text-align: right;
-    font-variant-numeric: tabular-nums;
-  }
-  .connect .phones .mute { color: #8A8A82; font-weight: 500; }
-  .connect .phones .ph-sep { color: #5A5A52; margin: 0 2mm; }
 
   /* ---------- FOOTER ---------- */
   .footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 5mm;
-    padding-top: 3mm;
+    margin-top: 3mm;
+    padding-top: 2.5mm;
     border-top: 0.4mm solid #CFFF3C;
-    font-size: 7pt;
-    color: #8A8A82;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5pt;
+    color: #CFFF3C;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 700;
   }
-  .footer b { color: #CFFF3C; font-weight: 700; }
-  .footer .eof {
-    background: #CFFF3C;
-    color: #050505;
-    padding: 1mm 3mm;
+  .footer b { color: #E8E8E2; font-weight: 800; }
+  .footer .phones {
+    color: #E8E8E2;
     font-weight: 800;
-    letter-spacing: 0.3em;
+    font-variant-numeric: tabular-nums;
   }
+  .footer .phones .at { color: #CFFF3C; margin-right: 2mm; }
 
 </style>
 </head>
@@ -605,22 +673,11 @@
   <div class="grid-layer">
     <svg viewBox="0 0 297 420" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <pattern id="finegrid" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
-          <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#CFFF3C" stroke-width="0.08" opacity="0.12"/>
-        </pattern>
         <pattern id="coarsegrid" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
-          <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#CFFF3C" stroke-width="0.18" opacity="0.22"/>
+          <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#CFFF3C" stroke-width="0.25" opacity="0.10"/>
         </pattern>
       </defs>
-      <rect x="0" y="0" width="297" height="420" fill="url(#finegrid)"/>
       <rect x="0" y="0" width="297" height="420" fill="url(#coarsegrid)"/>
-      <!-- center crosshairs -->
-      <line x1="148.5" y1="0" x2="148.5" y2="420" stroke="#CFFF3C" stroke-width="0.1" opacity="0.18" stroke-dasharray="2 2"/>
-      <line x1="0" y1="210" x2="297" y2="210" stroke="#CFFF3C" stroke-width="0.1" opacity="0.18" stroke-dasharray="2 2"/>
-      <!-- top ruler ticks -->
-      <g opacity="0.5">
-        <line x1="10" y1="6" x2="287" y2="6" stroke="#CFFF3C" stroke-width="0.12"/>
-      </g>
     </svg>
   </div>
 
@@ -634,84 +691,82 @@
   <!-- ===== LAYER 5: content ===== -->
   <div class="inner">
 
-    <!-- FILE strip -->
-    <div class="file-strip">
-      <div><span class="dot"></span>FILE :: ROCKWALL-FITNESS/MEMBERSHIP/2026</div>
-      <div><span class="mute">FMT_</span>A3 &nbsp;//&nbsp; <span class="mute">REV_</span>2.B &nbsp;//&nbsp; <span class="mute">DOC_</span>0001</div>
-    </div>
-
     <!-- Masthead -->
     <div class="masthead">
       <div class="masthead-left">
-        <b>ROCKWALL FITNESS</b><br>
-        STRENGTH &middot; CONDITIONING &middot; COMMUNITY
+        <b>ROCKWALL_FIT</b>
+        STRENGTH // CONDITIONING
       </div>
       <img class="masthead-logo" src="assets/logo.png" alt="Rockwall Fitness">
       <div class="masthead-right">
-        <b>EST. BANGALORE</b><br>
-        OPEN 05:00 &mdash; 23:00 &middot; 7/7
+        <b>EST. BANGALORE</b>
+        OPEN 05:00 &mdash; 23:00 // 7/7
       </div>
+    </div>
+
+    <!-- HERO ATHLETE BAND -->
+    <div class="hero-band">
+      <div class="hero-band-photo"><img src="assets/athlete.jpg" alt=""></div>
+      <div class="hero-band-tint"></div>
+      <div class="hero-band-vignette"></div>
+      <div class="hero-band-year">'26<small>RATE CARD &mdash; FY 2026</small></div>
+      <div class="hero-band-tag">FRAME 01 / 01</div>
+      <div class="hero-band-pose"><span class="dot"></span>DEADLIFT &middot; 80KG &middot; LIVE_SHOT</div>
+      <div class="hero-band-caption">SHOT IN HOUSE &mdash; <b>ROCKWALL FITNESS</b><br>SV TOWERS &middot; KRISHNANAGAR &middot; BLR</div>
     </div>
 
     <!-- Title block -->
     <div class="title-block">
-      <div class="title-line">
-        <div class="title-tag">// PRINT_VARIANT 2B &mdash; BRUTALIST</div>
-        <div class="title-meta">SHEET 297&times;420MM &middot; CMYK_OK</div>
+      <div class="title-headline"><span class="bracket">[</span>PRICE<span class="slash">/</span>LIST<span class="bracket">]</span></div>
+      <div class="title-sub-row">
+        <div class="title-sub">MEMBERSHIP <b>//</b> FY_2026 <b>//</b> ALL TAXES INCLUSIVE</div>
+        <div class="title-stamp">RATE CARD v2026.1</div>
       </div>
-      <div class="title-headline"><span class="bracket">[</span> PRICE / LIST <span class="bracket">]</span></div>
-      <div class="title-sub">MEMBERSHIP RATES &middot; FY 2026 &middot; ALL TAXES INCLUSIVE</div>
+    </div>
+
+    <!-- PULL QUOTE -->
+    <div class="pullquote">
+      <span>STRENGTH OVER EXCUSES.</span>
+      <span class="mono">&gt;&gt; LIFT_HEAVY</span>
+    </div>
+
+    <!-- STATS STRIP -->
+    <div class="stats-strip">
+      <div class="stat-cell">
+        <div class="stat-num">800<span class="small">+</span></div>
+        <div class="stat-label">MEMBERS_ACTIVE</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">126<span class="small">/WK</span></div>
+        <div class="stat-label">HOURS_OPEN</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">08</div>
+        <div class="stat-label">PROGRAMS_RUN</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">2018<span class="small">.</span></div>
+        <div class="stat-label">EST_BANGALORE</div>
+      </div>
     </div>
 
     <!-- 01 / SERVICES -->
     <div class="sec-label">
       <span class="num">01</span>
-      <span>SERVICES</span>
+      <span>WHAT YOU GET</span>
       <span class="rule"></span>
-      <span class="end">08 MODULES</span>
+      <span class="end">08 PROGRAMS</span>
     </div>
 
     <div class="services">
-      <div class="svc">
-        <span class="id">S.01</span>
-        <span><span class="sep">///</span>PERSONAL FITNESS TRAINING</span>
-        <span class="tag">1:1</span>
-      </div>
-      <div class="svc">
-        <span class="id">S.02</span>
-        <span><span class="sep">///</span>MODERN EQUIPMENT &amp; AMBIANCE</span>
-        <span class="tag">A/C</span>
-      </div>
-      <div class="svc">
-        <span class="id">S.03</span>
-        <span><span class="sep">///</span>HIGH INTENSITY INTERVAL TRAINING</span>
-        <span class="tag">HIIT</span>
-      </div>
-      <div class="svc">
-        <span class="id">S.04</span>
-        <span><span class="sep">///</span>DIET CONSULTATION</span>
-        <span class="tag">NUTR</span>
-      </div>
-      <div class="svc">
-        <span class="id">S.05</span>
-        <span><span class="sep">///</span>BODY BUILDING</span>
-        <span class="tag">STR</span>
-      </div>
-      <div class="svc">
-        <span class="id">S.06</span>
-        <span><span class="sep">///</span>FAT LOSS &mdash; BODY TONING</span>
-        <span class="tag">CUT</span>
-      </div>
-      <div class="svc">
-        <span class="id">S.07</span>
-        <span><span class="sep">///</span>ZUMBA DANCE</span>
-        <span class="tag">CRD</span>
-      </div>
-      <div class="svc">
-        <span class="id">S.08</span>
-        <span><span class="sep">///</span>BOXING TRAINING</span>
-        <span class="tag">BOX</span>
-      </div>
+      <div class="svc"><span class="sep">+</span>PERSONAL TRAINING</div>
+      <div class="svc"><span class="sep">+</span>MODERN EQUIPMENT</div>
+      <div class="svc"><span class="sep">+</span>HIIT</div>
+      <div class="svc"><span class="sep">+</span>DIET CONSULTATION</div>
+      <div class="svc"><span class="sep">+</span>BODY BUILDING</div>
+      <div class="svc"><span class="sep">+</span>FAT LOSS &amp; TONING</div>
+      <div class="svc"><span class="sep">+</span>ZUMBA</div>
+      <div class="svc"><span class="sep">+</span>BOXING</div>
     </div>
 
     <!-- 02 / PRICING -->
@@ -719,132 +774,88 @@
       <span class="num">02</span>
       <span>PRICING</span>
       <span class="rule"></span>
-      <span class="end">INR &middot; INC GST</span>
+      <span class="end">INR // INC GST</span>
     </div>
 
     <div class="price-wrap">
       <table class="price-table">
         <thead>
           <tr>
-            <th>CODE</th>
             <th>DURATION</th>
             <th>DESCRIPTION</th>
-            <th style="text-align:right;">MRP</th>
+            <th style="text-align:right;">PRICE</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="col-code">P.01</td>
             <td class="col-dur">1 MO</td>
             <td class="col-desc">SINGLE MONTH</td>
             <td class="col-mrp">&#8377;2,999</td>
           </tr>
-          <tr>
-            <td class="col-code">P.02</td>
+          <tr class="alt">
             <td class="col-dur">3 + 1</td>
-            <td class="col-desc">QUARTER &middot; +1 BONUS</td>
+            <td class="col-desc">QUARTER // +1 MONTH FREE</td>
             <td class="col-mrp">&#8377;6,499</td>
           </tr>
           <tr>
-            <td class="col-code">P.03</td>
             <td class="col-dur">6 + 2</td>
-            <td class="col-desc">HALF YEAR &middot; +2 BONUS</td>
+            <td class="col-desc">HALF YEAR // +2 FREE</td>
             <td class="col-mrp">&#8377;9,499</td>
           </tr>
-          <tr>
-            <td class="col-code">P.04</td>
+          <tr class="alt">
             <td class="col-dur">12 + 2</td>
-            <td class="col-desc">ANNUAL &middot; +2 BONUS</td>
+            <td class="col-desc">ANNUAL // +2 FREE</td>
             <td class="col-mrp">&#8377;12,499</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <!-- CTA strip (replaces sticker) -->
+    <!-- CTA strip (dominant) -->
     <div class="cta-strip">
-      <div class="cta-tag">EXEC :: ENROL_NOW</div>
-      <div class="cta-headline">SIGN UP &mdash; START LIFTING</div>
+      <div class="cta-headline">
+        SIGN UP. START LIFTING.
+        <span class="sub">SCAN &gt;&gt; ROCKWALLFITNESS.IN // OR WALK IN</span>
+      </div>
       <div class="cta-arrow">&rarr;</div>
     </div>
 
     <!-- Bottom row: address + QR -->
     <div class="bottom-row">
 
-      <!-- 03 / VISIT US (terminal) -->
+      <!-- 03 / VISIT US -->
       <div class="panel">
         <div class="panel-head">
           <div class="lbl"><span class="num">03</span>VISIT US</div>
-          <div class="meta">GEO &middot; 12.9325&deg;N 77.6112&deg;E</div>
+          <div class="meta">BANGALORE 560029</div>
         </div>
-        <div class="addr-terminal">
-          <div class="ln">
-            <span class="ln-no">001</span>
-            <span class="ln-mk">&gt;</span>
-            <span class="ln-txt"><b>SV TOWERS</b>, 2ND FLOOR</span>
+        <div class="addr-block">
+          <span class="big">SV TOWERS, 2ND FLOOR</span>
+          KRISHNANAGAR INDUSTRIAL AREA<br>
+          HOSUR ROAD, BANGALORE <b>560029</b><br>
+          <b>&raquo;</b> NEXT TO ROYAL ENFIELD SHOWROOM
+          <div class="row">
+            <span>HOURS <span class="v">05:00&ndash;23:00</span></span>
+            <span>OPEN <span class="v">7/7</span></span>
+            <span>A/C <span class="v">ON</span></span>
           </div>
-          <div class="ln">
-            <span class="ln-no">002</span>
-            <span class="ln-mk">&gt;</span>
-            <span class="ln-txt">KRISHNANAGAR INDUSTRIAL AREA</span>
-          </div>
-          <div class="ln">
-            <span class="ln-no">003</span>
-            <span class="ln-mk">&gt;</span>
-            <span class="ln-txt">HOSUR ROAD, BANGALORE &mdash; <b>560029</b></span>
-          </div>
-          <div class="ln">
-            <span class="ln-no">004</span>
-            <span class="ln-mk">&gt;</span>
-            <span class="ln-txt"><span class="mute">// LANDMARK ::</span> NEXT TO ROYAL ENFIELD SHOWROOM</span>
-          </div>
-          <div class="ln">
-            <span class="ln-no">005</span>
-            <span class="ln-mk">&gt;</span>
-            <span class="ln-txt"><span class="mute">// HOURS ::</span> 05:00 &mdash; 23:00 IST &middot; 365/365</span>
-          </div>
-        </div>
-        <div class="addr-foot">
-          <span><b>STATUS_</b>OPERATIONAL</span>
-          <span><b>PARKING_</b>AVAILABLE</span>
-          <span><b>AC_</b>ON</span>
         </div>
       </div>
 
       <!-- QR panel -->
       <div class="panel qr-panel">
-        <div class="panel-head" style="width:100%;">
-          <div class="lbl"><span class="num">04</span>SCAN</div>
-          <div class="meta">PNG &middot; 600 DPI</div>
-        </div>
         <div class="qr-box">
           <img src="assets/qr.png" alt="QR rockwallfitness.in">
         </div>
-        <div class="qr-cmd">&gt;&gt;&gt; SCAN</div>
+        <div class="qr-cmd">&gt;&gt;&gt; SCAN ME</div>
         <div class="qr-url">ROCKWALLFITNESS.IN</div>
-      </div>
-    </div>
-
-    <!-- CONNECT strip -->
-    <div class="connect">
-      <div class="lbl"><span class="num">05</span>CONNECT</div>
-      <div class="handles">
-        <span class="at">@</span>ROCKWALLFITNESS
-        <span class="sep">//</span>
-        <span class="at">IG</span>&nbsp;&middot;&nbsp;<span class="at">FB</span>
-      </div>
-      <div class="phones">
-        <span class="mute">TEL_01</span>&nbsp;+91 99727 67936
-        <span class="ph-sep">|</span>
-        <span class="mute">TEL_02</span>&nbsp;+91 80499 15898
       </div>
     </div>
 
     <!-- Footer -->
     <div class="footer">
-      <div>&copy; 2026 ROCKWALL FITNESS &middot; <b>BANGALORE</b> &middot; ALL RIGHTS RESERVED</div>
-      <div>BUILT_FOR_PRINT &middot; 297&times;420MM</div>
-      <div class="eof">// EOF</div>
+      <div><b>@</b>ROCKWALLFITNESS</div>
+      <div class="phones"><span class="at">TEL</span>+91 99727 67936 &nbsp;//&nbsp; +91 80499 15898</div>
     </div>
 
   </div>
