@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rockwall Fitness — 2026 Price Card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  @page { size: 297mm 420mm; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 297mm; height: 420mm;
+    background: #050505; color: #F6F6F2;
+    font-family: 'Inter Tight', sans-serif;
+    overflow: hidden;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    position: relative;
+    width: 297mm; height: 420mm;
+    background: #050505;
+    overflow: hidden;
+  }
+
+  /* ============== HERO ATHLETE BAND (top 175mm) ============== */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 175mm;
+    overflow: hidden;
+    background: #050505;
+  }
+  /* Photo layer — heavy duotone via filter + lime overlay */
+  .hero-photo {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    overflow: hidden;
+  }
+  .hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 78% 25%;
+    /* Push toward black-and-lime duotone — high contrast crunchy */
+    filter: grayscale(1) contrast(220%) brightness(0.45);
+  }
+  /* Lime "duotone" — lime overlay only where photo is bright */
+  .hero-lime-wash {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background: #CFFF3C;
+    opacity: 0.38;
+  }
+  .hero-darken {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background: linear-gradient(180deg,
+      rgba(5,5,5,0.55) 0%,
+      rgba(5,5,5,0.10) 18%,
+      rgba(5,5,5,0.05) 60%,
+      rgba(5,5,5,0.92) 100%);
+  }
+  /* Lime keyline frames bleeding off the photo */
+  .hero-frame {
+    position: absolute;
+    top: 8mm; right: 8mm; bottom: 8mm; left: 8mm;
+    border: 1mm solid #CFFF3C;
+    pointer-events: none;
+  }
+  .hero-frame::before, .hero-frame::after {
+    content: "";
+    position: absolute;
+    width: 14mm; height: 1mm; background: #050505;
+  }
+  .hero-frame::before { top: -1mm; left: 14mm; }
+  .hero-frame::after  { bottom: -1mm; right: 14mm; }
+
+  /* Logo top-left — sit on a dark chip for contrast */
+  .hero-logo-wrap {
+    position: absolute;
+    top: 14mm; left: 14mm;
+    z-index: 4;
+    background: #050505;
+    padding: 6mm 10mm 6mm 8mm;
+    clip-path: polygon(0 0, 100% 0, 96% 50%, 100% 100%, 0 100%, 4% 50%);
+  }
+  .hero-logo {
+    height: 16mm;
+    display: block;
+  }
+  /* Year stamp top-right */
+  .hero-year {
+    position: absolute;
+    top: 18mm; right: 18mm;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 36pt;
+    color: #CFFF3C;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    z-index: 4;
+    text-shadow: 0 2mm 4mm rgba(0,0,0,0.55);
+  }
+  .hero-year small {
+    display: block;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 8pt;
+    letter-spacing: 0.4em;
+    color: #F6F6F2;
+    margin-top: 1.5mm;
+  }
+
+  /* Big headline overlaid at bottom of hero */
+  .hero-headline {
+    position: absolute;
+    bottom: 22mm; left: 18mm; right: 18mm;
+    z-index: 4;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 84pt;
+    color: #F6F6F2;
+    letter-spacing: -0.01em;
+    line-height: 0.86;
+    text-transform: uppercase;
+    text-shadow: 0 4mm 8mm rgba(0,0,0,0.65);
+  }
+  .hero-headline .lime { color: #CFFF3C; }
+
+  /* Tagline under headline */
+  .hero-tag {
+    position: absolute;
+    bottom: 14mm; left: 18mm;
+    z-index: 4;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 10pt;
+    letter-spacing: 0.5em;
+    color: #F6F6F2;
+    text-transform: uppercase;
+  }
+  .hero-tag .dot {
+    display: inline-block;
+    width: 2mm; height: 2mm;
+    background: #CFFF3C;
+    border-radius: 50%;
+    margin: 0 4mm 0.5mm;
+    vertical-align: middle;
+  }
+
+  /* ============== PRICE LIST HEADER (the ONE bold word) ============== */
+  .price-header-band {
+    position: relative;
+    width: 100%;
+    padding: 10mm 18mm 4mm;
+    text-align: center;
+  }
+  .price-list-word {
+    position: relative;
+    display: inline-block;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 96pt;
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    color: #F6F6F2;
+    text-transform: uppercase;
+    transform: scaleX(1.06);
+    transform-origin: center;
+  }
+  .price-list-word::before {
+    content: "PRICE LIST";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    color: #CFFF3C;
+    transform: translate(1.4mm, 0);
+    z-index: -1;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    letter-spacing: 0.02em;
+  }
+  .price-list-bar {
+    position: absolute;
+    top: 47%; left: 12mm; right: 12mm;
+    height: 1.4mm;
+    background: #CFFF3C;
+    transform: translateX(2mm);
+    z-index: 3;
+  }
+  .price-sub {
+    margin-top: 6mm;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 9pt;
+    letter-spacing: 0.5em;
+    color: #CFFF3C;
+    text-transform: uppercase;
+  }
+
+  /* ============== PRICE TABLE ============== */
+  .price-table {
+    margin: 4mm 18mm 0;
+    border: 1.2mm solid #CFFF3C;
+  }
+  .price-row {
+    display: flex;
+    align-items: center;
+    border-bottom: 0.6mm solid #CFFF3C;
+    min-height: 20mm;
+    padding: 0 14mm;
+  }
+  .price-row:last-child { border-bottom: none; }
+  .price-row.even { background: #050505; }
+  .price-row.odd  { background: #CFFF3C; color: #050505; }
+  .price-row.odd .row-bonus { color: #050505; opacity: 0.7; }
+  .row-tier {
+    flex: 0 0 60mm;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 36pt;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .row-bonus {
+    flex: 1 1 auto;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 10pt;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #CFFF3C;
+    opacity: 0.85;
+  }
+  .row-price {
+    flex: 0 0 auto;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 34pt;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .price-row.even .row-price { color: #CFFF3C; }
+  .price-row.odd  .row-price { color: #050505; }
+
+  /* ============== JOIN NOW CTA BAR (flows under the table) ============== */
+  .join-bar {
+    margin: 5mm 18mm 0;
+    background: #CFFF3C;
+    color: #050505;
+    padding: 6mm 14mm;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .join-bar-text {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 32pt;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+  .join-bar-sub {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 8.5pt;
+    letter-spacing: 0.4em;
+    margin-top: 2mm;
+    text-transform: uppercase;
+  }
+  .join-bar-arrow {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 52pt;
+    line-height: 0.8;
+    color: #050505;
+  }
+
+  /* ============== FOOTER BLOCK ============== */
+  .footer-block {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 0 18mm;
+    z-index: 6;
+    height: 44mm;
+  }
+  .footer-grid {
+    display: flex;
+    align-items: flex-start;
+    gap: 10mm;
+    padding-top: 6mm;
+    margin-bottom: 4mm;
+  }
+  .footer-address {
+    flex: 1;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 500;
+    font-size: 9.5pt;
+    color: #F6F6F2;
+    letter-spacing: 0.06em;
+    line-height: 1.45;
+    text-transform: uppercase;
+  }
+  .footer-address strong {
+    color: #CFFF3C;
+    font-weight: 900;
+    display: block;
+    font-size: 11pt;
+    margin-bottom: 1.5mm;
+    letter-spacing: 0.08em;
+  }
+  .footer-qr {
+    flex: 0 0 24mm;
+    text-align: center;
+  }
+  .footer-qr img {
+    width: 24mm; height: 24mm;
+    background: #F6F6F2;
+    padding: 1.2mm;
+    display: block;
+  }
+  .footer-qr-cap {
+    margin-top: 1.5mm;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 7pt;
+    color: #CFFF3C;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .footer-bar {
+    border-top: 0.4mm solid rgba(207,255,60,0.4);
+    padding: 6mm 0 6mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 500;
+    font-size: 9pt;
+    color: #F6F6F2;
+    letter-spacing: 0.08em;
+  }
+  .footer-bar-left {
+    display: flex; align-items: center; gap: 3mm;
+  }
+  .ig-dot {
+    width: 5mm; height: 5mm;
+    background: #CFFF3C;
+    display: inline-block;
+    border-radius: 1mm;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="hero-photo"><img src="assets/athlete.jpg" alt=""></div>
+    <div class="hero-lime-wash"></div>
+    <div class="hero-darken"></div>
+    <div class="hero-frame"></div>
+
+    <div class="hero-logo-wrap"><img class="hero-logo" src="assets/logo.png" alt="Rockwall Fitness"></div>
+    <div class="hero-year">'26<small>RATE CARD</small></div>
+
+    <h1 class="hero-headline">
+      LIFT.<br>
+      <span class="lime">REPEAT.</span>
+    </h1>
+    <div class="hero-tag">
+      ROCKWALL FITNESS <span class="dot"></span> BANGALORE <span class="dot"></span> OPEN 7/7
+    </div>
+  </section>
+
+  <!-- ========== PRICE LIST BANNER ========== -->
+  <section class="price-header-band">
+    <span class="price-list-word">PRICE&nbsp;LIST<span class="price-list-bar"></span></span>
+    <div class="price-sub">ALL TAXES INCLUDED &nbsp;·&nbsp; MEMBERSHIP 2026</div>
+  </section>
+
+  <!-- ========== PRICE TABLE ========== -->
+  <div class="price-table">
+    <div class="price-row even">
+      <div class="row-tier">1 MO</div>
+      <div class="row-bonus">SINGLE MONTH</div>
+      <div class="row-price">₹2,999</div>
+    </div>
+    <div class="price-row odd">
+      <div class="row-tier">3+1</div>
+      <div class="row-bonus">QUARTER · ONE MONTH FREE</div>
+      <div class="row-price">₹6,499</div>
+    </div>
+    <div class="price-row even">
+      <div class="row-tier">6+2</div>
+      <div class="row-bonus">HALF-YEAR · TWO MONTHS FREE</div>
+      <div class="row-price">₹9,499</div>
+    </div>
+    <div class="price-row odd">
+      <div class="row-tier">12+2</div>
+      <div class="row-bonus">ANNUAL · BEST VALUE</div>
+      <div class="row-price">₹12,499</div>
+    </div>
+  </div>
+
+  <!-- ========== JOIN NOW CTA BAR ========== -->
+  <div class="join-bar">
+    <div>
+      <div class="join-bar-text">JOIN NOW.</div>
+      <div class="join-bar-sub">SCAN · BOOK · LIFT</div>
+    </div>
+    <div class="join-bar-arrow">→</div>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <div class="footer-block">
+    <div class="footer-grid">
+      <div class="footer-address">
+        <strong>VISIT THE GYM</strong>
+        SV TOWERS · 2ND FLOOR · KRISHNANAGAR INDUSTRIAL AREA<br>
+        HOSUR ROAD · BANGALORE 560029<br>
+        NEXT TO THE ROYAL ENFIELD SHOWROOM
+      </div>
+      <div class="footer-qr">
+        <img src="assets/qr.png" alt="QR rockwallfitness.in">
+        <div class="footer-qr-cap">SCAN · BOOK</div>
+      </div>
+    </div>
+    <div class="footer-bar">
+      <div class="footer-bar-left">
+        <span class="ig-dot"></span>
+        <span>@ROCKWALLFITNESS &nbsp;·&nbsp; ROCKWALLFITNESS.IN</span>
+      </div>
+      <div>+91 99727 67936 &nbsp;·&nbsp; +91 80499 15898</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
