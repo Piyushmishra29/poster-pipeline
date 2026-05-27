@@ -218,10 +218,14 @@
   }
   .price-row {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     border-bottom: 0.6mm solid #CFFF3C;
-    min-height: 20mm;
+    min-height: 22mm;
     padding: 0 14mm;
+  }
+  .price-row > div {
+    display: flex;
+    align-items: center;
   }
   .price-row:last-child { border-bottom: none; }
   .price-row.even { background: #050505; }
@@ -233,8 +237,10 @@
     font-weight: 900;
     font-variation-settings: "wdth" 150;
     font-size: 36pt;
-    line-height: 1;
+    line-height: 0.82;
     letter-spacing: -0.01em;
+    padding-top: 2mm;
+    white-space: nowrap;
   }
   .row-bonus {
     flex: 1 1 auto;
@@ -252,8 +258,10 @@
     font-weight: 900;
     font-variation-settings: "wdth" 150;
     font-size: 34pt;
-    line-height: 1;
+    line-height: 0.82;
     letter-spacing: -0.01em;
+    padding-top: 2mm;
+    white-space: nowrap;
   }
   .price-row.even .row-price { color: #CFFF3C; }
   .price-row.odd  .row-price { color: #050505; }
