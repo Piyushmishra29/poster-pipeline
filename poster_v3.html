@@ -254,13 +254,14 @@
 
   /* ============== JOIN NOW CTA BAR (flows under the table) ============== */
   .join-bar {
-    margin: 5mm 18mm 0;
-    background: #CFFF3C;
-    color: #050505;
-    padding: 6mm 14mm;
+    margin: 6mm 18mm 0;
+    background: #050505;
+    color: #CFFF3C;
+    padding: 7mm 14mm;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border: 1.2mm solid #CFFF3C;
   }
   .join-bar-text {
     font-family: 'Anybody', sans-serif;
@@ -270,6 +271,7 @@
     line-height: 1;
     letter-spacing: -0.01em;
     text-transform: uppercase;
+    color: #CFFF3C;
   }
   .join-bar-sub {
     font-family: 'Inter Tight', sans-serif;
@@ -278,6 +280,7 @@
     letter-spacing: 0.4em;
     margin-top: 2mm;
     text-transform: uppercase;
+    color: #F6F6F2;
   }
   .join-bar-arrow {
     font-family: 'Anybody', sans-serif;
@@ -285,7 +288,7 @@
     font-variation-settings: "wdth" 150;
     font-size: 52pt;
     line-height: 0.8;
-    color: #050505;
+    color: #CFFF3C;
   }
 
   /* ============== FOOTER BLOCK ============== */
@@ -615,6 +618,20 @@
     text-transform: uppercase;
     height: 15mm;
   }
+
+  /* Terms & conditions (small, sits above back-footer) */
+  .back-terms {
+    position: absolute;
+    top: 396mm; left: 18mm; right: 18mm;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 500;
+    font-size: 6.5pt;
+    color: rgba(246,246,242,0.55);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .back-terms b { color: #CFFF3C; font-weight: 700; }
   .back-footer b { color: #CFFF3C; font-weight: 900; }
   .back-footer .addr {
     text-align: center;
@@ -765,7 +782,7 @@
   <div class="reasons">
     <div class="reasons-title">// WHY STUDENTS PICK ROCKWALL</div>
     <div class="reasons-grid">
-      <div class="reason"><b>05&mdash;23</b><span>HRS OPEN DAILY</span></div>
+      <div class="reason"><b>06&mdash;22</b><span>HRS · DAILY 6&mdash;10:30</span></div>
       <div class="reason"><b>7/7</b><span>NO REST DAYS</span></div>
       <div class="reason"><b>08</b><span>PROGRAMS RUN</span></div>
       <div class="reason"><b>A/C</b><span>FULL AIR-CON</span></div>
@@ -779,12 +796,17 @@
         SCAN. WALK IN.<br>
         <span class="lime">START LIFTING.</span>
       </div>
-      <div class="back-cta-sub">ASK FOR THE STUDENT WELCOME &mdash; ANY DAY, 05:00&mdash;23:00</div>
+      <div class="back-cta-sub">ASK FOR THE STUDENT WELCOME &mdash; ANY DAY, 06:00&mdash;22:30</div>
     </div>
     <div class="back-qr">
       <img src="assets/qr.png" alt="QR rockwallfitness.in">
       <div class="back-qr-cap">SCAN · BOOK</div>
     </div>
+  </div>
+
+  <!-- TERMS & CONDITIONS -->
+  <div class="back-terms">
+    <b>*</b> TERMS &amp; CONDITIONS APPLY &nbsp;&middot;&nbsp; PRICES INCLUSIVE OF TAX &nbsp;&middot;&nbsp; OFFERS NON-TRANSFERABLE &nbsp;&middot;&nbsp; RATES VALID FY 2026
   </div>
 
   <!-- BACK FOOTER -->
