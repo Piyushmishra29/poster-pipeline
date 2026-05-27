@@ -1,114 +1,368 @@
 # poster-pipeline
 
-A small HTML + CSS → PDF build pipeline for **print-ready A3 posters**, designed for client work at SMARK8ING / Daily Mark8ing. Renders WeasyPrint, exports A3 with 3 mm bleed + crop marks + sRGB at PDF/A-3b quality.
+A small **HTML + CSS → print-ready A3 PDF** build system for poster work at SMARK8ING / Daily Mark8ing. Renders with WeasyPrint, exports at A3 297×420 mm with 3 mm bleed + crop marks + sRGB at PDF/A-3b archival quality.
 
-Each git branch is a separate poster project. The `main` branch ships the first one — a price-card for **Rockwall Fitness, Bangalore** — as a working example.
+Each git branch is a separate poster project. `main` ships the first one — a **price card for [Rockwall Fitness](https://rockwallfitness.in), Bangalore** — as a working example.
+
+<p align="center">
+  <img src="docs/previews-web/v3-page1.jpg" alt="Rockwall Fitness 2026 price card — front" width="48%">
+  <img src="docs/previews-web/v3-page2.jpg" alt="Rockwall Fitness 2026 price card — back (student edition)" width="48%">
+</p>
 
 ---
 
-## What's inside
+## Table of contents
 
-| File | Purpose |
+1. [What this is](#what-this-is)
+2. [Build pipeline](#build-pipeline)
+3. [Variant exploration](#variant-exploration)
+4. [Project structure](#project-structure)
+5. [Render commands](#render-commands)
+6. [Print export spec](#print-export-spec)
+7. [How to start a new poster project](#how-to-start-a-new-poster-project)
+8. [Branch-per-project model](#branch-per-project-model)
+9. [WeasyPrint gotchas](#weasyprint-gotchas-learned-the-hard-way)
+10. [Credits](#credits)
+
+---
+
+## What this is
+
+Print posters are still mostly made in Figma / Illustrator / InDesign — clicking pixels around. This repo proves the alternative: **describe a poster in HTML + CSS, render it to a print-grade PDF in one command.**
+
+Why bother:
+- **Versionable.** Every design tweak is a git commit. No `final_v7_REALLY_FINAL.psd`.
+- **Parametric.** Update prices in one line, re-render in 2 seconds. No hand-redoing.
+- **AI-collaborable.** Claude can edit CSS surgically, generate variants in parallel, and ship 5 polished posters in the time it takes to manually align one.
+- **Print-grade output.** Bleed + crop marks + PDF/A-3b — same quality as InDesign export, no design tool required.
+- **Pipeline reuse.** The same `build.py` works for every poster project. New client = new branch, swap the assets, ship.
+
+This repo is opinionated about **one client per branch**. The `main` branch holds the seed Rockwall project; future client work lives on its own branch (see [Branch-per-project model](#branch-per-project-model)).
+
+---
+
+## Build pipeline
+
+```mermaid
+flowchart LR
+    A[poster_v3.html<br/>+ inline CSS] --> B{build.py}
+    Q[QR target URL] -->|qrcode lib| QR[assets/qr.png]
+    QR --> B
+    IMG[assets/athlete.jpg<br/>+ logo + bg] --> B
+    B -->|WeasyPrint render| PDF[Rockwall-Price-Card-2026-v3.pdf<br/>303×426mm<br/>+ bleed + crop marks<br/>+ PDF/A-3b]
+    B -->|pdftoppm| PNG[preview-v3/page-N.png<br/>200 DPI eyeball-able]
+    PDF -->|to local printer| PRINT[A3 printed poster]
+
+    style A fill:#CFFF3C,color:#050505
+    style B fill:#050505,color:#CFFF3C
+    style PDF fill:#CFFF3C,color:#050505
+    style PRINT fill:#050505,color:#CFFF3C
+```
+
+One command (`python3 build.py poster_v3.html`) executes the whole chain.
+
+---
+
+## Variant exploration
+
+This project explored **5 distinct design directions** before landing on v3 as the synthesis pick. The exploration tree:
+
+```mermaid
+flowchart TD
+    REF[Last year's posters<br/>neon-glitch reference] --> V1[v1 — refined v0<br/>Tightened version of last year]
+    V1 -->|3 parallel subagents| V2A[v2a — Maximalist Editorial<br/>Magenta + scribbles + collage]
+    V1 -->|in parallel| V2B[v2b — Brutalist Monospace<br/>CAD grid + real table + athlete band]
+    V1 -->|in parallel| V2C[v2c — Cyberpunk HUD<br/>Signal bars + scanlines + cyan]
+    V2A --> CRIT[Critical review:<br/>v2a too messy<br/>v2b too sterile<br/>v2c too sci-fi]
+    V2B --> CRIT
+    V2C --> CRIT
+    CRIT -->|synthesis| V3[v3 — Athlete-led tight<br/>Hero photo + clean prices<br/>+ 2-sided student edition]
+    V3 --> SHIP[**SHIP**]
+
+    style V1 fill:#1a1a1a,color:#CFFF3C
+    style V2A fill:#1a1a1a,color:#FF2E88
+    style V2B fill:#CFFF3C,color:#050505
+    style V2C fill:#1a1a1a,color:#00FFFF
+    style V3 fill:#CFFF3C,color:#050505
+    style SHIP fill:#050505,color:#CFFF3C
+```
+
+### Gallery
+
+<table>
+<tr>
+<td width="33%" align="center">
+<img src="docs/previews-web/v1-page1.jpg" alt="v1 — refined original" width="100%"><br>
+<b>v1 — Refined original</b><br>
+<sub>Neon-glitch + sticker hero. Faithful refresh of last year's brand DNA.</sub>
+</td>
+<td width="33%" align="center">
+<img src="docs/previews-web/v2a-page1.jpg" alt="v2a — maximalist editorial" width="100%"><br>
+<b>v2a — Maximalist Editorial</b><br>
+<sub>Magazine-spread chaos. Magenta spark. Hand-drawn marks + sticker collage.</sub>
+</td>
+<td width="33%" align="center">
+<img src="docs/previews-web/v2b-page1.jpg" alt="v2b — brutalist mono" width="100%"><br>
+<b>v2b — Brutalist Monospace</b><br>
+<sub>CAD-grid + real pricing table + athlete hero band + stats strip. Confident departure.</sub>
+</td>
+</tr>
+<tr>
+<td width="33%" align="center">
+<img src="docs/previews-web/v2c-page1.jpg" alt="v2c — cyberpunk HUD" width="100%"><br>
+<b>v2c — Cyberpunk HUD</b><br>
+<sub>Sci-fi UI overlay. Signal bars + modular price modules + cyan accent.</sub>
+</td>
+<td width="33%" align="center">
+<img src="docs/previews-web/v3-page1.jpg" alt="v3 — synthesis (front)" width="100%"><br>
+<b>v3 — Synthesis (front)</b><br>
+<sub>Athlete-led hero + clean stacked prices + one CTA. The ship pick.</sub>
+</td>
+<td width="33%" align="center">
+<img src="docs/previews-web/v3-page2.jpg" alt="v3 — student edition (back)" width="100%"><br>
+<b>v3 — Student Edition (back)</b><br>
+<sub>2-sided. "BOOKS DOWN. WEIGHTS UP." + bring-a-friend perk + free diet consult.</sub>
+</td>
+</tr>
+</table>
+
+### Why v3 won
+
+| Direction | Why it lost |
 |---|---|
-| `build.py` | WeasyPrint render + `pdftoppm` preview + QR generator. Takes any `poster_*.html` filename. |
-| `poster.html` (v1) | First version. Neon-glitch lime/black, sticker-cluster hero. |
-| `poster_v2a.html` | Maximalist editorial variant. Magenta spark, sticker collage, agit headline. |
-| `poster_v2b.html` | Brutalist monospace variant. CAD-grid, real pricing table, athlete hero band. **Heaviest brand departure.** |
-| `poster_v2c.html` | Cyberpunk HUD variant. Signal bars, modular price modules, scanline atmosphere. |
-| `poster_v3.html` | **Synthesis pick** — athlete-led hero + clean prices + one CTA + STUDENT EDITION back page. |
-| `assets/` | Logo, gym photos, QR, processed hero image. |
-| `assets/gym-photos/` | 89 raw photos pulled from `rockwallfitness.in`. |
-| `Rockwall-Price-Card-2026-*.pdf` | Rendered outputs, ready for press. |
-| `preview-*/page-N.png` | Eyeball-able PNG renders per page. |
+| v1 | Conservative — too close to last year, no upgrade |
+| v2a | Maximalism collapsed into noise once the fixes landed |
+| v2b | Beautifully made but reads as a software changelog, not a gym poster |
+| v2c | Cyberpunk HUD is cool but wrong audience for a Bangalore neighbourhood gym |
+| **v3** | Hero photo carries the gym energy, prices are unmistakable, single typeface family + single bold word + one sticker moment. **Followed the principle "edit down, don't add more."** |
 
 ---
 
-## Render
+## Project structure
+
+```mermaid
+graph LR
+    ROOT[poster-pipeline/]
+    ROOT --> BUILD[build.py]
+    ROOT --> README[README.md]
+    ROOT --> GIT[.gitignore]
+    ROOT --> POSTERS[poster.html<br/>poster_v2a.html<br/>poster_v2b.html<br/>poster_v2c.html<br/>poster_v3.html]
+    ROOT --> ASSETS[assets/]
+    ROOT --> DOCS[docs/previews-web/]
+    ROOT --> OUT_PDF[Rockwall-Price-Card-2026-*.pdf]
+    ROOT --> OUT_PREVIEW[preview-*/page-N.png]
+    ASSETS --> LOGO[logo.png]
+    ASSETS --> ATHLETE[athlete.jpg — current hero]
+    ASSETS --> QR[qr.png]
+    ASSETS --> BG[bg.jpg, sticker-src.jpg]
+    ASSETS --> GYM[gym-photos/<br/>89 raw photos from rockwallfitness.in]
+
+    style POSTERS fill:#CFFF3C,color:#050505
+    style BUILD fill:#050505,color:#CFFF3C
+    style OUT_PDF fill:#CFFF3C,color:#050505
+```
+
+---
+
+## Render commands
 
 ```bash
 # Install deps once
 pip3 install weasyprint qrcode[pil] Pillow
 
-# Render any variant
+# Render the synthesis pick
 python3 build.py poster_v3.html
 
-# First run (or after editing the QR target URL)
+# Render any other variant
+python3 build.py poster_v2b.html
+
+# Default — renders poster.html (v1)
+python3 build.py
+
+# Regenerate the QR (only needed if QR target URL changes)
 python3 build.py poster_v3.html --regen-qr
 ```
 
-Output: a new `Rockwall-Price-Card-2026-<variant>.pdf` and `preview-<variant>/page-N.png` for review.
+Each run produces:
+- `Rockwall-Price-Card-2026-<variant>.pdf` — press-ready
+- `preview-<variant>/page-N.png` — 200 DPI PNG render per page, for review
 
 ---
 
 ## Print export spec
 
-Everything `build.py` emits is configured for press:
+```mermaid
+graph TB
+    subgraph "Final PDF (303 × 426 mm)"
+    direction TB
+        BLEED[3 mm bleed area · #050505 fill]
+        BLEED --> TRIM[Trim line @ 297 × 420 mm A3]
+        TRIM --> SAFE[Safe zone @ ~294 × 414 mm]
+        SAFE --> CONTENT[All readable content lives here]
+        CROP[Crop marks at all 4 corners]
+    end
 
-- **Page size:** 297 × 420 mm (A3)
-- **Bleed:** 3 mm all sides → final PDF is **303 × 426 mm**
-- **Crop marks:** auto-emitted by WeasyPrint (`marks: crop cross`)
-- **Background bleed:** `@page { background: #050505; }` so the dark fill covers the bleed area — no white edge after trim
-- **Colour:** sRGB (don't convert to CMYK before sending — printer's RIP handles it)
-- **Images:** JPEG q95, no chroma subsampling, baseline
-- **Hero photo:** Lanczos-upscaled to 3200×2134 + unsharp mask + slight contrast boost (~270 DPI effective at hero band size)
-- **PDF variant:** PDF/A-3b (archival print-safe)
+    style BLEED fill:#444,color:#fff
+    style TRIM fill:#CFFF3C,color:#050505
+    style SAFE fill:#222,color:#CFFF3C
+    style CONTENT fill:#050505,color:#CFFF3C
+    style CROP fill:#CFFF3C,color:#050505
+```
 
-Send the PDF straight to the printer. Tell them: A3, 3 mm bleed, trim to marks.
+| Spec | Value |
+|---|---|
+| Trim size | 297 × 420 mm (A3) |
+| Bleed | 3 mm all sides → final PDF is **303 × 426 mm** |
+| Crop marks | Auto-emitted at corners (`marks: crop cross`) |
+| Background bleed | `@page { background: #050505; }` — no white edge after trim |
+| Colour profile | sRGB (do **not** pre-convert to CMYK; printer's RIP handles it) |
+| Image encoding | JPEG quality 95, no chroma subsampling, baseline |
+| Hero photo | Source 1600×1067 → Lanczos-upscaled to 3200×2134 + unsharp mask + 8% contrast boost → ~270 DPI effective at hero band size |
+| PDF variant | **PDF/A-3b** (archival print-safe) |
+| Rasterisation DPI | 300 (for CSS-rendered effects: gradients, filters) |
+| File size | v3 = 3.1 MB · v2b = 2.5 MB · others 0.4–0.7 MB |
+
+**Send straight to printer.** Tell them: A3, 3 mm bleed, trim to marks.
 
 ---
 
-## Per-project convention (this repo)
+## How to start a new poster project
 
-Following the pattern across Piyush's repos: **each branch is a distinct poster project.** The root README on each branch is project-specific.
+```mermaid
+sequenceDiagram
+    participant You
+    participant Repo as poster-pipeline
+    participant Build as build.py
+    participant Print as Printer
 
-- `main` — example seed: Rockwall Fitness 2026 price card
-- future branches — one per client / poster series
-
-To start a new poster project:
-
-```bash
-git checkout -b clientname-poster
-# clear assets/, swap in new content, rewrite poster.html
-# update this README to describe the new project
-python3 build.py poster.html
-git add . && git commit -m "Seed clientname poster"
+    You->>Repo: git checkout -b clientname-poster
+    You->>Repo: clear assets/, swap in client photos + logo
+    You->>Repo: rewrite poster.html with client content
+    You->>Repo: update README.md (project-specific)
+    You->>Build: python3 build.py poster.html
+    Build->>Build: render via WeasyPrint
+    Build->>Build: emit PDF + preview PNG
+    Build-->>You: preview-/page-1.png
+    You->>You: review preview, iterate CSS
+    You->>Repo: git commit + push branch
+    You->>Print: send PDF
+    Print-->>You: printed poster
 ```
 
-The build pipeline (`build.py`, the `@page` rules in HTML, the WeasyPrint quirks documented below) carry over to every branch.
+Concrete steps:
+
+```bash
+# 1. New branch for the new client
+git checkout -b acme-gym-poster
+
+# 2. Clear out the Rockwall assets, drop in the new ones
+rm -rf assets/gym-photos preview-* Rockwall-Price-Card-*.pdf
+# (Keep build.py, .gitignore, poster.html as the starter)
+
+# 3. Edit poster.html — swap copy, swap colours, swap photos
+# 4. Edit assets/qr.png to point at the new URL
+# 5. Build
+python3 build.py poster.html
+
+# 6. Iterate. When happy:
+git add . && git commit -m "Seed acme-gym poster v1"
+git push -u origin acme-gym-poster
+
+# 7. Update this README to describe the new project
+#    (per branch-per-project convention below)
+```
+
+---
+
+## Branch-per-project model
+
+Per [Piyush Mishra](https://piyushmishra.online)'s repo convention: **each branch is a distinct project**. The README on each branch is project-specific — it describes whatever poster lives on that branch, not a global "this is what poster-pipeline does" overview.
+
+```mermaid
+gitGraph
+    commit id: "build.py + first poster"
+    commit id: "Rockwall v1 → v2a/b/c → v3"
+    commit id: "Print export config"
+    branch acme-gym-poster
+    checkout acme-gym-poster
+    commit id: "Seed Acme Gym poster"
+    commit id: "Iterate Acme"
+    checkout main
+    branch yoga-studio-card
+    commit id: "Seed Yoga Studio"
+    checkout main
+    commit id: "Update Rockwall prices for 2027"
+```
+
+The `main` branch always carries the **current Rockwall work** (since Rockwall is the seed/example). Sub-branches carry other clients. This keeps the build pipeline shared (any improvement to `build.py` lives in `main` and gets merged into client branches) while letting each project's content stay isolated.
 
 ---
 
 ## WeasyPrint gotchas (learned the hard way)
 
-These CSS properties are **silently dropped** by WeasyPrint — don't use them and expect rendering to work:
+WeasyPrint silently drops several modern CSS properties — pages render wrong without any error. These ones bit during this project:
 
-- `inset:` shorthand → use explicit `top/right/bottom/left`
-- `display: contents` → flatten the HTML instead
-- `mix-blend-mode` → use opacity layers + filters instead
-- `backdrop-filter` → unsupported
-- `filter: drop-shadow()` → unsupported (use `box-shadow` or SVG `<feDropShadow>`)
-- `text-shadow` → unsupported
+### ❌ DROPPED (do not use)
 
-These ARE supported and work as expected:
+| Property | What to use instead |
+|---|---|
+| `inset: 0` shorthand | Explicit `top: 0; right: 0; bottom: 0; left: 0;` (this caused **two** "image not rendering" bugs in v3) |
+| `display: contents` | Flatten the HTML so children become direct grid/flex items |
+| `mix-blend-mode` | Fake with opacity overlays + duotone filters |
+| `backdrop-filter` | Unsupported entirely |
+| `filter: drop-shadow()` | Use `box-shadow` or SVG `<feDropShadow>` |
+| `text-shadow` | Unsupported |
 
-- `filter: grayscale() contrast() brightness()` on images
-- `clip-path: polygon(...)`
-- `linear-gradient`, `radial-gradient`, `repeating-linear-gradient`
-- `transform: scale/rotate/translate` (mm units OK)
-- `font-variation-settings: "wdth" 150` on variable fonts
-- `@page { size, margin, bleed, marks, background }`
+### ✅ SUPPORTED (use freely)
 
-If an image doesn't appear → check whether its container has zero dimensions due to dropped `inset:` shorthand. That bit me twice.
+- `filter: grayscale() contrast() brightness()` on images — works great for duotone/halftone treatments
+- `clip-path: polygon(...)` — torn-paper edges, complex shapes
+- `linear-gradient`, `radial-gradient`, `repeating-linear-gradient` — scan lines, vignettes
+- `transform: scale/rotate/translate` with mm units
+- `font-variation-settings: "wdth" 150` on variable fonts (Anybody) — but the Google Fonts URL must include the wdth axis: `Anybody:ital,wdth,wght@0,75..150,400..900`
+- `@page { size, margin, bleed, marks, background }` — full print export with bleed + crop marks works
+
+### Debug technique
+
+If an image doesn't render but the file is valid → check whether its containing div has zero dimensions because an `inset:` was silently dropped. Also try re-encoding progressive JPEGs to baseline (`Image.save(..., progressive=False)`) — some WeasyPrint versions choke on progressive JPEG.
+
+### Print-export incantation (in `build.py`)
+
+```python
+HTML(filename=str(html), base_url=str(HERE)).write_pdf(
+    target=str(pdf),
+    dpi=300,
+    jpeg_quality=95,
+    full_fonts=True,
+    pdf_variant="pdf/a-3b",
+)
+```
+
+Paired with:
+
+```css
+@page {
+  size: 297mm 420mm;
+  margin: 0;
+  bleed: 3mm;
+  marks: crop cross;
+  background: #050505;
+}
+```
+
+You get a 303×426 mm PDF with auto crop marks, bleed area filled with brand colour, archival print-safe.
 
 ---
 
 ## Credits
 
-- Concept + iteration: Piyush Mishra (SMARK8ING)
-- Build pipeline + execution help: Claude (Anthropic)
-- Photography: Rockwall Fitness in-house
-- Fonts: Anybody, Inter Tight, JetBrains Mono, Archivo Black, Departure Mono, Bricolage Grotesque (Google Fonts, OFL)
+- **Concept + iteration:** Piyush Mishra ([SMARK8ING](https://smark8ing.com))
+- **Build pipeline + execution help:** Claude (Anthropic) via Claude Code
+- **Photography:** Rockwall Fitness in-house (`assets/gym-photos/`)
+- **Fonts:** Anybody, Inter Tight, JetBrains Mono, Archivo Black, Departure Mono, Bricolage Grotesque — all Google Fonts under OFL
+- **Engine:** [WeasyPrint](https://weasyprint.org/) (HTML → PDF)
+- **QR generation:** [`qrcode`](https://pypi.org/project/qrcode/) Python library
 
 ---
 
-*Branch: `main` · Project: Rockwall Fitness 2026 Price Card · Last updated: 2026-05-27*
+<p align="center"><sub>Branch: <code>main</code> · Project: Rockwall Fitness 2026 Price Card · Last updated: 2026-05-27</sub></p>
