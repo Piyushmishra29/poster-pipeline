@@ -47,8 +47,18 @@ def preview_dir(html_path: Path) -> Path:
 
 def build(html_path: Path) -> Path:
     pdf = pdf_name(html_path)
-    print(f"Rendering {html_path.name} -> {pdf.name}")
-    HTML(filename=str(html_path), base_url=str(HERE)).write_pdf(target=str(pdf))
+    print(f"Rendering {html_path.name} -> {pdf.name}  [print: A3 + 3mm bleed + crop marks]")
+    HTML(filename=str(html_path), base_url=str(HERE)).write_pdf(
+        target=str(pdf),
+        # Higher rasterisation DPI for any CSS-rendered effects (gradients, filters)
+        dpi=300,
+        # Keep images at full resolution (don't downsample for size)
+        jpeg_quality=95,
+        full_fonts=True,            # subset out, full glyph coverage for safety
+        uncompressed_pdf=False,     # flate-compress streams (smaller, lossless)
+        pdf_variant="pdf/a-3b",     # archival print-safe variant
+        pdf_identifier=b"rockwall-2026-price-card",
+    )
     print(f"  Wrote {pdf.name} ({pdf.stat().st_size/1024:.0f} KB)")
     return pdf
 
