@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sticker — DEADLIFT &gt; DEADLINE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* sticker 96 x 38 mm + 3mm bleed each side = 102 x 44 mm */
+  @page { size: 102mm 44mm; margin: 0; bleed: 3mm; marks: crop cross; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 102mm; height: 44mm; }
+
+  .stage {
+    position: relative;
+    width: 102mm; height: 44mm;
+  }
+
+  /* white die-cut base — OUTERMOST, bleeds beyond the cut line */
+  .diecut {
+    position: absolute;
+    top: 2mm; left: 2mm;
+    width: 98mm; height: 40mm;
+    border-radius: 4mm;
+    background: #FFFFFF;
+  }
+  /* black artwork body — innermost, 3mm white border to the cut line */
+  .art {
+    position: absolute;
+    top: 9mm; left: 9mm;
+    width: 84mm; height: 26mm;
+    border-radius: 2.4mm;
+    background: #050505;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* magenta cut line — STROKED, the die path. 3mm white inside to art,
+     ~4mm white bleed outside to the sticker edge */
+  .cutline {
+    position: absolute;
+    top: 6mm; left: 6mm;
+    width: 90mm; height: 32mm;
+    border-radius: 3mm;
+    background: transparent;
+    border: 0.5mm dashed #FF00FF;
+    z-index: 6;
+  }
+  .word {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 23pt;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transform: skewX(-8deg);
+  }
+  .word .lime { color: #CFFF3C; }
+  .word .gt   { color: #CFFF3C; padding: 0 1.5mm; }
+  .word .pale { color: #F6F6F2; }
+
+  /* tiny brand tag under the line */
+  .tag {
+    position: absolute;
+    bottom: 12mm; left: 0; right: 0;
+    text-align: center;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 5pt;
+    letter-spacing: 0.45em;
+    color: #CFFF3C;
+    text-transform: uppercase;
+    transform: skewX(-8deg);
+    z-index: 3;
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="cutline"></div>
+    <div class="diecut"></div>
+    <div class="art">
+      <div class="word"><span class="lime">DEADLIFT</span><span class="gt">&gt;</span><span class="pale">DEADLINE</span></div>
+    </div>
+    <div class="tag">ROCKWALL FITNESS</div>
+  </div>
+</body>
+</html>

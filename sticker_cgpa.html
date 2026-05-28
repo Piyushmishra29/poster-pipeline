@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sticker — CGPA &darr; GAINS &uarr;</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* sticker 72 x 52 mm + 3mm bleed = 78 x 58 mm */
+  @page { size: 78mm 58mm; margin: 0; bleed: 3mm; marks: crop cross; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 78mm; height: 58mm; }
+
+  .stage { position: relative; width: 78mm; height: 58mm; }
+
+  /* white die-cut base — OUTERMOST, bleeds beyond the cut line */
+  .diecut {
+    position: absolute; top: 2mm; left: 2mm;
+    width: 74mm; height: 54mm;
+    background: #FFFFFF; border-radius: 7mm;
+  }
+  /* black artwork — innermost */
+  .art {
+    position: absolute; top: 9mm; left: 9mm;
+    width: 60mm; height: 40mm;
+    background: #050505; border-radius: 4mm;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 1mm;
+  }
+  /* magenta cut line — STROKED die path, 3mm white inside + ~3mm bleed outside */
+  .cutline {
+    position: absolute; top: 6mm; left: 6mm;
+    width: 66mm; height: 46mm;
+    background: transparent;
+    border: 0.5mm dashed #FF00FF;
+    border-radius: 5.5mm;
+    z-index: 6;
+  }
+  .row {
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    line-height: 0.86;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .row .arrow { font-family: 'Inter Tight', sans-serif; font-weight: 900; }
+  .cgpa { font-size: 22pt; color: #B6BFA0; }      /* faded sage — "going down" but legible */
+  .cgpa .arrow { color: #B6BFA0; margin-left: 2mm; }
+  .gains { font-size: 34pt; color: #CFFF3C; }
+  .gains .arrow { color: #CFFF3C; margin-left: 2mm; }
+  .tag {
+    margin-top: 3mm;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 5.5pt;
+    letter-spacing: 0.4em;
+    color: #F6F6F2;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="diecut"></div>
+    <div class="art">
+      <div class="row cgpa">CGPA<span class="arrow">&darr;</span></div>
+      <div class="row gains">GAINS<span class="arrow">&uarr;</span></div>
+      <div class="tag">ROCKWALL FITNESS</div>
+    </div>
+    <div class="cutline"></div>
+  </div>
+</body>
+</html>

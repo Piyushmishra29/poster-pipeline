@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sticker — ROCKWALL Plate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* sticker 84 x 84 mm + 3mm bleed = 90 x 90 mm */
+  @page { size: 90mm 90mm; margin: 0; bleed: 3mm; marks: crop cross; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 90mm; height: 90mm; }
+
+  .stage { position: relative; width: 90mm; height: 90mm; }
+
+  .circle { position: absolute; border-radius: 50%; }
+
+  /* white die-cut base — OUTERMOST, 86mm, bleeds 3mm beyond the cut ring.
+     centred in 90mm body: (90-86)/2 = 2mm */
+  .diecut { top: 2mm; left: 2mm; width: 86mm; height: 86mm; background: #FFFFFF; }
+  /* lime plate face — 74mm, centred: (90-74)/2 = 8mm */
+  .rim { top: 8mm; left: 8mm; width: 74mm; height: 74mm; background: #CFFF3C; }
+  /* magenta cut line — STROKED ring at 80mm (the die path), sits in the
+     white border between lime (74) and white edge (86). 3mm white inside
+     the cut, 3mm white bleed outside. centred: (90-80)/2 = 5mm */
+  .cutline {
+    top: 5mm; left: 5mm; width: 80mm; height: 80mm;
+    background: transparent;
+    border: 0.5mm dashed #FF00FF;
+    z-index: 6;
+  }
+  /* knurled ring detail (dashed dark circle) */
+  .knurl {
+    top: 10mm; left: 10mm; width: 70mm; height: 70mm;
+    border: 1.6mm dashed #050505;
+    opacity: 0.35;
+  }
+  /* black hub */
+  .hub {
+    top: 18mm; left: 18mm; width: 54mm; height: 54mm;
+    background: #050505;
+  }
+  /* ROCK above the hole, WALL below it */
+  .hub-rock, .hub-wall {
+    position: absolute; left: 18mm; width: 54mm;
+    text-align: center;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 20pt;
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    z-index: 3;
+  }
+  .hub-rock { top: 27mm; color: #CFFF3C; }
+  .hub-wall { top: 52mm; color: #F6F6F2; }
+  /* center hole */
+  .hole {
+    top: 39mm; left: 39mm; width: 12mm; height: 12mm;
+    background: #CFFF3C;
+    border: 1.4mm solid #050505;
+    z-index: 4;
+  }
+  /* curved-feel top + bottom rim micro text via absolute placement */
+  .rim-top, .rim-bot {
+    position: absolute; left: 0; right: 0; text-align: center;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 6pt;
+    letter-spacing: 0.4em;
+    color: #050505;
+    text-transform: uppercase;
+    z-index: 3;
+  }
+  .rim-top { top: 12mm; }
+  .rim-bot { bottom: 12mm; }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="circle diecut"></div>
+    <div class="circle rim"></div>
+    <div class="circle knurl"></div>
+    <div class="rim-top">EST. BANGALORE</div>
+    <div class="circle hub"></div>
+    <div class="hub-rock">ROCK</div>
+    <div class="hub-wall">WALL</div>
+    <div class="rim-bot">STRETCH YOUR LIMITS</div>
+    <div class="circle hole"></div>
+    <div class="circle cutline"></div>
+  </div>
+</body>
+</html>

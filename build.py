@@ -33,6 +33,9 @@ def make_qr():
 
 def pdf_name(html_path: Path) -> Path:
     stem = html_path.stem
+    if stem.startswith("sticker_"):
+        name = stem.replace("sticker_", "")
+        return HERE / f"Rockwall-Sticker-{name.title()}.pdf"
     if stem == "poster":
         return HERE / "Rockwall-Price-Card-2026.pdf"
     suffix = stem.replace("poster_", "")
@@ -40,6 +43,8 @@ def pdf_name(html_path: Path) -> Path:
 
 def preview_dir(html_path: Path) -> Path:
     stem = html_path.stem
+    if stem.startswith("sticker_"):
+        return HERE / f"preview-{stem.replace('_', '-')}"
     if stem == "poster":
         return HERE / "preview"
     suffix = stem.replace("poster_", "")
