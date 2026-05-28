@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rockwall Fitness — Brand Kit 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     ROCKWALL FITNESS — BRAND KIT 2026
+     A4 portrait · dark-first · acid lime core + playful secondary
+     ============================================================ */
+  :root {
+    --lime:  #CFFF3C;
+    --ink:   #050505;
+    --paper: #F6F6F2;
+    --coral: #FF4D3D;
+    --cyan:  #19E3D0;
+    --grape: #9B5DE5;
+    --amber: #FFC23C;
+    --smoke: #16160F;
+    --panel: #111108;
+    --line:  rgba(207,255,60,0.30);
+  }
+
+  @page {
+    size: 210mm 297mm;
+    margin: 0;
+    bleed: 3mm;
+    marks: crop cross;
+    background: #050505;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 210mm;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Inter Tight', sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    position: relative;
+    width: 210mm; height: 297mm;
+    background: var(--ink);
+    overflow: hidden;
+    page-break-after: always;
+    padding: 18mm 16mm 16mm;
+  }
+  .page:last-child { page-break-after: auto; }
+  .page.light { background: var(--paper); color: var(--ink); }
+  .page.lime  { background: var(--lime);  color: var(--ink); }
+  .page.coral { background: var(--coral); color: var(--ink); }
+
+  /* ---- running footer ---- */
+  .running {
+    position: absolute;
+    bottom: 9mm; left: 16mm; right: 16mm;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7pt; font-weight: 500;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--lime);
+  }
+  .page.light .running, .page.lime .running { color: var(--ink); }
+  .running .pg { font-weight: 800; }
+
+  /* ---- section kicker ---- */
+  .kicker {
+    display: flex; align-items: center; gap: 4mm;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5pt; font-weight: 800;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 7mm;
+  }
+  .page.light .kicker, .page.lime .kicker { color: var(--ink); }
+  .kicker .num {
+    background: var(--lime); color: var(--ink);
+    padding: 1mm 2.5mm; font-weight: 800;
+  }
+  .page.lime .kicker .num { background: var(--ink); color: var(--lime); }
+  .kicker .rule { flex: 1; height: 0.4mm; background: currentColor; opacity: 0.5; }
+
+  /* ---- display headings ---- */
+  .h1 {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900; font-variation-settings: "wdth" 150;
+    font-size: 54pt; line-height: 0.86; letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+  .h2 {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900; font-variation-settings: "wdth" 150;
+    font-size: 34pt; line-height: 0.9; letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+  .lime-tx { color: var(--lime); }
+  .coral-tx { color: var(--coral); }
+  .cyan-tx { color: var(--cyan); }
+  .grape-tx { color: var(--grape); }
+  .amber-tx { color: var(--amber); }
+
+  .lead {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 500; font-size: 12pt; line-height: 1.55;
+    letter-spacing: 0.01em; max-width: 150mm;
+  }
+  .lead b { color: var(--lime); font-weight: 800; }
+  .page.light .lead b { color: var(--ink); background: var(--lime); padding: 0 1mm; }
+
+  .small-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5pt; font-weight: 700;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--lime); opacity: 0.85;
+  }
+  .page.light .small-label { color: var(--ink); opacity: 0.6; }
+
+  /* ============ COVER ============ */
+  .cover { padding: 0; }
+  .cover-grid-bg {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-image:
+      repeating-linear-gradient(0deg, transparent 0 19.9mm, rgba(207,255,60,0.06) 19.9mm 20mm),
+      repeating-linear-gradient(90deg, transparent 0 19.9mm, rgba(207,255,60,0.06) 19.9mm 20mm);
+  }
+  .cover-burst {
+    position: absolute; top: -40mm; right: -40mm;
+    width: 160mm; height: 160mm; opacity: 0.9;
+  }
+  .cover-inner {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    padding: 22mm 18mm;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .cover-logo { width: 92mm; }
+  .cover-mid { margin-top: auto; }
+  .cover-kit {
+    font-family: 'Anybody', sans-serif; font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 88pt; line-height: 0.82; letter-spacing: -0.03em;
+    text-transform: uppercase; color: var(--paper);
+  }
+  .cover-kit em { font-style: normal; color: var(--lime); }
+  .cover-sub {
+    margin-top: 8mm;
+    display: flex; gap: 4mm; flex-wrap: wrap;
+  }
+  .pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8pt; font-weight: 800; letter-spacing: 0.2em;
+    text-transform: uppercase; padding: 2mm 4mm;
+    border-radius: 20mm; border: 0.4mm solid var(--lime); color: var(--lime);
+  }
+  .pill.f-lime { background: var(--lime); color: var(--ink); border-color: var(--lime); }
+  .pill.f-coral { background: var(--coral); color: var(--ink); border-color: var(--coral); }
+  .pill.f-cyan { background: var(--cyan); color: var(--ink); border-color: var(--cyan); }
+  .pill.f-grape { background: var(--grape); color: var(--paper); border-color: var(--grape); }
+  .cover-foot {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8pt; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--lime);
+  }
+
+  /* ============ CONTENTS ============ */
+  .toc { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14mm; margin-top: 4mm; }
+  .toc-item {
+    display: flex; align-items: baseline; gap: 3mm;
+    padding: 3.2mm 0; border-bottom: 0.3mm solid var(--line);
+    font-family: 'Inter Tight', sans-serif; font-weight: 700;
+    font-size: 11pt; letter-spacing: 0.02em; text-transform: uppercase;
+  }
+  .toc-item .n {
+    font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: 9pt; color: var(--lime); flex: 0 0 8mm;
+  }
+  .toc-item .t { flex: 1; }
+  .toc-item .p { font-family: 'JetBrains Mono', monospace; font-size: 8.5pt; color: var(--lime); opacity: 0.7; }
+
+  /* ============ swatches ============ */
+  .swatch-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6mm; margin-top: 4mm; }
+  .swatch { border-radius: 3mm; overflow: hidden; border: 0.3mm solid var(--line); }
+  .swatch .chip { height: 38mm; display: flex; align-items: flex-end; padding: 4mm; }
+  .swatch .meta { background: var(--panel); padding: 4mm; }
+  .swatch .nm {
+    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 150;
+    font-size: 15pt; text-transform: uppercase; line-height: 1;
+  }
+  .swatch .codes {
+    font-family: 'JetBrains Mono', monospace; font-size: 7pt; line-height: 1.6;
+    letter-spacing: 0.04em; color: var(--paper); opacity: 0.75; margin-top: 2mm;
+  }
+  .swatch .role {
+    font-family: 'JetBrains Mono', monospace; font-size: 6.5pt; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--lime); margin-top: 2mm;
+  }
+
+  /* ============ generic card ============ */
+  .panel-box {
+    background: var(--panel); border: 0.3mm solid var(--line);
+    border-radius: 3mm; padding: 6mm;
+  }
+
+  /* ============ icon tiles ============ */
+  .ic-tile {
+    background: var(--panel); border: 0.3mm solid var(--line);
+    border-radius: 3mm; padding: 5mm 4mm 4mm;
+    display: flex; flex-direction: column; align-items: center; gap: 3mm;
+    height: 40mm; justify-content: center;
+  }
+  .ic { width: 18mm; height: 18mm; }
+  .ic circle, .ic rect, .ic path, .ic line, .ic polygon {
+    fill: none; stroke: var(--lime); stroke-width: 2.4;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .ic-l {
+    font-family: 'JetBrains Mono', monospace; font-weight: 700;
+    font-size: 6.5pt; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--paper); text-align: center; line-height: 1.3;
+  }
+
+  /* ============ do / don't ============ */
+  .dd { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; margin-top: 5mm; }
+  .dd-col { border-radius: 3mm; overflow: hidden; border: 0.4mm solid var(--line); }
+  .dd-head {
+    padding: 3mm 4mm; font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: 9pt; letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .dd-do .dd-head { background: var(--lime); color: var(--ink); }
+  .dd-no .dd-head { background: var(--coral); color: var(--ink); }
+  .dd-body { padding: 4mm; font-family: 'Inter Tight'; font-weight: 500; font-size: 8.5pt; line-height: 1.5; }
+  .dd-body li { margin-left: 4mm; margin-bottom: 1.5mm; }
+
+</style>
+</head>
+<body>
+
+<!-- ================= 01 · COVER ================= -->
+<div class="page cover">
+  <div class="cover-grid-bg"></div>
+  <svg class="cover-burst" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <polygon fill="#CFFF3C" opacity="0.12"
+      points="100,4 112,46 150,24 134,64 178,60 146,90 192,104 146,114 172,150 130,138 132,182 104,150 88,192 78,150 40,176 50,134 8,138 44,108 2,92 46,84 22,46 64,58 64,14 90,44"/>
+  </svg>
+  <div class="cover-inner">
+    <img class="cover-logo" src="assets/logo.png" alt="Rockwall Fitness">
+    <div class="cover-mid">
+      <div class="small-label">VISUAL IDENTITY SYSTEM</div>
+      <div class="cover-kit">BRAND<br>KIT <em>'26</em></div>
+      <div class="cover-sub">
+        <span class="pill f-lime">STRETCH YOUR LIMITS</span>
+        <span class="pill f-coral">YOUNG</span>
+        <span class="pill f-cyan">LOUD</span>
+        <span class="pill f-grape">UNSTOPPABLE</span>
+      </div>
+    </div>
+    <div class="cover-foot">
+      <span>ROCKWALL FITNESS &middot; BANGALORE</span>
+      <span>V1.0 &middot; FY 2026</span>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 02 · CONTENTS ================= -->
+<div class="page">
+  <div class="kicker"><span class="num">00</span><span>CONTENTS</span><span class="rule"></span><span>WHAT'S INSIDE</span></div>
+  <div class="h1">THE<br><span class="lime-tx">PLAYBOOK.</span></div>
+  <div class="toc">
+    <div class="toc-item"><span class="n">01</span><span class="t">Who We Are</span><span class="p">P.03</span></div>
+    <div class="toc-item"><span class="n">02</span><span class="t">Logo — Primary</span><span class="p">P.04</span></div>
+    <div class="toc-item"><span class="n">03</span><span class="t">Logo — Variations</span><span class="p">P.05</span></div>
+    <div class="toc-item"><span class="n">04</span><span class="t">Logo — Clear Space</span><span class="p">P.06</span></div>
+    <div class="toc-item"><span class="n">05</span><span class="t">Logo — Misuse</span><span class="p">P.07</span></div>
+    <div class="toc-item"><span class="n">06</span><span class="t">Color — Core</span><span class="p">P.08</span></div>
+    <div class="toc-item"><span class="n">07</span><span class="t">Color — Playful Set</span><span class="p">P.09</span></div>
+    <div class="toc-item"><span class="n">08</span><span class="t">Color — Usage</span><span class="p">P.10</span></div>
+    <div class="toc-item"><span class="n">09</span><span class="t">Type — Display</span><span class="p">P.11</span></div>
+    <div class="toc-item"><span class="n">10</span><span class="t">Type — Body & Mono</span><span class="p">P.12</span></div>
+    <div class="toc-item"><span class="n">11</span><span class="t">Graphic Motifs</span><span class="p">P.13</span></div>
+    <div class="toc-item"><span class="n">12</span><span class="t">Patterns</span><span class="p">P.14</span></div>
+    <div class="toc-item"><span class="n">13</span><span class="t">Iconography</span><span class="p">P.15</span></div>
+    <div class="toc-item"><span class="n">14</span><span class="t">Photography</span><span class="p">P.16</span></div>
+    <div class="toc-item"><span class="n">15</span><span class="t">Voice & Tone</span><span class="p">P.17</span></div>
+    <div class="toc-item"><span class="n">16</span><span class="t">Apps — Poster</span><span class="p">P.18</span></div>
+    <div class="toc-item"><span class="n">17</span><span class="t">Apps — Social</span><span class="p">P.19</span></div>
+    <div class="toc-item"><span class="n">18</span><span class="t">Apps — Merch</span><span class="p">P.20</span></div>
+    <div class="toc-item"><span class="n">19</span><span class="t">Apps — Stickers & Signage</span><span class="p">P.21</span></div>
+  </div>
+  <div class="running"><span>ROCKWALL FITNESS — BRAND KIT '26</span><span class="pg">02</span></div>
+</div>
+
+<!-- ================= 03 · WHO WE ARE ================= -->
+<div class="page">
+  <div class="kicker"><span class="num">01</span><span>WHO WE ARE</span><span class="rule"></span><span>THE ENERGY</span></div>
+  <div class="h1" style="margin-bottom:8mm">NOT YOUR<br>AUNTY'S <span class="lime-tx">GYM.</span></div>
+  <div class="lead" style="margin-bottom:7mm">
+    Rockwall Fitness is a <b>young, loud, no-excuses</b> gym in Krishnanagar, Bangalore —
+    built for students, lifters and first-timers who'd rather chase a PR than a perfect selfie.
+    The brand is acid-bright, high-contrast and unafraid. It looks like the inside of a good
+    workout: fast, electric, a little chaotic, completely addictive.
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6mm; margin-top:2mm">
+    <div class="panel-box"><div class="h2 lime-tx">BOLD</div><div class="lead" style="font-size:9pt; margin-top:3mm">We shout in lime, never whisper in grey.</div></div>
+    <div class="panel-box"><div class="h2 coral-tx">FUN</div><div class="lead" style="font-size:9pt; margin-top:3mm">Gym jokes &gt; gym intimidation. We don't take ego, only reps.</div></div>
+    <div class="panel-box"><div class="h2 cyan-tx">REAL</div><div class="lead" style="font-size:9pt; margin-top:3mm">Real members, real sweat, real Bangalore. No stock-photo gloss.</div></div>
+  </div>
+  <div style="margin-top:9mm" class="small-label">BRAND PROMISE</div>
+  <div class="h2" style="margin-top:3mm">"STRETCH YOUR <span class="lime-tx">LIMITS.</span>"</div>
+  <div class="running"><span>ROCKWALL FITNESS — BRAND KIT '26</span><span class="pg">03</span></div>
+</div>
+
+<!-- ================= 04 · LOGO PRIMARY ================= -->
+<div class="page">
+  <div class="kicker"><span class="num">02</span><span>LOGO &mdash; PRIMARY</span><span class="rule"></span><span>THE WORDMARK</span></div>
+  <div class="h2" style="margin-bottom:6mm">ONE MARK.<br><span class="lime-tx">ZERO COMPROMISE.</span></div>
+  <div class="lead" style="font-size:10pt; margin-bottom:7mm">
+    This is the Rockwall Fitness wordmark exactly as it lives on the gym signage, banners and LED
+    boards. <b>It does not change.</b> Don't redraw, re-space, or re-colour it &mdash; always place the supplied artwork.
+  </div>
+  <div style="background:var(--panel); border:0.3mm solid var(--line); border-radius:4mm; padding:18mm 12mm; display:flex; align-items:center; justify-content:center; margin-bottom:6mm">
+    <img src="assets/logo.png" alt="Rockwall Fitness logo" style="width:135mm">
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:6mm">
+    <div class="panel-box">
+      <div class="small-label">01 &middot; THE BREAK</div>
+      <div class="lead" style="font-size:8.5pt; margin-top:2mm">The notched "O─C" link nods to a broken wall — the signature detail. Never close the gap.</div>
+    </div>
+    <div class="panel-box">
+      <div class="small-label">02 &middot; TWO-TONE</div>
+      <div class="lead" style="font-size:8.5pt; margin-top:2mm">"ROCK" + "FITNESS" in lime, "WALL" in paper. Built for dark grounds.</div>
+    </div>
+    <div class="panel-box">
+      <div class="small-label">03 &middot; THE SUBLINE</div>
+      <div class="lead" style="font-size:8.5pt; margin-top:2mm">"FITNESS" is locked, tracked wide, centred under the K–L. Never detach it.</div>
+    </div>
+  </div>
+  <div class="running"><span>ROCKWALL FITNESS — BRAND KIT '26</span><span class="pg">04</span></div>
+</div>
+
+<!-- ================= 05 · LOGO VARIATIONS ================= -->
+<div class="page">
+  <div class="kicker"><span class="num">03</span><span>LOGO &mdash; LOCKUPS</span><span class="rule"></span><span>WHERE IT LIVES</span></div>
+  <div class="h2" style="margin-bottom:6mm">DARK-FIRST,<br>ALWAYS <span class="lime-tx">LOUD.</span></div>
+  <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6mm">
+    <div style="min-width:0">
+      <div style="background:var(--ink); border:0.3mm solid var(--line); border-radius:3mm; height:50mm; display:flex; align-items:center; justify-content:center; padding:9mm">
+        <img src="assets/logo.png" style="width:100%">
+      </div>
+      <div class="small-label" style="margin-top:2.5mm">PRIMARY &middot; ON INK BLACK &middot; PREFERRED</div>
+    </div>
+    <div style="min-width:0">
+      <div style="background:linear-gradient(135deg,#1a1a14,#050505); border:0.3mm solid var(--line); border-radius:3mm; height:50mm; display:flex; align-items:center; justify-content:center; padding:9mm; overflow:hidden; position:relative">
+        <img src="assets/athlete.jpg" style="position:absolute; top:0; left:0; width:100%; height:50mm; object-fit:cover; filter:grayscale(1) contrast(160%) brightness(0.4); opacity:0.5">
+        <img src="assets/logo.png" style="width:100%; position:relative">
+      </div>
+      <div class="small-label" style="margin-top:2.5mm">ON DARK PHOTO &middot; KEEP CONTRAST HIGH</div>
+    </div>
+    <div style="min-width:0">
+      <div style="background:var(--coral); border-radius:3mm; height:50mm; display:flex; align-items:center; justify-content:center; padding:9mm">
+        <img src="assets/logo.png" style="width:100%">
+      </div>
+      <div class="small-label" style="margin-top:2.5mm">ON COLOR &middot; ONLY ON DEEP TONES</div>
+    </div>
+    <div style="min-width:0">
+      <div style="background:var(--ink); border:0.3mm solid var(--line); border-radius:3mm; height:50mm; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3mm">
+        <svg viewBox="0 0 60 40" style="width:34mm" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="12" width="20" height="16" rx="2" fill="none" stroke="#CFFF3C" stroke-width="3"/>
+          <rect x="22" y="18" width="6" height="4" fill="#CFFF3C"/>
+          <rect x="28" y="12" width="20" height="16" rx="2" fill="none" stroke="#F6F6F2" stroke-width="3"/>
+        </svg>
+        <div style="font-family:'JetBrains Mono'; font-size:6pt; letter-spacing:0.3em; color:var(--lime)">APP / FAVICON MARK</div>
+      </div>
+      <div class="small-label" style="margin-top:2.5mm">ICON &middot; THE "O─C" BRACKET, TIGHT CROP</div>
+    </div>
+  </div>
+  <div class="running"><span>ROCKWALL FITNESS — BRAND KIT '26</span><span class="pg">05</span></div>
+</div>
+
+<!-- ================= 06 · CLEAR SPACE ================= -->
+<div class="page">
+  <div class="kicker"><span class="num">04</span><span>LOGO &mdash; CLEAR SPACE & SIZE</span><span class="rule"></span><span>GIVE IT ROOM</span></div>
+  <div class="h2" style="margin-bottom:7mm">BREATHING <span class="lime-tx">ROOM.</span></div>
+  <div style="position:relative; background:var(--panel); border:0.3mm solid var(--line); border-radius:4mm; padding:24mm; margin-bottom:6mm; display:flex; align-items:center; justify-content:center">
+    <!-- clear space guides -->
+    <div style="position:absolute; top:14mm; left:14mm; right:14mm; bottom:14mm; border:0.4mm dashed var(--cyan)"></div>
+    <div style="position:absolute; top:14mm; left:30mm; width:10mm; height:10mm; border:0.3mm solid var(--coral); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono'; font-size:6pt; color:var(--coral)">X</div>
+    <img src="assets/logo.png" style="width:120mm; position:relative">
+  </div>
+  <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:6mm">
+    <div class="panel-box">
+      <div class="small-label cyan-tx" style="color:var(--cyan)">CLEAR SPACE</div>
+      <div class="lead" style="font-size:9pt; margin-top:2mm">Keep a margin of <b style="background:none;color:var(--cyan)">X</b> on all sides, where <b style="background:none;color:var(--cyan)">X = the height of the "FITNESS" subline</b>. Nothing enters this zone.</div>
+    </div>
+    <div class="panel-box">
+      <div class="small-label">MIN &middot; PRINT</div>
+      <div class="h2" style="font-size:22pt; margin-top:2mm">30<span style="font-size:11pt">mm</span></div>
+      <div class="lead" style="font-size:7.5pt; margin-top:1mm; opacity:0.7">wordmark width</div>
+    </div>
+    <div class="panel-box">
+      <div class="small-label">MIN &middot; SCREEN</div>
+      <div class="h2" style="font-size:22pt; margin-top:2mm">120<span style="font-size:11pt">px</span></div>
+      <div class="lead" style="font-size:7.5pt; margin-top:1mm; opacity:0.7">wordmark width</div>
+    </div>
+  </div>
+  <div class="running"><span>ROCKWALL FITNESS — BRAND KIT '26</span><span class="pg">06</span></div>
+</div>
+
+<!-- ================= 07 · LOGO MISUSE ================= -->
+<div class="page">
+  <div class="kicker"><span class="num">05</span><span>LOGO &mdash; MISUSE</span><span class="rule"></span><span>NEVER DO THIS</span></div>
+  <div class="h2" style="margin-bottom:6mm">SIX WAYS TO<br><span class="coral-tx">RUIN IT.</span></div>
+  <div style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:5mm">
+    <div style="min-width:0; background:var(--panel); border:0.3mm solid var(--line); border-radius:3mm; height:42mm; padding:8mm; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden">
+      <img src="assets/logo.png" style="width:62%; transform:scaleX(1.5)">
+      <div style="position:absolute; bottom:2.5mm; left:0; right:0; text-align:center; font-family:'JetBrains Mono'; font-size:6.5pt; letter-spacing:0.12em; color:var(--coral)">✗ DON'T STRETCH</div>
+    </div>
+    <div style="min-width:0; background:var(--panel); border:0.3mm solid var(--line); border-radius:3mm; height:42mm; padding:8mm; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden">
+      <img src="assets/logo.png" style="width:80%; transform:rotate(-12deg)">
+      <div style="position:absolute; bottom:2.5mm; left:0; right:0; text-align:center; font-family:'JetBrains Mono'; font-size:6.5pt; letter-spacing:0.12em; color:var(--coral)">✗ DON'T ROTATE</div>
+    </div>
+    <div style="min-width:0; background:var(--paper); border-radius:3mm; height:42mm; padding:8mm; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden">
+      <img src="assets/logo.png" style="width:85%">
+      <div style="position:absolute; bottom:2.5mm; left:0; right:0; text-align:center; font-family:'JetBrains Mono'; font-size:6.5pt; letter-spacing:0.12em; color:var(--coral)">✗ NO LIGHT BG</div>
+    </div>
+    <div style="min-width:0; background:var(--grape); border-radius:3mm; height:42mm; padding:8mm; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden">
+      <img src="assets/logo.png" style="width:85%; opacity:0.45">
+      <div style="position:absolute; bottom:2.5mm; left:0; right:0; text-align:center; font-family:'JetBrains Mono'; font-size:6.5pt; letter-spacing:0.12em; color:var(--ink)">✗ NO LOW OPACITY</div>
+    </div>
+    <div style="min-width:0; background:var(--panel); border:0.3mm solid var(--line); border-radius:3mm; height:42mm; padding:8mm; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden">
+      <img src="assets/logo.png" style="width:85%; filter:hue-rotate(180deg) saturate(2)">
+      <div style="position:absolute; bottom:2.5mm; left:0; right:0; text-align:center; font-family:'JetBrains Mono'; font-size:6.5pt; letter-spacing:0.12em; color:var(--coral)">✗ DON'T RECOLOUR</div>
+    </div>
+    <div style="min-width:0; background:repeating-linear-gradient(45deg,#222 0 4mm,#444 4mm 8mm); border-radius:3mm; height:42mm; padding:8mm; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden">
+      <img src="assets/logo.png" style="width:85%">
+      <div style="position:absolute; bottom:2.5mm; left:0; right:0; text-align:center; font-family:'JetBrains Mono'; font-size:6.5pt; letter-spacing:0.12em; color:var(--coral)">✗ NO BUSY BG</div>
+    </div>
+  </div>
+  <div style="margin-top:5mm; background:var(--coral); color:var(--ink); border-radius:3mm; padding:4mm 6mm; font-family:'Inter Tight'; font-weight:800; font-size:9.5pt; letter-spacing:0.04em; text-transform:uppercase">
+    ALSO NEVER: add drop-shadows, outlines, or re-typeset "FITNESS". Use the master files only.
+  </div>
+  <div class="running"><span>ROCKWALL FITNESS — BRAND KIT '26</span><span class="pg">07</span></div>
+</div>
+
+<!-- ================= 08 · COLOR CORE ================= -->
+<div class="page">
+  <div class="kicker"><span class="num">06</span><span>COLOR &mdash; CORE</span><span class="rule"></span><span>THE SIGNAL</span></div>
+  <div class="h2" style="margin-bottom:6mm">ACID &amp; <span class="lime-tx">INK.</span></div>
+  <div class="swatch-grid">
+    <div class="swatch">
+      <div class="chip" style="background:var(--lime)"><span style="font-family:'JetBrains Mono'; font-size:7pt; color:var(--ink); font-weight:800">PRIMARY</span></div>
+      <div class="meta">
+        <div class="nm lime-tx">ACID LIME</div>
+        <div class="codes">HEX #CFFF3C<br>RGB 207 / 255 / 60<br>CMYK 19 / 0 / 76 / 0</div>
+        <div class="role">SIGNAL &middot; THE BRAND</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:var(--ink); border-bottom:0.3mm solid var(--line)"><span style="font-family:'JetBrains Mono'; font-size:7pt; color:var(--lime); font-weight:800">BASE</span></div>
+      <div class="meta">
+        <div class="nm" style="color:var(--paper)">INK BLACK</div>
+        <div class="codes">HEX #050505<br>RGB 5 / 5 / 5<br>CMYK 0 / 0 / 0 / 98</div>
+        <div class="role">GROUND &middot; DARK-FIRST</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:var(--paper)"><span style="font-family:'JetBrains Mono'; font-size:7pt; color:var(--ink); font-weight:800">TEXT</span></div>
+      <div class="meta">
+        <div class="nm" style="color:var(--paper)">PAPER</div>
+        <div class="codes">HEX #F6F6F2<br>RGB 246 / 246 / 242<br>CMYK 1 / 0 / 2 / 4</div>
+        <div class="role">CONTRAST &middot; KNOCKOUT</div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:7mm; background:var(--panel); border:0.3mm solid var(--line); border-radius:3mm; padding:5mm 6mm">
+    <div class="small-label">THE 60 / 30 / 10 RULE</div>
+    <div style="display:flex; height:14mm; border-radius:2mm; overflow:hidden; margin-top:3mm">
+      <div style="flex:60; background:var(--ink); border:0.3mm solid var(--line); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono'; font-size:7pt; color:var(--lime)">60% INK</div>
+      <div style="flex:30; background:var(--paper); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono'; font-size:7pt; color:var(--ink)">30% PAPER</div>
+      <div style="flex:10; background:var(--lime); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono'; font-size:7pt; color:var(--ink)">10%</div>
+    </div>
+    <div class="lead" style="font-size:8.5pt; margin-top:3mm; opacity:0.85">Black dominates, paper carries the words, lime is the spark — used sparingly so it always hits hard.</div>
+  </div>
+  <div class="running"><span>ROCKWALL FITNESS — BRAND KIT '26</span><span class="pg">08</span></div>
+</div>
+
+<!-- ================= 09 · COLOR PLAYFUL ================= -->
+<div class="page">
+  <div class="kicker"><span class="num">07</span><span>COLOR &mdash; PLAYFUL SET</span><span class="rule"></span><span>THE FUN</span></div>
+  <div class="h2" style="margin-bottom:3mm">SECONDARY <span class="coral-tx">P</span><span class="cyan-tx">O</span><span class="grape-tx">P</span><span class="amber-tx">S.</span></div>
+  <div class="lead" style="font-size:9.5pt; margin-bottom:6mm; opacity:0.9">Used for energy: campaign accents, social tiles, stickers, age-group programs. <b>Never</b> over the logo. Lime always leads; these support.</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:5mm">
+    <div class="swatch">
+      <div class="chip" style="background:var(--coral); height:44mm"></div>
+      <div class="meta"><div class="nm" style="color:var(--coral)">CORAL</div><div class="codes">#FF4D3D<br>255/77/61</div><div class="role">HEAT &middot; URGENCY</div></div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:var(--cyan); height:44mm"></div>
+      <div class="meta"><div class="nm" style="color:var(--cyan)">CYAN</div><div class="codes">#19E3D0<br>25/227/208</div><div class="role">FRESH &middot; RECOVERY</div></div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:var(--grape); height:44mm"></div>
+      <div class="meta"><div class="nm" style="color:var(--grape)">GRAPE</div><div class="codes">#9B5DE5<br>155/93/229</div><div class="role">NIGHT &middot; CLASSES</div></div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:var(--amber); height:44mm"></div>
+      <div class="meta"><div class="nm" style="color:var(--amber)">AMBER</div><div class="codes">#FFC23C<br>255/194/60</div><div class="role">GOLD &middot; OFFERS</div></div>
+    </div>
+  </div>
+  <div style="margin-top:7mm; display:flex; gap:0; border-radius:3mm; overflow:hidden; height:20mm">
+    <div style="flex:1; background:var(--lime)"></div>
+    <div style="flex:1; background:var(--coral)"></div>
+    <div style="flex:1; background:var(--cyan)"></div>
+    <div style="flex:1; background:var(--grape)"></div>
+    <div style="flex:1; background:var(--amber)"></div>
+    <div style="flex:1; background:var(--ink); border:0.3mm solid var(--line)"></div>
+  </div>
+  <div class="small-label" style="margin-top:3mm">FULL SPECTRUM &middot; ONE LIME, FOUR FRIENDS, ONE INK</div>
+  <div class="running"><span>ROCKWALL FITNESS — BRAND KIT '26</span><span class="pg">09</span></div>
+</div>
+
+<!-- ================= 10 · COLOR USAGE ================= -->
+<div class="page">
+  <div class="kicker"><span class="num">08</span><span>COLOR &mdash; USAGE</span><span class="rule"></span><span>HOW TO MIX</span></div>
+  <div class="h2" style="margin-bottom:6mm">PAIR <span class="lime-tx">SMART.</span></div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:6mm; margin-bottom:6mm">
+    <div>
+      <div class="small-label" style="margin-bottom:3mm">✓ APPROVED PAIRS</div>
+      <div style="display:flex; flex-direction:column; gap:3mm">
+        <div style="display:flex; height:14mm; border-radius:2mm; overflow:hidden"><div style="flex:1;background:var(--ink);border:0.3mm solid var(--line)"></div><div style="flex:1;background:var(--lime)"></div></div>
+        <div style="display:flex; height:14mm; border-radius:2mm; overflow:hidden"><div style="flex:1;background:var(--ink);border:0.3mm solid var(--line)"></div><div style="flex:1;background:var(--coral)"></div></div>
+        <div style="display:flex; height:14mm; border-radius:2mm; overflow:hidden"><div style="flex:1;background:var(--lime)"></div><div style="flex:1;background:var(--ink)"></div></div>
+        <div style="display:flex; height:14mm; border-radius:2mm; overflow:hidden"><div style="flex:1;background:var(--grape)"></div><div style="flex:1;background:var(--lime)"></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="small-label" style="margin-bottom:3mm; color:var(--coral)">✗ AVOID</div>
+      <div style="display:flex; flex-direction:column; gap:3mm">
+        <div style="display:flex; height:14mm; border-radius:2mm; overflow:hidden"><div style="flex:1;background:var(--lime)"></div><div style="flex:1;background:var(--amber)"></div></div>
+        <div style="display:flex; height:14mm; border-radius:2mm; overflow:hidden"><div style="flex:1;background:var(--coral)"></div><div style="flex:1;background:var(--grape)"></div></div>
+        <div style="display:flex; height:14mm; border-radius:2mm; overflow:hidden"><div style="flex:1;background:var(--paper)"></div><div style="flex:1;background:var(--cyan)"></div></div>
+        <div style="display:flex; height:14mm; border-radius:2mm; overflow:hidden"><div style="flex:1;background:var(--amber)"></div><div style="flex:1;background:var(--paper)"></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="panel-box">
+    <div class="small-label">CONTRAST &middot; ACCESSIBILITY</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:4mm; margin-top:3mm">
+      <div style="background:var(--ink); border:0.3mm solid var(--line); border-radius:2mm; padding:4mm"><span style="color:var(--lime); font-family:'Anybody'; font-weight:900; font-size:13pt">Aa</span><div style="font-family:'JetBrains Mono'; font-size:6.5pt; color:var(--lime); margin-top:1mm">LIME ON INK &middot; AAA</div></div>
+      <div style="background:var(--ink); border:0.3mm solid var(--line); border-radius:2mm; padding:4mm"><span style="color:var(--paper); font-family:'Anybody'; font-weight:900; font-size:13pt">Aa</span><div style="font-family:'JetBrains Mono'; font-size:6.5pt; color:var(--paper); margin-top:1mm">PAPER ON INK &middot; AAA</div></div>
+      <div style="background:var(--lime); border-radius:2mm; padding:4mm"><span style="color:var(--ink); font-family:'Anybody'; font-weight:900; font-size:13pt">Aa</span><div style="font-family:'JetBrains Mono'; font-size:6.5pt; color:var(--ink); margin-top:1mm">INK ON LIME &middot; AAA</div></div>
+    </div>
+    <div class="lead" style="font-size:8pt; margin-top:3mm; opacity:0.8">Never set lime type on paper, or amber/cyan on lime — both fail contrast. Keep body text paper-on-ink or ink-on-light.</div>
+  </div>
+  <div class="running"><span>ROCKWALL FITNESS — BRAND KIT '26</span><span class="pg">10</span></div>
+</div>
+
+<!-- ================= 11 · TYPE DISPLAY ================= -->
+<div class="page">
+  <div class="kicker"><span class="num">09</span><span>TYPE &mdash; DISPLAY</span><span class="rule"></span><span>THE SHOUT</span></div>
+  <div style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:80pt; line-height:0.82; letter-spacing:-0.03em; color:var(--lime)">ANY<br>BODY</div>
+  <div class="lead" style="font-size:10pt; margin:5mm 0 6mm">
+    <b>Anybody</b> (Black 900, width 150) is our headline voice — wide, athletic, a little
+    aggressive. Use it for everything loud: hero lines, prices, stat numbers, sticker text.
+    Stretch the width axis, never the letters manually.
+  </div>
+  <div class="panel-box" style="margin-bottom:5mm">
+    <div style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:30pt; color:var(--paper); line-height:1">ABCDEFGHIJKLM<br>NOPQRSTUVWXYZ</div>
+    <div style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:30pt; color:var(--lime); line-height:1; margin-top:2mm">0123456789 &amp; ! ? &gt; +</div>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:5mm">
+    <div class="panel-box"><div style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 75; font-size:18pt; color:var(--paper)">Aa</div><div class="small-label" style="margin-top:2mm">WIDTH 75 &middot; TIGHT</div></div>
+    <div class="panel-box"><div style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 110; font-size:18pt; color:var(--paper)">Aa</div><div class="small-label" style="margin-top:2mm">WIDTH 110 &middot; MID</div></div>
+    <div class="panel-box"><div style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:18pt; color:var(--lime)">Aa</div><div class="small-label" style="margin-top:2mm">WIDTH 150 &middot; HERO</div></div>
+  </div>
+  <div class="running"><span>ROCKWALL FITNESS — BRAND KIT '26</span><span class="pg">11</span></div>
+</div>
+
+<!-- ================= 12 · TYPE BODY + MONO ================= -->
+<div class="page">
+  <div class="kicker"><span class="num">10</span><span>TYPE &mdash; BODY &amp; MONO</span><span class="rule"></span><span>THE WORKHORSES</span></div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:8mm">
+    <div>
+      <div style="font-family:'Inter Tight'; font-weight:900; font-size:40pt; line-height:0.9; color:var(--paper)">Inter<br>Tight</div>
+      <div class="lead" style="font-size:9pt; margin-top:4mm">Body + UI text. Clean, condensed, legible at any size. Weights 500–900. Used for copy, labels, prices descriptions, captions.</div>
+      <div class="panel-box" style="margin-top:4mm">
+        <div style="font-family:'Inter Tight'; font-weight:800; font-size:11pt; text-transform:uppercase; letter-spacing:0.04em">The quick brown fox</div>
+        <div style="font-family:'Inter Tight'; font-weight:500; font-size:10pt; margin-top:2mm; line-height:1.4">jumps over the lazy dog. 0123456789 — the workhorse for everything you actually read.</div>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono'; font-weight:800; font-size:32pt; line-height:0.95; color:var(--cyan)">JetBrains<br>Mono</div>
+      <div class="lead" style="font-size:9pt; margin-top:4mm">Technical accent. Labels, codes, tags, kickers, footers. Adds the "gym-data / terminal" texture. Always tracked wide + uppercase.</div>
+      <div class="panel-box" style="margin-top:4mm">
+        <div style="font-family:'JetBrains Mono'; font-weight:800; font-size:9pt; letter-spacing:0.2em; color:var(--lime)">01 / SYSTEM_ACTIVE</div>
+        <div style="font-family:'JetBrains Mono'; font-weight:500; font-size:8pt; margin-top:2mm; letter-spacing:0.1em; line-height:1.6; color:var(--paper)">REPS &gt;&gt; SETS &gt;&gt; PR<br>EST. BANGALORE // FY26</div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:8mm" class="small-label">TYPE SCALE</div>
+  <div style="margin-top:3mm; display:flex; flex-direction:column; gap:2mm">
+    <div style="display:flex; align-items:baseline; gap:5mm; border-bottom:0.3mm solid var(--line); padding-bottom:2mm"><span style="font-family:'JetBrains Mono'; font-size:7pt; color:var(--lime); flex:0 0 22mm">DISPLAY 54</span><span style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:24pt">HERO LINE</span></div>
+    <div style="display:flex; align-items:baseline; gap:5mm; border-bottom:0.3mm solid var(--line); padding-bottom:2mm"><span style="font-family:'JetBrains Mono'; font-size:7pt; color:var(--lime); flex:0 0 22mm">H2 34</span><span style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:17pt">SECTION HEAD</span></div>
+    <div style="display:flex; align-items:baseline; gap:5mm; border-bottom:0.3mm solid var(--line); padding-bottom:2mm"><span style="font-family:'JetBrains Mono'; font-size:7pt; color:var(--lime); flex:0 0 22mm">BODY 12</span><span style="font-family:'Inter Tight'; font-weight:500; font-size:11pt">Body copy for reading.</span></div>
+    <div style="display:flex; align-items:baseline; gap:5mm"><span style="font-family:'JetBrains Mono'; font-size:7pt; color:var(--lime); flex:0 0 22mm">LABEL 8</span><span style="font-family:'JetBrains Mono'; font-size:8pt; letter-spacing:0.2em; color:var(--paper)">MICRO LABEL / MONO</span></div>
+  </div>
+  <div class="running"><span>ROCKWALL FITNESS — BRAND KIT '26</span><span class="pg">12</span></div>
+</div>
+
+<!-- ================= 13 · GRAPHIC MOTIFS ================= -->
+<div class="page">
+  <div class="kicker"><span class="num">11</span><span>GRAPHIC MOTIFS</span><span class="rule"></span><span>THE TOOLKIT</span></div>
+  <div class="h2" style="margin-bottom:6mm">THE VISUAL <span class="lime-tx">KIT.</span></div>
+  <div style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:5mm">
+    <div style="background:var(--panel); border:0.3mm solid var(--line); border-radius:3mm; height:48mm; padding:6mm; position:relative; overflow:hidden">
+      <svg viewBox="0 0 100 60" style="width:100%; height:32mm" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="22" width="40" height="16" rx="2" fill="none" stroke="#CFFF3C" stroke-width="3"/>
+        <rect x="42" y="28" width="10" height="4" fill="#CFFF3C"/>
+        <rect x="52" y="22" width="46" height="16" rx="2" fill="none" stroke="#F6F6F2" stroke-width="3"/>
+      </svg>
+      <div class="small-label" style="position:absolute; bottom:5mm; left:6mm; right:6mm; font-size:6pt; letter-spacing:0.18em">01 &middot; THE BREAK</div>
+    </div>
+    <div style="background:var(--panel); border:0.3mm solid var(--line); border-radius:3mm; height:48mm; padding:6mm; position:relative; overflow:hidden">
+      <div style="display:flex; flex-direction:column; gap:2.5mm; margin-top:4mm">
+        <div style="height:3mm; background:var(--lime)"></div>
+        <div style="height:3mm; background:var(--lime); margin-left:8mm"></div>
+        <div style="height:3mm; background:var(--lime); margin-left:3mm"></div>
+        <div style="height:3mm; background:var(--lime); margin-left:12mm"></div>
+      </div>
+      <div class="small-label" style="position:absolute; bottom:5mm; left:6mm; right:6mm; font-size:6pt; letter-spacing:0.18em">02 &middot; GLITCH BARS</div>
+    </div>
+    <div style="background:var(--panel); border:0.3mm solid var(--line); border-radius:3mm; height:48mm; padding:6mm; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center">
+      <svg viewBox="0 0 60 60" style="width:32mm" xmlns="http://www.w3.org/2000/svg">
+        <polygon fill="#CFFF3C" points="30,3 36,20 54,14 44,30 57,42 38,40 40,57 30,44 20,57 22,40 3,42 16,30 6,14 24,20"/>
+      </svg>
+      <div class="small-label" style="position:absolute; bottom:5mm; left:6mm; right:6mm; font-size:6pt; letter-spacing:0.18em">03 &middot; STARBURST</div>
+    </div>
+    <div style="background:var(--panel); border:0.3mm solid var(--line); border-radius:3mm; height:48mm; padding:6mm; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center">
+      <div style="width:34mm; height:34mm; border-radius:50%; border:2.5mm dashed var(--lime)"></div>
+      <div class="small-label" style="position:absolute; bottom:5mm; left:6mm; right:6mm; font-size:6pt; letter-spacing:0.18em">04 &middot; KNURL RING</div>
+    </div>
+    <div style="background:var(--panel); border:0.3mm solid var(--line); border-radius:3mm; height:48mm; padding:6mm; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center">
+      <div style="background:var(--lime); color:var(--ink); font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:18pt; padding:2mm 5mm; transform:rotate(-8deg); clip-path:polygon(3% 0,100% 5%,97% 100%,0% 92%)">OFFER!!</div>
+      <div class="small-label" style="position:absolute; bottom:5mm; left:6mm; right:6mm; font-size:6pt; letter-spacing:0.18em">05 &middot; TORN TAG</div>
+    </div>
+    <div style="background:var(--panel); border:0.3mm solid var(--line); border-radius:3mm; height:48mm; padding:6mm; position:relative; overflow:hidden">
+      <div style="width:100%; height:30mm; margin-top:2mm; background-image:radial-gradient(var(--lime) 0.8mm, transparent 0.9mm); background-size:4mm 4mm"></div>
+      <div class="small-label" style="position:absolute; bottom:5mm; left:6mm; right:6mm; font-size:6pt; letter-spacing:0.18em">06 &middot; HALFTONE DOTS</div>
+    </div>
+  </div>
+  <div class="lead" style="font-size:8.5pt; margin-top:5mm; opacity:0.85">Mix freely, but one or two motifs per layout — they're seasoning, not the meal. The Break and Glitch Bars are the most "Rockwall"; lead with those.</div>
+  <div class="running"><span>ROCKWALL FITNESS — BRAND KIT '26</span><span class="pg">13</span></div>
+</div>
+
+<!-- ================= 14 · PATTERNS ================= -->
+<div class="page">
+  <div class="kicker"><span class="num">12</span><span>PATTERNS</span><span class="rule"></span><span>BACKDROPS</span></div>
+  <div class="h2" style="margin-bottom:6mm">FILL THE <span class="lime-tx">GAPS.</span></div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:6mm">
+    <div>
+      <div style="height:55mm; border-radius:3mm; background:var(--ink); background-image:repeating-linear-gradient(0deg,transparent 0 7.9mm,rgba(207,255,60,0.18) 7.9mm 8mm),repeating-linear-gradient(90deg,transparent 0 7.9mm,rgba(207,255,60,0.18) 7.9mm 8mm); border:0.3mm solid var(--line)"></div>
+      <div class="small-label" style="margin-top:2.5mm">GRID &middot; HALLS, WEB HERO, DECKS</div>
+    </div>
+    <div>
+      <div style="height:55mm; border-radius:3mm; background:var(--ink); background-image:repeating-linear-gradient(45deg,var(--lime) 0 2mm,var(--ink) 2mm 10mm); border:0.3mm solid var(--line)"></div>
+      <div class="small-label" style="margin-top:2.5mm">CAUTION STRIPES &middot; OFFERS, ALERTS</div>
+    </div>
+    <div>
+      <div style="height:55mm; border-radius:3mm; background:var(--ink); background-image:radial-gradient(var(--lime) 1mm, transparent 1.1mm); background-size:7mm 7mm; border:0.3mm solid var(--line)"></div>
+      <div class="small-label" style="margin-top:2.5mm">DOT FIELD &middot; SOCIAL, TEXTURE</div>
+    </div>
+    <div>
+      <div style="height:55mm; border-radius:3mm; background:var(--grape); background-image:repeating-linear-gradient(0deg,transparent 0 9mm,rgba(0,0,0,0.18) 9mm 10mm); border:0.3mm solid var(--line); display:flex; align-items:center; justify-content:center"><span style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:20pt; color:var(--lime)">RW</span></div>
+      <div class="small-label" style="margin-top:2.5mm">COLOR-BLOCK &middot; CAMPAIGN MOMENTS</div>
+    </div>
+  </div>
+  <div class="lead" style="font-size:8.5pt; margin-top:5mm; opacity:0.85">Patterns sit behind content at low contrast — they should never fight the type. The 20mm grid echoes the gym's ceiling structure.</div>
+  <div class="running"><span>ROCKWALL FITNESS — BRAND KIT '26</span><span class="pg">14</span></div>
+</div>
+
+<!-- ================= 15 · ICONOGRAPHY ================= -->
+<div class="page">
+  <div class="kicker"><span class="num">13</span><span>ICONOGRAPHY</span><span class="rule"></span><span>THE SERVICES</span></div>
+  <div class="h2" style="margin-bottom:6mm">ONE LINE.<br>ONE <span class="lime-tx">SYSTEM.</span></div>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:5mm">
+    <!-- each icon tile — stroke set via presentation attrs (WeasyPrint ignores CSS inside SVG) -->
+    <div class="ic-tile"><svg viewBox="0 0 48 48" class="ic"><g fill="none" stroke="#CFFF3C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="13" r="5"/><path d="M24 19 L24 32 M24 23 L14 29 M24 23 L34 29 M24 32 L18 43 M24 32 L30 43"/></g></svg><div class="ic-l">PERSONAL<br>TRAINING</div></div>
+    <div class="ic-tile"><svg viewBox="0 0 48 48" class="ic"><g fill="none" stroke="#CFFF3C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="19" width="6" height="10" rx="1.5"/><rect x="37" y="19" width="6" height="10" rx="1.5"/><rect x="11" y="21.5" width="4" height="5" rx="1"/><rect x="33" y="21.5" width="4" height="5" rx="1"/><line x1="15" y1="24" x2="33" y2="24"/></g></svg><div class="ic-l">BODY<br>BUILDING</div></div>
+    <div class="ic-tile"><svg viewBox="0 0 48 48" class="ic"><g fill="none" stroke="#CFFF3C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 31 L16 18 L24 27 L33 12 L41 23"/><circle cx="41" cy="23" r="2.4" fill="#CFFF3C" stroke="none"/></g></svg><div class="ic-l">HIIT</div></div>
+    <div class="ic-tile"><svg viewBox="0 0 48 48" class="ic"><g fill="none" stroke="#CFFF3C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 39 C11 30 8 19 15 14.5 C19.5 11.5 24 16 24 16 C24 16 28.5 11.5 33 14.5 C40 19 37 30 24 39 Z"/></g></svg><div class="ic-l">FAT LOSS &middot;<br>TONING</div></div>
+    <div class="ic-tile"><svg viewBox="0 0 48 48" class="ic"><g fill="none" stroke="#CFFF3C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="14"/><path d="M24 15 L24 24 L31 28"/></g></svg><div class="ic-l">DIET<br>CONSULT</div></div>
+    <div class="ic-tile"><svg viewBox="0 0 48 48" class="ic"><g fill="none" stroke="#CFFF3C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="13" y="9" width="14" height="13" rx="6.5"/><path d="M27 13 L35 13 L35 23 C35 29 29 31 25 29"/><path d="M15 21 L15 37 L31 37"/></g></svg><div class="ic-l">BOXING</div></div>
+    <div class="ic-tile"><svg viewBox="0 0 48 48" class="ic"><g fill="none" stroke="#CFFF3C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="11" r="4"/><path d="M24 15 L24 27 M24 19 L14 17 M24 19 L34 17 M24 27 L18 40 M24 27 L30 40"/></g></svg><div class="ic-l">ZUMBA</div></div>
+    <div class="ic-tile"><svg viewBox="0 0 48 48" class="ic"><g fill="none" stroke="#CFFF3C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="14" width="34" height="20" rx="3"/><line x1="7" y1="26" x2="41" y2="26"/><circle cx="15" cy="20" r="2" fill="#CFFF3C" stroke="none"/></g></svg><div class="ic-l">MODERN<br>EQUIPMENT</div></div>
+  </div>
+  <div style="margin-top:6mm; display:grid; grid-template-columns:1fr 1fr; gap:6mm">
+    <div class="panel-box"><div class="small-label">SPEC</div><div class="lead" style="font-size:8.5pt; margin-top:2mm">2px stroke, round caps, 48px grid, lime on ink. Geometric, never cute. One weight only.</div></div>
+    <div class="panel-box"><div class="small-label">COLOR</div><div class="lead" style="font-size:8.5pt; margin-top:2mm">Default lime on ink. May invert (ink on lime) or use a single secondary for program badges.</div></div>
+  </div>
+  <div class="running"><span>ROCKWALL FITNESS — BRAND KIT '26</span><span class="pg">15</span></div>
+</div>
+
+<!-- ================= 16 · PHOTOGRAPHY ================= -->
+<div class="page">
+  <div class="kicker"><span class="num">14</span><span>PHOTOGRAPHY</span><span class="rule"></span><span>THE LOOK</span></div>
+  <div class="h2" style="margin-bottom:6mm">DARK. RAW.<br><span class="lime-tx">RADIOACTIVE.</span></div>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:5mm; margin-bottom:5mm">
+    <div>
+      <div style="height:46mm; border-radius:3mm; overflow:hidden; border:0.3mm solid var(--line)"><img src="assets/gym-photos/rockwall-40-full.jpg" style="width:100%; height:100%; object-fit:cover"></div>
+      <div class="small-label" style="margin-top:2mm">RAW CAPTURE</div>
+    </div>
+    <div>
+      <div style="height:46mm; border-radius:3mm; overflow:hidden; border:0.3mm solid var(--line)"><img src="assets/gym-photos/rockwall-40-full.jpg" style="width:100%; height:100%; object-fit:cover; filter:grayscale(1) contrast(180%) brightness(0.5)"></div>
+      <div class="small-label" style="margin-top:2mm">→ MONO CRUNCH</div>
+    </div>
+    <div>
+      <div style="height:46mm; border-radius:3mm; overflow:hidden; border:0.3mm solid var(--line); position:relative"><img src="assets/gym-photos/rockwall-40-full.jpg" style="width:100%; height:100%; object-fit:cover; filter:grayscale(1) contrast(200%) brightness(0.45)"><div style="position:absolute; top:0; left:0; width:100%; height:100%; background:var(--lime); opacity:0.32"></div></div>
+      <div class="small-label" style="margin-top:2mm">→ LIME DUOTONE ✓</div>
+    </div>
+  </div>
+  <div class="lead" style="font-size:9.5pt; margin-bottom:5mm">
+    Treat every photo: <b>grayscale → high contrast → brightness down → lime overlay at ~30%.</b>
+    The result reads as "Rockwall" even before the logo lands. Shoot real members, real equipment, real sweat.
+  </div>
+  <div class="dd">
+    <div class="dd-col dd-do"><div class="dd-head">✓ DO</div><div class="dd-body"><ul><li>Tight crops on grit — chalk, grips, faces mid-effort</li><li>Deep shadows, hard light</li><li>Keep the lime duotone consistent</li></ul></div></div>
+    <div class="dd-col dd-no"><div class="dd-head">✗ DON'T</div><div class="dd-body"><ul><li>Bright, airy, stock-gym smiles</li><li>Heavy filters or other color casts</li><li>Competitor branding visible on plates</li></ul></div></div>
+  </div>
+  <div class="running"><span>ROCKWALL FITNESS — BRAND KIT '26</span><span class="pg">16</span></div>
+</div>
+
+<!-- ================= 17 · VOICE & TONE ================= -->
+<div class="page">
+  <div class="kicker"><span class="num">15</span><span>VOICE &amp; TONE</span><span class="rule"></span><span>HOW WE TALK</span></div>
+  <div class="h2" style="margin-bottom:6mm">SHORT. PUNCHY.<br>A LITTLE <span class="lime-tx">SAVAGE.</span></div>
+  <div class="lead" style="font-size:10pt; margin-bottom:6mm">We talk like a gym buddy who hypes you up and roasts you in the same breath. Confident, never corporate. Funny, never mean. We use Bangalore slang sparingly and emoji never.</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:6mm; margin-bottom:6mm">
+    <div class="dd-col dd-do"><div class="dd-head">✓ SOUNDS LIKE US</div><div class="dd-body" style="font-size:9.5pt"><div style="margin-bottom:2.5mm">"Deadlift &gt; Deadline."</div><div style="margin-bottom:2.5mm">"Stop scrolling. Start lifting."</div><div style="margin-bottom:2.5mm">"6 AM. No excuses. See you."</div><div>"Books down. Weights up."</div></div></div>
+    <div class="dd-col dd-no"><div class="dd-head">✗ NOT US</div><div class="dd-body" style="font-size:9.5pt"><div style="margin-bottom:2.5mm">"Embark on your wellness journey."</div><div style="margin-bottom:2.5mm">"Unlock your fitness potential today!"</div><div style="margin-bottom:2.5mm">"We offer state-of-the-art amenities."</div><div>"Get fit fast! 💪🔥"</div></div></div>
+  </div>
+  <div class="panel-box">
+    <div class="small-label">THE FORMULA</div>
+    <div style="display:flex; gap:3mm; margin-top:3mm; flex-wrap:wrap">
+      <span class="pill f-lime">PUNCHY VERB</span>
+      <span style="align-self:center; color:var(--lime)">+</span>
+      <span class="pill f-coral">GYM TRUTH</span>
+      <span style="align-self:center; color:var(--lime)">+</span>
+      <span class="pill f-cyan">ZERO FLUFF</span>
+    </div>
+  </div>
+  <div class="running"><span>ROCKWALL FITNESS — BRAND KIT '26</span><span class="pg">17</span></div>
+</div>
+
+<!-- ================= 18 · APP POSTER ================= -->
+<div class="page">
+  <div class="kicker"><span class="num">16</span><span>APPLICATIONS &mdash; POSTER</span><span class="rule"></span><span>IN THE WILD</span></div>
+  <div class="h2" style="margin-bottom:6mm">PRICE CARD &amp; <span class="lime-tx">POSTERS.</span></div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:8mm; align-items:start">
+    <div>
+      <div style="border-radius:3mm; overflow:hidden; border:0.3mm solid var(--line)"><img src="docs/previews-web/v3-page1.jpg" style="width:100%; display:block"></div>
+      <div class="small-label" style="margin-top:2.5mm">A3 PRICE CARD &middot; FRONT</div>
+    </div>
+    <div>
+      <div style="border-radius:3mm; overflow:hidden; border:0.3mm solid var(--line)"><img src="docs/previews-web/v3-page2.jpg" style="width:100%; display:block"></div>
+      <div class="small-label" style="margin-top:2.5mm">A3 PRICE CARD &middot; STUDENT BACK</div>
+    </div>
+  </div>
+  <div class="lead" style="font-size:9pt; margin-top:6mm; opacity:0.9">Hero photo → duotone. One loud headline in Anybody. Lime price block. The system scales to any poster: classes, offers, events, hiring.</div>
+  <div class="running"><span>ROCKWALL FITNESS — BRAND KIT '26</span><span class="pg">18</span></div>
+</div>
+
+<!-- ================= 19 · APP SOCIAL ================= -->
+<div class="page">
+  <div class="kicker"><span class="num">17</span><span>APPLICATIONS &mdash; SOCIAL</span><span class="rule"></span><span>THE FEED</span></div>
+  <div class="h2" style="margin-bottom:6mm">@ROCKWALL<span class="lime-tx">FITNESS.</span></div>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:4mm">
+    <div style="aspect-ratio:1; background:var(--ink); border:0.3mm solid var(--line); border-radius:2mm; padding:6mm; display:flex; flex-direction:column; justify-content:center"><div style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:20pt; line-height:0.85; color:var(--paper)">DEAD<span class="lime-tx">LIFT</span> &gt; DEADLINE</div></div>
+    <div style="aspect-ratio:1; border-radius:2mm; overflow:hidden; position:relative; border:0.3mm solid var(--line)"><img src="assets/gym-photos/rockwall-40-full.jpg" style="width:100%; height:100%; object-fit:cover; filter:grayscale(1) contrast(180%) brightness(0.5)"><div style="position:absolute; top:0; left:0; width:100%; height:100%; background:var(--lime); opacity:0.3"></div><div style="position:absolute; bottom:5mm; left:5mm; font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:15pt; color:var(--paper)">6AM<br>CLUB</div></div>
+    <div style="aspect-ratio:1; background:var(--lime); border-radius:2mm; padding:6mm; display:flex; flex-direction:column; justify-content:center"><div style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:17pt; line-height:0.9; color:var(--ink)">NEW<br>CLASS<br>DROP</div></div>
+    <div style="aspect-ratio:1; background:var(--coral); border-radius:2mm; padding:6mm; display:flex; flex-direction:column; justify-content:center"><div style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:18pt; line-height:0.88; color:var(--ink)">FLASH<br>OFFER</div></div>
+    <div style="aspect-ratio:1; background:var(--ink); border:0.3mm solid var(--line); border-radius:2mm; display:flex; align-items:center; justify-content:center"><img src="assets/logo.png" style="width:80%"></div>
+    <div style="aspect-ratio:1; background:var(--grape); border-radius:2mm; padding:6mm; display:flex; flex-direction:column; justify-content:center"><div style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:16pt; line-height:0.9; color:var(--lime)">NIGHT<br>ZUMBA</div></div>
+    <div style="aspect-ratio:1; background:var(--cyan); border-radius:2mm; padding:6mm; display:flex; flex-direction:column; justify-content:center"><div style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:17pt; line-height:0.9; color:var(--ink)">CGPA↓<br>GAINS↑</div></div>
+    <div style="aspect-ratio:1; border-radius:2mm; overflow:hidden; position:relative; border:0.3mm solid var(--line)"><img src="assets/gym-photos/rockwall-40-full.jpg" style="width:100%; height:100%; object-fit:cover; filter:grayscale(1) contrast(170%) brightness(0.55)"></div>
+    <div style="aspect-ratio:1; background:var(--ink); border:0.3mm solid var(--line); border-radius:2mm; padding:6mm; display:flex; flex-direction:column; justify-content:center"><div style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:17pt; line-height:0.88; color:var(--paper)">STRETCH<br>YOUR<br><span class="lime-tx">LIMITS</span></div></div>
+  </div>
+  <div class="lead" style="font-size:8.5pt; margin-top:5mm; opacity:0.85">Rhythm = 1 photo : 2 type-tiles. Rotate accent colors across posts but keep lime as the through-line. Every 3rd tile is a duotone photo to ground the grid.</div>
+  <div class="running"><span>ROCKWALL FITNESS — BRAND KIT '26</span><span class="pg">19</span></div>
+</div>
+
+<!-- ================= 20 · APP MERCH ================= -->
+<div class="page">
+  <div class="kicker"><span class="num">18</span><span>APPLICATIONS &mdash; MERCH</span><span class="rule"></span><span>WEAR IT</span></div>
+  <div class="h2" style="margin-bottom:6mm">MERCH &amp; <span class="lime-tx">KIT.</span></div>
+  <div style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:5mm">
+    <!-- tee -->
+    <div style="min-width:0">
+      <div style="height:60mm; background:var(--panel); border:0.3mm solid var(--line); border-radius:3mm; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden">
+        <svg viewBox="0 0 100 100" style="width:54mm" xmlns="http://www.w3.org/2000/svg">
+          <path d="M30 18 L42 12 Q50 18 58 12 L70 18 L82 30 L72 40 L72 88 L28 88 L28 40 L18 30 Z" fill="#050505" stroke="#CFFF3C" stroke-width="1"/>
+        </svg>
+        <img src="assets/logo.png" style="position:absolute; width:24mm; top:38%; left:50%; margin-left:-12mm">
+      </div>
+      <div class="small-label" style="margin-top:2.5mm">BLACK TEE &middot; LIME PRINT</div>
+    </div>
+    <!-- bottle -->
+    <div style="min-width:0">
+      <div style="height:60mm; background:var(--panel); border:0.3mm solid var(--line); border-radius:3mm; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden">
+        <div style="width:20mm; height:46mm; background:var(--lime); border-radius:3mm 3mm 4mm 4mm; position:relative; display:flex; align-items:center; justify-content:center">
+          <div style="position:absolute; top:-5mm; width:8mm; height:6mm; background:var(--ink); border-radius:1mm"></div>
+          <div style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:9pt; color:var(--ink); transform:rotate(-90deg); white-space:nowrap">ROCKWALL</div>
+        </div>
+      </div>
+      <div class="small-label" style="margin-top:2.5mm">LIME SHAKER &middot; INK MARK</div>
+    </div>
+    <!-- tote -->
+    <div style="min-width:0">
+      <div style="height:60mm; background:var(--panel); border:0.3mm solid var(--line); border-radius:3mm; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden">
+        <div style="width:38mm; height:42mm; background:var(--ink); border:1mm solid var(--lime); border-radius:1mm; display:flex; align-items:center; justify-content:center; position:relative">
+          <div style="position:absolute; top:-9mm; left:6mm; width:8mm; height:12mm; border:1mm solid var(--lime); border-bottom:none; border-radius:4mm 4mm 0 0"></div>
+          <div style="position:absolute; top:-9mm; right:6mm; width:8mm; height:12mm; border:1mm solid var(--lime); border-bottom:none; border-radius:4mm 4mm 0 0"></div>
+          <div style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:10pt; color:var(--lime); text-align:center; line-height:0.9">LIFT<br>HEAVY</div>
+        </div>
+      </div>
+      <div class="small-label" style="margin-top:2.5mm">CANVAS TOTE &middot; LIME OUTLINE</div>
+    </div>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:5mm; margin-top:5mm">
+    <div style="height:34mm; background:var(--coral); border-radius:3mm; display:flex; align-items:center; justify-content:center"><div style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:20pt; color:var(--ink)">GYM TOWEL</div></div>
+    <div style="height:34mm; background:var(--ink); border:0.3mm solid var(--line); border-radius:3mm; display:flex; align-items:center; justify-content:center"><div style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:20pt; color:var(--lime)">WRIST WRAPS</div></div>
+  </div>
+  <div class="running"><span>ROCKWALL FITNESS — BRAND KIT '26</span><span class="pg">20</span></div>
+</div>
+
+<!-- ================= 21 · APP STICKERS + SIGNAGE ================= -->
+<div class="page">
+  <div class="kicker"><span class="num">19</span><span>APPLICATIONS &mdash; STICKERS &amp; SIGNAGE</span><span class="rule"></span><span>STICK & SHOUT</span></div>
+  <div class="h2" style="margin-bottom:6mm">STICKERS &amp; <span class="lime-tx">SIGNAGE.</span></div>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:5mm; margin-bottom:6mm">
+    <div style="background:var(--panel); border:0.3mm solid var(--line); border-radius:3mm; padding:6mm; display:flex; align-items:center; justify-content:center"><div style="background:var(--ink); border-radius:2mm; padding:4mm 5mm; transform:skewX(-6deg)"><span style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:12pt; color:var(--lime)">DEADLIFT</span><span style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:12pt; color:var(--lime)"> &gt; </span><span style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:12pt; color:var(--paper)">DEADLINE</span></div></div>
+    <div style="background:var(--panel); border:0.3mm solid var(--line); border-radius:3mm; padding:6mm; display:flex; align-items:center; justify-content:center"><div style="width:30mm; height:30mm; border-radius:50%; background:var(--lime); display:flex; flex-direction:column; align-items:center; justify-content:center"><span style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:10pt; color:var(--ink)">ROCK</span><div style="width:6mm; height:6mm; border-radius:50%; background:var(--ink); margin:1mm 0"></div><span style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:10pt; color:var(--ink)">WALL</span></div></div>
+    <div style="background:var(--panel); border:0.3mm solid var(--line); border-radius:3mm; padding:6mm; display:flex; align-items:center; justify-content:center"><div style="background:var(--ink); border-radius:3mm; padding:4mm 6mm; text-align:center"><div style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:9pt; color:#B6BFA0">CGPA↓</div><div style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:15pt; color:var(--lime)">GAINS↑</div></div></div>
+  </div>
+  <div class="small-label" style="margin-bottom:3mm">SIGNAGE &middot; KEEP IT BIG, KEEP IT DARK</div>
+  <div style="display:grid; grid-template-columns:2fr 1fr; gap:5mm">
+    <div style="height:48mm; background:var(--ink); border:0.3mm solid var(--line); border-radius:3mm; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden">
+      <div style="position:absolute; top:0; left:0; width:100%; height:100%; background-image:repeating-linear-gradient(0deg,transparent 0 9.9mm,rgba(207,255,60,0.08) 9.9mm 10mm),repeating-linear-gradient(90deg,transparent 0 9.9mm,rgba(207,255,60,0.08) 9.9mm 10mm)"></div>
+      <img src="assets/logo.png" style="width:90mm; position:relative">
+    </div>
+    <div style="height:48mm; background:var(--lime); border-radius:3mm; display:flex; align-items:center; justify-content:center; text-align:center"><div style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:15pt; color:var(--ink); line-height:0.9">THIS WAY<br>TO PR<br>CITY →</div></div>
+  </div>
+  <div class="lead" style="font-size:8.5pt; margin-top:5mm; opacity:0.85">Wall graphics, LED boards and door decals all run dark-first with the wordmark in lime. Existing signage stays — the kit simply extends around it.</div>
+  <div class="running"><span>ROCKWALL FITNESS — BRAND KIT '26</span><span class="pg">21</span></div>
+</div>
+
+<!-- ================= 22 · BACK COVER ================= -->
+<div class="page lime" style="padding:0">
+  <div style="position:absolute; top:0; left:0; width:100%; height:100%; padding:22mm 18mm; display:flex; flex-direction:column; justify-content:space-between">
+    <div style="font-family:'JetBrains Mono'; font-size:8pt; font-weight:800; letter-spacing:0.3em; text-transform:uppercase; color:var(--ink)">ROCKWALL FITNESS — BRAND KIT '26</div>
+    <div>
+      <div style="font-family:'Anybody'; font-weight:900; font-variation-settings:'wdth' 150; font-size:64pt; line-height:0.82; letter-spacing:-0.03em; text-transform:uppercase; color:var(--ink)">STRETCH<br>YOUR<br>LIMITS.</div>
+      <div style="margin-top:8mm; display:inline-block; background:var(--ink); padding:5mm 7mm; border-radius:2mm">
+        <img src="assets/logo.png" style="width:75mm; display:block">
+      </div>
+    </div>
+    <div style="font-family:'JetBrains Mono'; font-size:8.5pt; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink); line-height:1.7">
+      SV TOWERS, 2ND FLOOR &middot; KRISHNANAGAR &middot; HOSUR ROAD &middot; BANGALORE 560029<br>
+      @ROCKWALLFITNESS &middot; ROCKWALLFITNESS.IN &middot; +91 99727 67936 &middot; +91 80499 15898<br>
+      <span style="font-weight:800">DESIGN &middot; SMARK8ING &middot; FY 2026</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
