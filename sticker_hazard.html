@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sticker — Hazard Tape</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900&family=Inter+Tight:wght@800;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  /* sticker 100x40 mm + 3mm bleed each side = 106x46 mm */
+  @page { size: 106mm 46mm; margin: 0; bleed: 3mm; marks: crop cross; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 106mm; height: 46mm; }
+  .stage { position: relative; width: 106mm; height: 46mm; }
+
+  /* white die-cut base, bleeds */
+  .diecut {
+    position: absolute; top: 2mm; left: 2mm;
+    width: 102mm; height: 42mm;
+  }
+  .diecut .bg {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: #171921;
+    background-image: repeating-linear-gradient(
+      -45deg,
+      #D1DD27 0, #D1DD27 4mm,
+      #171921 4mm, #171921 8mm
+    );
+  }
+  /* magenta cut line */
+  .cutline {
+    position: absolute; top: 5mm; left: 5mm;
+    width: 96mm; height: 36mm;
+    background: transparent; border: 0.5mm dashed #FF00FF;
+    z-index: 6;
+  }
+  /* center black plate */
+  .plate {
+    position: absolute; top: 12mm; left: 14mm;
+    width: 78mm; height: 22mm;
+    background: #171921;
+    display: flex; align-items: center; justify-content: center; gap: 4mm;
+    border: 0.5mm solid #D1DD27;
+    z-index: 4;
+  }
+  .warn {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900; font-variation-settings: "wdth" 150;
+    font-size: 22pt; line-height: 0.9; color: #D1DD27;
+  }
+  .label {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900; font-variation-settings: "wdth" 150;
+    font-size: 13pt; line-height: 0.9; color: #FFFFFF;
+    text-transform: uppercase; letter-spacing: -0.01em;
+  }
+  .label small {
+    display: block;
+    font-family: 'JetBrains Mono', monospace; font-weight: 700;
+    font-size: 5.5pt; letter-spacing: 0.32em; color: #D1DD27;
+    margin-top: 1.2mm; text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="diecut"><div class="bg"></div></div>
+    <div class="plate">
+      <div class="warn">⚠</div>
+      <div class="label">STRETCHING<br>IN PROGRESS<small>ROCKWALL FITNESS · FY26</small></div>
+      <div class="warn">⚠</div>
+    </div>
+    <div class="cutline"></div>
+  </div>
+</body>
+</html>

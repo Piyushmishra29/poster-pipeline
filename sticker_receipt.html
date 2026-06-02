@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sticker — Rockwall Receipt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@900&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  /* sticker 60x110 mm + 3mm bleed each side = 66x116 mm */
+  @page { size: 66mm 116mm; margin: 0; bleed: 3mm; marks: crop cross; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 66mm; height: 116mm; }
+  .stage { position: relative; width: 66mm; height: 116mm; }
+
+  /* white die-cut base (thermal-paper feel) */
+  .diecut {
+    position: absolute; top: 2mm; left: 2mm;
+    width: 62mm; height: 112mm;
+    background: #F6F6F2;
+    /* torn-edge top + bottom via clip-path */
+    clip-path: polygon(
+      0% 2%, 4% 0%, 9% 1.5%, 14% 0%, 20% 2%, 26% 0%, 33% 1.5%, 40% 0%, 46% 1.8%, 54% 0%, 61% 1.5%, 68% 0%, 75% 1.8%, 82% 0%, 88% 1.5%, 94% 0%, 100% 1.5%,
+      100% 98%, 94% 100%, 88% 98.5%, 82% 100%, 75% 98%, 68% 100%, 61% 98.5%, 54% 100%, 46% 98%, 40% 100%, 33% 98.5%, 26% 100%, 20% 98%, 14% 100%, 9% 98.5%, 4% 100%, 0% 98%
+    );
+  }
+  /* magenta cut line — straight rect, the printer dies along this */
+  .cutline {
+    position: absolute; top: 5mm; left: 5mm;
+    width: 56mm; height: 106mm;
+    background: transparent; border: 0.5mm dashed #FF00FF;
+    z-index: 6;
+  }
+
+  /* content sits inside the safe zone */
+  .body {
+    position: absolute; top: 9mm; left: 9mm; right: 9mm; bottom: 9mm;
+    color: #171921;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7pt;
+    line-height: 1.55;
+    letter-spacing: 0.04em;
+  }
+  .head {
+    text-align: center; font-weight: 800;
+    font-size: 8.5pt; letter-spacing: 0.22em; text-transform: uppercase;
+  }
+  .sub {
+    text-align: center; font-weight: 500; font-size: 6pt;
+    letter-spacing: 0.3em; margin-top: 1mm; text-transform: uppercase;
+  }
+  .stars {
+    text-align: center; margin: 2mm 0 1mm; font-size: 9pt; letter-spacing: 0.18em;
+  }
+  hr.dash {
+    border: none; border-top: 0.3mm dashed #171921; margin: 2mm 0;
+  }
+  .li {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-weight: 500; font-size: 7pt; text-transform: uppercase;
+    letter-spacing: 0.05em; margin-bottom: 0.6mm;
+  }
+  .li .nm { flex: 1; padding-right: 2mm; }
+  .li .px { font-variant-numeric: tabular-nums; }
+  .total {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: 'Anybody', sans-serif; font-weight: 900;
+    font-size: 11pt; letter-spacing: -0.01em;
+    text-transform: uppercase; margin: 2mm 0;
+  }
+  .total .px { color: #D1DD27; background: #171921; padding: 0.4mm 1.6mm; }
+  .promo {
+    text-align: center; font-weight: 800; font-size: 6.5pt;
+    letter-spacing: 0.32em; text-transform: uppercase; margin: 2mm 0;
+  }
+  .barcode {
+    display: flex; gap: 0.3mm; height: 7mm; margin-top: 2.5mm; align-items: flex-end;
+  }
+  .barcode i {
+    background: #171921; display: block;
+  }
+  .foot {
+    text-align: center; font-size: 5.6pt; letter-spacing: 0.22em;
+    text-transform: uppercase; margin-top: 2.5mm; line-height: 1.6;
+  }
+  .foot b { color: #D1DD27; background: #171921; padding: 0.2mm 1mm; font-weight: 800; }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="diecut"></div>
+    <div class="body">
+      <div class="head">ROCKWALL FITNESS</div>
+      <div class="sub">SV TOWERS · BANGALORE 560029</div>
+      <div class="stars">★ ★ ★ ★ ★</div>
+      <hr class="dash">
+      <div class="li"><span class="nm">1 × MEMBERSHIP</span><span class="px">PAID</span></div>
+      <div class="li"><span class="nm">1 × NEW PR</span><span class="px">EARNED</span></div>
+      <div class="li"><span class="nm">3 × DEEP BREATHS</span><span class="px">FREE</span></div>
+      <div class="li"><span class="nm">1 × CHALK DUST</span><span class="px">INCL.</span></div>
+      <div class="li"><span class="nm">1 × GOOD ATTITUDE</span><span class="px">REQ.</span></div>
+      <div class="li"><span class="nm">0 × EXCUSES</span><span class="px">SOLD OUT</span></div>
+      <hr class="dash">
+      <div class="total"><span>TOTAL</span><span class="px">ALL OF YOU</span></div>
+      <hr class="dash">
+      <div class="promo">STRETCH YOUR LIMITS.</div>
+      <hr class="dash">
+      <div class="barcode">
+        <i style="width:0.6mm;height:100%"></i><i style="width:0.3mm;height:100%"></i><i style="width:0.9mm;height:100%"></i><i style="width:0.3mm;height:100%"></i><i style="width:0.5mm;height:100%"></i><i style="width:0.6mm;height:100%"></i><i style="width:0.3mm;height:100%"></i><i style="width:1.2mm;height:100%"></i><i style="width:0.3mm;height:100%"></i><i style="width:0.4mm;height:100%"></i><i style="width:0.9mm;height:100%"></i><i style="width:0.3mm;height:100%"></i><i style="width:0.6mm;height:100%"></i><i style="width:0.3mm;height:100%"></i><i style="width:1mm;height:100%"></i><i style="width:0.3mm;height:100%"></i><i style="width:0.5mm;height:100%"></i><i style="width:0.6mm;height:100%"></i><i style="width:0.3mm;height:100%"></i><i style="width:0.8mm;height:100%"></i><i style="width:0.3mm;height:100%"></i><i style="width:0.5mm;height:100%"></i><i style="width:0.7mm;height:100%"></i><i style="width:0.3mm;height:100%"></i><i style="width:0.4mm;height:100%"></i><i style="width:1mm;height:100%"></i>
+      </div>
+      <div class="foot">
+        REG. NO 2026 · BLR<br>
+        ROCKWALLFITNESS.IN<br>
+        <b>THANK YOU. NOW LIFT.</b>
+      </div>
+    </div>
+    <div class="cutline"></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sticker — STRETCH YOUR LIMITS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* sticker 100x30 mm + 3mm bleed each side = 106x36 mm */
+  @page { size: 106mm 36mm; margin: 0; bleed: 3mm; marks: crop cross; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 106mm; height: 36mm; }
+  .stage { position: relative; width: 106mm; height: 36mm; }
+
+  /* white die-cut base — outermost, bleeds 3mm beyond the cut */
+  .diecut {
+    position: absolute; top: 2mm; left: 2mm;
+    width: 102mm; height: 32mm; border-radius: 3mm; background: #FFFFFF;
+  }
+  /* navy art body — 3mm white border to cut on each side */
+  .art {
+    position: absolute; top: 8mm; left: 8mm;
+    width: 90mm; height: 20mm;
+    border-radius: 1.6mm; background: #171921;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  /* magenta cut line — stroked, sits in the white border */
+  .cutline {
+    position: absolute; top: 5mm; left: 5mm;
+    width: 96mm; height: 26mm; border-radius: 2.3mm;
+    background: transparent; border: 0.5mm dashed #FF00FF;
+    z-index: 6;
+  }
+
+  /* the stretched wordmark */
+  .word {
+    position: relative;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 17pt;
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #D1DD27;
+    transform: scaleX(1.06);
+    white-space: nowrap;
+  }
+  /* glitch seam: navy gap + lime accent bar, through the middle of the text */
+  .seam-gap {
+    position: absolute;
+    top: 18.6mm; left: 6mm; right: 6mm;
+    height: 1.4mm; background: #171921;
+    z-index: 5;
+    transform: translateX(1.4mm);
+  }
+  .seam-bar {
+    position: absolute;
+    top: 19.5mm; left: 8mm; right: 8mm;
+    height: 0.35mm; background: #D1DD27;
+    z-index: 4;
+  }
+  /* tiny brand chip */
+  .chip {
+    position: absolute;
+    top: 9.6mm; left: 7mm;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800; font-size: 5pt;
+    letter-spacing: 0.34em; color: #D1DD27;
+    text-transform: uppercase;
+    z-index: 7;
+  }
+  .ed {
+    position: absolute;
+    top: 9.6mm; right: 7mm;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800; font-size: 5pt;
+    letter-spacing: 0.32em; color: #D1DD27;
+    text-transform: uppercase;
+    z-index: 7;
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="diecut"></div>
+    <div class="art">
+      <div class="word">STRETCH&nbsp;YOUR&nbsp;LIMITS.</div>
+    </div>
+    <div class="seam-gap"></div>
+    <div class="seam-bar"></div>
+    <div class="chip">RWF / BLR</div>
+    <div class="ed">FY26 · ED.01</div>
+    <div class="cutline"></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sticker — RWF Band Poster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900&family=Inter+Tight:wght@500;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  /* sticker 78x100 mm + 3mm bleed each side = 84x106 mm */
+  @page { size: 84mm 106mm; margin: 0; bleed: 3mm; marks: crop cross; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 84mm; height: 106mm; }
+  .stage { position: relative; width: 84mm; height: 106mm; }
+
+  /* angular polygon — same shape on diecut, art and cutline */
+  .shape {
+    position: absolute;
+    clip-path: polygon(8% 0%, 92% 0%, 100% 14%, 100% 86%, 92% 100%, 8% 100%, 0% 86%, 0% 14%);
+  }
+  /* white die-cut base */
+  .diecut {
+    top: 2mm; left: 2mm; width: 80mm; height: 102mm; background: #FFFFFF;
+  }
+  /* magenta cut line — drawn with a slightly inset polygon outline.
+     We fake the dashed cut by stacking two filled polygons (magenta then white)
+     so the magenta shows only as a ~0.5mm ring inside the white edge */
+  .cutline-fill {
+    top: 5mm; left: 5mm; width: 74mm; height: 96mm; background: #FF00FF;
+    z-index: 5;
+  }
+  .cutline-mask {
+    top: 5.5mm; left: 5.5mm; width: 73mm; height: 95mm; background: #FFFFFF;
+    z-index: 6;
+  }
+  /* the navy art polygon (slightly inset to leave a white border) */
+  .art {
+    top: 8mm; left: 8mm; width: 68mm; height: 90mm; background: #171921;
+    overflow: hidden;
+    z-index: 8;
+  }
+  /* photo treated halftone — duotone via filter + lime overlay */
+  .photo {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+  }
+  .photo img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: grayscale(1) contrast(170%) brightness(0.5);
+  }
+  .photo-lime {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: #D1DD27; opacity: 0.18;
+  }
+  .photo-vignette {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(180deg,
+      rgba(23,25,33,0.65) 0%,
+      rgba(23,25,33,0.10) 22%,
+      rgba(23,25,33,0.10) 70%,
+      rgba(23,25,33,0.92) 100%);
+  }
+  /* big stretched display word over the photo */
+  .stretch {
+    position: absolute; top: 30mm; left: -4mm; right: -4mm;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900; font-variation-settings: "wdth" 150;
+    font-size: 32pt; line-height: 0.86; letter-spacing: -0.02em;
+    color: #FFFFFF; text-align: center;
+    text-transform: uppercase;
+    transform: scaleX(1.1);
+  }
+  .stretch .lime { color: #D1DD27; }
+  /* glitch seam */
+  .seam {
+    position: absolute; top: 38.5mm; left: 0; right: 0;
+    height: 1.4mm; background: #171921;
+  }
+  .seam-bar {
+    position: absolute; top: 40mm; left: 4mm; right: 4mm;
+    height: 0.4mm; background: #D1DD27;
+  }
+  /* corner stamps */
+  .stamp-tl {
+    position: absolute; top: 5mm; left: 5mm;
+    font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: 6pt; letter-spacing: 0.34em; color: #D1DD27;
+    text-transform: uppercase;
+  }
+  .stamp-tr {
+    position: absolute; top: 5mm; right: 5mm;
+    font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: 6pt; letter-spacing: 0.32em; color: #D1DD27;
+    text-transform: uppercase; text-align: right;
+  }
+  /* bottom tracklist (band-poster style) */
+  .tracks {
+    position: absolute; bottom: 14mm; left: 5mm; right: 5mm;
+    font-family: 'JetBrains Mono', monospace; font-weight: 500;
+    font-size: 5.6pt; letter-spacing: 0.18em; color: #FFFFFF;
+    text-transform: uppercase; line-height: 1.7;
+  }
+  .tracks i { color: #D1DD27; font-style: normal; font-weight: 800; margin-right: 2mm; }
+  /* footer slug */
+  .slug {
+    position: absolute; bottom: 4.5mm; left: 5mm; right: 5mm;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'JetBrains Mono', monospace; font-weight: 700;
+    font-size: 5.4pt; letter-spacing: 0.32em; color: #D1DD27;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="shape diecut"></div>
+    <div class="shape cutline-fill"></div>
+    <div class="shape cutline-mask"></div>
+    <div class="shape art">
+      <div class="photo"><img src="assets/gym-photos/rockwall-40-full.jpg" alt=""></div>
+      <div class="photo-lime"></div>
+      <div class="photo-vignette"></div>
+
+      <div class="stamp-tl">RWF</div>
+      <div class="stamp-tr">VOL.01<br>BLR</div>
+
+      <div class="stretch">RO─CK<br><span class="lime">WALL.</span></div>
+      <div class="seam"></div>
+      <div class="seam-bar"></div>
+
+      <div class="tracks">
+        <div><i>01</i>STRETCH YOUR LIMITS</div>
+        <div><i>02</i>DEADLIFT &gt; DEADLINE</div>
+        <div><i>03</i>NO REST DAYS</div>
+        <div><i>04</i>6 AM CLUB</div>
+        <div><i>05</i>STUDIO B / SIDE B</div>
+      </div>
+
+      <div class="slug">
+        <span>FY26</span><span>★★★★★</span><span>STK 05 / 05</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
