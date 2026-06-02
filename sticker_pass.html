@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sticker — Rockwall Pass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  /* sticker 86 x 54 mm (CR80 credit-card) + 3mm bleed = 92 x 60 mm */
+  @page { size: 92mm 60mm; margin: 0; bleed: 3mm; marks: crop cross; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 92mm; height: 60mm; }
+  .stage { position: relative; width: 92mm; height: 60mm; }
+
+  /* white die-cut base (CR80 with rounded corners) */
+  .diecut {
+    position: absolute; top: 2mm; left: 2mm;
+    width: 88mm; height: 56mm; border-radius: 4mm;
+    background: #FFFFFF;
+  }
+  /* navy card body — fills with 1.5mm white border */
+  .card {
+    position: absolute; top: 3.5mm; left: 3.5mm;
+    width: 85mm; height: 53mm; border-radius: 2.8mm;
+    background: #171921; overflow: hidden;
+  }
+  /* magenta cut line — sits in the white border just outside the navy card */
+  .cutline {
+    position: absolute; top: 2.7mm; left: 2.7mm;
+    width: 86.6mm; height: 54.6mm; border-radius: 3.6mm;
+    background: transparent; border: 0.5mm dashed #FF00FF;
+    z-index: 9;
+  }
+
+  /* card content (inside the navy card) */
+  /* TOP STRIP: brand + valid */
+  .top {
+    position: absolute; top: 0; left: 0; right: 0;
+    padding: 3.4mm 5mm 0; display: flex; justify-content: space-between; align-items: center;
+    font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: 6pt; letter-spacing: 0.32em; text-transform: uppercase; color: #D1DD27;
+  }
+  .top .right { color: #FFFFFF; }
+  .top .right b { color: #D1DD27; }
+
+  /* the big header — "PASS" */
+  .header {
+    position: absolute; top: 8.5mm; left: 5mm;
+    font-family: 'Anybody', sans-serif; font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 22pt; line-height: 0.86; letter-spacing: -0.02em;
+    color: #FFFFFF; text-transform: uppercase;
+  }
+  .header .lime { color: #D1DD27; }
+  .header small {
+    display: block; font-family: 'JetBrains Mono', monospace; font-weight: 700;
+    font-size: 5.4pt; letter-spacing: 0.3em; color: #D1DD27; margin-top: 1mm;
+    text-transform: uppercase;
+  }
+
+  /* CHIP — a small navy/lime block bottom-left, with grid lines */
+  .chip {
+    position: absolute; top: 26mm; left: 5mm;
+    width: 12mm; height: 9mm; background: #D1DD27;
+    border: 0.4mm solid #171921;
+    z-index: 4;
+  }
+  .chip svg { width: 100%; height: 100%; display: block; }
+
+  /* HOLDER FIELDS */
+  .field {
+    position: absolute;
+    font-family: 'JetBrains Mono', monospace;
+    color: #FFFFFF; letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .field .lbl {
+    font-size: 4.6pt; font-weight: 700; color: #D1DD27;
+    letter-spacing: 0.32em; margin-bottom: 0.6mm;
+  }
+  .field .val {
+    font-family: 'Anybody', sans-serif; font-weight: 900;
+    font-variation-settings: "wdth" 110;
+    font-size: 11pt; line-height: 0.95; letter-spacing: 0.01em;
+  }
+  .field-num   { top: 27mm; left: 21mm; }
+  .field-name  { bottom: 11mm; left: 5mm; }
+  .field-tier  { bottom: 11mm; left: 36mm; }
+  .field-exp   { bottom: 11mm; right: 5mm; text-align: right; }
+
+  /* lime hairline rule under the header */
+  .rule {
+    position: absolute; top: 22mm; left: 5mm; right: 5mm;
+    height: 0.3mm; background: #D1DD27; opacity: 0.55; z-index: 3;
+  }
+
+  /* tagline strip at the very bottom of the card */
+  .strip {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 4.2mm; background: #D1DD27;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 5mm;
+    font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: 5.4pt; letter-spacing: 0.34em; color: #171921;
+    text-transform: uppercase;
+  }
+  .strip b { letter-spacing: 0.42em; }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="diecut"></div>
+    <div class="card">
+
+      <div class="top">
+        <span>ROCKWALL · PASS</span>
+        <span class="right">VALID <b>FY26</b> · BLR</span>
+      </div>
+
+      <div class="header">THE PASS<small>NON-TRANSFERABLE · 06:00 — 22:30</small></div>
+
+      <div class="rule"></div>
+
+      <div class="chip">
+        <svg viewBox="0 0 12 9" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="#171921" stroke-width="0.45">
+            <line x1="0" y1="2.2" x2="12" y2="2.2"/>
+            <line x1="0" y1="4.5" x2="12" y2="4.5"/>
+            <line x1="0" y1="6.8" x2="12" y2="6.8"/>
+            <line x1="4" y1="0" x2="4" y2="9"/>
+            <line x1="8" y1="0" x2="8" y2="9"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="field field-num">
+        <div class="lbl">NO.</div>
+        <div class="val">RWF · 0047 · 6AM</div>
+      </div>
+
+      <div class="field field-name">
+        <div class="lbl">HOLDER</div>
+        <div class="val">▓▓▓▓ ▓▓▓▓▓</div>
+      </div>
+
+      <div class="field field-tier">
+        <div class="lbl">TIER</div>
+        <div class="val">12 + 2</div>
+      </div>
+
+      <div class="field field-exp">
+        <div class="lbl">EXPIRES</div>
+        <div class="val">03 / 27</div>
+      </div>
+
+      <div class="strip">
+        <span><b>TAP IN.</b> · STRETCH OUT.</span>
+        <span>ROCKWALLFITNESS.IN</span>
+      </div>
+    </div>
+    <div class="cutline"></div>
+  </div>
+</body>
+</html>

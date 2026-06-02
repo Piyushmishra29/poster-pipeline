@@ -5,7 +5,7 @@
 <title>Sticker — 6 AM CLUB</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
   /* sticker 80x80 mm + 3mm bleed each side = 86x86 mm */
   @page { size: 86mm 86mm; margin: 0; bleed: 3mm; marks: crop cross; }
@@ -18,77 +18,89 @@
   .diecut { top: 2mm; left: 2mm; width: 82mm; height: 82mm; background: #FFFFFF; }
   /* navy disc */
   .disc { top: 8mm; left: 8mm; width: 70mm; height: 70mm; background: #171921; }
-  /* inner thin lime ring */
-  .ring-in { top: 12mm; left: 12mm; width: 62mm; height: 62mm; background: transparent; border: 0.4mm solid #D1DD27; opacity: 0.55; }
-  /* magenta cut line */
+  /* magenta cut line — concentric ring between white edge and navy disc */
   .cutline {
     top: 5mm; left: 5mm; width: 76mm; height: 76mm;
     background: transparent; border: 0.5mm dashed #FF00FF; z-index: 6;
   }
-  /* rim text */
+  /* thin lime rim inside the navy disc edge */
+  .rim {
+    top: 11mm; left: 11mm; width: 64mm; height: 64mm;
+    background: transparent; border: 0.4mm solid #D1DD27;
+    z-index: 3;
+  }
+
+  /* rim text — sits between the navy edge and the inner rim */
   .rim-top, .rim-bot {
     position: absolute; left: 0; right: 0; text-align: center;
-    font-family: 'Inter Tight', sans-serif; font-weight: 800;
-    font-size: 5.5pt; letter-spacing: 0.45em; text-transform: uppercase;
-    color: #D1DD27; z-index: 3;
+    font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: 5.6pt; letter-spacing: 0.42em; text-transform: uppercase;
+    color: #FFFFFF; z-index: 4;
   }
-  .rim-top { top: 13.5mm; }
-  .rim-bot { bottom: 13.5mm; }
+  .rim-top { top: 15.6mm; }
+  .rim-bot { bottom: 15.6mm; }
+  .rim-top b, .rim-bot b { color: #D1DD27; font-weight: 800; }
+
   /* big center type */
   .six {
-    position: absolute; top: 23mm; left: 0; right: 0; text-align: center;
+    position: absolute; top: 24mm; left: 0; right: 0; text-align: center;
     font-family: 'Anybody', sans-serif; font-weight: 900;
     font-variation-settings: "wdth" 150;
-    font-size: 44pt; line-height: 0.86; letter-spacing: -0.02em;
-    color: #D1DD27;
+    font-size: 44pt; line-height: 0.84; letter-spacing: -0.02em;
+    color: #D1DD27; z-index: 4;
   }
   .six small {
     display: block; font-size: 18pt; color: #FFFFFF; line-height: 0.9; margin-top: -1mm;
   }
   /* club bar */
   .clubbar {
-    position: absolute; bottom: 24mm; left: 0; right: 0; text-align: center;
+    position: absolute; bottom: 27mm; left: 0; right: 0; text-align: center;
     font-family: 'Anybody', sans-serif; font-weight: 900;
     font-variation-settings: "wdth" 150;
-    font-size: 11pt; letter-spacing: 0.32em; color: #171921;
+    font-size: 10.5pt; letter-spacing: 0.3em; color: #171921;
+    z-index: 4;
   }
-  .clubbar span {
-    background: #D1DD27; padding: 1mm 5mm;
-  }
+  .clubbar span { background: #D1DD27; padding: 1mm 5mm; }
+  /* member line */
   .member {
-    position: absolute; bottom: 18mm; left: 0; right: 0; text-align: center;
+    position: absolute; bottom: 21mm; left: 0; right: 0; text-align: center;
     font-family: 'Inter Tight', sans-serif; font-weight: 800;
-    font-size: 6pt; letter-spacing: 0.4em; text-transform: uppercase;
-    color: #FFFFFF; z-index: 3;
+    font-size: 6pt; letter-spacing: 0.36em; text-transform: uppercase;
+    color: #FFFFFF; z-index: 4;
   }
   .member b { color: #D1DD27; }
-  /* diamond ticks around */
+
+  /* diamond ticks — INSIDE the navy disc, on the inner rim, at compass points */
   .tick {
-    position: absolute; width: 2.6mm; height: 2.6mm;
-    background: #D1DD27; transform: rotate(45deg); z-index: 4;
+    position: absolute; width: 2.4mm; height: 2.4mm;
+    background: #D1DD27; transform: rotate(45deg); z-index: 5;
   }
+  /* center of disc = (43mm, 43mm). Inner rim radius = 32mm. Ticks at the 4 cardinal points: */
+  .tk-n { top: 17.8mm; left: 41.8mm; }
+  .tk-e { top: 41.8mm; right: 17.8mm; }
+  .tk-s { bottom: 17.8mm; left: 41.8mm; }
+  .tk-w { top: 41.8mm; left: 17.8mm; }
 </style>
 </head>
 <body>
   <div class="stage">
     <div class="circle diecut"></div>
     <div class="circle disc"></div>
-    <div class="circle ring-in"></div>
+    <div class="circle rim"></div>
 
-    <div class="rim-top">EST. BANGALORE</div>
+    <div class="rim-top">EST. <b>BANGALORE</b></div>
 
     <div class="six">6AM<small>CLUB</small></div>
 
     <div class="clubbar"><span>NO EXCUSES</span></div>
-    <div class="member">MEMBER &middot; <b>№ 0047</b> &middot; FY26</div>
+    <div class="member">MEMBER · <b>№ 0047</b> · FY26</div>
 
-    <div class="rim-bot">ROCKWALL FITNESS &middot; BANGALORE</div>
+    <div class="rim-bot">STRETCH <b>YOUR</b> LIMITS</div>
 
-    <!-- diamond ticks at N E S W just inside the rim -->
-    <div class="tick" style="top: 9.4mm; left: 41.7mm;"></div>
-    <div class="tick" style="top: 41.7mm; right: 9.4mm;"></div>
-    <div class="tick" style="bottom: 9.4mm; left: 41.7mm;"></div>
-    <div class="tick" style="top: 41.7mm; left: 9.4mm;"></div>
+    <div class="tick tk-n"></div>
+    <div class="tick tk-e"></div>
+    <div class="tick tk-s"></div>
+    <div class="tick tk-w"></div>
 
     <div class="circle cutline"></div>
   </div>

@@ -5,94 +5,105 @@
 <title>Sticker — STRETCH YOUR LIMITS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
-  /* sticker 100x30 mm + 3mm bleed each side = 106x36 mm */
-  @page { size: 106mm 36mm; margin: 0; bleed: 3mm; marks: crop cross; }
+  /* sticker 100x32 mm + 3mm bleed each side = 106x38 mm */
+  @page { size: 106mm 38mm; margin: 0; bleed: 3mm; marks: crop cross; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { width: 106mm; height: 36mm; }
-  .stage { position: relative; width: 106mm; height: 36mm; }
+  html, body { width: 106mm; height: 38mm; }
+  .stage { position: relative; width: 106mm; height: 38mm; }
 
-  /* white die-cut base — outermost, bleeds 3mm beyond the cut */
+  /* white die-cut base */
   .diecut {
     position: absolute; top: 2mm; left: 2mm;
-    width: 102mm; height: 32mm; border-radius: 3mm; background: #FFFFFF;
+    width: 102mm; height: 34mm; border-radius: 3mm; background: #FFFFFF;
   }
-  /* navy art body — 3mm white border to cut on each side */
+  /* navy art body */
   .art {
     position: absolute; top: 8mm; left: 8mm;
-    width: 90mm; height: 20mm;
+    width: 90mm; height: 22mm;
     border-radius: 1.6mm; background: #171921;
-    display: flex; align-items: center; justify-content: center;
-    overflow: hidden;
   }
-  /* magenta cut line — stroked, sits in the white border */
+  /* magenta cut line */
   .cutline {
     position: absolute; top: 5mm; left: 5mm;
-    width: 96mm; height: 26mm; border-radius: 2.3mm;
+    width: 96mm; height: 28mm; border-radius: 2.3mm;
     background: transparent; border: 0.5mm dashed #FF00FF;
     z-index: 6;
   }
 
-  /* the stretched wordmark */
+  /* technical corner stamps */
+  .stamp { position: absolute; z-index: 4;
+    font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: 5pt; letter-spacing: 0.34em; color: #D1DD27;
+    text-transform: uppercase; }
+  .stamp-tl { top: 10mm; left: 11mm; }
+  .stamp-tr { top: 10mm; right: 11mm; }
+  .stamp-bl { bottom: 10mm; left: 11mm; color: #B3B3B3; }
+  .stamp-br { bottom: 10mm; right: 11mm; color: #B3B3B3; }
+
+  /* lime tick marks at all 4 corners of the art (like the THE LINK motif) */
+  .tick { position: absolute; background: #D1DD27; z-index: 5; }
+  .tick.h { width: 3mm; height: 0.5mm; }
+  .tick.v { width: 0.5mm; height: 3mm; }
+  /* top-left corner tick (L shape) */
+  .tk-tl-h { top: 8mm;   left: 8mm; }
+  .tk-tl-v { top: 8mm;   left: 8mm; }
+  /* top-right */
+  .tk-tr-h { top: 8mm;   right: 8mm; }
+  .tk-tr-v { top: 8mm;   right: 8mm; }
+  /* bottom-left */
+  .tk-bl-h { bottom: 8mm; left: 8mm; }
+  .tk-bl-v { bottom: 8mm; left: 8mm; }
+  /* bottom-right */
+  .tk-br-h { bottom: 8mm; right: 8mm; }
+  .tk-br-v { bottom: 8mm; right: 8mm; }
+
+  /* the wordmark — centered, clean, no slice */
+  .wordwrap {
+    position: absolute; top: 0; left: 8mm; right: 8mm; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 3;
+  }
   .word {
-    position: relative;
     font-family: 'Anybody', sans-serif;
-    font-weight: 900;
-    font-variation-settings: "wdth" 150;
-    font-size: 17pt;
-    line-height: 0.9;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    color: #D1DD27;
+    font-weight: 900; font-variation-settings: "wdth" 150;
+    font-size: 22pt; line-height: 0.92;
+    letter-spacing: 0.01em; text-transform: uppercase;
+    color: #D1DD27; white-space: nowrap;
     transform: scaleX(1.06);
-    white-space: nowrap;
   }
-  /* glitch seam: navy gap + lime accent bar, through the middle of the text */
-  .seam-gap {
+  .word .paper { color: #FFFFFF; }
+  /* clean hairline accent under the word */
+  .underline {
     position: absolute;
-    top: 18.6mm; left: 6mm; right: 6mm;
-    height: 1.4mm; background: #171921;
-    z-index: 5;
-    transform: translateX(1.4mm);
-  }
-  .seam-bar {
-    position: absolute;
-    top: 19.5mm; left: 8mm; right: 8mm;
-    height: 0.35mm; background: #D1DD27;
-    z-index: 4;
-  }
-  /* tiny brand chip */
-  .chip {
-    position: absolute;
-    top: 9.6mm; left: 7mm;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 800; font-size: 5pt;
-    letter-spacing: 0.34em; color: #D1DD27;
-    text-transform: uppercase;
-    z-index: 7;
-  }
-  .ed {
-    position: absolute;
-    top: 9.6mm; right: 7mm;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 800; font-size: 5pt;
-    letter-spacing: 0.32em; color: #D1DD27;
-    text-transform: uppercase;
-    z-index: 7;
+    left: 50%; bottom: 11mm;
+    width: 56mm; height: 0.4mm; background: #D1DD27;
+    margin-left: -28mm;
+    z-index: 3; opacity: 0.55;
   }
 </style>
 </head>
 <body>
   <div class="stage">
     <div class="diecut"></div>
-    <div class="art">
-      <div class="word">STRETCH&nbsp;YOUR&nbsp;LIMITS.</div>
-    </div>
-    <div class="seam-gap"></div>
-    <div class="seam-bar"></div>
-    <div class="chip">RWF / BLR</div>
-    <div class="ed">FY26 · ED.01</div>
+    <div class="art"></div>
+
+    <!-- corner ticks (L marks) on the navy art -->
+    <div class="tick h tk-tl-h"></div><div class="tick v tk-tl-v"></div>
+    <div class="tick h tk-tr-h"></div><div class="tick v tk-tr-v"></div>
+    <div class="tick h tk-bl-h"></div><div class="tick v tk-bl-v"></div>
+    <div class="tick h tk-br-h"></div><div class="tick v tk-br-v"></div>
+
+    <div class="stamp stamp-tl">RWF</div>
+    <div class="stamp stamp-tr">BLR · FY26</div>
+
+    <div class="wordwrap"><div class="word">STRETCH&nbsp;YOUR&nbsp;<span class="paper">LIMITS.</span></div></div>
+    <div class="underline"></div>
+
+    <div class="stamp stamp-bl">ED.01</div>
+    <div class="stamp stamp-br">★★★★★</div>
+
     <div class="cutline"></div>
   </div>
 </body>
