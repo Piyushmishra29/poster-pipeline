@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sticker — Dr. Rockwall Rx</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  /* sticker 72 x 100 mm + 3mm bleed = 78 x 106 mm */
+  @page { size: 78mm 106mm; margin: 0; bleed: 3mm; marks: crop cross; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 78mm; height: 106mm; }
+  .stage { position: relative; width: 78mm; height: 106mm; }
+
+  /* white die-cut base (off-white "doctor's pad") */
+  .diecut { position: absolute; top: 2mm; left: 2mm; width: 74mm; height: 102mm; background: #F6F2E6; }
+  /* magenta cut line */
+  .cutline {
+    position: absolute; top: 4mm; left: 4mm;
+    width: 70mm; height: 98mm;
+    background: transparent; border: 0.5mm dashed #FF00FF;
+    z-index: 9;
+  }
+
+  .pad {
+    position: absolute; top: 7mm; left: 7mm; right: 7mm; bottom: 7mm;
+    color: #171921;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 6.6pt; line-height: 1.45;
+    border: 0.3mm solid #171921;
+    padding: 3.6mm 4mm 14mm;
+  }
+  /* top header — dr rockwall */
+  .doctor {
+    text-align: center;
+    border-bottom: 0.3mm solid #171921; padding-bottom: 2mm; margin-bottom: 2.5mm;
+  }
+  .doctor .name {
+    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 110;
+    font-size: 13pt; line-height: 0.9; text-transform: uppercase; letter-spacing: 0.01em;
+  }
+  .doctor .name b { color: #171921; background: #D1DD27; padding: 0.6mm 2mm; }
+  .doctor .creds {
+    font-size: 5.4pt; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase;
+    margin-top: 1mm; opacity: 0.75;
+  }
+
+  .fields { margin-bottom: 2.5mm; }
+  .fld {
+    display: flex; gap: 2mm; align-items: baseline;
+    font-size: 6.6pt; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+    margin-bottom: 1.2mm;
+  }
+  .fld .l { color: #171921; flex: 0 0 18mm; opacity: 0.85; }
+  .fld .v {
+    flex: 1; border-bottom: 0.3mm solid #171921;
+    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 110;
+    font-size: 8.2pt; letter-spacing: 0.02em;
+    padding: 0 1mm 0.4mm;
+  }
+
+  /* the big Rx symbol */
+  .rx-row {
+    display: flex; gap: 4mm; align-items: flex-start;
+    border-top: 0.4mm dashed #171921; padding-top: 3mm; margin-top: 1mm;
+  }
+  .rx {
+    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 75;
+    font-size: 42pt; line-height: 0.7; color: #D1DD27;
+    text-shadow: 0.6mm 0.6mm 0 #171921;
+    letter-spacing: -0.04em;
+  }
+  .rx-row .body {
+    flex: 1; font-size: 6.6pt; line-height: 1.5;
+    font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .rx-row .body div { border-bottom: 0.2mm dashed rgba(23,25,33,0.45); padding-bottom: 0.3mm; margin-bottom: 0.5mm; white-space: nowrap; }
+  .rx-row .body b { color: #171921; background: #D1DD27; padding: 0 1mm; font-weight: 800; }
+
+  /* sig + stamp */
+  .sig {
+    position: absolute; bottom: 4mm; left: 4mm; right: 4mm;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    border-top: 0.3mm solid #171921; padding-top: 2mm;
+  }
+  .sig .left {
+    font-size: 5.6pt; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+    flex: 1;
+  }
+  .sig .left b {
+    display: block; font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 110;
+    font-size: 9pt; margin-top: 0.6mm;
+  }
+  .stamp {
+    border: 0.5mm solid #D1DD27; color: #D1DD27;
+    transform: rotate(-7deg);
+    padding: 1.4mm 2.4mm;
+    font-family: 'Anybody', sans-serif; font-weight: 900;
+    font-size: 8pt; letter-spacing: 0.04em; text-transform: uppercase;
+    line-height: 1;
+  }
+  .stamp small {
+    display: block; font-family: 'JetBrains Mono', monospace; font-weight: 700;
+    font-size: 4.4pt; letter-spacing: 0.22em; margin-top: 0.6mm;
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="diecut"></div>
+    <div class="pad">
+      <div class="doctor">
+        <div class="name"><b>DR. ROCKWALL</b></div>
+        <div class="creds">M.D. (MUSCLE DOCTORATE) · BANGALORE · LIC. 6AM-2026</div>
+      </div>
+
+      <div class="fields">
+        <div class="fld"><div class="l">PATIENT</div><div class="v">▓ STUDENT, COLLEGE</div></div>
+        <div class="fld"><div class="l">AGE</div><div class="v">YOUNG ENOUGH</div></div>
+        <div class="fld"><div class="l">DATE</div><div class="v">EVERY DAY</div></div>
+        <div class="fld"><div class="l">REFILLS</div><div class="v">UNLIMITED</div></div>
+      </div>
+
+      <div class="rx-row">
+        <div class="rx">℞</div>
+        <div class="body">
+          <div>1 × <b>DEEP SQUAT</b>, 3× WEEKLY</div>
+          <div>2 × <b>DEADLIFT</b>, FOR STRESS</div>
+          <div>30 MIN <b>HIIT</b>, POST-EXAMS</div>
+          <div><b>STRETCH</b> BEFORE BED</div>
+          <div>NO <b>EXCUSES</b>, ORALLY</div>
+        </div>
+      </div>
+
+      <div class="sig">
+        <div class="left">SIGNED<b>DR. ROCKWALL</b></div>
+        <div class="stamp">VALID FY26<small>NO. 0047 · BLR</small></div>
+      </div>
+    </div>
+    <div class="cutline"></div>
+  </div>
+</body>
+</html>

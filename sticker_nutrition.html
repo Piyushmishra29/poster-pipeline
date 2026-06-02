@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sticker — Nutrition Facts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  /* sticker 56 x 96 mm + 3mm bleed = 62 x 102 mm */
+  @page { size: 62mm 102mm; margin: 0; bleed: 3mm; marks: crop cross; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 62mm; height: 102mm; }
+  .stage { position: relative; width: 62mm; height: 102mm; }
+
+  .diecut { position: absolute; top: 2mm; left: 2mm; width: 58mm; height: 98mm; background: #FFFFFF; }
+  .cutline {
+    position: absolute; top: 4mm; left: 4mm;
+    width: 54mm; height: 94mm;
+    background: transparent; border: 0.5mm dashed #FF00FF;
+    z-index: 9;
+  }
+
+  .label {
+    position: absolute; top: 7mm; left: 7mm; right: 7mm; bottom: 7mm;
+    color: #171921;
+    font-family: 'Inter Tight', sans-serif;
+    border: 0.8mm solid #171921;
+    padding: 3.4mm 3mm;
+    background: #FFFFFF;
+  }
+  .h {
+    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 110;
+    font-size: 22pt; line-height: 0.86; letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+  .sub {
+    font-size: 6.4pt; font-weight: 500; letter-spacing: 0.04em;
+    border-bottom: 0.4mm solid #171921; padding-bottom: 1.6mm; margin-bottom: 1.6mm;
+  }
+  .heavy { border-bottom: 1.4mm solid #171921; }
+  .super-heavy { border-bottom: 3.5mm solid #171921; }
+  .row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 7pt; font-weight: 700; letter-spacing: 0.02em;
+    border-bottom: 0.25mm solid #171921; padding: 0.7mm 0;
+    text-transform: uppercase;
+  }
+  .row b { font-weight: 800; }
+  .row .pct { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 7pt; }
+  .row.indent { padding-left: 4mm; font-weight: 500; }
+  .row.lime { background: #D1DD27; padding: 1mm 1.6mm; margin: 0 -1.6mm; border: none; }
+  .calories {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    padding: 1mm 0; margin-bottom: 0.8mm;
+  }
+  .calories .l { font-size: 11pt; font-weight: 900; }
+  .calories .v {
+    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 130;
+    font-size: 26pt; line-height: 0.78; letter-spacing: -0.02em;
+    background: #D1DD27; padding: 0 1.8mm;
+  }
+  .foot {
+    margin-top: 1.6mm; font-size: 4.6pt; font-weight: 500; line-height: 1.5;
+    letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .foot b { color: #171921; font-weight: 800; background: #D1DD27; padding: 0 0.8mm; }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="diecut"></div>
+    <div class="label">
+      <div class="h">NUTRITION<br>FACTS.</div>
+      <div class="sub heavy">1 SERVING · 1 SESSION · 60 MIN</div>
+      <div class="calories"><span class="l">CALORIES BURNED</span><span class="v">∞</span></div>
+      <div class="super-heavy"></div>
+
+      <div class="row" style="border:none;font-size:6pt;justify-content:flex-end"><span class="pct">% DAILY VALUE *</span></div>
+      <div class="row"><span><b>REPS</b> 100+ g</span><span class="pct">200%</span></div>
+      <div class="row indent"><span>Heavy Reps 60 g</span><span class="pct">240%</span></div>
+      <div class="row indent"><span>Slow Reps 40 g</span><span class="pct">160%</span></div>
+      <div class="row"><span><b>SETS</b> 5</span><span class="pct">125%</span></div>
+      <div class="row"><span><b>SWEAT</b> 800 mL</span><span class="pct">320%</span></div>
+      <div class="row"><span><b>FOCUS</b> 60 min</span><span class="pct">95%</span></div>
+      <div class="row"><span><b>GAINS</b> ↑</span><span class="pct">∞</span></div>
+      <div class="row" style="border-bottom:1.4mm solid #171921"><span><b>EXCUSES</b> 0 g</span><span class="pct">0%</span></div>
+
+      <div class="row lime"><span style="font-weight:900">STRETCH</span><span class="pct">REQ.</span></div>
+
+      <div class="foot">* Daily Values based on a <b>6 AM</b> diet. Your gains may vary. <b>ROCKWALL FITNESS</b> · BLR · FY26.</div>
+    </div>
+    <div class="cutline"></div>
+  </div>
+</body>
+</html>

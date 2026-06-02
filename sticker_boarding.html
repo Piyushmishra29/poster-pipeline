@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sticker — RWF Boarding Pass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900&family=Inter+Tight:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  /* sticker 130 x 56 mm + 3mm bleed = 136 x 62 mm */
+  @page { size: 136mm 62mm; margin: 0; bleed: 3mm; marks: crop cross; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 136mm; height: 62mm; }
+  .stage { position: relative; width: 136mm; height: 62mm; }
+
+  .diecut { position: absolute; top: 2mm; left: 2mm; width: 132mm; height: 58mm; background: #FFFFFF; }
+  .cutline {
+    position: absolute; top: 4mm; left: 4mm;
+    width: 128mm; height: 54mm;
+    background: transparent; border: 0.5mm dashed #FF00FF;
+    z-index: 9;
+  }
+
+  /* main navy ticket + lime stub (78%/22% split) */
+  .ticket {
+    position: absolute; top: 7mm; left: 7mm; width: 122mm; height: 48mm;
+    display: grid;
+    grid-template-columns: 95mm 27mm;
+    font-family: 'JetBrains Mono', monospace;
+    color: #FFFFFF;
+  }
+  .main { background: #171921; padding: 4mm 5mm; position: relative; }
+  .stub { background: #D1DD27; color: #171921; padding: 4mm 4mm; display: flex; flex-direction: column; }
+
+  /* perforation between main and stub */
+  .perf {
+    position: absolute; top: 7mm; bottom: 7mm;
+    left: 102mm; width: 0.4mm;
+    background: repeating-linear-gradient(0deg, #FFFFFF 0, #FFFFFF 1.2mm, transparent 1.2mm, transparent 2.4mm);
+    z-index: 8;
+  }
+
+  /* top airline strip */
+  .head {
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 0.3mm solid rgba(209,221,39,0.5);
+    padding-bottom: 1.6mm; margin-bottom: 2.6mm;
+    font-size: 6pt; font-weight: 800; letter-spacing: 0.3em; color: #D1DD27;
+    text-transform: uppercase;
+  }
+  .head b { color: #FFFFFF; }
+
+  /* route */
+  .route {
+    display: grid; grid-template-columns: 1fr 8mm 1fr; align-items: end; gap: 4mm;
+    margin-bottom: 4mm;
+  }
+  .city {
+    font-family: 'Anybody', sans-serif; font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 28pt; line-height: 0.86; letter-spacing: -0.02em; color: #FFFFFF;
+  }
+  .city.tr { text-align: right; }
+  .arrow {
+    font-family: 'Anybody', sans-serif; font-weight: 900;
+    font-variation-settings: "wdth" 75;
+    font-size: 18pt; line-height: 1; color: #D1DD27; text-align: center;
+  }
+  .sub {
+    font-size: 5pt; font-weight: 700; letter-spacing: 0.28em; color: #D1DD27;
+    text-transform: uppercase; margin-top: 1.4mm;
+  }
+  .sub b { color: #FFFFFF; }
+
+  /* field row */
+  .grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); column-gap: 4mm;
+  }
+  .fld .l { font-size: 4.8pt; font-weight: 800; letter-spacing: 0.32em; color: #D1DD27; text-transform: uppercase; margin-bottom: 0.8mm; }
+  .fld .v {
+    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 110;
+    font-size: 11pt; line-height: 0.95; letter-spacing: 0.01em; color: #FFFFFF; text-transform: uppercase;
+  }
+
+  /* stub right column */
+  .stub .lbl { font-size: 5pt; font-weight: 800; letter-spacing: 0.32em; opacity: 0.7; text-transform: uppercase; }
+  .stub .big {
+    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 150;
+    font-size: 22pt; line-height: 0.84; letter-spacing: -0.02em; text-transform: uppercase;
+    margin: 0.8mm 0 2mm;
+  }
+  .stub .srow {
+    display: flex; justify-content: space-between;
+    border-top: 0.3mm dashed rgba(23,25,33,0.6);
+    padding-top: 1.2mm; margin-top: 1.4mm;
+    font-size: 5.6pt; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase;
+  }
+  .stub .footer-stamp {
+    margin-top: auto;
+    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 110;
+    font-size: 9pt; line-height: 0.95; letter-spacing: 0.02em;
+    border-top: 0.5mm solid #171921; padding-top: 1.4mm; text-align: center;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="diecut"></div>
+    <div class="ticket">
+      <div class="main">
+        <div class="head">
+          <span>RWF · AIRLINES · BOARDING PASS</span>
+          <span>FLT <b>RW2026</b></span>
+        </div>
+        <div class="route">
+          <div>
+            <div class="city">BLR</div>
+            <div class="sub">BANGALORE</div>
+          </div>
+          <div class="arrow">▶</div>
+          <div>
+            <div class="city tr">PR</div>
+            <div class="sub" style="text-align:right">NEW <b>PERSONAL RECORD</b></div>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="fld"><div class="l">PASSENGER</div><div class="v">SELF</div></div>
+          <div class="fld"><div class="l">GATE</div><div class="v">6 AM</div></div>
+          <div class="fld"><div class="l">SEAT</div><div class="v">1A</div></div>
+          <div class="fld"><div class="l">CLASS</div><div class="v">HEAVY</div></div>
+        </div>
+      </div>
+      <div class="stub">
+        <div class="lbl">BOARDING</div>
+        <div class="big">PASS.</div>
+        <div class="srow"><span>FLT</span><span>RW2026</span></div>
+        <div class="srow"><span>SEAT</span><span>1A</span></div>
+        <div class="srow"><span>GATE</span><span>6AM</span></div>
+        <div class="footer-stamp">DEPART<br>06:00</div>
+      </div>
+    </div>
+    <div class="perf"></div>
+    <div class="cutline"></div>
+  </div>
+</body>
+</html>
