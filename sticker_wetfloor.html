@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sticker — Wet Floor / Sweat Warning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  /* sticker 78 x 100 mm + 3mm bleed = 84 x 106 mm */
+  @page { size: 84mm 106mm; margin: 0; bleed: 3mm; marks: crop cross; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 84mm; height: 106mm; }
+  .stage { position: relative; width: 84mm; height: 106mm; }
+
+  /* shape — a-frame sandwich-board outline via clip-path (narrower at top, wider at bottom) */
+  .shape {
+    position: absolute;
+    clip-path: polygon(18% 0%, 82% 0%, 100% 100%, 0% 100%);
+  }
+  .diecut { top: 2mm; left: 2mm; width: 80mm; height: 102mm; background: #FFFFFF; }
+  .body  { top: 6mm; left: 6mm; width: 72mm; height: 94mm; background: #D1DD27;
+    color: #171921; border: 0 }
+  /* magenta cut line — outlined polygon ring */
+  .cutline-fill { top: 4mm; left: 4mm; width: 76mm; height: 98mm; background: #FF00FF; z-index: 5; }
+  .cutline-mask { top: 4.6mm; left: 4.6mm; width: 74.8mm; height: 96.8mm; background: #FFFFFF; z-index: 6; }
+
+  /* content */
+  .inner {
+    position: absolute; top: 12mm; left: 12mm; right: 12mm; bottom: 12mm;
+    color: #171921; text-align: center;
+    z-index: 8;
+  }
+  .top {
+    background: #171921; color: #D1DD27;
+    padding: 2mm 4mm;
+    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 150;
+    font-size: 16pt; letter-spacing: 0.06em; text-transform: uppercase;
+    border: 1mm solid #171921;
+  }
+  .top small {
+    display: block; font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: 5pt; letter-spacing: 0.36em; color: #FFFFFF; margin-top: 0.6mm;
+  }
+
+  /* big icon person sliding */
+  .icon { margin: 3mm auto 2mm; width: 38mm; height: 38mm; display: block; }
+
+  .main {
+    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 150;
+    font-size: 22pt; line-height: 0.86; letter-spacing: -0.02em; text-transform: uppercase;
+    margin: 1mm 0;
+  }
+  .main .navy-chip { background: #171921; color: #D1DD27; padding: 0.4mm 1.4mm; }
+  .sub {
+    font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: 6.4pt; letter-spacing: 0.22em; text-transform: uppercase;
+    line-height: 1.6; margin-top: 1.4mm;
+  }
+  .sub b { background: #171921; color: #D1DD27; padding: 0 0.8mm; }
+
+  .foot {
+    position: absolute; bottom: 0mm; left: 0; right: 0;
+    display: flex; justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: 5pt; letter-spacing: 0.32em; color: #171921;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="shape diecut"></div>
+    <div class="shape cutline-fill"></div>
+    <div class="shape cutline-mask"></div>
+    <div class="shape body"></div>
+    <div class="inner">
+      <div class="top">⚠ CAUTION ⚠<small>ROCKWALL FITNESS · BLR</small></div>
+      <svg class="icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g fill="#171921" stroke="none">
+          <!-- head -->
+          <circle cx="32" cy="20" r="8"/>
+          <!-- slipping body -->
+          <path d="M28 30 Q24 38 26 48 L36 56 L20 78 L36 78 L52 60 L72 76 L86 70 L66 56 L48 44 L42 32 Z"/>
+          <!-- sweat drops -->
+          <ellipse cx="78" cy="40" rx="3" ry="5"/>
+          <ellipse cx="70" cy="50" rx="2.4" ry="4"/>
+          <!-- floor curve -->
+          <path d="M6 92 Q50 86 94 92" fill="none" stroke="#171921" stroke-width="3"/>
+          <path d="M6 96 Q50 90 94 96" fill="none" stroke="#171921" stroke-width="1.4"/>
+        </g>
+      </svg>
+
+      <div class="main">SWEAT<br><span class="navy-chip">ON FLOOR.</span></div>
+      <div class="sub">WIPE BEFORE <b>LIFTING</b><br>HANDLE WITH <b>GRIP</b></div>
+
+      <div class="foot"><span>EST. 2018</span><span>SLIP №0047</span></div>
+    </div>
+  </div>
+</body>
+</html>

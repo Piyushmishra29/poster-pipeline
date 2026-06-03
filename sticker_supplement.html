@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sticker — Rockwall Supplement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  /* sticker 64 x 104 mm + 3mm bleed = 70 x 110 mm */
+  @page { size: 70mm 110mm; margin: 0; bleed: 3mm; marks: crop cross; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 70mm; height: 110mm; }
+  .stage { position: relative; width: 70mm; height: 110mm; }
+
+  .diecut { position: absolute; top: 2mm; left: 2mm; width: 66mm; height: 106mm; background: #FFFFFF; }
+  .cutline {
+    position: absolute; top: 4mm; left: 4mm;
+    width: 62mm; height: 102mm;
+    background: transparent; border: 0.5mm dashed #FF00FF;
+    z-index: 9;
+  }
+
+  /* main label panel */
+  .label {
+    position: absolute; top: 7mm; left: 7mm; right: 7mm; bottom: 7mm;
+    background: #171921; color: #FFFFFF;
+    font-family: 'Inter Tight', sans-serif;
+    padding: 4mm 4mm 6mm;
+    border: 0.5mm solid #D1DD27;
+    overflow: hidden;
+  }
+
+  /* small ™ + UPC-like header */
+  .top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: 5pt; letter-spacing: 0.3em; color: #D1DD27;
+    text-transform: uppercase;
+    margin-bottom: 1.6mm;
+  }
+  .top b { color: #FFFFFF; }
+
+  /* brand row — ROCKWALL big */
+  .brand {
+    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 150;
+    font-size: 26pt; line-height: 0.84; letter-spacing: -0.02em; color: #D1DD27;
+    text-transform: uppercase;
+  }
+  .brand sup {
+    display: inline-block; vertical-align: super; font-size: 8pt; color: #FFFFFF;
+  }
+  .product {
+    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 110;
+    font-size: 11pt; line-height: 1; letter-spacing: 0.02em; color: #FFFFFF;
+    text-transform: uppercase;
+    margin-top: 1mm;
+  }
+  .product b { background: #D1DD27; color: #171921; padding: 0.3mm 1.2mm; }
+
+  /* percent ring */
+  .hero {
+    margin: 3mm 0 3mm; text-align: center;
+    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 150;
+    border-top: 0.5mm solid #D1DD27;
+    border-bottom: 0.5mm solid #D1DD27;
+    padding: 3mm 0;
+  }
+  .hero .num {
+    font-size: 44pt; line-height: 0.85; color: #D1DD27; letter-spacing: -0.03em;
+  }
+  .hero .lbl {
+    font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: 6.4pt; letter-spacing: 0.36em; color: #FFFFFF;
+    text-transform: uppercase; margin-top: 0.4mm;
+  }
+
+  /* directions */
+  .directions {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 6.6pt; font-weight: 700; letter-spacing: 0.06em;
+    line-height: 1.5; text-transform: uppercase;
+    margin-bottom: 2.5mm;
+  }
+  .directions b { background: #D1DD27; color: #171921; padding: 0 0.8mm; font-weight: 800; }
+  .directions .h {
+    font-size: 6pt; font-weight: 800; letter-spacing: 0.3em; color: #D1DD27;
+    margin-bottom: 0.8mm;
+  }
+
+  /* footer specs */
+  .specs {
+    border-top: 0.4mm dashed rgba(209,221,39,0.5); padding-top: 1.4mm;
+    font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: 5.4pt; letter-spacing: 0.28em; color: #D1DD27;
+    text-transform: uppercase; line-height: 1.7;
+  }
+  .specs div { display: flex; justify-content: space-between; border-bottom: 0.2mm dashed rgba(209,221,39,0.3); padding: 0.2mm 0; }
+  .specs b { color: #FFFFFF; }
+
+  /* tiny mini barcode at very bottom */
+  .barcode { display: flex; gap: 0.2mm; height: 3.4mm; margin-top: 2mm; align-items: flex-end; }
+  .barcode i { background: #D1DD27; display: block; }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="diecut"></div>
+    <div class="label">
+      <div class="top">
+        <span><b>UPC</b> 6AM-0047</span>
+        <span>★★★★★</span>
+      </div>
+      <div class="brand">ROCK<sup>™</sup><br>WALL</div>
+      <div class="product"><b>FORMULA · 6</b> STRENGTH</div>
+
+      <div class="hero">
+        <div class="num">100%</div>
+        <div class="lbl">PURE GAINS · NO FILLERS</div>
+      </div>
+
+      <div class="directions">
+        <div class="h">DIRECTIONS</div>
+        TAKE <b>1 SESSION</b> BEFORE FAILURE.<br>
+        REPEAT <b>3×</b> WEEKLY OR AS NEEDED FOR PR.
+      </div>
+
+      <div class="specs">
+        <div><span>SERVINGS</span><b>30 / CONTAINER</b></div>
+        <div><span>TYPE</span><b>DIETARY SUPPLEMENT</b></div>
+        <div><span>CERT.</span><b>GMP · NON-GMO</b></div>
+        <div><span>MADE IN</span><b>BANGALORE · FY26</b></div>
+      </div>
+
+      <div class="barcode">
+        <i style="width:0.5mm;height:100%"></i><i style="width:0.3mm;height:100%"></i><i style="width:0.9mm;height:100%"></i><i style="width:0.3mm;height:100%"></i><i style="width:0.5mm;height:100%"></i><i style="width:0.6mm;height:100%"></i><i style="width:0.3mm;height:100%"></i><i style="width:1mm;height:100%"></i><i style="width:0.3mm;height:100%"></i><i style="width:0.5mm;height:100%"></i><i style="width:0.6mm;height:100%"></i><i style="width:0.3mm;height:100%"></i><i style="width:0.9mm;height:100%"></i><i style="width:0.3mm;height:100%"></i><i style="width:0.5mm;height:100%"></i><i style="width:0.7mm;height:100%"></i><i style="width:0.3mm;height:100%"></i><i style="width:0.6mm;height:100%"></i><i style="width:0.3mm;height:100%"></i><i style="width:0.8mm;height:100%"></i>
+      </div>
+    </div>
+    <div class="cutline"></div>
+  </div>
+</body>
+</html>

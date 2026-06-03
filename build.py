@@ -56,13 +56,14 @@ def preview_dir(html_path: Path) -> Path:
 
 def build(html_path: Path) -> Path:
     pdf = pdf_name(html_path)
-    # The multi-page brand kit is a reference doc, not a press poster — render
-    # lighter so heavy CSS gradient backgrounds don't rasterise into a huge PDF.
-    if html_path.stem == "brand-kit":
-        print(f"Rendering {html_path.name} -> {pdf.name}  [reference doc: A4, lightweight]")
+    # Brand kit + stickers render lightweight — they're small/reference docs and
+    # the print-grade dpi=300 rasterises gradient/SVG content into huge PDFs.
+    if html_path.stem == "brand-kit" or html_path.stem.startswith("sticker_"):
+        kind = "reference doc" if html_path.stem == "brand-kit" else "sticker"
+        print(f"Rendering {html_path.name} -> {pdf.name}  [{kind}: lightweight]")
         HTML(filename=str(html_path), base_url=str(HERE)).write_pdf(
             target=str(pdf),
-            jpeg_quality=82,
+            jpeg_quality=90,
             uncompressed_pdf=False,
         )
     else:

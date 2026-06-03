@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sticker — Radioactive Gains</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  /* sticker 86 x 86 mm + 3mm bleed = 92 x 92 mm */
+  @page { size: 92mm 92mm; margin: 0; bleed: 3mm; marks: crop cross; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 92mm; height: 92mm; }
+  .stage { position: relative; width: 92mm; height: 92mm; }
+
+  .diecut { position: absolute; top: 2mm; left: 2mm; width: 88mm; height: 88mm; background: #FFFFFF; }
+  .cutline {
+    position: absolute; top: 4mm; left: 4mm;
+    width: 84mm; height: 84mm;
+    background: transparent; border: 0.5mm dashed #FF00FF;
+    z-index: 9;
+  }
+  /* square sign — yellow trefoil sign style */
+  .sign {
+    position: absolute; top: 8mm; left: 8mm;
+    width: 76mm; height: 76mm;
+    background: #D1DD27;
+    color: #171921;
+    border: 1.6mm solid #171921;
+    display: flex; flex-direction: column;
+  }
+  .header {
+    background: #171921; color: #D1DD27;
+    text-align: center; padding: 2mm 0;
+    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 150;
+    font-size: 11pt; letter-spacing: 0.18em; line-height: 1; text-transform: uppercase;
+  }
+  .header small {
+    display: block; font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: 4.6pt; letter-spacing: 0.36em; color: #FFFFFF; margin-top: 0.8mm;
+  }
+  .body {
+    flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2mm;
+    padding: 3mm 4mm 1mm;
+  }
+  /* trefoil */
+  .trefoil svg { display: block; width: 32mm; height: 32mm; }
+  .title {
+    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 150;
+    font-size: 18pt; line-height: 0.86; letter-spacing: -0.02em; text-transform: uppercase;
+    text-align: center;
+  }
+  .title .lime-on-navy { background: #171921; color: #D1DD27; padding: 0.4mm 1.4mm; }
+  .meta {
+    font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: 5.4pt; letter-spacing: 0.32em; text-align: center;
+    margin-top: 0.4mm; line-height: 1.7;
+    text-transform: uppercase;
+  }
+  .meta b { background: #171921; color: #D1DD27; padding: 0.2mm 1mm; }
+
+  .strip {
+    background: #171921; color: #D1DD27;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.8mm 3mm;
+    font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: 5.4pt; letter-spacing: 0.32em; text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="diecut"></div>
+    <div class="sign">
+      <div class="header">CAUTION · RADIOACTIVE<small>ROCKWALL FITNESS · GAINS DIV.</small></div>
+      <div class="body">
+        <div class="trefoil">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <!-- inner forbidden circle (lime, surrounded by 3 navy blades) -->
+            <circle cx="50" cy="50" r="44" fill="#171921"/>
+            <circle cx="50" cy="50" r="11" fill="#171921"/>
+            <!-- three lime pie slices to carve the trefoil out of the navy disc -->
+            <g fill="#D1DD27">
+              <path d="M50 50 L50 4 A46 46 0 0 1 89.84 27 Z" transform="rotate(60 50 50)"/>
+              <path d="M50 50 L50 4 A46 46 0 0 1 89.84 27 Z" transform="rotate(180 50 50)"/>
+              <path d="M50 50 L50 4 A46 46 0 0 1 89.84 27 Z" transform="rotate(300 50 50)"/>
+            </g>
+            <!-- center forbidden navy dot on top -->
+            <circle cx="50" cy="50" r="11" fill="#171921"/>
+          </svg>
+        </div>
+        <div class="title">GAINS<br><span class="lime-on-navy">ZONE.</span></div>
+        <div class="meta">
+          DOSE · <b>∞</b> · LEVEL · <b>CRITICAL</b><br>
+          HALF-LIFE · <b>60 MIN</b> · DO NOT DECAY
+        </div>
+      </div>
+      <div class="strip">
+        <span>BLR · FY26</span><span>RAD-PERMIT № 0047</span>
+      </div>
+    </div>
+    <div class="cutline"></div>
+  </div>
+</body>
+</html>

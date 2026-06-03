@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sticker — Toxic Excuses</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  /* sticker 86 x 86 mm + 3mm bleed = 92 x 92 mm */
+  @page { size: 92mm 92mm; margin: 0; bleed: 3mm; marks: crop cross; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 92mm; height: 92mm; }
+  .stage { position: relative; width: 92mm; height: 92mm; }
+
+  .diecut { position: absolute; top: 2mm; left: 2mm; width: 88mm; height: 88mm; background: #FFFFFF; }
+  .cutline {
+    position: absolute; top: 4mm; left: 4mm;
+    width: 84mm; height: 84mm;
+    background: transparent; border: 0.5mm dashed #FF00FF;
+    z-index: 9;
+  }
+  /* navy chemical-hazard square */
+  .sign {
+    position: absolute; top: 8mm; left: 8mm;
+    width: 76mm; height: 76mm;
+    background: #171921;
+    color: #FFFFFF;
+    border: 1.6mm solid #D1DD27;
+    display: flex; flex-direction: column;
+  }
+  /* header */
+  .header {
+    background: #D1DD27; color: #171921;
+    text-align: center; padding: 2mm 0;
+    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 150;
+    font-size: 13pt; line-height: 0.95; letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .header small {
+    display: block; font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: 4.6pt; letter-spacing: 0.36em; color: #171921; margin-top: 0.4mm;
+  }
+
+  .body {
+    flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 4mm 5mm 2mm; gap: 2mm;
+  }
+
+  .skull svg { display: block; width: 36mm; height: 30mm; }
+
+  .label {
+    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 150;
+    font-size: 22pt; line-height: 0.86; letter-spacing: -0.02em; text-transform: uppercase;
+    text-align: center; color: #D1DD27;
+  }
+
+  .meta {
+    font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: 6pt; letter-spacing: 0.28em; color: #FFFFFF;
+    text-transform: uppercase; text-align: center; line-height: 1.7;
+  }
+  .meta b { background: #D1DD27; color: #171921; padding: 0 1mm; }
+
+  .strip {
+    background: #D1DD27; color: #171921;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.6mm 3mm;
+    font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: 5.4pt; letter-spacing: 0.32em; text-transform: uppercase;
+  }
+  /* big UN class number bottom-right corner */
+  .un {
+    position: absolute; bottom: 12mm; right: 12mm;
+    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 150;
+    font-size: 16pt; color: #D1DD27; line-height: 0.9; letter-spacing: -0.01em;
+    border: 0.5mm solid #D1DD27; padding: 0.4mm 1.4mm;
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="diecut"></div>
+    <div class="sign">
+      <div class="header">POISON · KEEP AWAY<small>ROCKWALL FITNESS · CHEM. CTRL</small></div>
+      <div class="body">
+        <div class="skull">
+          <svg viewBox="0 0 100 84" xmlns="http://www.w3.org/2000/svg">
+            <!-- crossbones first so skull sits on top -->
+            <g stroke="#D1DD27" stroke-width="5.5" stroke-linecap="round">
+              <line x1="10" y1="76" x2="90" y2="14"/>
+              <line x1="10" y1="14" x2="90" y2="76"/>
+            </g>
+            <g fill="#D1DD27">
+              <circle cx="10" cy="76" r="4.5"/><circle cx="90" cy="14" r="4.5"/>
+              <circle cx="10" cy="14" r="4.5"/><circle cx="90" cy="76" r="4.5"/>
+            </g>
+            <!-- skull -->
+            <g fill="#D1DD27">
+              <path d="M50 6 C28 6 16 22 16 40 C16 50 21 56 26 58 L26 66 C26 70 30 72 33 72 L36 72 L36 66 L40 66 L40 72 L44 72 L44 66 L48 66 L48 72 L52 72 L52 66 L56 66 L56 72 L60 72 L60 66 L64 66 L64 72 L67 72 C70 72 74 70 74 66 L74 58 C79 56 84 50 84 40 C84 22 72 6 50 6 Z"/>
+            </g>
+            <!-- eyes navy -->
+            <ellipse cx="35" cy="38" rx="8.5" ry="10" fill="#171921"/>
+            <ellipse cx="65" cy="38" rx="8.5" ry="10" fill="#171921"/>
+            <!-- nose -->
+            <polygon points="50,44 44,56 56,56" fill="#171921"/>
+          </svg>
+        </div>
+        <div class="label">EXCUSES.</div>
+        <div class="meta">LD50 · <b>1 DOSE</b> · ANTIDOTE · <b>6 AM</b></div>
+      </div>
+      <div class="strip">
+        <span>BLR · FY26</span><span>HAZMAT № 0047</span>
+      </div>
+    </div>
+    <div class="cutline"></div>
+  </div>
+</body>
+</html>

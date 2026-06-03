@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sticker — High Voltage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  /* sticker 86 x 102 mm + 3mm bleed = 92 x 108 mm */
+  @page { size: 92mm 108mm; margin: 0; bleed: 3mm; marks: crop cross; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 92mm; height: 108mm; }
+  .stage { position: relative; width: 92mm; height: 108mm; }
+
+  .diecut { position: absolute; top: 2mm; left: 2mm; width: 88mm; height: 104mm; background: #FFFFFF; }
+  .cutline {
+    position: absolute; top: 4mm; left: 4mm;
+    width: 84mm; height: 100mm;
+    background: transparent; border: 0.5mm dashed #FF00FF;
+    z-index: 9;
+  }
+
+  /* lime DOT-style triangle warning sign panel */
+  .sign {
+    position: absolute; top: 8mm; left: 8mm;
+    width: 76mm; height: 88mm;
+    background: #D1DD27;
+    color: #171921;
+    border: 1.6mm solid #171921;
+  }
+  /* DANGER bar */
+  .danger {
+    background: #171921; color: #D1DD27;
+    text-align: center; padding: 2.6mm 0;
+    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 150;
+    font-size: 18pt; line-height: 0.86; letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .danger small {
+    display: block; font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: 5pt; letter-spacing: 0.4em; color: #FFFFFF; margin-top: 1mm;
+  }
+
+  /* big triangle warning symbol */
+  .tri-wrap {
+    position: relative; padding: 5mm 4mm 0;
+    display: flex; justify-content: center;
+  }
+  .tri svg { display: block; width: 38mm; height: 32mm; }
+
+  /* sub headline */
+  .sub {
+    text-align: center;
+    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 110;
+    font-size: 17pt; line-height: 0.9; letter-spacing: -0.01em;
+    text-transform: uppercase;
+    padding: 1mm 4mm 0;
+  }
+  .sub .navy-chip { background: #171921; color: #D1DD27; padding: 0.4mm 1.4mm; }
+
+  /* spec list */
+  .specs {
+    margin: 2.4mm 5mm 0;
+    border-top: 0.6mm solid #171921; padding-top: 1.8mm;
+    font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: 5.8pt; letter-spacing: 0.14em; text-transform: uppercase;
+    line-height: 1.5;
+  }
+  .specs div { display: flex; justify-content: space-between; border-bottom: 0.2mm solid #171921; padding: 0.2mm 0; }
+  .specs b { color: #171921; }
+
+  /* footer (sits inside the sign, below the specs) */
+  .foot {
+    margin: 2mm 5mm 0;
+    display: flex; justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: 5pt; letter-spacing: 0.32em; color: #171921;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="diecut"></div>
+    <div class="sign">
+      <div class="danger">⚡ DANGER ⚡<small>ELECTRICAL HAZARD · ROCKWALL FITNESS</small></div>
+      <div class="tri-wrap">
+        <div class="tri">
+          <svg viewBox="0 0 100 84" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="50,4 96,80 4,80" fill="#D1DD27" stroke="#171921" stroke-width="4" stroke-linejoin="round"/>
+            <polygon points="56,18 38,46 50,46 42,68 64,38 52,38 60,18" fill="#171921"/>
+          </svg>
+        </div>
+      </div>
+      <div class="sub">HIGH<br><span class="navy-chip">VOLTAGE.</span></div>
+      <div class="specs">
+        <div><span>HAZARD</span><b>DEADLIFT IN PROGRESS</b></div>
+        <div><span>POTENTIAL</span><b>240V OF FOCUS</b></div>
+        <div><span>HOURS</span><b>06:00 — 22:30</b></div>
+        <div><span>CLEARANCE</span><b>AUTHORIZED ONLY</b></div>
+      </div>
+      <div class="foot">
+        <span>BLR · FY26</span><span>RW · 6AM-2026</span>
+      </div>
+    </div>
+    <div class="cutline"></div>
+  </div>
+</body>
+</html>
