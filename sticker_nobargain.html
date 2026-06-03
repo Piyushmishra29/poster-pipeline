@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sticker — No Bargaining (Front Desk)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  /* A4 portrait — front-desk sticker · 210x297 mm + 3mm bleed = 216x303 mm */
+  @page { size: 216mm 303mm; margin: 0; bleed: 3mm; marks: crop cross; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 216mm; height: 303mm; background: #171921; color: #FFFFFF;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .stage { position: relative; width: 216mm; height: 303mm; }
+
+  /* white die-cut base (bleeds 3mm beyond the cut) */
+  .diecut { position: absolute; top: 2mm; left: 2mm; width: 212mm; height: 299mm; background: #FFFFFF; }
+  /* magenta die-line — hugs the colored body with ~1mm halo */
+  .cutline {
+    position: absolute; top: 4mm; left: 4mm;
+    width: 208mm; height: 295mm;
+    background: transparent; border: 0.6mm dashed #FF00FF;
+    z-index: 9;
+  }
+  /* navy main body */
+  .body {
+    position: absolute; top: 5mm; left: 5mm;
+    width: 206mm; height: 293mm;
+    background: #171921;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+
+  /* hazard caution stripes band — top + bottom */
+  .stripes {
+    height: 24mm; flex-shrink: 0;
+    background-color: #171921;
+    background-image: repeating-linear-gradient(-45deg, #D1DD27 0, #D1DD27 8mm, #171921 8mm, #171921 16mm);
+    position: relative;
+  }
+  .stripes .label {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background: #171921; color: #D1DD27;
+    padding: 2.4mm 8mm;
+    border: 0.8mm solid #D1DD27;
+    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 150;
+    font-size: 18pt; letter-spacing: 0.08em; line-height: 0.9; text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* center content */
+  .center {
+    flex: 1;
+    display: flex; flex-direction: column; align-items: stretch; justify-content: space-between;
+    padding: 12mm 12mm;
+    position: relative;
+  }
+
+  /* big NO BARGAINING headline */
+  .head {
+    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 150;
+    font-size: 96pt; line-height: 0.84; letter-spacing: -0.03em; color: #FFFFFF;
+    text-transform: uppercase; text-align: center;
+    margin-top: 4mm;
+  }
+  .head .lime { color: #D1DD27; background: #171921; }
+  .head .strike {
+    color: #D1DD27;
+    position: relative; display: inline-block;
+  }
+  /* the lime "NO" big chip */
+  .no-chip {
+    display: inline-block; background: #D1DD27; color: #171921;
+    padding: 0 4mm 1.4mm 4mm; line-height: 0.88;
+  }
+
+  /* sub punchline */
+  .sub {
+    text-align: center;
+    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 110;
+    font-size: 26pt; line-height: 0.92; letter-spacing: -0.01em; color: #FFFFFF;
+    text-transform: uppercase;
+    margin-top: 8mm;
+  }
+  .sub .lime { color: #D1DD27; }
+  .sub b { background: #D1DD27; color: #171921; padding: 0 2mm; }
+
+  /* stats card — fake "violation list" */
+  .stats {
+    margin: 14mm 0 6mm;
+    border-top: 0.6mm solid #D1DD27; border-bottom: 0.6mm solid #D1DD27;
+    padding: 6mm 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11pt; font-weight: 800; letter-spacing: 0.16em; line-height: 1.9;
+    text-transform: uppercase;
+    color: #FFFFFF;
+  }
+  .stats div {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 0.3mm dashed rgba(209,221,39,0.5); padding: 0.6mm 0;
+  }
+  .stats div:last-child { border-bottom: none; }
+  .stats .l { color: #D1DD27; }
+  .stats .v {
+    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 110;
+    font-size: 14pt; letter-spacing: 0.02em;
+  }
+  .stats .v.chip { background: #D1DD27; color: #171921; padding: 0.4mm 2mm; }
+
+  /* tagline footer */
+  .tag {
+    text-align: center;
+    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 150;
+    font-size: 22pt; line-height: 0.95; letter-spacing: -0.01em; color: #D1DD27;
+    text-transform: uppercase;
+    padding: 0 4mm 4mm;
+  }
+
+  /* bottom stripe label */
+  .bot-label {
+    background: #171921; color: #D1DD27;
+    padding: 2.4mm 8mm; border: 0.8mm solid #D1DD27;
+    font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: 9pt; letter-spacing: 0.32em; text-transform: uppercase;
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="diecut"></div>
+    <div class="body">
+      <!-- top hazard band -->
+      <div class="stripes">
+        <div class="label">⚠ FIXED PRICE ZONE ⚠</div>
+      </div>
+
+      <!-- center content -->
+      <div class="center">
+        <div>
+          <div class="head">
+            <span class="no-chip">NO</span><br>
+            BARGAIN<span class="strike">ING.</span>
+          </div>
+          <div class="sub">
+            WE LIFT <span class="lime">WEIGHTS,</span><br>
+            NOT <b>PRICES.</b>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div><span class="l">DISCOUNT</span><span class="v chip">0%</span></div>
+          <div><span class="l">BHAI RATE</span><span class="v">NOT AVAILABLE</span></div>
+          <div><span class="l">SPECIAL FOR YOU</span><span class="v">NO.</span></div>
+          <div><span class="l">FREE TRIAL HUSTLE</span><span class="v">FAILED · ALREADY</span></div>
+          <div><span class="l">BEST OPTION</span><span class="v chip">PAY &amp; LIFT</span></div>
+        </div>
+
+        <div class="tag">
+          DEADLIFT &gt; DEADLINE &gt; <span style="background:#D1DD27;color:#171921;padding:0 2mm">DISCOUNT.</span>
+        </div>
+      </div>
+
+      <!-- bottom hazard band -->
+      <div class="stripes">
+        <div class="bot-label">ROCKWALL FITNESS · BLR · FIXED RATE FY26</div>
+      </div>
+    </div>
+    <div class="cutline"></div>
+  </div>
+</body>
+</html>
