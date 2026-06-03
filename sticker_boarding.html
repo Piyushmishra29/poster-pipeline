@@ -21,11 +21,11 @@
     z-index: 9;
   }
 
-  /* main navy ticket + lime stub (78%/22% split) */
+  /* main navy ticket + lime stub — expanded so cut line hugs the ticket */
   .ticket {
-    position: absolute; top: 7mm; left: 7mm; width: 122mm; height: 48mm;
+    position: absolute; top: 5mm; left: 5mm; width: 126mm; height: 52mm;
     display: grid;
-    grid-template-columns: 95mm 27mm;
+    grid-template-columns: 99mm 27mm;
     font-family: 'JetBrains Mono', monospace;
     color: #FFFFFF;
   }
@@ -34,8 +34,8 @@
 
   /* perforation between main and stub */
   .perf {
-    position: absolute; top: 7mm; bottom: 7mm;
-    left: 102mm; width: 0.4mm;
+    position: absolute; top: 5mm; bottom: 5mm;
+    left: 104mm; width: 0.4mm;
     background: repeating-linear-gradient(0deg, #FFFFFF 0, #FFFFFF 1.2mm, transparent 1.2mm, transparent 2.4mm);
     z-index: 8;
   }
