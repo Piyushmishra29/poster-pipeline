@@ -2,169 +2,186 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Sticker — No Bargaining (Front Desk)</title>
+<title>Sticker — Front Desk · Negotiate With Gravity</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
-  /* A4 portrait — front-desk sticker · 210x297 mm + 3mm bleed = 216x303 mm */
+  /* A4 portrait front-desk sticker · 210x297 + 3mm bleed = 216x303 mm */
   @page { size: 216mm 303mm; margin: 0; bleed: 3mm; marks: crop cross; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { width: 216mm; height: 303mm; background: #171921; color: #FFFFFF;
+  :root{
+    --lime:#D1DD27; --ink:#171921; --paper:#FFFFFF;
+    --grey1:#898989; --grey2:#B3B3B3; --panel:#1E212B;
+    --hair:rgba(209,221,39,0.30); --mute:rgba(255,255,255,0.55);
+  }
+  html, body { width: 216mm; height: 303mm; background: var(--ink); color: var(--paper);
+    font-family: 'Inter Tight', sans-serif;
     -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .stage { position: relative; width: 216mm; height: 303mm; }
 
-  /* white die-cut base (bleeds 3mm beyond the cut) */
-  .diecut { position: absolute; top: 2mm; left: 2mm; width: 212mm; height: 299mm; background: #FFFFFF; }
-  /* magenta die-line — hugs the colored body with ~1mm halo */
+  /* white die-cut + magenta die-line */
+  .diecut { position: absolute; top: 2mm; left: 2mm; width: 212mm; height: 299mm; background: var(--paper); }
   .cutline {
     position: absolute; top: 4mm; left: 4mm;
     width: 208mm; height: 295mm;
     background: transparent; border: 0.6mm dashed #FF00FF;
     z-index: 9;
   }
-  /* navy main body */
+  /* main navy art */
   .body {
     position: absolute; top: 5mm; left: 5mm;
     width: 206mm; height: 293mm;
-    background: #171921;
+    background: var(--ink);
     overflow: hidden;
-    display: flex; flex-direction: column;
+    padding: 22mm 18mm 22mm 24mm;  /* asymmetric editorial margins */
   }
 
-  /* hazard caution stripes band — top + bottom */
-  .stripes {
-    height: 24mm; flex-shrink: 0;
-    background-color: #171921;
-    background-image: repeating-linear-gradient(-45deg, #D1DD27 0, #D1DD27 8mm, #171921 8mm, #171921 16mm);
-    position: relative;
-  }
-  .stripes .label {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    background: #171921; color: #D1DD27;
-    padding: 2.4mm 8mm;
-    border: 0.8mm solid #D1DD27;
-    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 150;
-    font-size: 18pt; letter-spacing: 0.08em; line-height: 0.9; text-transform: uppercase;
-    white-space: nowrap;
-  }
+  /* rotated running index on the right margin */
+  .runidx{ position:absolute; right:6mm; top:0; bottom:0; width:9mm;
+    display:flex; align-items:center; justify-content:center; }
+  .runidx span{ transform:rotate(90deg); white-space:nowrap;
+    font-family:'JetBrains Mono'; font-size:7pt; font-weight:800;
+    letter-spacing:0.34em; text-transform:uppercase; color:var(--lime); opacity:0.85; }
 
-  /* center content */
-  .center {
-    flex: 1;
-    display: flex; flex-direction: column; align-items: stretch; justify-content: space-between;
-    padding: 12mm 12mm;
-    position: relative;
+  /* drop folio bottom-left */
+  .folio{
+    position:absolute; left:24mm; bottom:11mm;
+    font-family:'Anybody'; font-weight:900; font-variation-settings:"wdth" 150;
+    font-size:15pt; color:var(--lime); letter-spacing:-0.02em;
   }
+  .folio small{ font-family:'JetBrains Mono'; font-weight:500; font-size:7pt;
+    letter-spacing:0.25em; color:var(--mute); margin-left:3mm; vertical-align:1.5mm; }
 
-  /* big NO BARGAINING headline */
-  .head {
-    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 150;
-    font-size: 96pt; line-height: 0.84; letter-spacing: -0.03em; color: #FFFFFF;
-    text-transform: uppercase; text-align: center;
-    margin-top: 4mm;
+  /* top kicker */
+  .kick {
+    display: flex; align-items: center; gap: 4mm;
+    font-family: 'JetBrains Mono'; font-size: 9pt; font-weight: 800;
+    letter-spacing: 0.32em; color: var(--lime); text-transform: uppercase;
   }
-  .head .lime { color: #D1DD27; background: #171921; }
-  .head .strike {
-    color: #D1DD27;
-    position: relative; display: inline-block;
+  .kick .num {
+    background: var(--lime); color: var(--ink);
+    padding: 1.2mm 2.6mm; font-weight: 800;
   }
-  /* the lime "NO" big chip */
-  .no-chip {
-    display: inline-block; background: #D1DD27; color: #171921;
-    padding: 0 4mm 1.4mm 4mm; line-height: 0.88;
-  }
+  .kick .rule { flex: 1; height: 0.4mm; background: var(--lime); opacity: 0.5; }
+  .kick .end { font-size: 7.5pt; color: var(--lime); }
 
-  /* sub punchline */
+  /* hero headline — 2-line stack */
+  .hero {
+    font-family: 'Anybody', sans-serif; font-weight: 900;
+    font-variation-settings: "wdth" 130;
+    font-size: 78pt; line-height: 0.86; letter-spacing: -0.03em;
+    color: var(--paper); text-transform: uppercase;
+    margin-top: 22mm;
+  }
+  .hero .lime { color: var(--lime); }
+  .hero .neg {
+    color: var(--ink); background: var(--lime); padding: 0 2mm 1.4mm;
+    font-variation-settings: "wdth" 150;
+  }
+  .hero .br { display: block; }
+
+  /* sub line — italic, restrained */
   .sub {
-    text-align: center;
-    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 110;
-    font-size: 26pt; line-height: 0.92; letter-spacing: -0.01em; color: #FFFFFF;
-    text-transform: uppercase;
-    margin-top: 8mm;
+    margin-top: 10mm;
+    font-family: 'Inter Tight', sans-serif; font-weight: 700;
+    font-size: 13pt; line-height: 1.35; letter-spacing: 0.01em;
+    color: var(--paper);
+    max-width: 130mm;
+    font-style: italic;
   }
-  .sub .lime { color: #D1DD27; }
-  .sub b { background: #D1DD27; color: #171921; padding: 0 2mm; }
+  .sub .mute { color: var(--grey2); font-style: normal; font-weight: 500; }
+  .sub b { color: var(--lime); font-style: normal; }
 
-  /* stats card — fake "violation list" */
-  .stats {
-    margin: 14mm 0 6mm;
-    border-top: 0.6mm solid #D1DD27; border-bottom: 0.6mm solid #D1DD27;
-    padding: 6mm 0;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11pt; font-weight: 800; letter-spacing: 0.16em; line-height: 1.9;
-    text-transform: uppercase;
-    color: #FFFFFF;
+  /* principle list — bottom anchored */
+  .principles {
+    position: absolute; left: 24mm; right: 18mm; bottom: 38mm;
   }
-  .stats div {
-    display: flex; justify-content: space-between; align-items: baseline;
-    border-bottom: 0.3mm dashed rgba(209,221,39,0.5); padding: 0.6mm 0;
+  .pr-head {
+    font-family: 'JetBrains Mono'; font-weight: 800;
+    font-size: 8.5pt; letter-spacing: 0.32em; color: var(--lime);
+    text-transform: uppercase; margin-bottom: 4mm;
   }
-  .stats div:last-child { border-bottom: none; }
-  .stats .l { color: #D1DD27; }
-  .stats .v {
-    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 110;
-    font-size: 14pt; letter-spacing: 0.02em;
+  .pr-list {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5mm 8mm;
+    border-top: 0.5mm solid var(--lime);
+    padding-top: 5mm;
   }
-  .stats .v.chip { background: #D1DD27; color: #171921; padding: 0.4mm 2mm; }
-
-  /* tagline footer */
-  .tag {
-    text-align: center;
-    font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 150;
-    font-size: 22pt; line-height: 0.95; letter-spacing: -0.01em; color: #D1DD27;
-    text-transform: uppercase;
-    padding: 0 4mm 4mm;
+  .pr {
+    font-family: 'Anybody', sans-serif; font-weight: 900;
+    font-variation-settings: "wdth" 110;
+    font-size: 16pt; line-height: 0.95; letter-spacing: -0.005em;
+    color: var(--paper); text-transform: uppercase;
+  }
+  .pr b { color: var(--lime); font-weight: 900; }
+  .pr small {
+    display: block;
+    font-family: 'JetBrains Mono'; font-weight: 700; font-size: 7.5pt;
+    letter-spacing: 0.22em; color: var(--mute);
+    margin-top: 1.5mm; line-height: 1.4; text-transform: uppercase;
   }
 
-  /* bottom stripe label */
-  .bot-label {
-    background: #171921; color: #D1DD27;
-    padding: 2.4mm 8mm; border: 0.8mm solid #D1DD27;
-    font-family: 'JetBrains Mono', monospace; font-weight: 800;
-    font-size: 9pt; letter-spacing: 0.32em; text-transform: uppercase;
-    white-space: nowrap;
+  /* bottom-right brand stamp */
+  .stamp {
+    position: absolute; right: 18mm; bottom: 12mm;
+    text-align: right;
+    font-family: 'JetBrains Mono'; font-weight: 800;
+    font-size: 7.5pt; letter-spacing: 0.32em; color: var(--lime);
+    text-transform: uppercase; line-height: 1.7;
   }
+  .stamp b { color: var(--paper); }
 </style>
 </head>
 <body>
   <div class="stage">
     <div class="diecut"></div>
     <div class="body">
-      <!-- top hazard band -->
-      <div class="stripes">
-        <div class="label">⚠ FIXED PRICE ZONE ⚠</div>
+      <div class="runidx"><span>ROCKWALL FITNESS — HOUSE RULE №1 / FY26</span></div>
+
+      <div class="kick">
+        <span class="num">01</span>
+        <span>HOUSE RULE</span>
+        <span class="rule"></span>
+        <span class="end">THE ONLY ONE</span>
       </div>
 
-      <!-- center content -->
-      <div class="center">
-        <div>
-          <div class="head">
-            <span class="no-chip">NO</span><br>
-            BARGAIN<span class="strike">ING.</span>
-          </div>
-          <div class="sub">
-            WE LIFT <span class="lime">WEIGHTS,</span><br>
-            NOT <b>PRICES.</b>
-          </div>
-        </div>
+      <h1 class="hero">
+        <span class="br">WE NEGOTIATE</span>
+        <span class="br">WITH <span class="neg">GRAVITY.</span></span>
+      </h1>
 
-        <div class="stats">
-          <div><span class="l">DISCOUNT</span><span class="v chip">0%</span></div>
-          <div><span class="l">BHAI RATE</span><span class="v">NOT AVAILABLE</span></div>
-          <div><span class="l">SPECIAL FOR YOU</span><span class="v">NO.</span></div>
-          <div><span class="l">FREE TRIAL HUSTLE</span><span class="v">FAILED · ALREADY</span></div>
-          <div><span class="l">BEST OPTION</span><span class="v chip">PAY &amp; LIFT</span></div>
-        </div>
+      <div class="sub">
+        Not with prices. <span class="mute">And gravity, as far as we know, has never given a discount.</span>
+      </div>
 
-        <div class="tag">
-          DEADLIFT &gt; DEADLINE &gt; <span style="background:#D1DD27;color:#171921;padding:0 2mm">DISCOUNT.</span>
+      <div class="principles">
+        <div class="pr-head">// THE FINE PRINT</div>
+        <div class="pr-list">
+          <div class="pr">
+            ONE <b>PRICE.</b><br>EVERY MEMBER.
+            <small>The owner pays the same. Promise.</small>
+          </div>
+          <div class="pr">
+            ONE <b>RATE.</b><br>EVERY DAY.
+            <small>Monday morning, Friday night — same number.</small>
+          </div>
+          <div class="pr">
+            NO <b>ASTERISK.</b><br>NO FINE PRINT.
+            <small>What's on the price card is what you pay.</small>
+          </div>
+          <div class="pr">
+            JUST <b>LIFT.</b><br>WE'LL HANDLE THE REST.
+            <small>You came here for gains, not for haggling.</small>
+          </div>
         </div>
       </div>
 
-      <!-- bottom hazard band -->
-      <div class="stripes">
-        <div class="bot-label">ROCKWALL FITNESS · BLR · FIXED RATE FY26</div>
+      <div class="folio">№ 01<small>HOUSE RULE</small></div>
+      <div class="stamp">
+        <b>ROCKWALL FITNESS</b><br>
+        BANGALORE · FY 2026<br>
+        FIXED-RATE EST. 2018
       </div>
     </div>
     <div class="cutline"></div>
