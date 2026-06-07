@@ -2,187 +2,120 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Sticker — Front Desk · Negotiate With Gravity</title>
+<title>Sticker — Front Desk · FIXED.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
-  /* A4 portrait front-desk sticker · 210x297 + 3mm bleed = 216x303 mm */
+  /* A4 portrait front-desk sticker · 210 x 297 + 3mm bleed = 216 x 303 mm */
   @page { size: 216mm 303mm; margin: 0; bleed: 3mm; marks: crop cross; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  :root{
-    --lime:#D1DD27; --ink:#171921; --paper:#FFFFFF;
-    --grey1:#898989; --grey2:#B3B3B3; --panel:#1E212B;
-    --hair:rgba(209,221,39,0.30); --mute:rgba(255,255,255,0.55);
-  }
-  html, body { width: 216mm; height: 303mm; background: var(--ink); color: var(--paper);
+  :root{ --lime:#D1DD27; --ink:#171921; --paper:#FFFFFF; }
+  html, body { width: 216mm; height: 303mm; background: var(--lime); color: var(--ink);
     font-family: 'Inter Tight', sans-serif;
     -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .stage { position: relative; width: 216mm; height: 303mm; }
 
   /* white die-cut + magenta die-line */
   .diecut { position: absolute; top: 2mm; left: 2mm; width: 212mm; height: 299mm; background: var(--paper); }
+  /* lime full-bleed sign body — hugs the cut with a ~1mm halo */
+  .body {
+    position: absolute; top: 5mm; left: 5mm;
+    width: 206mm; height: 293mm;
+    background: var(--lime);
+    overflow: hidden;
+  }
   .cutline {
     position: absolute; top: 4mm; left: 4mm;
     width: 208mm; height: 295mm;
     background: transparent; border: 0.6mm dashed #FF00FF;
     z-index: 9;
   }
-  /* main navy art */
-  .body {
-    position: absolute; top: 5mm; left: 5mm;
-    width: 206mm; height: 293mm;
-    background: var(--ink);
-    overflow: hidden;
-    padding: 22mm 18mm 22mm 24mm;  /* asymmetric editorial margins */
+
+  /* corner register ticks — the only structural accent */
+  .tick {
+    position: absolute; width: 12mm; height: 12mm; z-index: 4;
+  }
+  .tick::before, .tick::after {
+    content: ''; position: absolute; background: var(--ink);
+  }
+  .tick::before { /* horizontal arm */ top: 0; left: 0; width: 100%; height: 0.8mm; }
+  .tick::after  { /* vertical arm */ top: 0; left: 0; width: 0.8mm; height: 100%; }
+  .tick-tl { top: 15mm; left: 15mm; }
+  .tick-tr { top: 15mm; right: 15mm; transform: scaleX(-1); }
+
+  /* top kicker — minimal, just a brand whisper */
+  .kicker {
+    position: absolute; top: 18mm; left: 0; right: 0; text-align: center;
+    font-family: 'JetBrains Mono', monospace; font-weight: 700;
+    font-size: 9pt; letter-spacing: 0.5em; color: var(--ink);
+    text-transform: uppercase;
   }
 
-  /* rotated running index on the right margin */
-  .runidx{ position:absolute; right:6mm; top:0; bottom:0; width:9mm;
-    display:flex; align-items:center; justify-content:center; }
-  .runidx span{ transform:rotate(90deg); white-space:nowrap;
-    font-family:'JetBrains Mono'; font-size:7pt; font-weight:800;
-    letter-spacing:0.34em; text-transform:uppercase; color:var(--lime); opacity:0.85; }
-
-  /* drop folio bottom-left */
-  .folio{
-    position:absolute; left:24mm; bottom:11mm;
-    font-family:'Anybody'; font-weight:900; font-variation-settings:"wdth" 150;
-    font-size:15pt; color:var(--lime); letter-spacing:-0.02em;
-  }
-  .folio small{ font-family:'JetBrains Mono'; font-weight:500; font-size:7pt;
-    letter-spacing:0.25em; color:var(--mute); margin-left:3mm; vertical-align:1.5mm; }
-
-  /* top kicker */
-  .kick {
-    display: flex; align-items: center; gap: 4mm;
-    font-family: 'JetBrains Mono'; font-size: 9pt; font-weight: 800;
-    letter-spacing: 0.32em; color: var(--lime); text-transform: uppercase;
-  }
-  .kick .num {
-    background: var(--lime); color: var(--ink);
-    padding: 1.2mm 2.6mm; font-weight: 800;
-  }
-  .kick .rule { flex: 1; height: 0.4mm; background: var(--lime); opacity: 0.5; }
-  .kick .end { font-size: 7.5pt; color: var(--lime); }
-
-  /* hero headline — 2-line stack */
+  /* hero — the whole point */
   .hero {
+    position: absolute; top: 80mm; left: 0; right: 0; text-align: center;
     font-family: 'Anybody', sans-serif; font-weight: 900;
-    font-variation-settings: "wdth" 130;
-    font-size: 78pt; line-height: 0.86; letter-spacing: -0.03em;
-    color: var(--paper); text-transform: uppercase;
-    margin-top: 22mm;
+    font-variation-settings: "wdth" 140;
+    font-size: 196pt; line-height: 0.82; letter-spacing: -0.04em;
+    color: var(--ink); text-transform: uppercase;
   }
-  .hero .lime { color: var(--lime); }
-  .hero .neg {
-    color: var(--ink); background: var(--lime); padding: 0 2mm 1.4mm;
-    font-variation-settings: "wdth" 150;
-  }
-  .hero .br { display: block; }
 
-  /* sub line — italic, restrained */
+  /* register hairline above the tagline */
+  .rule {
+    position: absolute; left: 50%; top: 192mm;
+    width: 24mm; height: 0.4mm; background: var(--ink);
+    margin-left: -12mm;
+  }
+
+  /* tagline — the smile */
+  .tagline {
+    position: absolute; top: 198mm; left: 0; right: 0; text-align: center;
+    font-family: 'Inter Tight', sans-serif; font-weight: 800;
+    font-size: 17pt; line-height: 1.15; letter-spacing: 0.005em;
+    color: var(--ink); text-transform: uppercase;
+  }
+
+  /* sub line — the warm pat */
   .sub {
-    margin-top: 10mm;
-    font-family: 'Inter Tight', sans-serif; font-weight: 700;
-    font-size: 13pt; line-height: 1.35; letter-spacing: 0.01em;
-    color: var(--paper);
-    max-width: 130mm;
-    font-style: italic;
-  }
-  .sub .mute { color: var(--grey2); font-style: normal; font-weight: 500; }
-  .sub b { color: var(--lime); font-style: normal; }
-
-  /* principle list — bottom anchored */
-  .principles {
-    position: absolute; left: 24mm; right: 18mm; bottom: 38mm;
-  }
-  .pr-head {
-    font-family: 'JetBrains Mono'; font-weight: 800;
-    font-size: 8.5pt; letter-spacing: 0.32em; color: var(--lime);
-    text-transform: uppercase; margin-bottom: 4mm;
-  }
-  .pr-list {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 5mm 8mm;
-    border-top: 0.5mm solid var(--lime);
-    padding-top: 5mm;
-  }
-  .pr {
-    font-family: 'Anybody', sans-serif; font-weight: 900;
-    font-variation-settings: "wdth" 110;
-    font-size: 16pt; line-height: 0.95; letter-spacing: -0.005em;
-    color: var(--paper); text-transform: uppercase;
-  }
-  .pr b { color: var(--lime); font-weight: 900; }
-  .pr small {
-    display: block;
-    font-family: 'JetBrains Mono'; font-weight: 700; font-size: 7.5pt;
-    letter-spacing: 0.22em; color: var(--mute);
-    margin-top: 1.5mm; line-height: 1.4; text-transform: uppercase;
+    position: absolute; bottom: 42mm; left: 0; right: 0; text-align: center;
+    font-family: 'JetBrains Mono', monospace; font-weight: 700;
+    font-size: 10pt; letter-spacing: 0.36em; color: var(--ink);
+    text-transform: uppercase;
   }
 
-  /* bottom-right brand stamp */
-  .stamp {
-    position: absolute; right: 18mm; bottom: 12mm;
-    text-align: right;
-    font-family: 'JetBrains Mono'; font-weight: 800;
-    font-size: 7.5pt; letter-spacing: 0.32em; color: var(--lime);
-    text-transform: uppercase; line-height: 1.7;
+  /* footer */
+  .footer {
+    position: absolute; bottom: 22mm; left: 0; right: 0; text-align: center;
+    font-family: 'JetBrains Mono', monospace; font-weight: 800;
+    font-size: 8pt; letter-spacing: 0.34em; color: var(--ink);
+    text-transform: uppercase; opacity: 0.7;
   }
-  .stamp b { color: var(--paper); }
+
+  /* tiny corner ticks at the bottom too, mirroring top */
+  .tick-bl { bottom: 15mm; left: 15mm; transform: scaleY(-1); }
+  .tick-br { bottom: 15mm; right: 15mm; transform: scale(-1, -1); }
 </style>
 </head>
 <body>
   <div class="stage">
     <div class="diecut"></div>
     <div class="body">
-      <div class="runidx"><span>ROCKWALL FITNESS — HOUSE RULE №1 / FY26</span></div>
+      <div class="tick tick-tl"></div>
+      <div class="tick tick-tr"></div>
 
-      <div class="kick">
-        <span class="num">01</span>
-        <span>HOUSE RULE</span>
-        <span class="rule"></span>
-        <span class="end">THE ONLY ONE</span>
-      </div>
+      <div class="kicker">ROCKWALL FITNESS · HOUSE RULE</div>
 
-      <h1 class="hero">
-        <span class="br">WE NEGOTIATE</span>
-        <span class="br">WITH <span class="neg">GRAVITY.</span></span>
-      </h1>
+      <div class="hero">FIXED.</div>
 
-      <div class="sub">
-        Not with prices. <span class="mute">And gravity, as far as we know, has never given a discount.</span>
-      </div>
+      <div class="rule"></div>
+      <div class="tagline">The bar moves. The price doesn't.</div>
 
-      <div class="principles">
-        <div class="pr-head">// THE FINE PRINT</div>
-        <div class="pr-list">
-          <div class="pr">
-            ONE <b>PRICE.</b><br>EVERY MEMBER.
-            <small>The owner pays the same. Promise.</small>
-          </div>
-          <div class="pr">
-            ONE <b>RATE.</b><br>EVERY DAY.
-            <small>Monday morning, Friday night — same number.</small>
-          </div>
-          <div class="pr">
-            NO <b>ASTERISK.</b><br>NO FINE PRINT.
-            <small>What's on the price card is what you pay.</small>
-          </div>
-          <div class="pr">
-            JUST <b>LIFT.</b><br>WE'LL HANDLE THE REST.
-            <small>You came here for gains, not for haggling.</small>
-          </div>
-        </div>
-      </div>
+      <div class="sub">One price · Every member · Always</div>
+      <div class="footer">ROCKWALL FITNESS · BANGALORE · FY26</div>
 
-      <div class="folio">№ 01<small>HOUSE RULE</small></div>
-      <div class="stamp">
-        <b>ROCKWALL FITNESS</b><br>
-        BANGALORE · FY 2026<br>
-        FIXED-RATE EST. 2018
-      </div>
+      <div class="tick tick-bl"></div>
+      <div class="tick tick-br"></div>
     </div>
     <div class="cutline"></div>
   </div>
