@@ -45,12 +45,12 @@
   }
   .top-label b { color: var(--paper); }
 
-  /* hero block — ONE LINE */
+  /* hero block — ONE LINE with high-contrast lime knockout chip */
   .hero {
-    position: absolute; top: 122mm; left: 0; right: 0; text-align: center;
+    position: absolute; top: 118mm; left: 0; right: 0; text-align: center;
     font-family: 'Anybody', sans-serif; font-weight: 900;
-    font-variation-settings: "wdth" 130;
-    font-size: 92pt; line-height: 0.9; letter-spacing: -0.04em;
+    font-variation-settings: "wdth" 110;
+    font-size: 76pt; line-height: 0.92; letter-spacing: -0.035em;
     color: var(--paper); text-transform: uppercase;
     white-space: nowrap;
     z-index: 3;
@@ -58,48 +58,73 @@
   .hero .lime { color: var(--lime); }
   .hero .gt {
     color: var(--lime);
-    font-variation-settings: "wdth" 110;
+    font-variation-settings: "wdth" 95;
     margin: 0 2mm;
   }
+  /* the high-contrast knockout chip — navy text on lime block */
+  .hero .chip {
+    color: var(--ink); background: var(--lime);
+    padding: 0 3mm 1.6mm;
+  }
 
-  /* big tonal section numeral — bleeding off bottom-right (signature brand-kit divider device) */
+  /* sub knockout — small lime chip echoing the hero */
+  .sub .chip {
+    color: var(--ink); background: var(--lime);
+    padding: 0 2.4mm 0.4mm;
+  }
+
+  /* big tonal section numeral — bleeding off bottom-right (brand-kit divider device) */
   .ghost-num {
-    position: absolute; right: -22mm; bottom: -38mm;
+    position: absolute; right: -16mm; bottom: -36mm;
     font-family: 'Anybody', sans-serif; font-weight: 900;
     font-variation-settings: "wdth" 150;
     font-size: 360pt; line-height: 0.7; letter-spacing: -0.06em;
-    color: rgba(255,255,255,0.045);
+    color: rgba(209,221,39,0.06);
     z-index: 1; pointer-events: none;
   }
 
-  /* small lime knurl-ring decoration — top right */
+  /* register corner brackets (anchored, not floating) */
+  .reg {
+    position: absolute; width: 14mm; height: 14mm; z-index: 4;
+  }
+  .reg::before, .reg::after {
+    content: ''; position: absolute; background: var(--lime);
+  }
+  .reg::before { top: 0; left: 0; width: 100%; height: 0.7mm; }
+  .reg::after  { top: 0; left: 0; width: 0.7mm; height: 100%; }
+  .reg-tl { top: 32mm; left: 18mm; }
+  .reg-tr { top: 32mm; right: 18mm; transform: scaleX(-1); }
+  .reg-bl { bottom: 32mm; left: 18mm; transform: scaleY(-1); }
+  .reg-br { bottom: 32mm; right: 18mm; transform: scale(-1, -1); }
+
+  /* small lime knurl-ring decoration — top right, anchored to the rule */
   .knurl {
-    position: absolute; top: 56mm; right: 32mm;
-    width: 30mm; height: 30mm; opacity: 0.85;
+    position: absolute; top: 56mm; right: 36mm;
+    width: 26mm; height: 26mm; opacity: 0.95;
     z-index: 2;
   }
-  /* small barbell silhouette — left of hero, mirror-balance */
+  /* small barbell silhouette — top left, mirror of knurl */
   .bell {
-    position: absolute; top: 92mm; left: 28mm;
-    width: 36mm; height: 14mm; opacity: 0.85;
+    position: absolute; top: 64mm; left: 36mm;
+    width: 32mm; height: 12mm; opacity: 0.95;
     z-index: 2;
   }
-  /* diamond accent chips — flank the hero */
+  /* diamond accent chips — anchored to the bottom rule, register style */
   .diamond {
-    position: absolute; top: 150mm;
-    width: 5mm; height: 5mm; background: var(--lime);
+    position: absolute; width: 5mm; height: 5mm; background: var(--lime);
     transform: rotate(45deg); z-index: 2;
   }
-  .diamond.l { left: 28mm; }
-  .diamond.r { right: 28mm; }
+  .diamond.tl { top: 102mm; left: 50mm; }
+  .diamond.tr { top: 102mm; right: 50mm; }
 
   /* sub line — the warm pat */
   .sub {
-    position: absolute; top: 188mm; left: 0; right: 0; text-align: center;
-    font-family: 'Inter Tight', sans-serif; font-weight: 800;
-    font-size: 16pt; line-height: 1.25; letter-spacing: 0.005em;
+    position: absolute; top: 184mm; left: 0; right: 0; text-align: center;
+    font-family: 'Inter Tight', sans-serif; font-weight: 900;
+    font-size: 18pt; line-height: 1.4; letter-spacing: 0.01em;
     color: var(--paper); text-transform: uppercase;
     max-width: 180mm; margin: 0 auto;
+    z-index: 3;
   }
   .sub .lime { color: var(--lime); }
 
@@ -156,17 +181,23 @@
         </g>
       </svg>
 
-      <!-- flanking diamond ticks -->
-      <div class="diamond l"></div>
-      <div class="diamond r"></div>
+      <!-- register corner brackets -->
+      <div class="reg reg-tl"></div>
+      <div class="reg reg-tr"></div>
+      <div class="reg reg-bl"></div>
+      <div class="reg reg-br"></div>
+
+      <!-- diamond accent chips above hero -->
+      <div class="diamond tl"></div>
+      <div class="diamond tr"></div>
 
       <div class="hero">
-        LIFT<span class="gt">&gt;</span>HAGGLE<span class="lime">.</span>
+        LIFT <span class="gt">&gt;</span> <span class="chip">HAGGLE.</span>
       </div>
 
       <div class="sub">
-        Same price <span class="lime">for everyone.</span><br>
-        Even the owner.
+        Same price for everyone.<br>
+        <span class="chip">Even the owner.</span>
       </div>
 
       <div class="mid-rule"></div>
