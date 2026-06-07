@@ -2,31 +2,29 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Sticker — Front Desk · LIFT &gt; HAGGLE.</title>
+<title>Sticker — Front Desk · respectfully, no.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
   /* A4 portrait counter sticker · 210 x 297 + 3mm bleed = 216 x 303 mm */
   @page { size: 216mm 303mm; margin: 0; bleed: 3mm; marks: crop cross; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root{ --lime:#D1DD27; --ink:#171921; --paper:#FFFFFF;
-         --grey1:#898989; --grey2:#B3B3B3; --mute:rgba(255,255,255,0.6); }
+         --grey1:#898989; --grey2:#B3B3B3; --mute:rgba(255,255,255,0.55); }
   html, body { width: 216mm; height: 303mm; background: var(--ink); color: var(--paper);
     font-family: 'Inter Tight', sans-serif;
     -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .stage { position: relative; width: 216mm; height: 303mm; }
 
-  /* white die-cut base */
+  /* die-cut + die-line (unchanged pattern) */
   .diecut { position: absolute; top: 2mm; left: 2mm; width: 212mm; height: 299mm; background: var(--paper); }
-  /* navy art body — hugs cut with ~1mm halo */
   .body {
     position: absolute; top: 5mm; left: 5mm;
     width: 206mm; height: 293mm;
     background: var(--ink);
     overflow: hidden;
   }
-  /* magenta die-line */
   .cutline {
     position: absolute; top: 4mm; left: 4mm;
     width: 208mm; height: 295mm;
@@ -34,123 +32,95 @@
     z-index: 9;
   }
 
-  /* top hairline + tiny brand whisper */
-  .top-rule { position: absolute; top: 18mm; left: 18mm; right: 18mm; height: 0.4mm; background: var(--lime); }
-  .top-label {
-    position: absolute; top: 22mm; left: 18mm; right: 18mm;
-    display: flex; justify-content: space-between; align-items: center;
-    font-family: 'JetBrains Mono', monospace; font-weight: 700;
-    font-size: 8pt; letter-spacing: 0.34em; color: var(--lime);
-    text-transform: uppercase;
+  /* top-left kicker — lowercase mono, very small */
+  .kicker {
+    position: absolute; top: 22mm; left: 22mm;
+    font-family: 'JetBrains Mono', monospace; font-weight: 600;
+    font-size: 9pt; letter-spacing: 0.12em; color: var(--lime);
+    text-transform: none;
   }
-  .top-label b { color: var(--paper); }
+  .kicker b { color: var(--paper); font-weight: 700; }
 
-  /* hero block — ONE LINE with high-contrast lime knockout chip */
+  /* top-right meta — lowercase mono */
+  .meta {
+    position: absolute; top: 22mm; right: 22mm; text-align: right;
+    font-family: 'JetBrains Mono', monospace; font-weight: 600;
+    font-size: 8pt; letter-spacing: 0.16em; color: var(--mute);
+    text-transform: lowercase;
+  }
+  .meta b { color: var(--lime); font-weight: 700; }
+
+  /* HERO — lowercase, left-aligned, asymmetric */
   .hero {
-    position: absolute; top: 118mm; left: 0; right: 0; text-align: center;
-    font-family: 'Anybody', sans-serif; font-weight: 900;
-    font-variation-settings: "wdth" 110;
-    font-size: 76pt; line-height: 0.92; letter-spacing: -0.035em;
-    color: var(--paper); text-transform: uppercase;
-    white-space: nowrap;
+    position: absolute; top: 88mm; left: 22mm; right: 22mm;
+    font-family: 'Inter Tight', sans-serif;
+    color: var(--paper);
     z-index: 3;
   }
-  .hero .lime { color: var(--lime); }
-  .hero .gt {
-    color: var(--lime);
-    font-variation-settings: "wdth" 95;
-    margin: 0 2mm;
-  }
-  /* the high-contrast knockout chip — navy text on lime block */
-  .hero .chip {
-    color: var(--ink); background: var(--lime);
-    padding: 0 3mm 1.6mm;
-  }
-
-  /* sub knockout — small lime chip echoing the hero */
-  .sub .chip {
-    color: var(--ink); background: var(--lime);
-    padding: 0 2.4mm 0.4mm;
-  }
-
-  /* big tonal section numeral — bleeding off bottom-right (brand-kit divider device) */
-  .ghost-num {
-    position: absolute; right: -16mm; bottom: -36mm;
-    font-family: 'Anybody', sans-serif; font-weight: 900;
-    font-variation-settings: "wdth" 150;
-    font-size: 360pt; line-height: 0.7; letter-spacing: -0.06em;
-    color: rgba(209,221,39,0.06);
-    z-index: 1; pointer-events: none;
-  }
-
-  /* register corner brackets (anchored, not floating) */
-  .reg {
-    position: absolute; width: 14mm; height: 14mm; z-index: 4;
-  }
-  .reg::before, .reg::after {
-    content: ''; position: absolute; background: var(--lime);
-  }
-  .reg::before { top: 0; left: 0; width: 100%; height: 0.7mm; }
-  .reg::after  { top: 0; left: 0; width: 0.7mm; height: 100%; }
-  .reg-tl { top: 32mm; left: 18mm; }
-  .reg-tr { top: 32mm; right: 18mm; transform: scaleX(-1); }
-  .reg-bl { bottom: 32mm; left: 18mm; transform: scaleY(-1); }
-  .reg-br { bottom: 32mm; right: 18mm; transform: scale(-1, -1); }
-
-  /* small lime knurl-ring decoration — top right, anchored to the rule */
-  .knurl {
-    position: absolute; top: 56mm; right: 36mm;
-    width: 26mm; height: 26mm; opacity: 0.95;
-    z-index: 2;
-  }
-  /* small barbell silhouette — top left, mirror of knurl */
-  .bell {
-    position: absolute; top: 64mm; left: 36mm;
-    width: 32mm; height: 12mm; opacity: 0.95;
-    z-index: 2;
-  }
-  /* diamond accent chips — anchored to the bottom rule, register style */
-  .diamond {
-    position: absolute; width: 5mm; height: 5mm; background: var(--lime);
-    transform: rotate(45deg); z-index: 2;
-  }
-  .diamond.tl { top: 102mm; left: 50mm; }
-  .diamond.tr { top: 102mm; right: 50mm; }
-
-  /* sub line — the warm pat */
-  .sub {
-    position: absolute; top: 184mm; left: 0; right: 0; text-align: center;
-    font-family: 'Inter Tight', sans-serif; font-weight: 900;
-    font-size: 18pt; line-height: 1.4; letter-spacing: 0.01em;
-    color: var(--paper); text-transform: uppercase;
-    max-width: 180mm; margin: 0 auto;
-    z-index: 3;
-  }
-  .sub .lime { color: var(--lime); }
-
-  /* mid hairline above the credit line */
-  .mid-rule { position: absolute; top: 224mm; left: 50%; width: 20mm; height: 0.4mm; background: var(--lime); margin-left: -10mm; }
-  .credit {
-    position: absolute; top: 232mm; left: 0; right: 0; text-align: center;
+  .hero .l1 {
+    display: block;
     font-family: 'Inter Tight', sans-serif; font-weight: 500;
+    font-size: 54pt; line-height: 0.98; letter-spacing: -0.03em;
+    color: var(--paper);
     font-style: italic;
-    font-size: 11pt; line-height: 1.4; letter-spacing: 0.01em;
-    color: var(--mute);
-    max-width: 160mm; margin: 0 auto;
+    margin-bottom: 6mm;
   }
-  .credit b { color: var(--lime); font-style: normal; font-weight: 800; }
+  .hero .l2 {
+    display: block;
+    font-family: 'Inter Tight', sans-serif; font-weight: 900;
+    font-size: 160pt; line-height: 0.88; letter-spacing: -0.06em;
+    color: var(--lime);
+  }
+  .hero .l2 .dot {
+    display: inline-block;
+    color: var(--ink); background: var(--lime);
+    padding: 0 2mm 3mm;
+    margin-left: 1mm;
+    line-height: 0.88;
+  }
+  /* sparkle next to the "no" */
+  .spark-hero {
+    position: absolute; top: 168mm; left: 154mm;
+    width: 22mm; height: 22mm;
+    z-index: 4;
+  }
 
-  /* bottom hairline + footer */
-  .bot-rule { position: absolute; bottom: 22mm; left: 18mm; right: 18mm; height: 0.4mm; background: var(--lime); }
+  /* sub band — left aligned, casual */
+  .sub {
+    position: absolute; top: 220mm; left: 22mm; right: 60mm;
+    font-family: 'Inter Tight', sans-serif; font-weight: 600;
+    font-size: 16pt; line-height: 1.4; letter-spacing: -0.005em;
+    color: var(--paper);
+    z-index: 3;
+  }
+  .sub .lime { color: var(--lime); font-weight: 800; }
+  .sub b { font-weight: 800; color: var(--paper); }
+  .sub i { font-style: italic; font-weight: 500; color: var(--grey2); }
+
+  /* scattered sparkles (gen-z internet sticker energy) */
+  .spark {
+    position: absolute; z-index: 2; opacity: 0.95;
+  }
+  .spark-a { top: 56mm; right: 40mm; width: 14mm; height: 14mm; transform: rotate(-12deg); }
+  .spark-b { top: 198mm; right: 24mm; width: 18mm; height: 18mm; transform: rotate(18deg); }
+  .spark-c { top: 256mm; left: 38mm; width: 10mm; height: 10mm; transform: rotate(-8deg); opacity: 0.6; }
+
+  /* bottom-left footer — lowercase mono */
   .footer {
-    position: absolute; bottom: 12mm; left: 18mm; right: 18mm;
-    display: flex; justify-content: space-between; align-items: center;
+    position: absolute; bottom: 18mm; left: 22mm;
     font-family: 'JetBrains Mono', monospace; font-weight: 700;
-    font-size: 7.5pt; letter-spacing: 0.34em; color: var(--lime);
-    text-transform: uppercase;
+    font-size: 8pt; letter-spacing: 0.16em; color: var(--lime);
+    text-transform: lowercase;
   }
-  .footer b { color: var(--paper); }
+  .footer b { color: var(--paper); font-weight: 800; }
 
+  /* bottom-right tag — tiny */
+  .tag {
+    position: absolute; bottom: 18mm; right: 22mm; text-align: right;
+    font-family: 'JetBrains Mono', monospace; font-weight: 600;
+    font-size: 7pt; letter-spacing: 0.18em; color: var(--mute);
+    text-transform: lowercase;
+  }
 </style>
 </head>
 <body>
@@ -158,58 +128,38 @@
     <div class="diecut"></div>
     <div class="body">
 
-      <div class="top-rule"></div>
-      <div class="top-label"><span><b>ROCKWALL FITNESS</b></span><span>BLR · FY26</span></div>
+      <div class="kicker">// <b>house rule</b> · no. 01</div>
+      <div class="meta">rockwall fitness<br><b>blr · fy26</b></div>
 
-      <!-- background section numeral -->
-      <div class="ghost-num">01</div>
-
-      <!-- decorative knurl ring (gym signature) -->
-      <svg class="knurl" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="30" cy="30" r="26" fill="none" stroke="#D1DD27" stroke-width="2.4" stroke-dasharray="1.6 2.6"/>
-        <circle cx="30" cy="30" r="18" fill="none" stroke="#D1DD27" stroke-width="0.4" opacity="0.5"/>
+      <!-- decorative sparkles -->
+      <svg class="spark spark-a" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#D1DD27" d="M50 0 C52 38 62 48 100 50 C62 52 52 62 50 100 C48 62 38 52 0 50 C38 48 48 38 50 0 Z"/>
       </svg>
-
-      <!-- decorative barbell -->
-      <svg class="bell" viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
-        <g fill="#D1DD27" stroke="none">
-          <rect x="0" y="6" width="14" height="28" rx="2"/>
-          <rect x="14" y="12" width="6" height="16" rx="1"/>
-          <rect x="20" y="16" width="60" height="8"/>
-          <rect x="80" y="12" width="6" height="16" rx="1"/>
-          <rect x="86" y="6" width="14" height="28" rx="2"/>
-        </g>
-      </svg>
-
-      <!-- register corner brackets -->
-      <div class="reg reg-tl"></div>
-      <div class="reg reg-tr"></div>
-      <div class="reg reg-bl"></div>
-      <div class="reg reg-br"></div>
-
-      <!-- diamond accent chips above hero -->
-      <div class="diamond tl"></div>
-      <div class="diamond tr"></div>
 
       <div class="hero">
-        LIFT <span class="gt">&gt;</span> <span class="chip">HAGGLE.</span>
+        <span class="l1">respectfully,</span>
+        <span class="l2">no<span class="dot">.</span></span>
       </div>
+
+      <svg class="spark spark-hero" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#FFFFFF" d="M50 0 C52 38 62 48 100 50 C62 52 52 62 50 100 C48 62 38 52 0 50 C38 48 48 38 50 0 Z"/>
+      </svg>
+
+      <svg class="spark spark-b" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#D1DD27" d="M50 0 C52 38 62 48 100 50 C62 52 52 62 50 100 C48 62 38 52 0 50 C38 48 48 38 50 0 Z"/>
+      </svg>
 
       <div class="sub">
-        Same price for everyone.<br>
-        <span class="chip">Even the owner.</span>
+        the price is the price. <span class="lime">same for everyone</span> who walks in — yes, <b>even the owner</b>.<br>
+        <i>save the negotiation for the last rep.</i>
       </div>
 
-      <div class="mid-rule"></div>
-      <div class="credit">
-        Save the negotiation for the <b>last rep.</b>
-      </div>
+      <svg class="spark spark-c" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#D1DD27" d="M50 0 C52 38 62 48 100 50 C62 52 52 62 50 100 C48 62 38 52 0 50 C38 48 48 38 50 0 Z"/>
+      </svg>
 
-      <div class="bot-rule"></div>
-      <div class="footer">
-        <span>HOUSE RULE / <b>FY 2026</b></span>
-        <span>SAME RATE SINCE 2018</span>
-      </div>
+      <div class="footer">rockwall fitness · <b>since '18</b> · same rate, same vibe</div>
+      <div class="tag">no haggle era ✦</div>
     </div>
     <div class="cutline"></div>
   </div>
