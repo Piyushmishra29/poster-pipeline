@@ -2,165 +2,450 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Sticker — Front Desk · respectfully, no.</title>
+<title>Sticker — Front Desk · NO HAGGLE (sticker pile)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900&family=Bricolage+Grotesque:opsz,wght@10..48,400..800&family=Caveat:wght@400;600;700&family=Inter+Tight:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
   /* A4 portrait counter sticker · 210 x 297 + 3mm bleed = 216 x 303 mm */
   @page { size: 216mm 303mm; margin: 0; bleed: 3mm; marks: crop cross; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  :root{ --lime:#D1DD27; --ink:#171921; --paper:#FFFFFF;
-         --grey1:#898989; --grey2:#B3B3B3; --mute:rgba(255,255,255,0.55); }
-  html, body { width: 216mm; height: 303mm; background: var(--ink); color: var(--paper);
-    font-family: 'Inter Tight', sans-serif;
-    -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .stage { position: relative; width: 216mm; height: 303mm; }
-
-  /* die-cut + die-line (unchanged pattern) */
-  .diecut { position: absolute; top: 2mm; left: 2mm; width: 212mm; height: 299mm; background: var(--paper); }
-  .body {
-    position: absolute; top: 5mm; left: 5mm;
-    width: 206mm; height: 293mm;
-    background: var(--ink);
-    overflow: hidden;
+  :root {
+    --lime:#D1DD27;
+    --ink:#171921;
+    --paper:#FFFFFF;
+    --cream:#F1EAD3;
+    --postit:#FFDC5E;
+    --coral:#FF5C4D;
+    --shadow: 0 0.8mm 1.4mm rgba(23,25,33,0.18);
+    --shadow-sm: 0 0.4mm 0.8mm rgba(23,25,33,0.16);
   }
+  html, body {
+    width: 216mm; height: 303mm; background: var(--cream); color: var(--ink);
+    font-family: 'Inter Tight', sans-serif;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .stage { position: relative; width: 216mm; height: 303mm; overflow: hidden; }
+  .paper { position: absolute; top: 0; left: 0; width: 216mm; height: 303mm; background: var(--cream); }
+
+  /* magenta dashed cut line — overlays everything */
   .cutline {
     position: absolute; top: 4mm; left: 4mm;
     width: 208mm; height: 295mm;
     background: transparent; border: 0.6mm dashed #FF00FF;
+    z-index: 999;
+  }
+
+  /* universal sticker — drop shadow */
+  .sticker { position: absolute; box-shadow: var(--shadow); }
+
+  /* ─────────────────────────────────────────
+     HERO — "NO HAGGLE" lime rounded sticker
+     ───────────────────────────────────────── */
+  .hero {
+    top: 110mm; left: 13mm;
+    width: 190mm; height: 96mm;
+    background: var(--lime);
+    border: 0.7mm solid var(--ink);
+    border-radius: 10mm;
+    transform: rotate(-3deg);
+    z-index: 10;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 4mm 6mm 5mm;
+  }
+  .hero .word {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900; font-variation-settings: "wdth" 130;
+    font-size: 102pt; line-height: 0.85; letter-spacing: -0.04em;
+    color: var(--ink);
+    text-align: center;
+  }
+  .hero .pill {
+    margin-top: 4mm;
+    background: var(--ink); color: var(--lime);
+    padding: 1.8mm 4.5mm 2.2mm;
+    border-radius: 100mm;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800; font-size: 9.5pt; letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  /* ─────────────────────────────────────────
+     SPEECH BUBBLE — top-left
+     ───────────────────────────────────────── */
+  .speech {
+    top: 22mm; left: 16mm;
+    width: 86mm; height: 32mm;
+    background: var(--paper);
+    border: 0.7mm solid var(--ink);
+    border-radius: 18mm;
+    transform: rotate(-7deg);
+    z-index: 7;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 4mm;
+  }
+  .speech .t {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700; font-size: 18pt; line-height: 1;
+    color: var(--ink); letter-spacing: -0.02em;
+  }
+  .speech .t i { font-style: italic; font-weight: 600; }
+  .speech .tail {
+    position: absolute;
+    bottom: -8mm; left: 28mm;
+    width: 11mm; height: 11mm;
+    background: var(--paper);
+    border-right: 0.7mm solid var(--ink);
+    border-bottom: 0.7mm solid var(--ink);
+    transform: rotate(40deg);
+    z-index: -1;
+  }
+
+  /* ─────────────────────────────────────────
+     STARBURST — top-right
+     ───────────────────────────────────────── */
+  .burst {
+    top: 22mm; right: 18mm;
+    width: 76mm; height: 76mm;
+    transform: rotate(14deg);
+    z-index: 7;
+    box-shadow: none;
+  }
+  .burst svg {
+    width: 100%; height: 100%; display: block;
+    filter: drop-shadow(0 0.7mm 1mm rgba(23,25,33,0.22));
+  }
+  .burst .label {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    color: var(--ink);
+    text-align: center;
+    line-height: 0.9;
+    transform: rotate(-4deg);
+  }
+  .burst .label .big {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900; font-variation-settings: "wdth" 110;
+    font-size: 19pt; letter-spacing: -0.02em;
+  }
+  .burst .label .sm {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800; font-size: 7pt;
+    letter-spacing: 0.24em;
+    margin-top: 2mm;
+  }
+
+  /* ─────────────────────────────────────────
+     TAPE STRIP — mid-top
+     ───────────────────────────────────────── */
+  .tape {
+    top: 88mm; left: 78mm;
+    width: 76mm; height: 13mm;
+    background: rgba(255,255,255,0.88);
+    border-left: 0.4mm dashed rgba(23,25,33,0.2);
+    border-right: 0.4mm dashed rgba(23,25,33,0.2);
+    transform: rotate(-5deg);
+    z-index: 8;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0.3mm 0.6mm rgba(23,25,33,0.12);
+  }
+  .tape .t {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800; font-size: 9pt; letter-spacing: 0.22em;
+    color: var(--ink);
+    text-transform: uppercase;
+  }
+
+  /* ─────────────────────────────────────────
+     PEEKING APPROVED LABEL — overlapping hero corner
+     ───────────────────────────────────────── */
+  .approved {
+    top: 96mm; right: 12mm;
+    width: 64mm; height: 18mm;
+    background: var(--paper);
+    border: 0.7mm solid var(--ink);
+    transform: rotate(11deg);
+    z-index: 11;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 3mm;
+    border-radius: 1.5mm;
+  }
+  .approved .t {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800; font-size: 9pt; letter-spacing: 0.14em;
+    color: var(--ink); text-transform: uppercase;
+  }
+  .approved .t b { color: var(--ink); background: var(--lime); padding: 0.3mm 1.2mm; }
+
+  /* ─────────────────────────────────────────
+     POST-IT — bottom-left, handwritten
+     ───────────────────────────────────────── */
+  .postit {
+    top: 215mm; left: 16mm;
+    width: 82mm; height: 60mm;
+    background: var(--postit);
+    transform: rotate(-7deg);
+    z-index: 8;
+    padding: 5mm 6mm 4mm;
+    border-radius: 1mm;
+  }
+  .postit::before {
+    content: ''; position: absolute;
+    top: -1.5mm; left: 50%;
+    width: 30mm; height: 5mm;
+    transform: translateX(-50%) rotate(2deg);
+    background: rgba(255,255,255,0.55);
+    border: 0.2mm dashed rgba(23,25,33,0.2);
+  }
+  .postit .t {
+    font-family: 'Caveat', cursive;
+    font-weight: 700; font-size: 30pt; line-height: 0.95; color: var(--ink);
+  }
+  .postit .t2 {
+    font-family: 'Caveat', cursive;
+    font-weight: 700; font-size: 24pt; line-height: 1.05; color: var(--ink);
+    margin-top: 1mm;
+  }
+  .postit .t3 {
+    font-family: 'Caveat', cursive;
+    font-weight: 600; font-size: 17pt; line-height: 1.1; color: var(--ink);
+    margin-top: 2.5mm;
+  }
+  .postit .sig {
+    margin-top: 2.5mm;
+    font-family: 'Caveat', cursive;
+    font-weight: 700; font-size: 16pt; line-height: 1; color: var(--ink);
+    opacity: 0.7;
+  }
+
+  /* ─────────────────────────────────────────
+     SMILEY — mid right
+     ───────────────────────────────────────── */
+  .smiley {
+    top: 214mm; left: 108mm;
+    width: 55mm; height: 55mm;
+    background: var(--lime);
+    border: 0.7mm solid var(--ink);
+    border-radius: 50%;
+    transform: rotate(8deg);
+    z-index: 8;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .smiley svg { width: 72%; height: 72%; }
+
+  /* ─────────────────────────────────────────
+     HEART — bottom-right
+     ───────────────────────────────────────── */
+  .heart {
+    position: absolute;
+    top: 222mm; left: 168mm;
+    width: 38mm; height: 38mm;
+    transform: rotate(-14deg);
     z-index: 9;
   }
-
-  /* top-left kicker — lowercase mono, very small */
-  .kicker {
-    position: absolute; top: 22mm; left: 22mm;
-    font-family: 'JetBrains Mono', monospace; font-weight: 600;
-    font-size: 9pt; letter-spacing: 0.12em; color: var(--lime);
-    text-transform: none;
+  .heart svg {
+    width: 100%; height: 100%; display: block;
+    filter: drop-shadow(0 0.6mm 1mm rgba(23,25,33,0.2));
   }
-  .kicker b { color: var(--paper); font-weight: 700; }
-
-  /* top-right meta — lowercase mono */
-  .meta {
-    position: absolute; top: 22mm; right: 22mm; text-align: right;
-    font-family: 'JetBrains Mono', monospace; font-weight: 600;
-    font-size: 8pt; letter-spacing: 0.16em; color: var(--mute);
-    text-transform: lowercase;
-  }
-  .meta b { color: var(--lime); font-weight: 700; }
-
-  /* HERO — lowercase, left-aligned, asymmetric */
-  .hero {
-    position: absolute; top: 88mm; left: 22mm; right: 22mm;
-    font-family: 'Inter Tight', sans-serif;
+  .heart .l {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800; font-size: 5.4pt; letter-spacing: 0.16em;
     color: var(--paper);
-    z-index: 3;
+    text-transform: uppercase;
+    line-height: 1.1; text-align: center;
+    transform: translateY(1mm);
   }
-  .hero .l1 {
-    display: block;
-    font-family: 'Inter Tight', sans-serif; font-weight: 500;
-    font-size: 54pt; line-height: 0.98; letter-spacing: -0.03em;
-    color: var(--paper);
-    font-style: italic;
-    margin-bottom: 6mm;
+
+  /* ─────────────────────────────────────────
+     BHAI NOTE — small handwritten
+     ───────────────────────────────────────── */
+  .bhai {
+    top: 200mm; left: 152mm;
+    width: 56mm; height: 16mm;
+    transform: rotate(6deg);
+    z-index: 10;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: none;
   }
-  .hero .l2 {
-    display: block;
-    font-family: 'Inter Tight', sans-serif; font-weight: 900;
-    font-size: 160pt; line-height: 0.88; letter-spacing: -0.06em;
+  .bhai .t {
+    font-family: 'Caveat', cursive;
+    font-weight: 700; font-size: 26pt; line-height: 1; color: var(--ink);
+  }
+
+  /* ─────────────────────────────────────────
+     OVAL STAMP — bottom band
+     ───────────────────────────────────────── */
+  .stamp {
+    top: 277mm; left: 38mm;
+    width: 144mm; height: 16mm;
+    background: var(--ink);
+    border-radius: 50%;
+    transform: rotate(-1.5deg);
+    z-index: 9;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .stamp .t {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900; font-variation-settings: "wdth" 110;
+    font-size: 12pt; letter-spacing: 0.06em;
     color: var(--lime);
-  }
-  .hero .l2 .dot {
-    display: inline-block;
-    color: var(--ink); background: var(--lime);
-    padding: 0 2mm 3mm;
-    margin-left: 1mm;
-    line-height: 0.88;
-  }
-  /* sparkle next to the "no" */
-  .spark-hero {
-    position: absolute; top: 168mm; left: 154mm;
-    width: 22mm; height: 22mm;
-    z-index: 4;
+    text-transform: uppercase;
   }
 
-  /* sub band — left aligned, casual */
-  .sub {
-    position: absolute; top: 220mm; left: 22mm; right: 60mm;
-    font-family: 'Inter Tight', sans-serif; font-weight: 600;
-    font-size: 16pt; line-height: 1.4; letter-spacing: -0.005em;
-    color: var(--paper);
-    z-index: 3;
+  /* ─────────────────────────────────────────
+     ARROW DOODLE — wiggly path from speech bubble to hero
+     ───────────────────────────────────────── */
+  .arrow-doodle {
+    position: absolute;
+    top: 56mm; left: 58mm;
+    width: 36mm; height: 56mm;
+    z-index: 9;
   }
-  .sub .lime { color: var(--lime); font-weight: 800; }
-  .sub b { font-weight: 800; color: var(--paper); }
-  .sub i { font-style: italic; font-weight: 500; color: var(--grey2); }
+  .arrow-doodle svg { width: 100%; height: 100%; display: block; }
 
-  /* scattered sparkles (gen-z internet sticker energy) */
-  .spark {
-    position: absolute; z-index: 2; opacity: 0.95;
+  /* ─────────────────────────────────────────
+     SPARKLES — scattered four-point stars
+     ───────────────────────────────────────── */
+  .sparkle { position: absolute; z-index: 9; }
+  .sparkle svg { width: 100%; height: 100%; display: block; }
+  .sp-a { top: 102mm; right: 86mm; width: 12mm; height: 12mm; transform: rotate(-12deg); }
+  .sp-b { top: 198mm; left: 102mm; width: 11mm; height: 11mm; transform: rotate(20deg); }
+  .sp-c { top: 64mm; left: 118mm; width: 8mm; height: 8mm; transform: rotate(-5deg); }
+  .sp-d { top: 268mm; left: 14mm; width: 10mm; height: 10mm; transform: rotate(10deg); }
+  .sp-e { top: 192mm; right: 24mm; width: 9mm; height: 9mm; transform: rotate(15deg); }
+
+  /* ─────────────────────────────────────────
+     TINY HAND-WRITTEN NOTES
+     ───────────────────────────────────────── */
+  .scrib {
+    position: absolute; z-index: 11;
+    font-family: 'Caveat', cursive;
+    font-weight: 700; color: var(--ink);
+    line-height: 1;
   }
-  .spark-a { top: 56mm; right: 40mm; width: 14mm; height: 14mm; transform: rotate(-12deg); }
-  .spark-b { top: 198mm; right: 24mm; width: 18mm; height: 18mm; transform: rotate(18deg); }
-  .spark-c { top: 256mm; left: 38mm; width: 10mm; height: 10mm; transform: rotate(-8deg); opacity: 0.6; }
-
-  /* bottom-left footer — lowercase mono */
-  .footer {
-    position: absolute; bottom: 18mm; left: 22mm;
-    font-family: 'JetBrains Mono', monospace; font-weight: 700;
-    font-size: 8pt; letter-spacing: 0.16em; color: var(--lime);
-    text-transform: lowercase;
+  .scrib-1 {
+    top: 92mm; left: 26mm;
+    font-size: 17pt;
+    transform: rotate(-4deg);
   }
-  .footer b { color: var(--paper); font-weight: 800; }
-
-  /* bottom-right tag — tiny */
-  .tag {
-    position: absolute; bottom: 18mm; right: 22mm; text-align: right;
-    font-family: 'JetBrains Mono', monospace; font-weight: 600;
-    font-size: 7pt; letter-spacing: 0.18em; color: var(--mute);
-    text-transform: lowercase;
+  .scrib-2 {
+    top: 102mm; left: 16mm;
+    font-size: 14pt;
+    transform: rotate(2deg);
+    opacity: 0.7;
   }
 </style>
 </head>
 <body>
   <div class="stage">
-    <div class="diecut"></div>
-    <div class="body">
+    <div class="paper"></div>
 
-      <div class="kicker">// <b>house rule</b> · no. 01</div>
-      <div class="meta">rockwall fitness<br><b>blr · fy26</b></div>
-
-      <!-- decorative sparkles -->
-      <svg class="spark spark-a" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#D1DD27" d="M50 0 C52 38 62 48 100 50 C62 52 52 62 50 100 C48 62 38 52 0 50 C38 48 48 38 50 0 Z"/>
-      </svg>
-
-      <div class="hero">
-        <span class="l1">respectfully,</span>
-        <span class="l2">no<span class="dot">.</span></span>
-      </div>
-
-      <svg class="spark spark-hero" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#FFFFFF" d="M50 0 C52 38 62 48 100 50 C62 52 52 62 50 100 C48 62 38 52 0 50 C38 48 48 38 50 0 Z"/>
-      </svg>
-
-      <svg class="spark spark-b" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#D1DD27" d="M50 0 C52 38 62 48 100 50 C62 52 52 62 50 100 C48 62 38 52 0 50 C38 48 48 38 50 0 Z"/>
-      </svg>
-
-      <div class="sub">
-        the price is the price. <span class="lime">same for everyone</span> who walks in — yes, <b>even the owner</b>.<br>
-        <i>save the negotiation for the last rep.</i>
-      </div>
-
-      <svg class="spark spark-c" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#D1DD27" d="M50 0 C52 38 62 48 100 50 C62 52 52 62 50 100 C48 62 38 52 0 50 C38 48 48 38 50 0 Z"/>
-      </svg>
-
-      <div class="footer">rockwall fitness · <b>since '18</b> · same rate, same vibe</div>
-      <div class="tag">no haggle era ✦</div>
+    <!-- ─────── SPEECH BUBBLE — top-left ─────── -->
+    <div class="sticker speech">
+      <div class="tail"></div>
+      <div class="t"><i>respectfully...</i> &#10024;</div>
     </div>
+
+    <!-- ─────── STARBURST — top-right ─────── -->
+    <div class="sticker burst">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <polygon fill="#D1DD27" stroke="#171921" stroke-width="1.5"
+          points="50,0 56,32 79,11 65,38 96,28 70,46 100,50 70,54 96,72 65,62 79,89 56,68 50,100 44,68 21,89 35,62 4,72 30,54 0,50 30,46 4,28 35,38 21,11 44,32"/>
+      </svg>
+      <div class="label">
+        <span class="big">ONE PRICE</span>
+        <span class="sm">FY26 · FOR ALL</span>
+      </div>
+    </div>
+
+    <!-- ─────── TAPE STRIP — mid-top ─────── -->
+    <div class="sticker tape">
+      <div class="t">since &rsquo;18 &#10022; bangalore</div>
+    </div>
+
+    <!-- ─────── ARROW DOODLE — speech bubble → hero ─────── -->
+    <div class="arrow-doodle">
+      <svg viewBox="0 0 80 120" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 8 6 Q 30 30 38 60 Q 44 88 36 110 L 28 96 M 36 110 L 50 100"
+          fill="none" stroke="#171921" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- ─────── TINY SCRIBBLE NOTES ─────── -->
+    <div class="scrib scrib-1">↓ this means you</div>
+    <div class="scrib scrib-2">(yes, you)</div>
+
+    <!-- ─────── HERO ─────── -->
+    <div class="sticker hero">
+      <div class="word">NO HAGGLE</div>
+      <div class="pill">one price &middot; for everyone</div>
+    </div>
+
+    <!-- ─────── PEEKING APPROVED LABEL ─────── -->
+    <div class="sticker approved">
+      <div class="t"><b>FIXED</b> &middot; PRICE &middot; APPROVED &#10003;</div>
+    </div>
+
+    <!-- ─────── BHAI HAND NOTE ─────── -->
+    <div class="sticker bhai">
+      <div class="t">bhai... no.</div>
+    </div>
+
+    <!-- ─────── POST-IT ─────── -->
+    <div class="sticker postit">
+      <div class="t">yes &mdash;</div>
+      <div class="t2">even the owner.</div>
+      <div class="t3">same rate, every walk-in. &#9825;</div>
+      <div class="sig">&mdash; mgmt :)</div>
+    </div>
+
+    <!-- ─────── SMILEY ─────── -->
+    <div class="sticker smiley">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="34" cy="38" r="6.5" fill="#171921"/>
+        <circle cx="66" cy="38" r="6.5" fill="#171921"/>
+        <path d="M 24 58 Q 50 84 76 58"
+          fill="none" stroke="#171921" stroke-width="6" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <!-- ─────── HEART ─────── -->
+    <div class="heart">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#FF5C4D" stroke="#171921" stroke-width="3"
+          d="M50 88 C 12 60 8 32 28 22 C 40 16 50 24 50 34 C 50 24 60 16 72 22 C 92 32 88 60 50 88 Z"/>
+      </svg>
+      <div class="l">no haggle<br>era &#10022;</div>
+    </div>
+
+    <!-- ─────── OVAL STAMP ─────── -->
+    <div class="sticker stamp">
+      <div class="t">&#9733; ROCKWALL FITNESS &middot; EST. 2018 &middot; BANGALORE &#9733;</div>
+    </div>
+
+    <!-- ─────── SPARKLES ─────── -->
+    <div class="sparkle sp-a">
+      <svg viewBox="0 0 100 100"><path fill="#171921" d="M50 0 C52 38 62 48 100 50 C62 52 52 62 50 100 C48 62 38 52 0 50 C38 48 48 38 50 0 Z"/></svg>
+    </div>
+    <div class="sparkle sp-b">
+      <svg viewBox="0 0 100 100"><path fill="#FF5C4D" d="M50 0 C52 38 62 48 100 50 C62 52 52 62 50 100 C48 62 38 52 0 50 C38 48 48 38 50 0 Z"/></svg>
+    </div>
+    <div class="sparkle sp-c">
+      <svg viewBox="0 0 100 100"><path fill="#171921" d="M50 0 C52 38 62 48 100 50 C62 52 52 62 50 100 C48 62 38 52 0 50 C38 48 48 38 50 0 Z"/></svg>
+    </div>
+    <div class="sparkle sp-d">
+      <svg viewBox="0 0 100 100"><path fill="#D1DD27" stroke="#171921" stroke-width="3" d="M50 0 C52 38 62 48 100 50 C62 52 52 62 50 100 C48 62 38 52 0 50 C38 48 48 38 50 0 Z"/></svg>
+    </div>
+    <div class="sparkle sp-e">
+      <svg viewBox="0 0 100 100"><path fill="#171921" d="M50 0 C52 38 62 48 100 50 C62 52 52 62 50 100 C48 62 38 52 0 50 C38 48 48 38 50 0 Z"/></svg>
+    </div>
+
     <div class="cutline"></div>
   </div>
 </body>
