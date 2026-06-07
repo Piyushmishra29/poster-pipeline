@@ -2,29 +2,31 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Sticker — Front Desk · FIXED.</title>
+<title>Sticker — Front Desk · LIFT &gt; HAGGLE.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
-  /* A4 portrait front-desk sticker · 210 x 297 + 3mm bleed = 216 x 303 mm */
+  /* A4 portrait counter sticker · 210 x 297 + 3mm bleed = 216 x 303 mm */
   @page { size: 216mm 303mm; margin: 0; bleed: 3mm; marks: crop cross; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  :root{ --lime:#D1DD27; --ink:#171921; --paper:#FFFFFF; }
-  html, body { width: 216mm; height: 303mm; background: var(--lime); color: var(--ink);
+  :root{ --lime:#D1DD27; --ink:#171921; --paper:#FFFFFF;
+         --grey1:#898989; --grey2:#B3B3B3; --mute:rgba(255,255,255,0.6); }
+  html, body { width: 216mm; height: 303mm; background: var(--ink); color: var(--paper);
     font-family: 'Inter Tight', sans-serif;
     -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .stage { position: relative; width: 216mm; height: 303mm; }
 
-  /* white die-cut + magenta die-line */
+  /* white die-cut base */
   .diecut { position: absolute; top: 2mm; left: 2mm; width: 212mm; height: 299mm; background: var(--paper); }
-  /* lime full-bleed sign body — hugs the cut with a ~1mm halo */
+  /* navy art body — hugs cut with ~1mm halo */
   .body {
     position: absolute; top: 5mm; left: 5mm;
     width: 206mm; height: 293mm;
-    background: var(--lime);
+    background: var(--ink);
     overflow: hidden;
   }
+  /* magenta die-line */
   .cutline {
     position: absolute; top: 4mm; left: 4mm;
     width: 208mm; height: 295mm;
@@ -32,90 +34,96 @@
     z-index: 9;
   }
 
-  /* corner register ticks — the only structural accent */
-  .tick {
-    position: absolute; width: 12mm; height: 12mm; z-index: 4;
-  }
-  .tick::before, .tick::after {
-    content: ''; position: absolute; background: var(--ink);
-  }
-  .tick::before { /* horizontal arm */ top: 0; left: 0; width: 100%; height: 0.8mm; }
-  .tick::after  { /* vertical arm */ top: 0; left: 0; width: 0.8mm; height: 100%; }
-  .tick-tl { top: 15mm; left: 15mm; }
-  .tick-tr { top: 15mm; right: 15mm; transform: scaleX(-1); }
-
-  /* top kicker — minimal, just a brand whisper */
-  .kicker {
-    position: absolute; top: 18mm; left: 0; right: 0; text-align: center;
+  /* top hairline + tiny brand whisper */
+  .top-rule { position: absolute; top: 18mm; left: 18mm; right: 18mm; height: 0.4mm; background: var(--lime); }
+  .top-label {
+    position: absolute; top: 22mm; left: 18mm; right: 18mm;
+    display: flex; justify-content: space-between; align-items: center;
     font-family: 'JetBrains Mono', monospace; font-weight: 700;
-    font-size: 9pt; letter-spacing: 0.5em; color: var(--ink);
+    font-size: 8pt; letter-spacing: 0.34em; color: var(--lime);
     text-transform: uppercase;
   }
+  .top-label b { color: var(--paper); }
 
-  /* hero — the whole point */
+  /* hero block — 2-line stack, slightly above optical center */
   .hero {
-    position: absolute; top: 80mm; left: 0; right: 0; text-align: center;
+    position: absolute; top: 70mm; left: 0; right: 0; text-align: center;
     font-family: 'Anybody', sans-serif; font-weight: 900;
-    font-variation-settings: "wdth" 140;
-    font-size: 196pt; line-height: 0.82; letter-spacing: -0.04em;
-    color: var(--ink); text-transform: uppercase;
+    font-variation-settings: "wdth" 150;
+    font-size: 156pt; line-height: 0.86; letter-spacing: -0.05em;
+    color: var(--paper); text-transform: uppercase;
   }
-
-  /* register hairline above the tagline */
-  .rule {
-    position: absolute; left: 50%; top: 192mm;
-    width: 24mm; height: 0.4mm; background: var(--ink);
-    margin-left: -12mm;
-  }
-
-  /* tagline — the smile */
-  .tagline {
-    position: absolute; top: 198mm; left: 0; right: 0; text-align: center;
-    font-family: 'Inter Tight', sans-serif; font-weight: 800;
-    font-size: 17pt; line-height: 1.15; letter-spacing: 0.005em;
-    color: var(--ink); text-transform: uppercase;
+  .hero .row { display: block; }
+  .hero .lime { color: var(--lime); }
+  .hero .gt {
+    color: var(--lime);
+    font-variation-settings: "wdth" 110;
+    margin: 0 1mm;
   }
 
   /* sub line — the warm pat */
   .sub {
-    position: absolute; bottom: 42mm; left: 0; right: 0; text-align: center;
+    position: absolute; top: 188mm; left: 0; right: 0; text-align: center;
+    font-family: 'Inter Tight', sans-serif; font-weight: 800;
+    font-size: 16pt; line-height: 1.25; letter-spacing: 0.005em;
+    color: var(--paper); text-transform: uppercase;
+    max-width: 180mm; margin: 0 auto;
+  }
+  .sub .lime { color: var(--lime); }
+
+  /* mid hairline above the credit line */
+  .mid-rule { position: absolute; top: 224mm; left: 50%; width: 20mm; height: 0.4mm; background: var(--lime); margin-left: -10mm; }
+  .credit {
+    position: absolute; top: 232mm; left: 0; right: 0; text-align: center;
+    font-family: 'Inter Tight', sans-serif; font-weight: 500;
+    font-style: italic;
+    font-size: 11pt; line-height: 1.4; letter-spacing: 0.01em;
+    color: var(--mute);
+    max-width: 160mm; margin: 0 auto;
+  }
+  .credit b { color: var(--lime); font-style: normal; font-weight: 800; }
+
+  /* bottom hairline + footer */
+  .bot-rule { position: absolute; bottom: 22mm; left: 18mm; right: 18mm; height: 0.4mm; background: var(--lime); }
+  .footer {
+    position: absolute; bottom: 12mm; left: 18mm; right: 18mm;
+    display: flex; justify-content: space-between; align-items: center;
     font-family: 'JetBrains Mono', monospace; font-weight: 700;
-    font-size: 10pt; letter-spacing: 0.36em; color: var(--ink);
+    font-size: 7.5pt; letter-spacing: 0.34em; color: var(--lime);
     text-transform: uppercase;
   }
+  .footer b { color: var(--paper); }
 
-  /* footer */
-  .footer {
-    position: absolute; bottom: 22mm; left: 0; right: 0; text-align: center;
-    font-family: 'JetBrains Mono', monospace; font-weight: 800;
-    font-size: 8pt; letter-spacing: 0.34em; color: var(--ink);
-    text-transform: uppercase; opacity: 0.7;
-  }
-
-  /* tiny corner ticks at the bottom too, mirroring top */
-  .tick-bl { bottom: 15mm; left: 15mm; transform: scaleY(-1); }
-  .tick-br { bottom: 15mm; right: 15mm; transform: scale(-1, -1); }
 </style>
 </head>
 <body>
   <div class="stage">
     <div class="diecut"></div>
     <div class="body">
-      <div class="tick tick-tl"></div>
-      <div class="tick tick-tr"></div>
 
-      <div class="kicker">ROCKWALL FITNESS · HOUSE RULE</div>
+      <div class="top-rule"></div>
+      <div class="top-label"><span><b>ROCKWALL FITNESS</b></span><span>BLR · FY26</span></div>
 
-      <div class="hero">FIXED.</div>
+      <div class="hero">
+        <span class="row">LIFT <span class="gt">&gt;</span></span>
+        <span class="row">HAGGLE<span class="lime">.</span></span>
+      </div>
 
-      <div class="rule"></div>
-      <div class="tagline">The bar moves. The price doesn't.</div>
+      <div class="sub">
+        Same price <span class="lime">for everyone.</span><br>
+        Even the owner.
+      </div>
 
-      <div class="sub">One price · Every member · Always</div>
-      <div class="footer">ROCKWALL FITNESS · BANGALORE · FY26</div>
+      <div class="mid-rule"></div>
+      <div class="credit">
+        Save the negotiation for the <b>last rep.</b>
+      </div>
 
-      <div class="tick tick-bl"></div>
-      <div class="tick tick-br"></div>
+      <div class="bot-rule"></div>
+      <div class="footer">
+        <span>HOUSE RULE / <b>FY 2026</b></span>
+        <span>SAME RATE SINCE 2018</span>
+      </div>
     </div>
     <div class="cutline"></div>
   </div>
