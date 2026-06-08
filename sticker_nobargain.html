@@ -2,507 +2,281 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Sticker — Front Desk · NO HAGGLE (sticker pile · gym-coded)</title>
+<title>Sticker — Front Desk · NO HAGGLE (brutalist protocol)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900&family=Inter+Tight:wght@500;700;800;900&family=JetBrains+Mono:wght@500;700;800&family=Permanent+Marker&family=Black+Ops+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
   /* A4 portrait counter sticker · 210 x 297 + 3mm bleed = 216 x 303 mm */
   @page { size: 216mm 303mm; margin: 0; bleed: 3mm; marks: crop cross; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --lime:#D1DD27;
-    --ink:#171921;
+    --ink:#0B0C12;
     --paper:#FFFFFF;
-    --cream:#EFE7CE;            /* slightly darker, more parcel-paper */
-    --kraft:#B68C5A;             /* duct tape / cardboard */
-    --kraft-dark:#7E5A2F;
-    --hazard:#F4C20D;            /* caution yellow, sparingly */
-    --shadow: 0 0.8mm 1.4mm rgba(23,25,33,0.22);
+    --char:#1A1C26;
+    --mute:rgba(255,255,255,0.55);
   }
   html, body {
-    width: 216mm; height: 303mm; background: var(--cream); color: var(--ink);
-    font-family: 'Inter Tight', sans-serif;
+    width: 216mm; height: 303mm;
+    background: var(--ink); color: var(--paper);
+    font-family: 'Anybody', sans-serif;
     -webkit-print-color-adjust: exact; print-color-adjust: exact;
   }
-  .stage { position: relative; width: 216mm; height: 303mm; overflow: hidden; }
-  .paper { position: absolute; top: 0; left: 0; width: 216mm; height: 303mm; background: var(--cream); }
+  .stage { position: relative; width: 216mm; height: 303mm; overflow: hidden; background: var(--ink); }
 
   .cutline {
     position: absolute; top: 4mm; left: 4mm;
     width: 208mm; height: 295mm;
-    background: transparent; border: 0.6mm dashed #FF00FF;
+    border: 0.6mm dashed #FF00FF;
     z-index: 999;
   }
 
-  .sticker { position: absolute; box-shadow: var(--shadow); }
+  /* ─────────────────────────────────────────
+     HAZARD STRIPE BANDS — top + bottom
+     ───────────────────────────────────────── */
+  .hazard {
+    position: absolute; left: 0; right: 0; height: 11mm;
+    background:
+      repeating-linear-gradient(
+        -45deg,
+        var(--lime) 0, var(--lime) 5mm,
+        var(--ink) 5mm, var(--ink) 10mm
+      );
+    z-index: 5;
+  }
+  .hazard.top { top: 0; border-bottom: 0.6mm solid var(--lime); }
+  .hazard.bot { bottom: 0; border-top: 0.6mm solid var(--lime); }
 
   /* ─────────────────────────────────────────
-     HERO — "NO HAGGLE"
+     TOP PROTOCOL HEADER STRIP
      ───────────────────────────────────────── */
-  .hero {
-    top: 110mm; left: 13mm;
-    width: 190mm; height: 96mm;
-    background: var(--lime);
-    border: 0.8mm solid var(--ink);
-    border-radius: 10mm;
-    transform: rotate(-3deg);
-    z-index: 10;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    padding: 4mm 6mm 5mm;
-  }
-  .hero .word {
-    font-family: 'Anybody', sans-serif;
-    font-weight: 900; font-variation-settings: "wdth" 130;
-    font-size: 102pt; line-height: 0.85; letter-spacing: -0.04em;
-    color: var(--ink);
-    text-align: center;
-  }
-  .hero .pill {
-    margin-top: 4mm;
-    background: var(--ink); color: var(--lime);
-    padding: 1.8mm 4.5mm 2.2mm;
-    border-radius: 100mm;
+  .protocol-strip {
+    position: absolute; top: 16mm; left: 4mm; right: 4mm;
+    height: 13mm;
+    background: var(--paper); color: var(--ink);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5mm;
     font-family: 'JetBrains Mono', monospace;
     font-weight: 800; font-size: 9pt; letter-spacing: 0.22em;
     text-transform: uppercase;
+    z-index: 6;
   }
+  .protocol-strip .l { display: flex; gap: 4mm; align-items: center; }
+  .protocol-strip .l b {
+    background: var(--ink); color: var(--lime);
+    padding: 1.6mm 3mm 1.8mm;
+    font-weight: 800;
+  }
+  .protocol-strip .r { font-weight: 800; color: var(--ink); opacity: 0.8; }
 
   /* ─────────────────────────────────────────
-     SPEECH BUBBLE — top-left, now Anybody caps
+     HERO — massive stacked type
      ───────────────────────────────────────── */
-  .speech {
-    top: 22mm; left: 16mm;
-    width: 90mm; height: 32mm;
-    background: var(--paper);
-    border: 0.8mm solid var(--ink);
-    border-radius: 18mm;
-    transform: rotate(-7deg);
-    z-index: 7;
-    display: flex; align-items: center; justify-content: center;
-    padding: 0 4mm;
+  .hero {
+    position: absolute;
+    top: 37mm; left: 0; right: 0;
+    z-index: 4;
   }
-  .speech .t {
+  .line {
+    width: 100%; text-align: center;
     font-family: 'Anybody', sans-serif;
-    font-weight: 900; font-variation-settings: "wdth" 110;
-    font-size: 19pt; line-height: 0.95;
-    color: var(--ink); letter-spacing: -0.01em;
+    font-weight: 900; font-variation-settings: "wdth" 75;
+    line-height: 0.82; letter-spacing: -0.045em;
     text-transform: uppercase;
+    display: block;
   }
-  .speech .tail {
-    position: absolute;
-    bottom: -8mm; left: 28mm;
-    width: 11mm; height: 11mm;
-    background: var(--paper);
-    border-right: 0.8mm solid var(--ink);
-    border-bottom: 0.8mm solid var(--ink);
-    transform: rotate(40deg);
-    z-index: -1;
+  .line-1 {
+    font-size: 218pt; color: var(--paper);
+    margin-bottom: -2mm;
+    font-variation-settings: "wdth" 110;
   }
-
-  /* ─────────────────────────────────────────
-     STARBURST — top-right
-     ───────────────────────────────────────── */
-  .burst {
-    top: 22mm; right: 18mm;
-    width: 76mm; height: 76mm;
-    transform: rotate(14deg);
-    z-index: 7;
-    box-shadow: none;
-  }
-  .burst svg {
-    width: 100%; height: 100%; display: block;
-    filter: drop-shadow(0 0.7mm 1mm rgba(23,25,33,0.22));
-  }
-  .burst .label {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    color: var(--ink);
-    text-align: center;
-    line-height: 0.85;
-    transform: rotate(-4deg);
-  }
-  .burst .label .big {
-    font-family: 'Anybody', sans-serif;
-    font-weight: 900; font-variation-settings: "wdth" 110;
-    font-size: 19pt; letter-spacing: -0.02em;
-  }
-  .burst .label .sm {
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 800; font-size: 6.5pt;
-    letter-spacing: 0.26em;
-    margin-top: 2mm;
+  .line-2 {
+    font-size: 146pt; color: var(--lime);
+    margin-top: 0;
+    font-variation-settings: "wdth" 75;
   }
 
   /* ─────────────────────────────────────────
-     KRAFT DUCT-TAPE STRIP — mid-top
+     SUB-BAR — lime declaration strip
      ───────────────────────────────────────── */
-  .tape {
-    top: 88mm; left: 78mm;
-    width: 80mm; height: 14mm;
-    background: var(--kraft);
-    border-left: 0.6mm dashed rgba(23,25,33,0.3);
-    border-right: 0.6mm dashed rgba(23,25,33,0.3);
-    transform: rotate(-5deg);
-    z-index: 8;
+  .subbar {
+    position: absolute; top: 167mm; left: 4mm; right: 4mm;
+    height: 11mm;
+    background: var(--lime); color: var(--ink);
     display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 0.4mm 0.8mm rgba(23,25,33,0.18);
-  }
-  .tape .t {
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 800; font-size: 8.5pt; letter-spacing: 0.22em;
-    color: var(--ink);
-    text-transform: uppercase;
-  }
-
-  /* ─────────────────────────────────────────
-     PEEKING APPROVED LABEL
-     ───────────────────────────────────────── */
-  .approved {
-    top: 96mm; right: 12mm;
-    width: 66mm; height: 18mm;
-    background: var(--paper);
-    border: 0.7mm solid var(--ink);
-    transform: rotate(11deg);
-    z-index: 11;
-    display: flex; align-items: center; justify-content: center;
-    padding: 0 3mm;
-    border-radius: 1.5mm;
-  }
-  .approved .t {
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 800; font-size: 8.5pt; letter-spacing: 0.14em;
-    color: var(--ink); text-transform: uppercase;
-  }
-  .approved .t b { color: var(--ink); background: var(--lime); padding: 0.3mm 1.2mm; }
-
-  /* ─────────────────────────────────────────
-     MANILA MEMO — replaces yellow post-it
-     ───────────────────────────────────────── */
-  .memo {
-    top: 213mm; left: 16mm;
-    width: 86mm; height: 62mm;
-    background: #EAD9B5;             /* manila tan */
-    border: 0.7mm solid var(--ink);
-    transform: rotate(-6deg);
-    z-index: 8;
-    padding: 4mm 5mm 4mm;
-    border-radius: 1mm;
-    font-family: 'JetBrains Mono', monospace;
-    color: var(--ink);
-  }
-  .memo .head {
-    font-weight: 800; font-size: 8pt; letter-spacing: 0.24em;
-    text-transform: uppercase;
-    border-bottom: 0.3mm solid var(--ink);
-    padding-bottom: 1.5mm; margin-bottom: 2mm;
-    display: flex; justify-content: space-between;
-  }
-  .memo .row {
-    font-weight: 700; font-size: 7pt; letter-spacing: 0.18em;
-    text-transform: uppercase; line-height: 1.55;
-  }
-  .memo .row b { background: var(--ink); color: var(--cream); padding: 0.4mm 1.4mm; }
-  .memo .body {
-    margin-top: 2.5mm;
-    font-family: 'Anybody', sans-serif;
-    font-weight: 900; font-variation-settings: "wdth" 110;
-    font-size: 14pt; line-height: 1.05;
-    text-transform: uppercase; letter-spacing: -0.005em;
-  }
-  .memo .body span { background: var(--lime); padding: 0 1.4mm; }
-  .memo .sig {
-    margin-top: 2.5mm;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 800; font-size: 6.5pt; letter-spacing: 0.28em;
-    text-transform: uppercase;
-    border-top: 0.3mm dashed var(--ink);
-    padding-top: 1.5mm;
-  }
-
-  /* ─────────────────────────────────────────
-     BARBELL BADGE — replaces smiley
-     ───────────────────────────────────────── */
-  .barbell {
-    top: 214mm; left: 110mm;
-    width: 58mm; height: 58mm;
-    background: var(--lime);
-    border: 0.8mm solid var(--ink);
-    border-radius: 50%;
-    transform: rotate(8deg);
-    z-index: 8;
-    display: flex; align-items: center; justify-content: center;
-    padding: 4mm;
-  }
-  .barbell svg { width: 90%; height: 90%; display: block; }
-  .barbell .arc {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-  }
-  .barbell .arc svg { width: 100%; height: 100%; display: block; }
-
-  /* ─────────────────────────────────────────
-     RATE LOCKED BADGE — replaces coral heart
-     ───────────────────────────────────────── */
-  .badge {
-    position: absolute;
-    top: 220mm; left: 168mm;
-    width: 42mm; height: 42mm;
-    transform: rotate(-12deg);
-    z-index: 9;
-  }
-  .badge svg {
-    width: 100%; height: 100%; display: block;
-    filter: drop-shadow(0 0.6mm 1mm rgba(23,25,33,0.2));
-  }
-  .badge .lbl {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    font-family: 'Anybody', sans-serif;
-    font-weight: 900; font-variation-settings: "wdth" 110;
-    color: var(--ink);
-    text-align: center;
-    line-height: 0.9;
-  }
-  .badge .lbl .b1 { font-size: 11pt; letter-spacing: -0.02em; }
-  .badge .lbl .b2 { font-size: 11pt; letter-spacing: -0.02em; }
-  .badge .lbl .b3 {
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 800; font-size: 5.5pt; letter-spacing: 0.22em;
-    margin-top: 1.4mm;
-  }
-
-  /* ─────────────────────────────────────────
-     BHAI HAND-NOTE — Permanent Marker caps
-     ───────────────────────────────────────── */
-  .bhai {
-    position: absolute;
-    top: 198mm; left: 148mm;
-    width: 64mm; height: 18mm;
-    transform: rotate(7deg);
-    z-index: 10;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .bhai .t {
-    font-family: 'Permanent Marker', cursive;
-    font-weight: 400; font-size: 28pt; line-height: 1; color: var(--ink);
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-  }
-
-  /* ─────────────────────────────────────────
-     HAZARD CAUTION TRIANGLE — tiny, top-left of hero
-     ───────────────────────────────────────── */
-  .caution {
-    position: absolute;
-    top: 100mm; left: 8mm;
-    width: 32mm; height: 30mm;
-    transform: rotate(-10deg);
-    z-index: 11;
-  }
-  .caution svg { width: 100%; height: 100%; display: block; filter: drop-shadow(0 0.6mm 1mm rgba(23,25,33,0.22)); }
-  .caution .l {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 800; font-size: 6pt;
-    color: var(--ink); text-transform: uppercase;
-    letter-spacing: 0.16em; line-height: 1.15;
-    text-align: center;
-    transform: translateY(2.5mm);
-  }
-
-  /* ─────────────────────────────────────────
-     OVAL STAMP — bottom band (unchanged)
-     ───────────────────────────────────────── */
-  .stamp {
-    top: 277mm; left: 38mm;
-    width: 144mm; height: 16mm;
-    background: var(--ink);
-    border-radius: 50%;
-    transform: rotate(-1.5deg);
-    z-index: 9;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .stamp .t {
-    font-family: 'Anybody', sans-serif;
-    font-weight: 900; font-variation-settings: "wdth" 110;
-    font-size: 12pt; letter-spacing: 0.06em;
-    color: var(--lime);
-    text-transform: uppercase;
-  }
-
-  /* ─────────────────────────────────────────
-     ARROW DOODLE
-     ───────────────────────────────────────── */
-  .arrow-doodle {
-    position: absolute;
-    top: 56mm; left: 58mm;
-    width: 36mm; height: 56mm;
-    z-index: 9;
-  }
-  .arrow-doodle svg { width: 100%; height: 100%; display: block; }
-
-  /* ─────────────────────────────────────────
-     ASTERISK / ASTERISKS — replace sparkles
-     ───────────────────────────────────────── */
-  .ast {
-    position: absolute; z-index: 9;
     font-family: 'Anybody', sans-serif;
     font-weight: 900; font-variation-settings: "wdth" 130;
-    color: var(--ink);
-    line-height: 1;
+    font-size: 13pt; letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 0.6mm solid var(--ink);
+    z-index: 6;
   }
-  .ast-a { top: 100mm; right: 86mm; font-size: 22pt; transform: rotate(-12deg); }
-  .ast-b { top: 196mm; left: 104mm; font-size: 18pt; transform: rotate(20deg); color: var(--lime); -webkit-text-stroke: 0.4mm var(--ink); }
-  .ast-c { top: 64mm; left: 120mm; font-size: 14pt; transform: rotate(-5deg); }
-  .ast-d { top: 266mm; left: 14mm; font-size: 18pt; transform: rotate(10deg); }
-  .ast-e { top: 192mm; right: 22mm; font-size: 14pt; transform: rotate(15deg); }
+  .subbar span { display: inline-flex; align-items: center; }
+  .subbar i { font-style: normal; color: var(--ink); padding: 0 1.6mm; }
 
   /* ─────────────────────────────────────────
-     HAND-WRITTEN SCRIBBLE NOTES — Permanent Marker caps
+     PROTOCOL ENTRY BLOCK — white-bordered manifesto
      ───────────────────────────────────────── */
-  .scrib {
-    position: absolute; z-index: 11;
-    font-family: 'Permanent Marker', cursive;
-    font-weight: 400; color: var(--ink);
-    line-height: 1;
+  .entry {
+    position: absolute; top: 184mm; left: 14mm; right: 14mm;
+    border: 0.8mm solid var(--paper);
+    padding: 7mm 8mm 6mm;
+    color: var(--paper);
+    z-index: 5;
+  }
+  .entry::before {
+    /* small lime corner brackets */
+    content: ''; position: absolute;
+    top: -1.6mm; left: -1.6mm;
+    width: 8mm; height: 8mm;
+    border-top: 1.2mm solid var(--lime);
+    border-left: 1.2mm solid var(--lime);
+  }
+  .entry::after {
+    content: ''; position: absolute;
+    bottom: -1.6mm; right: -1.6mm;
+    width: 8mm; height: 8mm;
+    border-bottom: 1.2mm solid var(--lime);
+    border-right: 1.2mm solid var(--lime);
+  }
+  .entry .hdr {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800; font-size: 8pt; letter-spacing: 0.28em;
+    text-transform: uppercase; color: var(--lime);
+    border-bottom: 0.4mm dashed rgba(255,255,255,0.4);
+    padding-bottom: 2.5mm; margin-bottom: 4mm;
+    display: flex; justify-content: space-between;
+  }
+  .entry .stmt {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900; font-variation-settings: "wdth" 110;
+    font-size: 21pt; line-height: 1.05;
     text-transform: uppercase;
+    letter-spacing: -0.015em;
+    color: var(--paper);
   }
-  .scrib-1 {
-    top: 92mm; left: 28mm;
-    font-size: 16pt;
-    transform: rotate(-4deg);
+  .entry .stmt b { color: var(--ink); background: var(--lime); padding: 0 1.5mm 0.6mm; }
+  .entry .meta {
+    margin-top: 5mm;
+    padding-top: 2.5mm;
+    border-top: 0.3mm dashed rgba(255,255,255,0.35);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800; font-size: 7pt; letter-spacing: 0.26em;
+    text-transform: uppercase; color: rgba(255,255,255,0.62);
+    display: flex; justify-content: space-between;
   }
-  .scrib-2 {
-    top: 104mm; left: 16mm;
-    font-size: 12pt;
-    transform: rotate(2deg);
-    opacity: 0.75;
+  .entry .meta b { color: var(--lime); font-weight: 800; }
+
+  /* ─────────────────────────────────────────
+     BOTTOM SERIAL STRIP
+     ───────────────────────────────────────── */
+  .serial {
+    position: absolute; bottom: 16mm; left: 4mm; right: 4mm;
+    height: 13mm;
+    background: var(--char);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5mm;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800; font-size: 8pt; letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--paper);
+    border: 0.5mm solid var(--lime);
+    z-index: 6;
+  }
+  .serial .l { color: var(--lime); }
+  .serial .c { font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 110;
+    font-size: 10pt; letter-spacing: 0.05em; color: var(--paper); }
+  .serial .r { color: var(--mute); }
+
+  /* ─────────────────────────────────────────
+     SIDE REGISTRATION TICKS — corner brackets
+     ───────────────────────────────────────── */
+  .tick { position: absolute; width: 6mm; height: 6mm; border: 0.6mm solid var(--lime); z-index: 7; }
+  .tick.tl { top: 32mm; left: 4mm; border-right: none; border-bottom: none; }
+  .tick.tr { top: 32mm; right: 4mm; border-left: none; border-bottom: none; }
+  .tick.bl { bottom: 32mm; left: 4mm; border-right: none; border-top: none; }
+  .tick.br { bottom: 32mm; right: 4mm; border-left: none; border-top: none; }
+
+  /* ─────────────────────────────────────────
+     SIDE EDGE INDEX LABELS
+     ───────────────────────────────────────── */
+  .edge-l, .edge-r {
+    position: absolute;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800; font-size: 7pt; letter-spacing: 0.32em;
+    text-transform: uppercase; color: var(--lime);
+    z-index: 7;
+  }
+  .edge-l {
+    top: 50%; left: 7mm;
+    transform: translateY(-50%) rotate(-90deg);
+    transform-origin: left center;
+  }
+  .edge-r {
+    top: 50%; right: 0;
+    transform: translateY(-50%) rotate(90deg);
+    transform-origin: right center;
   }
 </style>
 </head>
 <body>
   <div class="stage">
-    <div class="paper"></div>
 
-    <!-- ─────── SPEECH BUBBLE — top-left ─────── -->
-    <div class="sticker speech">
-      <div class="tail"></div>
-      <div class="t">RESPECTFULLY,</div>
-    </div>
+    <!-- top hazard band -->
+    <div class="hazard top"></div>
 
-    <!-- ─────── STARBURST — top-right ─────── -->
-    <div class="sticker burst">
-      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <polygon fill="#D1DD27" stroke="#171921" stroke-width="1.6"
-          points="50,0 56,32 79,11 65,38 96,28 70,46 100,50 70,54 96,72 65,62 79,89 56,68 50,100 44,68 21,89 35,62 4,72 30,54 0,50 30,46 4,28 35,38 21,11 44,32"/>
-      </svg>
-      <div class="label">
-        <span class="big">FIXED RATE</span>
-        <span class="sm">SINCE 2018 &middot; BLR</span>
+    <!-- top protocol strip -->
+    <div class="protocol-strip">
+      <div class="l">
+        <b>PROTOCOL &#8470; 01</b>
+        <span>NO BARGAINING</span>
       </div>
+      <div class="r">ROCKWALL &middot; BLR &middot; FY26</div>
     </div>
 
-    <!-- ─────── KRAFT DUCT TAPE ─────── -->
-    <div class="sticker tape">
-      <div class="t">&#9656; ROCKWALL &middot; BLR &middot; FY26</div>
+    <!-- corner brackets -->
+    <div class="tick tl"></div>
+    <div class="tick tr"></div>
+    <div class="tick bl"></div>
+    <div class="tick br"></div>
+
+    <!-- edge index labels -->
+    <div class="edge-l">FILE 01.0 &middot; NO HAGGLE</div>
+    <div class="edge-r">EST. 2018 &middot; BANGALORE</div>
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="line line-1">NO</div>
+      <div class="line line-2">HAGGLE.</div>
     </div>
 
-    <!-- ─────── HAZARD CAUTION TRIANGLE ─────── -->
-    <div class="caution">
-      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <polygon fill="#F4C20D" stroke="#171921" stroke-width="3"
-          points="50,6 96,90 4,90"/>
-      </svg>
-      <div class="l">CAUTION<br>FIXED<br>PRICES</div>
+    <!-- sub-bar -->
+    <div class="subbar">
+      <span>ONE PRICE</span><i>/</i><span>EVERY MEMBER</span><i>/</i><span>EVERY DAY</span><i>/</i><span>NO EXCEPTIONS</span>
     </div>
 
-    <!-- ─────── ARROW DOODLE ─────── -->
-    <div class="arrow-doodle">
-      <svg viewBox="0 0 80 120" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 8 6 Q 30 30 38 60 Q 44 88 36 110 L 28 96 M 36 110 L 50 100"
-          fill="none" stroke="#171921" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-
-    <!-- ─────── SHARPIE SCRIBBLES ─────── -->
-    <div class="scrib scrib-1">&darr; YOU.</div>
-    <div class="scrib scrib-2">(YES, YOU)</div>
-
-    <!-- ─────── HERO ─────── -->
-    <div class="sticker hero">
-      <div class="word">NO HAGGLE</div>
-      <div class="pill">NO EXCEPTIONS &middot; NO NEGOTIATION</div>
-    </div>
-
-    <!-- ─────── PEEKING APPROVED LABEL ─────── -->
-    <div class="sticker approved">
-      <div class="t"><b>RATE LOCKED</b> &middot; CERTIFIED &middot; BLR</div>
-    </div>
-
-    <!-- ─────── BHAI HAND NOTE (Permanent Marker) ─────── -->
-    <div class="bhai">
-      <div class="t">BHAI. NO.</div>
-    </div>
-
-    <!-- ─────── MANILA MEMO ─────── -->
-    <div class="sticker memo">
-      <div class="head"><span>INTERNAL MEMO</span><span>NO. 047</span></div>
-      <div class="row">TO &nbsp;&nbsp; <b>WALK-INS</b></div>
-      <div class="row">FROM &nbsp;&nbsp; MGMT</div>
-      <div class="row">RE &nbsp;&nbsp; PRICE</div>
-      <div class="body">IT IS FIXED.<br>EVEN <span>THE OWNER</span> PAYS.</div>
-      <div class="sig">SIGNED &middot; ROCKWALL FITNESS</div>
-    </div>
-
-    <!-- ─────── BARBELL BADGE (replaces smiley) ─────── -->
-    <div class="sticker barbell">
-      <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
-        <!-- bar -->
-        <rect x="10" y="27" width="80" height="6" fill="#171921"/>
-        <!-- inner collars -->
-        <rect x="20" y="18" width="6" height="24" fill="#171921"/>
-        <rect x="74" y="18" width="6" height="24" fill="#171921"/>
-        <!-- big plates -->
-        <rect x="6" y="8" width="14" height="44" rx="2" fill="#171921"/>
-        <rect x="80" y="8" width="14" height="44" rx="2" fill="#171921"/>
-        <!-- small plate -->
-        <rect x="26" y="14" width="6" height="32" fill="#171921"/>
-        <rect x="68" y="14" width="6" height="32" fill="#171921"/>
-      </svg>
-    </div>
-
-    <!-- ─────── RATE LOCKED BADGE (replaces heart) ─────── -->
-    <div class="badge">
-      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <!-- gear-like rosette border, lime fill, ink stroke -->
-        <path fill="#D1DD27" stroke="#171921" stroke-width="3"
-          d="M50 4 L58 12 L70 8 L74 20 L86 22 L84 34 L94 40 L88 50 L94 60 L84 66 L86 78 L74 80 L70 92 L58 88 L50 96 L42 88 L30 92 L26 80 L14 78 L16 66 L6 60 L12 50 L6 40 L16 34 L14 22 L26 20 L30 8 L42 12 Z"/>
-      </svg>
-      <div class="lbl">
-        <span class="b1">RATE</span>
-        <span class="b2">LOCKED</span>
-        <span class="b3">EST. 2018</span>
+    <!-- protocol entry box -->
+    <div class="entry">
+      <div class="hdr"><span>ENTRY 01.0 &middot; FILED FY26</span><span>SECTION : RATE</span></div>
+      <div class="stmt">
+        THE PRICE IS THE PRICE.<br>
+        SAME RATE FOR <b>EVERY WALK-IN</b>.<br>
+        YES &mdash; <b>EVEN THE OWNER</b>.<br>
+        THIS IS <b>NOT NEGOTIABLE</b>.
       </div>
+      <div class="meta"><span>SIGNED &middot; <b>MGMT</b></span><span>WITNESS &middot; <b>THE IRON</b></span></div>
     </div>
 
-    <!-- ─────── OVAL BOTTOM STAMP ─────── -->
-    <div class="sticker stamp">
-      <div class="t">&#9733; ROCKWALL FITNESS &middot; EST. 2018 &middot; BANGALORE &#9733;</div>
+    <!-- bottom serial strip -->
+    <div class="serial">
+      <div class="l">LOT &middot; FY26-001-NHGL</div>
+      <div class="c">&#9733; ROCKWALL FITNESS &middot; BLR &#9733;</div>
+      <div class="r">VALID &middot; INDEFINITE</div>
     </div>
 
-    <!-- ─────── ASTERISKS — replace sparkles ─────── -->
-    <div class="ast ast-a">*</div>
-    <div class="ast ast-b">*</div>
-    <div class="ast ast-c">*</div>
-    <div class="ast ast-d">*</div>
-    <div class="ast ast-e">*</div>
+    <!-- bottom hazard band -->
+    <div class="hazard bot"></div>
 
     <div class="cutline"></div>
   </div>
