@@ -87,12 +87,12 @@
     display: block;
   }
   .line-1 {
-    font-size: 218pt; color: var(--paper);
-    margin-bottom: -2mm;
-    font-variation-settings: "wdth" 110;
+    font-size: 158pt; color: var(--paper);
+    margin-bottom: -1mm;
+    font-variation-settings: "wdth" 130;
   }
   .line-2 {
-    font-size: 146pt; color: var(--lime);
+    font-size: 158pt; color: var(--lime);
     margin-top: 0;
     font-variation-settings: "wdth" 75;
   }
@@ -101,7 +101,7 @@
      SUB-BAR — lime declaration strip
      ───────────────────────────────────────── */
   .subbar {
-    position: absolute; top: 167mm; left: 4mm; right: 4mm;
+    position: absolute; top: 150mm; left: 4mm; right: 4mm;
     height: 11mm;
     background: var(--lime); color: var(--ink);
     display: flex; align-items: center; justify-content: center;
@@ -119,27 +119,23 @@
      PROTOCOL ENTRY BLOCK — white-bordered manifesto
      ───────────────────────────────────────── */
   .entry {
-    position: absolute; top: 184mm; left: 14mm; right: 14mm;
+    position: absolute; top: 186mm; left: 14mm; right: 14mm;
     border: 0.8mm solid var(--paper);
     padding: 7mm 8mm 6mm;
     color: var(--paper);
     z-index: 5;
   }
-  .entry::before {
-    /* small lime corner brackets */
-    content: ''; position: absolute;
-    top: -1.6mm; left: -1.6mm;
-    width: 8mm; height: 8mm;
-    border-top: 1.2mm solid var(--lime);
-    border-left: 1.2mm solid var(--lime);
+  .entry .br-tl, .entry .br-tr, .entry .br-bl, .entry .br-br {
+    position: absolute; width: 9mm; height: 9mm;
   }
-  .entry::after {
-    content: ''; position: absolute;
-    bottom: -1.6mm; right: -1.6mm;
-    width: 8mm; height: 8mm;
-    border-bottom: 1.2mm solid var(--lime);
-    border-right: 1.2mm solid var(--lime);
-  }
+  .entry .br-tl { top: -1.6mm; left: -1.6mm;
+    border-top: 1.4mm solid var(--lime); border-left: 1.4mm solid var(--lime); }
+  .entry .br-tr { top: -1.6mm; right: -1.6mm;
+    border-top: 1.4mm solid var(--lime); border-right: 1.4mm solid var(--lime); }
+  .entry .br-bl { bottom: -1.6mm; left: -1.6mm;
+    border-bottom: 1.4mm solid var(--lime); border-left: 1.4mm solid var(--lime); }
+  .entry .br-br { bottom: -1.6mm; right: -1.6mm;
+    border-bottom: 1.4mm solid var(--lime); border-right: 1.4mm solid var(--lime); }
   .entry .hdr {
     font-family: 'JetBrains Mono', monospace;
     font-weight: 800; font-size: 8pt; letter-spacing: 0.28em;
@@ -167,6 +163,62 @@
     display: flex; justify-content: space-between;
   }
   .entry .meta b { color: var(--lime); font-weight: 800; }
+  .entry .meta .iron {
+    color: var(--lime); font-weight: 800;
+    background: var(--lime); color: var(--ink);
+    padding: 0.4mm 1.6mm;
+  }
+
+  /* ─────────────────────────────────────────
+     BARBELL DIVIDER BAND — between sub-bar and entry
+     ───────────────────────────────────────── */
+  .barbell-band {
+    position: absolute; top: 167mm; left: 14mm; right: 14mm;
+    height: 16mm;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 4;
+  }
+  .barbell-band svg { width: 110mm; height: 14mm; display: block; }
+  .barbell-band .l, .barbell-band .r {
+    flex: 1; height: 0.5mm; background: var(--paper); opacity: 0.4;
+  }
+
+  /* ─────────────────────────────────────────
+     NON-NEGOTIABLE RUBBER STAMP
+     ───────────────────────────────────────── */
+  .stampseal {
+    position: absolute;
+    top: -12mm; right: -6mm;
+    width: 58mm; height: 36mm;
+    transform: rotate(8deg);
+    z-index: 12;
+  }
+  .stampseal .ring {
+    width: 100%; height: 100%;
+    border: 1.2mm solid var(--lime);
+    background: transparent;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    padding: 0;
+  }
+  .stampseal .ring::before {
+    content: ''; position: absolute;
+    top: 1.4mm; left: 1.4mm; right: 1.4mm; bottom: 1.4mm;
+    border: 0.3mm solid var(--lime);
+  }
+  .stampseal .t {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900; font-variation-settings: "wdth" 110;
+    font-size: 12pt; line-height: 0.95; color: var(--lime);
+    text-transform: uppercase; text-align: center;
+    letter-spacing: -0.01em;
+  }
+  .stampseal .t small {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800; font-size: 5.5pt;
+    letter-spacing: 0.28em; margin-top: 1mm;
+  }
 
   /* ─────────────────────────────────────────
      BOTTOM SERIAL STRIP
@@ -253,11 +305,49 @@
 
     <!-- sub-bar -->
     <div class="subbar">
-      <span>ONE PRICE</span><i>/</i><span>EVERY MEMBER</span><i>/</i><span>EVERY DAY</span><i>/</i><span>NO EXCEPTIONS</span>
+      <span>ONE PRICE</span><i>//</i><span>EVERY MEMBER</span><i>//</i><span>EVERY DAY</span><i>//</i><span>NO EXCEPTIONS</span>
+    </div>
+
+    <!-- barbell divider band -->
+    <div class="barbell-band">
+      <span class="l"></span>
+      <svg viewBox="0 0 220 28" xmlns="http://www.w3.org/2000/svg">
+        <!-- bar (knurled grip middle) -->
+        <rect x="40" y="12" width="140" height="4" fill="#FFFFFF"/>
+        <!-- knurl marks on bar -->
+        <g fill="#0B0C12">
+          <rect x="92" y="12" width="0.6" height="4"/>
+          <rect x="96" y="12" width="0.6" height="4"/>
+          <rect x="100" y="12" width="0.6" height="4"/>
+          <rect x="104" y="12" width="0.6" height="4"/>
+          <rect x="108" y="12" width="0.6" height="4"/>
+          <rect x="112" y="12" width="0.6" height="4"/>
+          <rect x="116" y="12" width="0.6" height="4"/>
+          <rect x="120" y="12" width="0.6" height="4"/>
+          <rect x="124" y="12" width="0.6" height="4"/>
+          <rect x="128" y="12" width="0.6" height="4"/>
+        </g>
+        <!-- inner collars -->
+        <rect x="44" y="6" width="3" height="16" fill="#FFFFFF"/>
+        <rect x="173" y="6" width="3" height="16" fill="#FFFFFF"/>
+        <!-- big plates -->
+        <rect x="22" y="2" width="14" height="24" rx="1.5" fill="#FFFFFF"/>
+        <rect x="184" y="2" width="14" height="24" rx="1.5" fill="#FFFFFF"/>
+        <!-- small plates -->
+        <rect x="14" y="6" width="6" height="16" rx="0.8" fill="#FFFFFF"/>
+        <rect x="200" y="6" width="6" height="16" rx="0.8" fill="#FFFFFF"/>
+        <!-- mini plates -->
+        <rect x="8" y="10" width="3" height="8" fill="#FFFFFF"/>
+        <rect x="209" y="10" width="3" height="8" fill="#FFFFFF"/>
+      </svg>
+      <span class="r"></span>
     </div>
 
     <!-- protocol entry box -->
     <div class="entry">
+      <div class="br-tl"></div><div class="br-tr"></div>
+      <div class="br-bl"></div><div class="br-br"></div>
+
       <div class="hdr"><span>ENTRY 01.0 &middot; FILED FY26</span><span>SECTION : RATE</span></div>
       <div class="stmt">
         THE PRICE IS THE PRICE.<br>
@@ -265,7 +355,14 @@
         YES &mdash; <b>EVEN THE OWNER</b>.<br>
         THIS IS <b>NOT NEGOTIABLE</b>.
       </div>
-      <div class="meta"><span>SIGNED &middot; <b>MGMT</b></span><span>WITNESS &middot; <b>THE IRON</b></span></div>
+      <div class="meta"><span>SIGNED &middot; <b>MGMT</b></span><span>WITNESS &middot; <span class="iron">THE IRON</span></span></div>
+
+      <!-- rubber-stamp seal -->
+      <div class="stampseal">
+        <div class="ring">
+          <div class="t">NON-<br>NEGOTIABLE.<small>&#9670; FY26 &#9670;</small></div>
+        </div>
+      </div>
     </div>
 
     <!-- bottom serial strip -->
