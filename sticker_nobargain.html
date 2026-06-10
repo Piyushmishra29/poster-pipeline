@@ -38,19 +38,13 @@
     background: var(--ink);
     overflow: hidden;
   }
-  /* Lime keyline frame with cut breaks */
+  /* Lime keyline frame (continuous, no cut-breaks) */
   .hero-frame {
     position: absolute;
     top: 8mm; right: 8mm; bottom: 8mm; left: 8mm;
     border: 1mm solid var(--lime);
     pointer-events: none;
   }
-  .hero-frame::before, .hero-frame::after {
-    content: ""; position: absolute;
-    width: 14mm; height: 1mm; background: var(--ink);
-  }
-  .hero-frame::before { top: -1mm; left: 14mm; }
-  .hero-frame::after  { bottom: -1mm; right: 14mm; }
 
   /* Logo top-left chip with hexagonal clip */
   .hero-logo-wrap {
@@ -58,12 +52,27 @@
     top: 14mm; left: 14mm;
     z-index: 4;
     background: var(--ink);
-    padding: 4mm 6mm;
+    padding: 3mm 5mm 3.5mm;
     border: 0.5mm solid var(--lime);
   }
-  .hero-logo {
-    height: 11mm;
+  .hero-mark {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 13pt;
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    color: var(--paper);
+    text-transform: uppercase;
+  }
+  .hero-mark small {
     display: block;
+    margin-top: 1mm;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 6pt;
+    letter-spacing: 0.4em;
+    color: var(--lime);
   }
 
   /* Year stamp top-right */
@@ -318,7 +327,7 @@
       <div class="hero-frame"></div>
 
       <div class="hero-logo-wrap">
-        <img class="hero-logo" src="assets/logo.png" alt="Rockwall Fitness">
+        <div class="hero-mark">ROCKWALL<small>FITNESS &middot; BLR</small></div>
       </div>
       <div class="hero-year">&rsquo;26<small>RULE 01</small></div>
 
