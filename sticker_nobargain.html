@@ -34,7 +34,7 @@
      ───────────────────────────────────────── */
   .hero {
     position: relative;
-    width: 100%; height: 128mm;
+    width: 100%; height: 104mm;
     background: var(--ink);
     overflow: hidden;
   }
@@ -58,11 +58,11 @@
     top: 14mm; left: 14mm;
     z-index: 4;
     background: var(--ink);
-    padding: 5mm 9mm 5mm 7mm;
-    clip-path: polygon(0 0, 100% 0, 96% 50%, 100% 100%, 0 100%, 4% 50%);
+    padding: 4mm 6mm;
+    border: 0.5mm solid var(--lime);
   }
   .hero-logo {
-    height: 13mm;
+    height: 11mm;
     display: block;
   }
 
@@ -90,15 +90,15 @@
     margin-top: 1.5mm;
   }
 
-  /* Big headline overlaid at bottom of hero */
+  /* Big headline overlaid in hero */
   .hero-headline {
     position: absolute;
-    bottom: 22mm; left: 18mm; right: 18mm;
+    top: 46mm; left: 18mm; right: 18mm;
     z-index: 4;
     font-family: 'Anybody', sans-serif;
     font-weight: 900;
     font-variation-settings: "wdth" 150;
-    font-size: 70pt;
+    font-size: 60pt;
     color: var(--paper);
     letter-spacing: -0.01em;
     line-height: 0.86;
@@ -109,7 +109,7 @@
   /* Tagline */
   .hero-tag {
     position: absolute;
-    bottom: 14mm; left: 18mm;
+    bottom: 12mm; left: 18mm;
     z-index: 4;
     font-family: 'Inter Tight', sans-serif;
     font-weight: 800;
@@ -132,7 +132,7 @@
      ───────────────────────────────────────── */
   .big-band {
     position: relative;
-    padding: 10mm 18mm 4mm;
+    padding: 8mm 18mm 4mm;
     text-align: center;
   }
   .big-word {
@@ -320,7 +320,7 @@
       <div class="hero-logo-wrap">
         <img class="hero-logo" src="assets/logo.png" alt="Rockwall Fitness">
       </div>
-      <div class="hero-year">&rsquo;26<small>FRONT DESK</small></div>
+      <div class="hero-year">&rsquo;26<small>RULE 01</small></div>
 
       <h1 class="hero-headline">
         DON&rsquo;T<br>
@@ -333,7 +333,7 @@
 
     <!-- ────── BIG WORD BAND ────── -->
     <section class="big-band">
-      <span class="big-word">FIXED.<span class="big-word-bar"></span></span>
+      <span class="big-word">FIXED.</span>
       <div class="big-sub">ONE RATE &nbsp;&middot;&nbsp; ALL MEMBERS &nbsp;&middot;&nbsp; ALL DAY</div>
     </section>
 
