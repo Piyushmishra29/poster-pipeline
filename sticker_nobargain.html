@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Sticker — Front Desk · DON'T HAGGLE (price-card DNA)</title>
+<title>Sticker — Wall · DON'T HAGGLE (Rule 01 · billboard)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900&display=swap" rel="stylesheet">
 <style>
-  /* A4 portrait counter sticker · 210 x 297 + 3mm bleed = 216 x 303 mm */
-  @page { size: 216mm 303mm; margin: 0; bleed: 3mm; marks: crop cross; background: #050505; }
+  /* A4 landscape · 297 x 210 + 3mm bleed = 303 x 216 mm */
+  @page { size: 303mm 216mm; margin: 0; bleed: 3mm; marks: crop cross; background: #050505; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --ink:#050505;
@@ -16,370 +16,114 @@
     --paper:#F6F6F2;
   }
   html, body {
-    width: 216mm; height: 303mm;
+    width: 303mm; height: 216mm;
     background: var(--ink); color: var(--paper);
-    font-family: 'Inter Tight', sans-serif;
+    font-family: 'Anybody', sans-serif;
     -webkit-print-color-adjust: exact; print-color-adjust: exact;
   }
-  .stage { position: relative; width: 216mm; height: 303mm; overflow: hidden; background: var(--ink); }
+  .stage {
+    position: relative; width: 303mm; height: 216mm;
+    overflow: hidden; background: var(--ink);
+  }
   .cutline {
     position: absolute; top: 4mm; left: 4mm;
-    width: 208mm; height: 295mm;
+    width: 295mm; height: 208mm;
     border: 0.6mm dashed #FF00FF;
     z-index: 999;
   }
 
-  /* ─────────────────────────────────────────
-     HERO BAND (top, 0-128mm)
-     ───────────────────────────────────────── */
+  /* ───────────────────────────────────────────
+     ACT 1 — HERO (read from 10m+)
+     ─────────────────────────────────────────── */
   .hero {
-    position: relative;
-    width: 100%; height: 104mm;
-    background: var(--ink);
-    overflow: hidden;
-  }
-  /* Lime keyline frame (continuous, no cut-breaks) */
-  .hero-frame {
     position: absolute;
-    top: 8mm; right: 8mm; bottom: 8mm; left: 8mm;
-    border: 1mm solid var(--lime);
-    pointer-events: none;
-  }
-
-  /* Logo top-left chip with hexagonal clip */
-  .hero-logo-wrap {
-    position: absolute;
-    top: 14mm; left: 14mm;
+    top: 18mm; left: 10mm; right: 10mm;
     z-index: 4;
-    background: var(--ink);
-    padding: 3mm 5mm 3.5mm;
-    border: 0.5mm solid var(--lime);
-  }
-  .hero-mark {
-    font-family: 'Anybody', sans-serif;
-    font-weight: 900;
-    font-variation-settings: "wdth" 150;
-    font-size: 13pt;
-    line-height: 0.9;
-    letter-spacing: 0.02em;
-    color: var(--paper);
-    text-transform: uppercase;
-  }
-  .hero-mark small {
-    display: block;
-    margin-top: 1mm;
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 800;
-    font-size: 6pt;
-    letter-spacing: 0.4em;
-    color: var(--lime);
-  }
-
-  /* Year stamp top-right */
-  .hero-year {
-    position: absolute;
-    top: 16mm; right: 18mm;
-    font-family: 'Anybody', sans-serif;
-    font-weight: 900;
-    font-variation-settings: "wdth" 150;
-    font-size: 28pt;
-    color: var(--lime);
-    letter-spacing: 0.04em;
-    line-height: 1;
-    z-index: 4;
-    text-align: right;
-  }
-  .hero-year small {
-    display: block;
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 800;
-    font-size: 7pt;
-    letter-spacing: 0.4em;
-    color: var(--paper);
-    margin-top: 1.5mm;
-  }
-
-  /* Big headline overlaid in hero */
-  .hero-headline {
-    position: absolute;
-    top: 24mm; left: 18mm; right: 18mm;
-    z-index: 4;
-    font-family: 'Anybody', sans-serif;
-    font-weight: 900;
-    font-variation-settings: "wdth" 150;
-    font-size: 70pt;
-    color: var(--paper);
-    letter-spacing: -0.01em;
-    line-height: 0.86;
-    text-transform: uppercase;
-  }
-  .hero-headline .lime { color: var(--lime); }
-
-  /* Tagline */
-  .hero-tag {
-    position: absolute;
-    bottom: 12mm; left: 18mm;
-    z-index: 4;
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 800;
-    font-size: 8pt;
-    letter-spacing: 0.45em;
-    color: var(--paper);
-    text-transform: uppercase;
-  }
-  .hero-tag .dot {
-    display: inline-block;
-    width: 2mm; height: 2mm;
-    background: var(--lime);
-    border-radius: 50%;
-    margin: 0 3mm 0.5mm;
-    vertical-align: middle;
-  }
-
-  /* ─────────────────────────────────────────
-     BIG WORD BAND ("FIXED.") (130-178mm)
-     ───────────────────────────────────────── */
-  .big-band {
-    position: relative;
-    padding: 8mm 18mm 4mm;
     text-align: center;
   }
-  .big-word {
-    position: relative;
-    display: inline-block;
+  .hero h1 {
     font-family: 'Anybody', sans-serif;
     font-weight: 900;
-    font-variation-settings: "wdth" 150;
-    font-size: 84pt;
-    line-height: 0.9;
-    letter-spacing: 0.01em;
+    font-variation-settings: "wdth" 75;
+    font-size: 156pt;
+    line-height: 0.82;
+    letter-spacing: -0.04em;
     color: var(--paper);
     text-transform: uppercase;
-    transform: scaleX(1.06);
-    transform-origin: center;
   }
-  .big-word::before {
-    content: "FIXED.";
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    color: var(--lime);
-    transform: translate(1.4mm, 0);
-    z-index: -1;
-    font-family: 'Anybody', sans-serif;
-    font-weight: 900;
-    font-variation-settings: "wdth" 150;
-    letter-spacing: 0.01em;
-  }
-  .big-word-bar {
-    position: absolute;
-    top: 47%; left: 12mm; right: 12mm;
-    height: 1.4mm;
-    background: var(--lime);
-    transform: translateX(2mm);
-    z-index: 3;
-  }
-  .big-sub {
-    margin-top: 5mm;
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 800;
-    font-size: 8.5pt;
-    letter-spacing: 0.5em;
-    color: var(--lime);
-    text-transform: uppercase;
-  }
-
-  /* ─────────────────────────────────────────
-     RULE TABLE (mirrors price-table)
-     ───────────────────────────────────────── */
-  .rule-table {
-    margin: 6mm 14mm 0;
-    border: 1.2mm solid var(--lime);
-  }
-  .rule-row {
-    display: flex;
-    align-items: stretch;
-    border-bottom: 0.6mm solid var(--lime);
-    min-height: 18mm;
-    padding: 0 10mm;
-  }
-  .rule-row:last-child { border-bottom: none; }
-  .rule-row > div {
-    display: flex;
-    align-items: center;
-  }
-  .rule-row.even { background: var(--ink); }
-  .rule-row.odd  { background: var(--lime); color: var(--ink); }
-  .row-num {
-    flex: 0 0 24mm;
-    font-family: 'Anybody', sans-serif;
-    font-weight: 900;
-    font-variation-settings: "wdth" 150;
-    font-size: 22pt;
-    line-height: 0.82;
-    letter-spacing: -0.01em;
-    padding-top: 1.5mm;
+  .hero h1 .line {
+    display: block;
     white-space: nowrap;
   }
-  .rule-row.even .row-num { color: var(--lime); }
-  .rule-row.odd  .row-num { color: var(--ink); }
-  .row-stmt {
-    flex: 1 1 auto;
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 800;
-    font-size: 10.5pt;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--paper);
-    opacity: 0.92;
-  }
-  .rule-row.odd .row-stmt { color: var(--ink); opacity: 1; }
-  .row-tag {
-    flex: 0 0 auto;
-    font-family: 'Anybody', sans-serif;
-    font-weight: 900;
-    font-variation-settings: "wdth" 150;
-    font-size: 18pt;
-    line-height: 0.82;
-    letter-spacing: -0.01em;
-    padding-top: 1.5mm;
-    white-space: nowrap;
-  }
-  .rule-row.even .row-tag { color: var(--lime); }
-  .rule-row.odd  .row-tag { color: var(--ink); }
+  .hero h1 .lime { color: var(--lime); }
 
-  /* ─────────────────────────────────────────
-     SIGN-OFF BAR — mirrors JOIN NOW
-     ───────────────────────────────────────── */
-  .signoff {
-    margin: 5mm 14mm 0;
-    background: var(--ink);
-    color: var(--lime);
-    padding: 6mm 10mm;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border: 1.2mm solid var(--lime);
-  }
-  .signoff-text {
+  /* ───────────────────────────────────────────
+     ACT 2 — SUB (read from 5m)
+     ─────────────────────────────────────────── */
+  .priceline {
+    position: absolute;
+    bottom: 40mm; left: 18mm; right: 18mm;
+    z-index: 4;
+    text-align: center;
     font-family: 'Anybody', sans-serif;
     font-weight: 900;
-    font-variation-settings: "wdth" 150;
-    font-size: 26pt;
+    font-variation-settings: "wdth" 110;
+    font-size: 56pt;
     line-height: 1;
-    letter-spacing: -0.01em;
-    text-transform: uppercase;
-    color: var(--lime);
-  }
-  .signoff-sub {
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 800;
-    font-size: 7.5pt;
-    letter-spacing: 0.4em;
-    margin-top: 2mm;
-    text-transform: uppercase;
+    letter-spacing: -0.02em;
     color: var(--paper);
+    text-transform: uppercase;
   }
-  .signoff-arrow {
-    font-family: 'Anybody', sans-serif;
-    font-weight: 900;
-    font-variation-settings: "wdth" 150;
-    font-size: 38pt;
-    line-height: 0.8;
+  .priceline .lime {
     color: var(--lime);
   }
 
-  /* ─────────────────────────────────────────
-     FOOTER (bottom 0-22mm)
-     ───────────────────────────────────────── */
-  .footer-bar {
+  /* ───────────────────────────────────────────
+     ACT 3 — TERTIARY NOTE (read from 3m)
+     ─────────────────────────────────────────── */
+  .note {
     position: absolute;
-    bottom: 8mm; left: 14mm; right: 14mm;
-    border-top: 0.4mm solid rgba(207,255,60,0.4);
-    padding: 4mm 0 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 500;
-    font-size: 8pt;
-    color: var(--paper);
-    letter-spacing: 0.1em;
+    bottom: 16mm; left: 18mm; right: 18mm;
+    z-index: 4;
+    text-align: center;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 110;
+    font-size: 28pt;
+    line-height: 1;
+    letter-spacing: -0.005em;
+    color: var(--lime);
     text-transform: uppercase;
   }
-  .footer-bar b { color: var(--lime); font-weight: 900; }
-  .footer-bar .left {
-    display: flex; align-items: center; gap: 3mm;
+  .note b {
+    color: var(--paper);
+    font-weight: 900;
   }
-  .ig-dot {
-    width: 4mm; height: 4mm;
-    background: var(--lime);
-    display: inline-block;
-    border-radius: 1mm;
+  .note .dot {
+    color: var(--paper);
+    padding: 0 2.5mm;
   }
 </style>
 </head>
 <body>
   <div class="stage">
 
-    <!-- ────── HERO ────── -->
-    <section class="hero">
-      <div class="hero-frame"></div>
-
-
-      <h1 class="hero-headline">
-        DON&rsquo;T<br>
-        <span class="lime">HAGGLE.</span>
+    <!-- ACT 1 — the rule -->
+    <div class="hero">
+      <h1>
+        <span class="line">DON&rsquo;T</span>
+        <span class="line lime">HAGGLE.</span>
       </h1>
-      <div class="hero-tag">
-        FRONT DESK <span class="dot"></span> RULE 01 <span class="dot"></span> FY26
-      </div>
-    </section>
-
-    <!-- ────── BIG WORD BAND ────── -->
-    <section class="big-band">
-      <span class="big-word">FIXED.</span>
-      <div class="big-sub">ONE RATE &nbsp;&middot;&nbsp; ALL MEMBERS &nbsp;&middot;&nbsp; ALL DAY</div>
-    </section>
-
-    <!-- ────── RULE TABLE ────── -->
-    <div class="rule-table">
-      <div class="rule-row even">
-        <div class="row-num">01</div>
-        <div class="row-stmt">MEMBERS PAY ONE RATE</div>
-        <div class="row-tag">&mdash; FIXED</div>
-      </div>
-      <div class="rule-row odd">
-        <div class="row-num">02</div>
-        <div class="row-stmt">STUDENTS PAY ONE RATE</div>
-        <div class="row-tag">&mdash; FIXED</div>
-      </div>
-      <div class="rule-row even">
-        <div class="row-num">03</div>
-        <div class="row-stmt">THE OWNER PAYS ONE RATE</div>
-        <div class="row-tag">&mdash; FIXED</div>
-      </div>
-      <div class="rule-row odd">
-        <div class="row-num">04</div>
-        <div class="row-stmt">SAVE THE REPS FOR THE BAR</div>
-        <div class="row-tag">&mdash; LIFT</div>
-      </div>
     </div>
 
-    <!-- ────── SIGN-OFF BAR ────── -->
-    <div class="signoff">
-      <div>
-        <div class="signoff-text">NO ARGUMENT.</div>
-        <div class="signoff-sub">JUST WALK IN &middot; PAY THE RATE &middot; LIFT</div>
-      </div>
-      <div class="signoff-arrow">&rarr;</div>
+    <!-- ACT 2 — the principle -->
+    <div class="priceline">
+      <span class="lime">ONE RATE</span> FOR EVERYONE.
     </div>
 
-    <!-- ────── FOOTER ────── -->
-    <div class="footer-bar">
-      <div class="left"><span class="ig-dot"></span> <b>@</b>ROCKWALLFITNESS</div>
-      <div>SV TOWERS &middot; HOSUR ROAD &middot; BANGALORE 560029</div>
-      <div><b>FY</b>26</div>
+    <!-- ACT 3 — the kicker -->
+    <div class="note">
+      <b>EVEN THE OWNER PAYS</b><span class="dot">&middot;</span>NO ARGUMENT
     </div>
 
     <div class="cutline"></div>
