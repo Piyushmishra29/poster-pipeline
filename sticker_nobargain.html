@@ -2,29 +2,26 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Sticker — Front Desk · NO HAGGLE (brutalist protocol)</title>
+<title>Sticker — Front Desk · DON'T HAGGLE (price-card DNA)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <style>
   /* A4 portrait counter sticker · 210 x 297 + 3mm bleed = 216 x 303 mm */
-  @page { size: 216mm 303mm; margin: 0; bleed: 3mm; marks: crop cross; }
+  @page { size: 216mm 303mm; margin: 0; bleed: 3mm; marks: crop cross; background: #050505; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --lime:#D1DD27;
-    --ink:#0B0C12;
-    --paper:#FFFFFF;
-    --char:#1A1C26;
-    --mute:rgba(255,255,255,0.55);
+    --ink:#050505;
+    --lime:#CFFF3C;
+    --paper:#F6F6F2;
   }
   html, body {
     width: 216mm; height: 303mm;
     background: var(--ink); color: var(--paper);
-    font-family: 'Anybody', sans-serif;
+    font-family: 'Inter Tight', sans-serif;
     -webkit-print-color-adjust: exact; print-color-adjust: exact;
   }
   .stage { position: relative; width: 216mm; height: 303mm; overflow: hidden; background: var(--ink); }
-
   .cutline {
     position: absolute; top: 4mm; left: 4mm;
     width: 208mm; height: 295mm;
@@ -33,347 +30,352 @@
   }
 
   /* ─────────────────────────────────────────
-     HAZARD STRIPE BANDS — top + bottom
-     ───────────────────────────────────────── */
-  .hazard {
-    position: absolute; left: 0; right: 0; height: 11mm;
-    background:
-      repeating-linear-gradient(
-        -45deg,
-        var(--lime) 0, var(--lime) 5mm,
-        var(--ink) 5mm, var(--ink) 10mm
-      );
-    z-index: 5;
-  }
-  .hazard.top { top: 0; border-bottom: 0.6mm solid var(--lime); }
-  .hazard.bot { bottom: 0; border-top: 0.6mm solid var(--lime); }
-
-  /* ─────────────────────────────────────────
-     TOP PROTOCOL HEADER STRIP
-     ───────────────────────────────────────── */
-  .protocol-strip {
-    position: absolute; top: 16mm; left: 4mm; right: 4mm;
-    height: 13mm;
-    background: var(--paper); color: var(--ink);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 5mm;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 800; font-size: 9pt; letter-spacing: 0.22em;
-    text-transform: uppercase;
-    z-index: 6;
-  }
-  .protocol-strip .l { display: flex; gap: 4mm; align-items: center; }
-  .protocol-strip .l b {
-    background: var(--ink); color: var(--lime);
-    padding: 1.6mm 3mm 1.8mm;
-    font-weight: 800;
-  }
-  .protocol-strip .r { font-weight: 800; color: var(--ink); opacity: 0.8; }
-
-  /* ─────────────────────────────────────────
-     HERO — massive stacked type
+     HERO BAND (top, 0-128mm)
      ───────────────────────────────────────── */
   .hero {
-    position: absolute;
-    top: 37mm; left: 0; right: 0;
-    z-index: 4;
-  }
-  .line {
-    width: 100%; text-align: center;
-    font-family: 'Anybody', sans-serif;
-    font-weight: 900; font-variation-settings: "wdth" 75;
-    line-height: 0.82; letter-spacing: -0.045em;
-    text-transform: uppercase;
-    display: block;
-  }
-  .line-1 {
-    font-size: 158pt; color: var(--paper);
-    margin-bottom: -1mm;
-    font-variation-settings: "wdth" 130;
-  }
-  .line-2 {
-    font-size: 158pt; color: var(--lime);
-    margin-top: 0;
-    font-variation-settings: "wdth" 75;
-  }
-
-  /* ─────────────────────────────────────────
-     SUB-BAR — lime declaration strip
-     ───────────────────────────────────────── */
-  .subbar {
-    position: absolute; top: 150mm; left: 4mm; right: 4mm;
-    height: 11mm;
-    background: var(--lime); color: var(--ink);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Anybody', sans-serif;
-    font-weight: 900; font-variation-settings: "wdth" 130;
-    font-size: 13pt; letter-spacing: 0.04em;
-    text-transform: uppercase;
-    border: 0.6mm solid var(--ink);
-    z-index: 6;
-  }
-  .subbar span { display: inline-flex; align-items: center; }
-  .subbar i { font-style: normal; color: var(--ink); padding: 0 1.6mm; }
-
-  /* ─────────────────────────────────────────
-     PROTOCOL ENTRY BLOCK — white-bordered manifesto
-     ───────────────────────────────────────── */
-  .entry {
-    position: absolute; top: 186mm; left: 14mm; right: 14mm;
-    border: 0.8mm solid var(--paper);
-    padding: 7mm 8mm 6mm;
-    color: var(--paper);
-    z-index: 5;
-  }
-  .entry .br-tl, .entry .br-tr, .entry .br-bl, .entry .br-br {
-    position: absolute; width: 9mm; height: 9mm;
-  }
-  .entry .br-tl { top: -1.6mm; left: -1.6mm;
-    border-top: 1.4mm solid var(--lime); border-left: 1.4mm solid var(--lime); }
-  .entry .br-tr { top: -1.6mm; right: -1.6mm;
-    border-top: 1.4mm solid var(--lime); border-right: 1.4mm solid var(--lime); }
-  .entry .br-bl { bottom: -1.6mm; left: -1.6mm;
-    border-bottom: 1.4mm solid var(--lime); border-left: 1.4mm solid var(--lime); }
-  .entry .br-br { bottom: -1.6mm; right: -1.6mm;
-    border-bottom: 1.4mm solid var(--lime); border-right: 1.4mm solid var(--lime); }
-  .entry .hdr {
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 800; font-size: 8pt; letter-spacing: 0.28em;
-    text-transform: uppercase; color: var(--lime);
-    border-bottom: 0.4mm dashed rgba(255,255,255,0.4);
-    padding-bottom: 2.5mm; margin-bottom: 4mm;
-    display: flex; justify-content: space-between;
-  }
-  .entry .stmt {
-    font-family: 'Anybody', sans-serif;
-    font-weight: 900; font-variation-settings: "wdth" 110;
-    font-size: 21pt; line-height: 1.05;
-    text-transform: uppercase;
-    letter-spacing: -0.015em;
-    color: var(--paper);
-  }
-  .entry .stmt b { color: var(--ink); background: var(--lime); padding: 0 1.5mm 0.6mm; }
-  .entry .meta {
-    margin-top: 5mm;
-    padding-top: 2.5mm;
-    border-top: 0.3mm dashed rgba(255,255,255,0.35);
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 800; font-size: 7pt; letter-spacing: 0.26em;
-    text-transform: uppercase; color: rgba(255,255,255,0.62);
-    display: flex; justify-content: space-between;
-  }
-  .entry .meta b { color: var(--lime); font-weight: 800; }
-  .entry .meta .iron {
-    color: var(--lime); font-weight: 800;
-    background: var(--lime); color: var(--ink);
-    padding: 0.4mm 1.6mm;
-  }
-
-  /* ─────────────────────────────────────────
-     BARBELL DIVIDER BAND — between sub-bar and entry
-     ───────────────────────────────────────── */
-  .barbell-band {
-    position: absolute; top: 167mm; left: 14mm; right: 14mm;
-    height: 16mm;
-    display: flex; align-items: center; justify-content: center;
-    z-index: 4;
-  }
-  .barbell-band svg { width: 110mm; height: 14mm; display: block; }
-  .barbell-band .l, .barbell-band .r {
-    flex: 1; height: 0.5mm; background: var(--paper); opacity: 0.4;
-  }
-
-  /* ─────────────────────────────────────────
-     NON-NEGOTIABLE RUBBER STAMP
-     ───────────────────────────────────────── */
-  .stampseal {
-    position: absolute;
-    top: -12mm; right: -6mm;
-    width: 58mm; height: 36mm;
-    transform: rotate(8deg);
-    z-index: 12;
-  }
-  .stampseal .ring {
-    width: 100%; height: 100%;
-    border: 1.2mm solid var(--lime);
-    background: transparent;
-    display: flex; align-items: center; justify-content: center;
     position: relative;
-    padding: 0;
+    width: 100%; height: 128mm;
+    background: var(--ink);
+    overflow: hidden;
   }
-  .stampseal .ring::before {
-    content: ''; position: absolute;
-    top: 1.4mm; left: 1.4mm; right: 1.4mm; bottom: 1.4mm;
-    border: 0.3mm solid var(--lime);
+  /* Lime keyline frame with cut breaks */
+  .hero-frame {
+    position: absolute;
+    top: 8mm; right: 8mm; bottom: 8mm; left: 8mm;
+    border: 1mm solid var(--lime);
+    pointer-events: none;
   }
-  .stampseal .t {
-    font-family: 'Anybody', sans-serif;
-    font-weight: 900; font-variation-settings: "wdth" 110;
-    font-size: 12pt; line-height: 0.95; color: var(--lime);
-    text-transform: uppercase; text-align: center;
-    letter-spacing: -0.01em;
+  .hero-frame::before, .hero-frame::after {
+    content: ""; position: absolute;
+    width: 14mm; height: 1mm; background: var(--ink);
   }
-  .stampseal .t small {
+  .hero-frame::before { top: -1mm; left: 14mm; }
+  .hero-frame::after  { bottom: -1mm; right: 14mm; }
+
+  /* Logo top-left chip with hexagonal clip */
+  .hero-logo-wrap {
+    position: absolute;
+    top: 14mm; left: 14mm;
+    z-index: 4;
+    background: var(--ink);
+    padding: 5mm 9mm 5mm 7mm;
+    clip-path: polygon(0 0, 100% 0, 96% 50%, 100% 100%, 0 100%, 4% 50%);
+  }
+  .hero-logo {
+    height: 13mm;
     display: block;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 800; font-size: 5.5pt;
-    letter-spacing: 0.28em; margin-top: 1mm;
+  }
+
+  /* Year stamp top-right */
+  .hero-year {
+    position: absolute;
+    top: 16mm; right: 18mm;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 28pt;
+    color: var(--lime);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    z-index: 4;
+    text-align: right;
+  }
+  .hero-year small {
+    display: block;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 7pt;
+    letter-spacing: 0.4em;
+    color: var(--paper);
+    margin-top: 1.5mm;
+  }
+
+  /* Big headline overlaid at bottom of hero */
+  .hero-headline {
+    position: absolute;
+    bottom: 22mm; left: 18mm; right: 18mm;
+    z-index: 4;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 70pt;
+    color: var(--paper);
+    letter-spacing: -0.01em;
+    line-height: 0.86;
+    text-transform: uppercase;
+  }
+  .hero-headline .lime { color: var(--lime); }
+
+  /* Tagline */
+  .hero-tag {
+    position: absolute;
+    bottom: 14mm; left: 18mm;
+    z-index: 4;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 8pt;
+    letter-spacing: 0.45em;
+    color: var(--paper);
+    text-transform: uppercase;
+  }
+  .hero-tag .dot {
+    display: inline-block;
+    width: 2mm; height: 2mm;
+    background: var(--lime);
+    border-radius: 50%;
+    margin: 0 3mm 0.5mm;
+    vertical-align: middle;
   }
 
   /* ─────────────────────────────────────────
-     BOTTOM SERIAL STRIP
+     BIG WORD BAND ("FIXED.") (130-178mm)
      ───────────────────────────────────────── */
-  .serial {
-    position: absolute; bottom: 16mm; left: 4mm; right: 4mm;
-    height: 13mm;
-    background: var(--char);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 5mm;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 800; font-size: 8pt; letter-spacing: 0.24em;
+  .big-band {
+    position: relative;
+    padding: 10mm 18mm 4mm;
+    text-align: center;
+  }
+  .big-word {
+    position: relative;
+    display: inline-block;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 84pt;
+    line-height: 0.9;
+    letter-spacing: 0.01em;
+    color: var(--paper);
+    text-transform: uppercase;
+    transform: scaleX(1.06);
+    transform-origin: center;
+  }
+  .big-word::before {
+    content: "FIXED.";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    color: var(--lime);
+    transform: translate(1.4mm, 0);
+    z-index: -1;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    letter-spacing: 0.01em;
+  }
+  .big-word-bar {
+    position: absolute;
+    top: 47%; left: 12mm; right: 12mm;
+    height: 1.4mm;
+    background: var(--lime);
+    transform: translateX(2mm);
+    z-index: 3;
+  }
+  .big-sub {
+    margin-top: 5mm;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 8.5pt;
+    letter-spacing: 0.5em;
+    color: var(--lime);
+    text-transform: uppercase;
+  }
+
+  /* ─────────────────────────────────────────
+     RULE TABLE (mirrors price-table)
+     ───────────────────────────────────────── */
+  .rule-table {
+    margin: 6mm 14mm 0;
+    border: 1.2mm solid var(--lime);
+  }
+  .rule-row {
+    display: flex;
+    align-items: stretch;
+    border-bottom: 0.6mm solid var(--lime);
+    min-height: 18mm;
+    padding: 0 10mm;
+  }
+  .rule-row:last-child { border-bottom: none; }
+  .rule-row > div {
+    display: flex;
+    align-items: center;
+  }
+  .rule-row.even { background: var(--ink); }
+  .rule-row.odd  { background: var(--lime); color: var(--ink); }
+  .row-num {
+    flex: 0 0 24mm;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 22pt;
+    line-height: 0.82;
+    letter-spacing: -0.01em;
+    padding-top: 1.5mm;
+    white-space: nowrap;
+  }
+  .rule-row.even .row-num { color: var(--lime); }
+  .rule-row.odd  .row-num { color: var(--ink); }
+  .row-stmt {
+    flex: 1 1 auto;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 10.5pt;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--paper);
-    border: 0.5mm solid var(--lime);
-    z-index: 6;
+    opacity: 0.92;
   }
-  .serial .l { color: var(--lime); }
-  .serial .c { font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: "wdth" 110;
-    font-size: 10pt; letter-spacing: 0.05em; color: var(--paper); }
-  .serial .r { color: var(--mute); }
+  .rule-row.odd .row-stmt { color: var(--ink); opacity: 1; }
+  .row-tag {
+    flex: 0 0 auto;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 18pt;
+    line-height: 0.82;
+    letter-spacing: -0.01em;
+    padding-top: 1.5mm;
+    white-space: nowrap;
+  }
+  .rule-row.even .row-tag { color: var(--lime); }
+  .rule-row.odd  .row-tag { color: var(--ink); }
 
   /* ─────────────────────────────────────────
-     SIDE REGISTRATION TICKS — corner brackets
+     SIGN-OFF BAR — mirrors JOIN NOW
      ───────────────────────────────────────── */
-  .tick { position: absolute; width: 6mm; height: 6mm; border: 0.6mm solid var(--lime); z-index: 7; }
-  .tick.tl { top: 32mm; left: 4mm; border-right: none; border-bottom: none; }
-  .tick.tr { top: 32mm; right: 4mm; border-left: none; border-bottom: none; }
-  .tick.bl { bottom: 32mm; left: 4mm; border-right: none; border-top: none; }
-  .tick.br { bottom: 32mm; right: 4mm; border-left: none; border-top: none; }
+  .signoff {
+    margin: 5mm 14mm 0;
+    background: var(--ink);
+    color: var(--lime);
+    padding: 6mm 10mm;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1.2mm solid var(--lime);
+  }
+  .signoff-text {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 26pt;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--lime);
+  }
+  .signoff-sub {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 7.5pt;
+    letter-spacing: 0.4em;
+    margin-top: 2mm;
+    text-transform: uppercase;
+    color: var(--paper);
+  }
+  .signoff-arrow {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 38pt;
+    line-height: 0.8;
+    color: var(--lime);
+  }
 
   /* ─────────────────────────────────────────
-     SIDE EDGE INDEX LABELS
+     FOOTER (bottom 0-22mm)
      ───────────────────────────────────────── */
-  .edge-l, .edge-r {
+  .footer-bar {
     position: absolute;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 800; font-size: 7pt; letter-spacing: 0.32em;
-    text-transform: uppercase; color: var(--lime);
-    z-index: 7;
+    bottom: 8mm; left: 14mm; right: 14mm;
+    border-top: 0.4mm solid rgba(207,255,60,0.4);
+    padding: 4mm 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 500;
+    font-size: 8pt;
+    color: var(--paper);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
-  .edge-l {
-    top: 50%; left: 7mm;
-    transform: translateY(-50%) rotate(-90deg);
-    transform-origin: left center;
+  .footer-bar b { color: var(--lime); font-weight: 900; }
+  .footer-bar .left {
+    display: flex; align-items: center; gap: 3mm;
   }
-  .edge-r {
-    top: 50%; right: 0;
-    transform: translateY(-50%) rotate(90deg);
-    transform-origin: right center;
+  .ig-dot {
+    width: 4mm; height: 4mm;
+    background: var(--lime);
+    display: inline-block;
+    border-radius: 1mm;
   }
 </style>
 </head>
 <body>
   <div class="stage">
 
-    <!-- top hazard band -->
-    <div class="hazard top"></div>
+    <!-- ────── HERO ────── -->
+    <section class="hero">
+      <div class="hero-frame"></div>
 
-    <!-- top protocol strip -->
-    <div class="protocol-strip">
-      <div class="l">
-        <b>PROTOCOL &#8470; 01</b>
-        <span>NO BARGAINING</span>
+      <div class="hero-logo-wrap">
+        <img class="hero-logo" src="assets/logo.png" alt="Rockwall Fitness">
       </div>
-      <div class="r">ROCKWALL &middot; BLR &middot; FY26</div>
-    </div>
+      <div class="hero-year">&rsquo;26<small>FRONT DESK</small></div>
 
-    <!-- corner brackets -->
-    <div class="tick tl"></div>
-    <div class="tick tr"></div>
-    <div class="tick bl"></div>
-    <div class="tick br"></div>
-
-    <!-- edge index labels -->
-    <div class="edge-l">FILE 01.0 &middot; NO HAGGLE</div>
-    <div class="edge-r">EST. 2018 &middot; BANGALORE</div>
-
-    <!-- HERO -->
-    <div class="hero">
-      <div class="line line-1">NO</div>
-      <div class="line line-2">HAGGLE.</div>
-    </div>
-
-    <!-- sub-bar -->
-    <div class="subbar">
-      <span>ONE PRICE</span><i>//</i><span>EVERY MEMBER</span><i>//</i><span>EVERY DAY</span><i>//</i><span>NO EXCEPTIONS</span>
-    </div>
-
-    <!-- barbell divider band -->
-    <div class="barbell-band">
-      <span class="l"></span>
-      <svg viewBox="0 0 220 28" xmlns="http://www.w3.org/2000/svg">
-        <!-- bar (knurled grip middle) -->
-        <rect x="40" y="12" width="140" height="4" fill="#FFFFFF"/>
-        <!-- knurl marks on bar -->
-        <g fill="#0B0C12">
-          <rect x="92" y="12" width="0.6" height="4"/>
-          <rect x="96" y="12" width="0.6" height="4"/>
-          <rect x="100" y="12" width="0.6" height="4"/>
-          <rect x="104" y="12" width="0.6" height="4"/>
-          <rect x="108" y="12" width="0.6" height="4"/>
-          <rect x="112" y="12" width="0.6" height="4"/>
-          <rect x="116" y="12" width="0.6" height="4"/>
-          <rect x="120" y="12" width="0.6" height="4"/>
-          <rect x="124" y="12" width="0.6" height="4"/>
-          <rect x="128" y="12" width="0.6" height="4"/>
-        </g>
-        <!-- inner collars -->
-        <rect x="44" y="6" width="3" height="16" fill="#FFFFFF"/>
-        <rect x="173" y="6" width="3" height="16" fill="#FFFFFF"/>
-        <!-- big plates -->
-        <rect x="22" y="2" width="14" height="24" rx="1.5" fill="#FFFFFF"/>
-        <rect x="184" y="2" width="14" height="24" rx="1.5" fill="#FFFFFF"/>
-        <!-- small plates -->
-        <rect x="14" y="6" width="6" height="16" rx="0.8" fill="#FFFFFF"/>
-        <rect x="200" y="6" width="6" height="16" rx="0.8" fill="#FFFFFF"/>
-        <!-- mini plates -->
-        <rect x="8" y="10" width="3" height="8" fill="#FFFFFF"/>
-        <rect x="209" y="10" width="3" height="8" fill="#FFFFFF"/>
-      </svg>
-      <span class="r"></span>
-    </div>
-
-    <!-- protocol entry box -->
-    <div class="entry">
-      <div class="br-tl"></div><div class="br-tr"></div>
-      <div class="br-bl"></div><div class="br-br"></div>
-
-      <div class="hdr"><span>ENTRY 01.0 &middot; FILED FY26</span><span>SECTION : RATE</span></div>
-      <div class="stmt">
-        THE PRICE IS THE PRICE.<br>
-        SAME RATE FOR <b>EVERY WALK-IN</b>.<br>
-        YES &mdash; <b>EVEN THE OWNER</b>.<br>
-        THIS IS <b>NOT NEGOTIABLE</b>.
+      <h1 class="hero-headline">
+        DON&rsquo;T<br>
+        <span class="lime">HAGGLE.</span>
+      </h1>
+      <div class="hero-tag">
+        ROCKWALL FITNESS <span class="dot"></span> BANGALORE <span class="dot"></span> SINCE 2018
       </div>
-      <div class="meta"><span>SIGNED &middot; <b>MGMT</b></span><span>WITNESS &middot; <span class="iron">THE IRON</span></span></div>
+    </section>
 
-      <!-- rubber-stamp seal -->
-      <div class="stampseal">
-        <div class="ring">
-          <div class="t">NON-<br>NEGOTIABLE.<small>&#9670; FY26 &#9670;</small></div>
-        </div>
+    <!-- ────── BIG WORD BAND ────── -->
+    <section class="big-band">
+      <span class="big-word">FIXED.<span class="big-word-bar"></span></span>
+      <div class="big-sub">ONE RATE &nbsp;&middot;&nbsp; ALL MEMBERS &nbsp;&middot;&nbsp; ALL DAY</div>
+    </section>
+
+    <!-- ────── RULE TABLE ────── -->
+    <div class="rule-table">
+      <div class="rule-row even">
+        <div class="row-num">01</div>
+        <div class="row-stmt">MEMBERS PAY ONE RATE</div>
+        <div class="row-tag">&mdash; FIXED</div>
+      </div>
+      <div class="rule-row odd">
+        <div class="row-num">02</div>
+        <div class="row-stmt">STUDENTS PAY ONE RATE</div>
+        <div class="row-tag">&mdash; FIXED</div>
+      </div>
+      <div class="rule-row even">
+        <div class="row-num">03</div>
+        <div class="row-stmt">THE OWNER PAYS ONE RATE</div>
+        <div class="row-tag">&mdash; FIXED</div>
+      </div>
+      <div class="rule-row odd">
+        <div class="row-num">04</div>
+        <div class="row-stmt">SAVE THE REPS FOR THE BAR</div>
+        <div class="row-tag">&mdash; LIFT</div>
       </div>
     </div>
 
-    <!-- bottom serial strip -->
-    <div class="serial">
-      <div class="l">LOT &middot; FY26-001-NHGL</div>
-      <div class="c">&#9733; ROCKWALL FITNESS &middot; BLR &#9733;</div>
-      <div class="r">VALID &middot; INDEFINITE</div>
+    <!-- ────── SIGN-OFF BAR ────── -->
+    <div class="signoff">
+      <div>
+        <div class="signoff-text">NO ARGUMENT.</div>
+        <div class="signoff-sub">JUST WALK IN &middot; PAY THE RATE &middot; LIFT</div>
+      </div>
+      <div class="signoff-arrow">&rarr;</div>
     </div>
 
-    <!-- bottom hazard band -->
-    <div class="hazard bot"></div>
+    <!-- ────── FOOTER ────── -->
+    <div class="footer-bar">
+      <div class="left"><span class="ig-dot"></span> <b>@</b>ROCKWALLFITNESS</div>
+      <div>SV TOWERS &middot; HOSUR ROAD &middot; BANGALORE 560029</div>
+      <div><b>FY</b>26</div>
+    </div>
 
     <div class="cutline"></div>
   </div>
