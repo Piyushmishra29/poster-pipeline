@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Sticker — Front Desk · DON'T TRACK IN (Rule 02)</title>
+<title>Sticker — Front Desk · BAG YOUR SHOES (Rule 02 · editorial)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:ital,wght@0,400;0,500;0,700;0,800;0,900;1,400;1,500&display=swap" rel="stylesheet">
 <style>
   /* A4 landscape · 297 x 210 + 3mm bleed = 303 x 216 mm */
   @page { size: 303mm 216mm; margin: 0; bleed: 3mm; marks: crop cross; background: #050505; }
@@ -14,6 +14,7 @@
     --ink:#050505;
     --lime:#CFFF3C;
     --paper:#F6F6F2;
+    --mute:rgba(246,246,242,0.45);
   }
   html, body {
     width: 303mm; height: 216mm;
@@ -29,311 +30,203 @@
     z-index: 999;
   }
 
-  /* Lime keyline frame (continuous) */
-  .hero-frame {
-    position: absolute;
-    top: 8mm; right: 8mm; bottom: 8mm; left: 8mm;
-    border: 1mm solid var(--lime);
-    pointer-events: none;
-  }
-
-  /* Year stamp top-right */
-  .hero-year {
-    position: absolute;
-    top: 14mm; right: 18mm;
-    font-family: 'Anybody', sans-serif;
-    font-weight: 900;
-    font-variation-settings: "wdth" 150;
-    font-size: 28pt;
-    color: var(--lime);
-    letter-spacing: 0.04em;
-    line-height: 1;
+  /* ── top edge hairline strip ── */
+  .strip-top {
+    position: absolute; top: 14mm; left: 18mm; right: 18mm;
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 0.3mm solid var(--lime);
+    padding-bottom: 4mm;
+    font-family: 'Inter Tight', sans-serif; font-weight: 800;
+    font-size: 8pt; letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--paper);
     z-index: 5;
-    text-align: right;
   }
-  .hero-year small {
-    display: block;
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 800;
-    font-size: 7pt;
-    letter-spacing: 0.4em;
-    color: var(--paper);
-    margin-top: 1.5mm;
-  }
+  .strip-top .l { color: var(--lime); }
+  .strip-top .l b { color: var(--paper); font-weight: 800; }
+  .strip-top .r { color: var(--mute); }
+  .strip-top .r b { color: var(--lime); font-weight: 800; }
 
-  /* ─── LEFT COLUMN (hero zone) ─── */
-  .left-col {
+  /* ── headline left ── */
+  .hero {
     position: absolute;
-    top: 18mm; left: 18mm;
-    width: 138mm; height: 168mm;
+    top: 36mm; left: 18mm;
+    width: 150mm;
     z-index: 4;
-    color: var(--paper);
   }
-  .hero-headline {
+  .hero h1 {
     font-family: 'Anybody', sans-serif;
-    font-weight: 900;
-    font-variation-settings: "wdth" 150;
-    font-size: 64pt;
-    color: var(--paper);
-    letter-spacing: -0.01em;
-    line-height: 0.86;
-    text-transform: uppercase;
-    margin-top: 8mm;
+    font-weight: 900; font-variation-settings: "wdth" 150;
+    font-size: 78pt; line-height: 0.84; letter-spacing: -0.02em;
+    color: var(--paper); text-transform: uppercase;
   }
-  .hero-headline .lime { color: var(--lime); }
+  .hero h1 .lime { color: var(--lime); }
 
-  .big-word-wrap {
-    position: relative;
-    text-align: left;
-    margin-top: 18mm;
-  }
-  .big-word {
-    position: relative;
-    display: inline-block;
-    font-family: 'Anybody', sans-serif;
-    font-weight: 900;
-    font-variation-settings: "wdth" 150;
-    font-size: 64pt;
-    line-height: 0.9;
-    letter-spacing: 0.01em;
-    color: var(--paper);
-    text-transform: uppercase;
-    transform: scaleX(1.06);
-    transform-origin: left center;
-  }
-  .big-word::before {
-    content: "TWO PAIRS.";
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    color: var(--lime);
-    transform: translate(1.4mm, 0);
-    z-index: -1;
-    font-family: 'Anybody', sans-serif;
-    font-weight: 900;
-    font-variation-settings: "wdth" 150;
-    letter-spacing: 0.01em;
-  }
-  .big-sub {
-    margin-top: 5mm;
+  .hero .seed {
+    margin-top: 7mm;
     font-family: 'Inter Tight', sans-serif;
     font-weight: 800;
-    font-size: 8pt;
-    letter-spacing: 0.42em;
-    color: var(--lime);
-    text-transform: uppercase;
+    font-size: 10pt; line-height: 1.45; letter-spacing: 0.2em;
+    color: var(--paper); text-transform: uppercase;
+    max-width: 140mm;
+  }
+  .hero .seed b { color: var(--lime); }
+  .hero .seed i {
+    display: block;
+    font-style: italic; font-weight: 500;
+    font-size: 13pt; letter-spacing: 0.02em;
+    color: var(--paper); text-transform: none;
+    margin-top: 3mm; max-width: 120mm;
+    opacity: 0.85;
   }
 
-  /* Tagline at bottom of left col */
-  .hero-tag {
+  /* ── rules as editorial caption-list (no table) ── */
+  .rules {
     position: absolute;
-    bottom: 0; left: 0;
+    top: 132mm; left: 18mm;
+    width: 150mm;
+    z-index: 4;
     font-family: 'Inter Tight', sans-serif;
-    font-weight: 800;
-    font-size: 8pt;
-    letter-spacing: 0.45em;
-    color: var(--paper);
-    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 10pt; line-height: 1.85; letter-spacing: 0.18em;
+    color: var(--paper); text-transform: uppercase;
   }
-  .hero-tag .dot {
-    display: inline-block;
-    width: 2mm; height: 2mm;
-    background: var(--lime);
-    border-radius: 50%;
-    margin: 0 3mm 0.5mm;
-    vertical-align: middle;
+  .rules .row { display: flex; align-items: baseline; gap: 4mm; }
+  .rules .n {
+    flex: 0 0 9mm;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900; font-variation-settings: "wdth" 150;
+    font-size: 13pt; color: var(--lime);
+    letter-spacing: 0.02em;
   }
+  .rules .s { flex: 1 1 auto; }
+  .rules .s b { color: var(--lime); font-weight: 800; }
 
-  /* ─── RIGHT COLUMN (rules + sign-off) ─── */
-  .right-col {
+  /* ── THE PRICE MONOLITH (right) ── */
+  .price-block {
     position: absolute;
     top: 38mm; right: 18mm;
-    width: 130mm; height: 148mm;
+    width: 132mm;
+    z-index: 4;
+    text-align: right;
+  }
+  .price-label {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800; font-size: 8pt;
+    letter-spacing: 0.5em; color: var(--lime);
+    text-transform: uppercase;
+    margin-bottom: 2mm;
+  }
+  .price-num {
+    position: relative;
+    display: inline-block;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900; font-variation-settings: "wdth" 150;
+    font-size: 168pt; line-height: 0.84; letter-spacing: -0.04em;
+    color: var(--paper);
+  }
+  .price-num::before {
+    content: "\20B9 499";
+    position: absolute; top: 0; left: 0;
+    width: 100%; color: var(--lime);
+    transform: translate(2mm, 0);
+    z-index: -1;
+    font-family: inherit; font-weight: inherit;
+    font-variation-settings: inherit; letter-spacing: inherit;
+  }
+
+  .price-caption {
+    margin-top: 6mm;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800; font-size: 9pt;
+    line-height: 1.55; letter-spacing: 0.24em;
+    color: var(--paper); text-transform: uppercase;
+    text-align: right;
+  }
+  .price-caption b { color: var(--lime); }
+  .price-caption i {
+    font-style: italic; font-weight: 500;
+    letter-spacing: 0.04em; text-transform: none;
+    color: var(--mute);
+  }
+
+  /* ── tagline between rules and footer ── */
+  .tag {
+    position: absolute;
+    bottom: 26mm; left: 18mm;
+    font-family: 'Inter Tight', sans-serif; font-weight: 800;
+    font-size: 8pt; letter-spacing: 0.48em;
+    color: var(--paper); text-transform: uppercase;
     z-index: 4;
   }
+  .tag .dot { color: var(--lime); padding: 0 1.4mm; }
 
-  .rule-table {
-    border: 1.2mm solid var(--lime);
-  }
-  .rule-row {
-    display: flex;
-    align-items: stretch;
-    border-bottom: 0.6mm solid var(--lime);
-    min-height: 17mm;
-    padding: 0 8mm;
-  }
-  .rule-row:last-child { border-bottom: none; }
-  .rule-row > div {
-    display: flex;
-    align-items: center;
-  }
-  .rule-row.even { background: var(--ink); }
-  .rule-row.odd  { background: var(--lime); color: var(--ink); }
-  .row-num {
-    flex: 0 0 16mm;
-    font-family: 'Anybody', sans-serif;
-    font-weight: 900;
-    font-variation-settings: "wdth" 150;
-    font-size: 19pt;
-    line-height: 0.82;
-    letter-spacing: -0.01em;
-    padding-top: 1.5mm;
-    white-space: nowrap;
-  }
-  .rule-row.even .row-num { color: var(--lime); }
-  .rule-row.odd  .row-num { color: var(--ink); }
-  .row-stmt {
-    flex: 1 1 auto;
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 800;
-    font-size: 9pt;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--paper);
-    opacity: 0.92;
-  }
-  .rule-row.odd .row-stmt { color: var(--ink); opacity: 1; }
-  .row-tag {
-    flex: 0 0 auto;
-    font-family: 'Anybody', sans-serif;
-    font-weight: 900;
-    font-variation-settings: "wdth" 150;
-    font-size: 15pt;
-    line-height: 0.82;
-    letter-spacing: -0.01em;
-    padding-top: 1.5mm;
-    white-space: nowrap;
-  }
-  .rule-row.even .row-tag { color: var(--lime); }
-  .rule-row.odd  .row-tag { color: var(--ink); }
-
-  /* Sign-off bar */
-  .signoff {
-    margin-top: 5mm;
-    background: var(--ink);
-    color: var(--lime);
-    padding: 5mm 9mm;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border: 1.2mm solid var(--lime);
-  }
-  .signoff-text {
-    font-family: 'Anybody', sans-serif;
-    font-weight: 900;
-    font-variation-settings: "wdth" 150;
-    font-size: 22pt;
-    line-height: 1;
-    letter-spacing: -0.01em;
-    text-transform: uppercase;
-    color: var(--lime);
-  }
-  .signoff-sub {
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 800;
-    font-size: 7pt;
-    letter-spacing: 0.32em;
-    margin-top: 2mm;
-    text-transform: uppercase;
-    color: var(--paper);
-  }
-  .signoff-arrow {
-    font-family: 'Anybody', sans-serif;
-    font-weight: 900;
-    font-variation-settings: "wdth" 150;
-    font-size: 32pt;
-    line-height: 0.8;
-    color: var(--lime);
-  }
-
-  /* Footer */
-  .footer-bar {
-    position: absolute;
-    bottom: 8mm; left: 18mm; right: 18mm;
-    border-top: 0.4mm solid rgba(207,255,60,0.4);
-    padding: 3mm 0 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 500;
-    font-size: 8pt;
-    color: var(--paper);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+  /* ── bottom hairline footer ── */
+  .footer {
+    position: absolute; bottom: 14mm; left: 18mm; right: 18mm;
+    border-top: 0.3mm solid var(--lime);
+    padding-top: 4mm;
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: 'Inter Tight', sans-serif; font-weight: 700;
+    font-size: 8pt; letter-spacing: 0.18em;
+    color: var(--paper); text-transform: uppercase;
     z-index: 5;
   }
-  .footer-bar b { color: var(--lime); font-weight: 900; }
-  .footer-bar .left {
-    display: flex; align-items: center; gap: 3mm;
-  }
-  .ig-dot {
-    width: 4mm; height: 4mm;
-    background: var(--lime);
-    display: inline-block;
-    border-radius: 1mm;
+  .footer b { color: var(--lime); font-weight: 800; }
+  .footer .ig {
+    display: inline-block; width: 3.5mm; height: 3.5mm;
+    background: var(--lime); border-radius: 0.8mm;
+    margin-right: 3mm; vertical-align: middle;
   }
 </style>
 </head>
 <body>
   <div class="stage">
-    <div class="hero-frame"></div>
-    <div class="hero-year">&rsquo;26<small>RULE 02</small></div>
 
-    <!-- LEFT COLUMN -->
-    <div class="left-col">
-      <h1 class="hero-headline">
+    <!-- top hairline strip: year stamp + page label -->
+    <div class="strip-top">
+      <div class="l">&rsquo;<b>26</b> &nbsp;&middot;&nbsp; RULE 02</div>
+      <div class="r">FRONT DESK &nbsp;&middot;&nbsp; <b>ROCKWALL FITNESS</b></div>
+    </div>
+
+    <!-- LEFT — hero + editorial sub -->
+    <div class="hero">
+      <h1>
         BAG YOUR<br>
         <span class="lime">SHOES.</span>
       </h1>
-
-      <div class="big-word-wrap">
-        <span class="big-word">TWO PAIRS.</span>
-        <div class="big-sub">ONE FOR THE STREET &nbsp;&middot;&nbsp; ONE FOR THE FLOOR</div>
-      </div>
-
-      <div class="hero-tag">
-        FRONT DESK <span class="dot"></span> RULE 02 <span class="dot"></span> FY26
+      <div class="seed">
+        TWO PAIRS. <b>ONE FOR THE STREET.</b> ONE FOR THE FLOOR.
+        <i>Carry your outside shoes in a bag. Wear your gym shoes on the floor. That&rsquo;s it.</i>
       </div>
     </div>
 
-    <!-- RIGHT COLUMN -->
-    <div class="right-col">
-      <div class="rule-table">
-        <div class="rule-row even">
-          <div class="row-num">01</div>
-          <div class="row-stmt">BAG YOUR OUTSIDE SHOES</div>
-          <div class="row-tag">&mdash; BAGGED</div>
-        </div>
-        <div class="rule-row odd">
-          <div class="row-num">02</div>
-          <div class="row-stmt">WEAR YOUR GYM SHOES</div>
-          <div class="row-tag">&mdash; SORTED</div>
-        </div>
-        <div class="rule-row even">
-          <div class="row-num">03</div>
-          <div class="row-stmt">NO GYM SHOES? SOCKS WORK</div>
-          <div class="row-tag">&mdash; CHILL</div>
-        </div>
-        <div class="rule-row odd">
-          <div class="row-num">04</div>
-          <div class="row-stmt">NO BAG? WE SELL ONE</div>
-          <div class="row-tag">&mdash; &#8377;499</div>
-        </div>
-      </div>
+    <!-- LEFT — rules as captioned list -->
+    <div class="rules">
+      <div class="row"><div class="n">01</div><div class="s">BAG YOUR OUTSIDE SHOES.</div></div>
+      <div class="row"><div class="n">02</div><div class="s">WEAR YOUR GYM SHOES.</div></div>
+      <div class="row"><div class="n">03</div><div class="s">NO GYM SHOES? <b>SOCKS WORK.</b></div></div>
+      <div class="row"><div class="n">04</div><div class="s">NO BAG? <b>WE SELL ONE.</b></div></div>
+    </div>
 
-      <div class="signoff">
-        <div>
-          <div class="signoff-text">BAGS ARE &#8377;499.</div>
-          <div class="signoff-sub">AT THE DESK &middot; NO HAGGLE &middot; SEE RULE 01</div>
-        </div>
-        <div class="signoff-arrow">&rarr;</div>
+    <!-- RIGHT — price monolith -->
+    <div class="price-block">
+      <div class="price-label">PRICE OF A BAG</div>
+      <span class="price-num">&#8377;499</span>
+      <div class="price-caption">
+        PER BAG &middot; AT THE DESK<br>
+        <b>NO HAGGLE</b> &middot; SEE RULE 01<br>
+        <i>(yes that&rsquo;s really the price.)</i>
       </div>
     </div>
 
-    <!-- FOOTER -->
-    <div class="footer-bar">
-      <div class="left"><span class="ig-dot"></span> <b>@</b>ROCKWALLFITNESS</div>
+    <!-- tagline -->
+    <div class="tag">
+      FY26 <span class="dot">&middot;</span> RULE 02 <span class="dot">&middot;</span> FRONT DESK
+    </div>
+
+    <!-- bottom hairline footer -->
+    <div class="footer">
+      <div><span class="ig"></span><b>@</b>ROCKWALLFITNESS</div>
       <div>SV TOWERS &middot; HOSUR ROAD &middot; BANGALORE 560029</div>
       <div><b>FY</b>26</div>
     </div>
