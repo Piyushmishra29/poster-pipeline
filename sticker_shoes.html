@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Sticker — Front Desk · BAG YOUR SHOES (Rule 02 · editorial)</title>
+<title>Sticker — Wall · BAG YOUR SHOES (Rule 02 · billboard)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:ital,wght@0,400;0,500;0,700;0,800;0,900;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900&display=swap" rel="stylesheet">
 <style>
   /* A4 landscape · 297 x 210 + 3mm bleed = 303 x 216 mm */
   @page { size: 303mm 216mm; margin: 0; bleed: 3mm; marks: crop cross; background: #050505; }
@@ -14,15 +14,17 @@
     --ink:#050505;
     --lime:#CFFF3C;
     --paper:#F6F6F2;
-    --mute:rgba(246,246,242,0.45);
   }
   html, body {
     width: 303mm; height: 216mm;
     background: var(--ink); color: var(--paper);
-    font-family: 'Inter Tight', sans-serif;
+    font-family: 'Anybody', sans-serif;
     -webkit-print-color-adjust: exact; print-color-adjust: exact;
   }
-  .stage { position: relative; width: 303mm; height: 216mm; overflow: hidden; background: var(--ink); }
+  .stage {
+    position: relative; width: 303mm; height: 216mm;
+    overflow: hidden; background: var(--ink);
+  }
   .cutline {
     position: absolute; top: 4mm; left: 4mm;
     width: 295mm; height: 208mm;
@@ -30,205 +32,100 @@
     z-index: 999;
   }
 
-  /* ── top edge hairline strip ── */
-  .strip-top {
-    position: absolute; top: 14mm; left: 18mm; right: 18mm;
-    display: flex; justify-content: space-between; align-items: baseline;
-    border-bottom: 0.3mm solid var(--lime);
-    padding-bottom: 4mm;
-    font-family: 'Inter Tight', sans-serif; font-weight: 800;
-    font-size: 8pt; letter-spacing: 0.4em; text-transform: uppercase;
-    color: var(--paper);
-    z-index: 5;
-  }
-  .strip-top .l { color: var(--lime); }
-  .strip-top .l b { color: var(--paper); font-weight: 800; }
-  .strip-top .r { color: var(--mute); }
-  .strip-top .r b { color: var(--lime); font-weight: 800; }
-
-  /* ── headline left ── */
+  /* ───────────────────────────────────────────
+     ACT 1 — HERO (read from 10m+, 200pt)
+     ─────────────────────────────────────────── */
   .hero {
     position: absolute;
-    top: 36mm; left: 18mm;
-    width: 150mm;
+    top: 18mm; left: 18mm; right: 18mm;
     z-index: 4;
+    text-align: center;
   }
   .hero h1 {
     font-family: 'Anybody', sans-serif;
-    font-weight: 900; font-variation-settings: "wdth" 150;
-    font-size: 78pt; line-height: 0.84; letter-spacing: -0.02em;
-    color: var(--paper); text-transform: uppercase;
+    font-weight: 900;
+    font-variation-settings: "wdth" 75;
+    font-size: 156pt;
+    line-height: 0.82;
+    letter-spacing: -0.04em;
+    color: var(--paper);
+    text-transform: uppercase;
+  }
+  .hero h1 .line {
+    display: block;
+    white-space: nowrap;
   }
   .hero h1 .lime { color: var(--lime); }
 
-  .hero .seed {
-    margin-top: 7mm;
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 800;
-    font-size: 10pt; line-height: 1.45; letter-spacing: 0.2em;
-    color: var(--paper); text-transform: uppercase;
-    max-width: 140mm;
-  }
-  .hero .seed b { color: var(--lime); }
-  .hero .seed i {
-    display: block;
-    font-style: italic; font-weight: 500;
-    font-size: 13pt; letter-spacing: 0.02em;
-    color: var(--paper); text-transform: none;
-    margin-top: 3mm; max-width: 120mm;
-    opacity: 0.85;
-  }
-
-  /* ── rules as editorial caption-list (no table) ── */
-  .rules {
+  /* ───────────────────────────────────────────
+     ACT 2 — PRICE (read from 5m, 56pt)
+     ─────────────────────────────────────────── */
+  .priceline {
     position: absolute;
-    top: 132mm; left: 18mm;
-    width: 150mm;
+    bottom: 40mm; left: 18mm; right: 18mm;
     z-index: 4;
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 700;
-    font-size: 10pt; line-height: 1.85; letter-spacing: 0.18em;
-    color: var(--paper); text-transform: uppercase;
-  }
-  .rules .row { display: flex; align-items: baseline; gap: 4mm; }
-  .rules .n {
-    flex: 0 0 9mm;
+    text-align: center;
     font-family: 'Anybody', sans-serif;
-    font-weight: 900; font-variation-settings: "wdth" 150;
-    font-size: 13pt; color: var(--lime);
-    letter-spacing: 0.02em;
-  }
-  .rules .s { flex: 1 1 auto; }
-  .rules .s b { color: var(--lime); font-weight: 800; }
-
-  /* ── THE PRICE MONOLITH (right) ── */
-  .price-block {
-    position: absolute;
-    top: 38mm; right: 18mm;
-    width: 132mm;
-    z-index: 4;
-    text-align: right;
-  }
-  .price-label {
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 800; font-size: 8pt;
-    letter-spacing: 0.5em; color: var(--lime);
-    text-transform: uppercase;
-    margin-bottom: 2mm;
-  }
-  .price-num {
-    position: relative;
-    display: inline-block;
-    font-family: 'Anybody', sans-serif;
-    font-weight: 900; font-variation-settings: "wdth" 150;
-    font-size: 168pt; line-height: 0.84; letter-spacing: -0.04em;
+    font-weight: 900;
+    font-variation-settings: "wdth" 110;
+    font-size: 56pt;
+    line-height: 1;
+    letter-spacing: -0.02em;
     color: var(--paper);
+    text-transform: uppercase;
   }
-  .price-num::before {
-    content: "\20B9 499";
-    position: absolute; top: 0; left: 0;
-    width: 100%; color: var(--lime);
-    transform: translate(2mm, 0);
-    z-index: -1;
-    font-family: inherit; font-weight: inherit;
-    font-variation-settings: inherit; letter-spacing: inherit;
+  .priceline .lime {
+    color: var(--ink);
+    background: var(--lime);
+    padding: 0 4mm 1.5mm;
   }
 
-  .price-caption {
-    margin-top: 6mm;
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 800; font-size: 9pt;
-    line-height: 1.55; letter-spacing: 0.24em;
-    color: var(--paper); text-transform: uppercase;
-    text-align: right;
-  }
-  .price-caption b { color: var(--lime); }
-  .price-caption i {
-    font-style: italic; font-weight: 500;
-    letter-spacing: 0.04em; text-transform: none;
-    color: var(--mute);
-  }
-
-  /* ── tagline between rules and footer ── */
-  .tag {
+  /* ───────────────────────────────────────────
+     ACT 3 — META (read from 3m, 28pt)
+     ─────────────────────────────────────────── */
+  .note {
     position: absolute;
-    bottom: 26mm; left: 18mm;
-    font-family: 'Inter Tight', sans-serif; font-weight: 800;
-    font-size: 8pt; letter-spacing: 0.48em;
-    color: var(--paper); text-transform: uppercase;
+    bottom: 16mm; left: 18mm; right: 18mm;
     z-index: 4;
+    text-align: center;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 110;
+    font-size: 28pt;
+    line-height: 1;
+    letter-spacing: -0.005em;
+    color: var(--lime);
+    text-transform: uppercase;
   }
-  .tag .dot { color: var(--lime); padding: 0 1.4mm; }
-
-  /* ── bottom hairline footer ── */
-  .footer {
-    position: absolute; bottom: 14mm; left: 18mm; right: 18mm;
-    border-top: 0.3mm solid var(--lime);
-    padding-top: 4mm;
-    display: flex; justify-content: space-between; align-items: baseline;
-    font-family: 'Inter Tight', sans-serif; font-weight: 700;
-    font-size: 8pt; letter-spacing: 0.18em;
-    color: var(--paper); text-transform: uppercase;
-    z-index: 5;
+  .note b {
+    color: var(--paper);
+    font-weight: 900;
   }
-  .footer b { color: var(--lime); font-weight: 800; }
-  .footer .ig {
-    display: inline-block; width: 3.5mm; height: 3.5mm;
-    background: var(--lime); border-radius: 0.8mm;
-    margin-right: 3mm; vertical-align: middle;
+  .note .dot {
+    color: var(--paper);
+    padding: 0 2.5mm;
   }
 </style>
 </head>
 <body>
   <div class="stage">
 
-    <!-- top hairline strip: year stamp + page label -->
-    <div class="strip-top">
-      <div class="l">&rsquo;<b>26</b> &nbsp;&middot;&nbsp; RULE 02</div>
-      <div class="r">FRONT DESK &nbsp;&middot;&nbsp; <b>ROCKWALL FITNESS</b></div>
-    </div>
-
-    <!-- LEFT — hero + editorial sub -->
+    <!-- ACT 1 -->
     <div class="hero">
       <h1>
-        BAG YOUR<br>
-        <span class="lime">SHOES.</span>
+        <span class="line">BAG YOUR</span>
+        <span class="line lime">SHOES.</span>
       </h1>
-      <div class="seed">
-        TWO PAIRS. <b>ONE FOR THE STREET.</b> ONE FOR THE FLOOR.
-        <i>Carry your outside shoes in a bag. Wear your gym shoes on the floor. That&rsquo;s it.</i>
-      </div>
     </div>
 
-    <!-- LEFT — rules as captioned list -->
-    <div class="rules">
-      <div class="row"><div class="n">01</div><div class="s">BAG YOUR OUTSIDE SHOES.</div></div>
-      <div class="row"><div class="n">02</div><div class="s">WEAR YOUR GYM SHOES.</div></div>
-      <div class="row"><div class="n">03</div><div class="s">NO GYM SHOES? <b>SOCKS WORK.</b></div></div>
-      <div class="row"><div class="n">04</div><div class="s">NO BAG? <b>WE SELL ONE.</b></div></div>
+    <!-- ACT 2 -->
+    <div class="priceline">
+      BAGS ARE <span class="lime">&#8377;499.</span>
     </div>
 
-    <!-- RIGHT — price monolith -->
-    <div class="price-block">
-      <div class="price-label">PRICE OF A BAG</div>
-      <span class="price-num">&#8377;499</span>
-      <div class="price-caption">
-        PER BAG &middot; AT THE DESK<br>
-        <b>NO HAGGLE</b> &middot; SEE RULE 01<br>
-        <i>(yes that&rsquo;s really the price.)</i>
-      </div>
-    </div>
-
-    <!-- tagline -->
-    <div class="tag">
-      FY26 <span class="dot">&middot;</span> RULE 02 <span class="dot">&middot;</span> FRONT DESK
-    </div>
-
-    <!-- bottom hairline footer -->
-    <div class="footer">
-      <div><span class="ig"></span><b>@</b>ROCKWALLFITNESS</div>
-      <div>SV TOWERS &middot; HOSUR ROAD &middot; BANGALORE 560029</div>
-      <div><b>FY</b>26</div>
+    <!-- ACT 3 -->
+    <div class="note">
+      AT THE DESK<span class="dot">&middot;</span><b>NO HAGGLE</b><span class="dot">&middot;</span>SEE RULE 01
     </div>
 
     <div class="cutline"></div>
