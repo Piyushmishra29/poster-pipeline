@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sticker — Wall · NEW FACE SCAN IT (Rule 03 · billboard · reticle)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900&display=swap" rel="stylesheet">
+<style>
+  /* A4 landscape · 297 x 210 + 3mm bleed = 303 x 216 mm */
+  @page { size: 303mm 216mm; margin: 0; bleed: 3mm; marks: crop cross; background: #050505; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink:#050505;
+    --lime:#CFFF3C;
+    --paper:#F6F6F2;
+  }
+  html, body {
+    width: 303mm; height: 216mm;
+    background: var(--ink); color: var(--paper);
+    font-family: 'Anybody', sans-serif;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .stage {
+    position: relative; width: 303mm; height: 216mm;
+    overflow: hidden; background: var(--ink);
+  }
+  .cutline {
+    position: absolute; top: 4mm; left: 4mm;
+    width: 295mm; height: 208mm;
+    border: 0.6mm dashed #FF00FF;
+    z-index: 999;
+  }
+
+  /* ───────────────────────────────────────────
+     RETICLE — biometric corner brackets
+     sit just inside the magenta cutline (cutline at 4mm, reticles at 8mm)
+     ─────────────────────────────────────────── */
+  .reticle-tl {
+    position: absolute;
+    top: 8mm; left: 8mm;
+    width: 12mm; height: 12mm;
+    border-top: 0.8mm solid var(--lime);
+    border-left: 0.8mm solid var(--lime);
+    z-index: 5;
+  }
+  .reticle-tr {
+    position: absolute;
+    top: 8mm; right: 8mm;
+    width: 12mm; height: 12mm;
+    border-top: 0.8mm solid var(--lime);
+    border-right: 0.8mm solid var(--lime);
+    z-index: 5;
+  }
+  .reticle-bl {
+    position: absolute;
+    bottom: 8mm; left: 8mm;
+    width: 12mm; height: 12mm;
+    border-bottom: 0.8mm solid var(--lime);
+    border-left: 0.8mm solid var(--lime);
+    z-index: 5;
+  }
+  .reticle-br {
+    position: absolute;
+    bottom: 8mm; right: 8mm;
+    width: 12mm; height: 12mm;
+    border-bottom: 0.8mm solid var(--lime);
+    border-right: 0.8mm solid var(--lime);
+    z-index: 5;
+  }
+
+  /* ───────────────────────────────────────────
+     ACT 1 — HERO (read from 10m+, 200pt)
+     ─────────────────────────────────────────── */
+  .hero {
+    position: absolute;
+    top: 18mm; left: 10mm; right: 10mm;
+    z-index: 4;
+    text-align: center;
+  }
+  .hero h1 {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 75;
+    font-size: 140pt;
+    line-height: 0.82;
+    letter-spacing: -0.04em;
+    color: var(--paper);
+    text-transform: uppercase;
+  }
+  .hero h1 .line {
+    display: block;
+    white-space: nowrap;
+  }
+  .hero h1 .lime { color: var(--lime); }
+
+  /* ───────────────────────────────────────────
+     ACT 2 — PRICE (read from 5m, 56pt)
+     ─────────────────────────────────────────── */
+  .priceline {
+    position: absolute;
+    bottom: 40mm; left: 18mm; right: 18mm;
+    z-index: 4;
+    text-align: center;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 110;
+    font-size: 56pt;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--paper);
+    text-transform: uppercase;
+  }
+  .priceline .lime {
+    color: var(--lime);
+  }
+
+  /* ───────────────────────────────────────────
+     ACT 3 — META (read from 3m, 28pt)
+     ─────────────────────────────────────────── */
+  .note {
+    position: absolute;
+    bottom: 16mm; left: 18mm; right: 18mm;
+    z-index: 4;
+    text-align: center;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 110;
+    font-size: 28pt;
+    line-height: 1;
+    letter-spacing: -0.005em;
+    color: var(--lime);
+    text-transform: uppercase;
+  }
+  .note b {
+    color: var(--paper);
+    font-weight: 900;
+  }
+  .note .dot {
+    color: var(--paper);
+    padding: 0 2.5mm;
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+
+    <!-- ACT 1 — the ask -->
+    <div class="hero">
+      <h1>
+        <span class="line">NEW FACE?</span>
+        <span class="line lime">SCAN IT.</span>
+      </h1>
+    </div>
+
+    <!-- ACT 2 — the why -->
+    <div class="priceline">
+      <span class="lime">THE TURNSTILE NEEDS</span> A REFRESH.
+    </div>
+
+    <!-- ACT 3 — the help -->
+    <div class="note">
+      <b>RECEPTION</b><span class="dot">&middot;</span>30 SECONDS<span class="dot">&middot;</span><b>NEW MEMBERS TOO</b>
+    </div>
+
+    <!-- biometric corner reticles -->
+    <div class="reticle-tl"></div>
+    <div class="reticle-tr"></div>
+    <div class="reticle-bl"></div>
+    <div class="reticle-br"></div>
+
+    <div class="cutline"></div>
+  </div>
+</body>
+</html>
