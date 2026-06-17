@@ -40,6 +40,8 @@ def pdf_name(html_path: Path) -> Path:
         return HERE / f"Rockwall-Sticker-{name.title()}.pdf"
     if stem == "poster":
         return HERE / "Rockwall-Price-Card-2026.pdf"
+    if stem == "dance":
+        return HERE / "Rockwall-Dance-Classes-2026.pdf"
     suffix = stem.replace("poster_", "")
     return HERE / f"Rockwall-Price-Card-2026-{suffix}.pdf"
 
@@ -51,6 +53,8 @@ def preview_dir(html_path: Path) -> Path:
         return HERE / f"preview-{stem.replace('_', '-')}"
     if stem == "poster":
         return HERE / "preview"
+    if stem == "dance":
+        return HERE / "preview-dance"
     suffix = stem.replace("poster_", "")
     return HERE / f"preview-{suffix}"
 

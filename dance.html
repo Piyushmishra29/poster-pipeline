@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rockwall Fitness — Weekly Dance Classes (A3)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  @page {
+    size: 297mm 420mm;
+    margin: 0;
+    bleed: 3mm;
+    marks: crop cross;
+    background: #050505;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --ink:#050505; --lime:#CFFF3C; --paper:#F6F6F2; }
+  html, body {
+    width: 297mm;
+    background: var(--ink); color: var(--paper);
+    font-family: 'Inter Tight', sans-serif;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .page {
+    position: relative;
+    width: 297mm; height: 420mm;
+    background: var(--ink);
+    overflow: hidden;
+  }
+
+  /* ============== HERO (kinetic type, no photo) ============== */
+  .hero {
+    position: relative;
+    width: 100%; height: 150mm;
+    overflow: hidden;
+    background:
+      radial-gradient(120% 90% at 80% 0%, rgba(207,255,60,0.10) 0%, rgba(5,5,5,0) 55%),
+      var(--ink);
+  }
+  /* oversized rotated ghost word DANCE — motion watermark */
+  .hero-ghost {
+    position: absolute;
+    top: 30mm; left: -18mm;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 190pt;
+    line-height: 0.8;
+    letter-spacing: -0.02em;
+    color: rgba(207,255,60,0.07);
+    text-transform: uppercase;
+    transform: rotate(-7deg);
+    white-space: nowrap;
+    z-index: 0;
+  }
+  /* lime keyline frame with cut-breaks */
+  .hero-frame {
+    position: absolute;
+    top: 8mm; right: 8mm; bottom: 8mm; left: 8mm;
+    border: 1mm solid var(--lime);
+    pointer-events: none;
+    z-index: 2;
+  }
+  .hero-frame::before, .hero-frame::after {
+    content: "";
+    position: absolute;
+    width: 14mm; height: 1mm; background: var(--ink);
+  }
+  .hero-frame::before { top: -1mm; left: 14mm; }
+  .hero-frame::after  { bottom: -1mm; right: 14mm; }
+
+  /* logo chip top-left */
+  .hero-logo-wrap {
+    position: absolute;
+    top: 16mm; left: 16mm;
+    z-index: 4;
+    background: var(--ink);
+    padding: 6mm 10mm 6mm 8mm;
+    clip-path: polygon(0 0, 100% 0, 96% 50%, 100% 100%, 0 100%, 4% 50%);
+  }
+  .hero-logo { height: 14mm; display: block; }
+  /* WEEKLY stamp top-right */
+  .hero-stamp {
+    position: absolute;
+    top: 18mm; right: 18mm;
+    z-index: 4;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 30pt;
+    color: var(--lime);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    text-align: right;
+  }
+  .hero-stamp small {
+    display: block;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 8pt;
+    letter-spacing: 0.4em;
+    color: var(--paper);
+    margin-top: 1.5mm;
+  }
+
+  /* kicker + headline */
+  .hero-kicker {
+    position: absolute;
+    top: 52mm; left: 18mm;
+    z-index: 4;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 11pt;
+    letter-spacing: 0.5em;
+    color: var(--lime);
+    text-transform: uppercase;
+  }
+  .hero-headline {
+    position: absolute;
+    bottom: 24mm; left: 18mm; right: 18mm;
+    z-index: 4;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 110;
+    font-size: 88pt;
+    color: var(--paper);
+    letter-spacing: -0.01em;
+    line-height: 0.86;
+    text-transform: uppercase;
+  }
+  .hero-headline .line { display: block; white-space: nowrap; }
+  .hero-headline .lime { color: var(--lime); }
+  .hero-tag {
+    position: absolute;
+    bottom: 15mm; left: 18mm;
+    z-index: 4;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 10pt;
+    letter-spacing: 0.4em;
+    color: var(--paper);
+    text-transform: uppercase;
+  }
+  .hero-tag .dot {
+    display: inline-block;
+    width: 2mm; height: 2mm; background: var(--lime);
+    border-radius: 50%; margin: 0 3.5mm 0.5mm; vertical-align: middle;
+  }
+
+  /* ============== SECTION TITLE (ghost knockout) ============== */
+  .sec {
+    position: relative;
+    padding: 11mm 18mm 3mm;
+    text-align: center;
+  }
+  .sec-word {
+    position: relative;
+    display: inline-block;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 60pt;
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    color: var(--paper);
+    text-transform: uppercase;
+    transform: scaleX(1.05);
+  }
+  .sec-word::before {
+    content: "TIMETABLE";
+    position: absolute;
+    top: 0; left: 0; width: 100%;
+    color: var(--lime);
+    transform: translate(1.3mm, 0);
+    z-index: -1;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    letter-spacing: 0.02em;
+  }
+  .sec-sub {
+    margin-top: 5mm;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 9pt;
+    letter-spacing: 0.5em;
+    color: var(--lime);
+    text-transform: uppercase;
+  }
+
+  /* ============== SCHEDULE TABLE ============== */
+  .table {
+    margin: 4mm 18mm 0;
+    border: 1.2mm solid var(--lime);
+  }
+  .row {
+    display: flex;
+    align-items: center;
+    border-bottom: 0.6mm solid var(--lime);
+    min-height: 19.5mm;
+    padding: 0 9mm;
+  }
+  .row:last-child { border-bottom: none; }
+  .row.odd  { background: var(--lime); color: var(--ink); }
+  .row.even { background: var(--ink); color: var(--paper); }
+  .day {
+    flex: 0 0 26mm;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 21pt;
+    letter-spacing: 0.01em;
+  }
+  .row.even .day { color: var(--lime); }
+  .row.odd  .day { color: var(--ink); }
+  .cls {
+    flex: 1 1 auto;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 110;
+    font-size: 27pt;
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding-top: 1mm;
+  }
+  .meta {
+    flex: 0 0 56mm;
+    text-align: right;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 9pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    line-height: 1.35;
+  }
+  .meta .time {
+    display: block;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 17pt;
+    letter-spacing: 0;
+  }
+  .row.even .meta .time { color: var(--lime); }
+  .row.odd  .meta .time { color: var(--ink); }
+  .row.even .meta .lvl { color: rgba(246,246,242,0.7); }
+  .row.odd  .meta .lvl { color: rgba(5,5,5,0.65); }
+
+  /* ============== FREE TRIAL CTA BAR + SEAL ============== */
+  .trial {
+    position: relative;
+    margin: 13mm 18mm 0;
+    background: var(--ink);
+    color: var(--lime);
+    padding: 8mm 14mm;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1.2mm solid var(--lime);
+  }
+  .trial-text {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 30pt;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--lime);
+  }
+  .trial-sub {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 9pt;
+    letter-spacing: 0.36em;
+    margin-top: 2.5mm;
+    text-transform: uppercase;
+    color: var(--paper);
+  }
+  .trial-arrow {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 46pt;
+    line-height: 0.8;
+    color: var(--lime);
+  }
+  /* rotated FIRST CLASS FREE seal, overlapping the trial bar */
+  .seal {
+    position: absolute;
+    top: -14mm; right: 14mm;
+    width: 40mm; height: 40mm;
+    border-radius: 50%;
+    background: var(--lime);
+    color: var(--ink);
+    border: 1mm solid var(--ink);
+    transform: rotate(-9deg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 7;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 110;
+    line-height: 0.92;
+  }
+  .seal .s1 { font-size: 13pt; letter-spacing: 0.02em; }
+  .seal .s2 { font-size: 26pt; letter-spacing: -0.01em; margin-top: 0.5mm; }
+  .seal .s3 {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800; font-size: 6.5pt; letter-spacing: 0.3em;
+    margin-top: 1mm;
+  }
+
+  /* ============== FOOTER (reception + qr + address) ============== */
+  .foot {
+    position: absolute;
+    top: 356mm; left: 0; right: 0;
+    padding: 0 18mm;
+    height: 64mm;
+  }
+  .foot-cta {
+    border-top: 0.8mm solid var(--lime);
+    padding-top: 8mm;
+    display: grid;
+    grid-template-columns: 1fr 34mm;
+    gap: 12mm;
+    align-items: center;
+  }
+  .foot-cta-text {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 30pt;
+    line-height: 0.9;
+    color: var(--paper);
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+  }
+  .foot-cta-text .lime { color: var(--lime); }
+  .foot-cta-sub {
+    margin-top: 4mm;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 10pt;
+    letter-spacing: 0.22em;
+    color: var(--lime);
+    text-transform: uppercase;
+  }
+  .foot-qr { text-align: center; }
+  .foot-qr img {
+    width: 34mm; height: 34mm;
+    background: var(--paper);
+    padding: 1.4mm;
+    display: block;
+  }
+  .foot-qr-cap {
+    margin-top: 1.6mm;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800; font-size: 7pt;
+    color: var(--lime); letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .foot-bar {
+    margin-top: 9mm;
+    border-top: 0.4mm solid rgba(207,255,60,0.4);
+    padding-top: 6mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 500;
+    font-size: 9pt;
+    color: var(--paper);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .foot-bar b { color: var(--lime); font-weight: 900; }
+  .foot-bar .addr { text-align: center; flex: 1; padding: 0 6mm; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="hero-ghost">DANCE</div>
+    <div class="hero-frame"></div>
+
+    <div class="hero-logo-wrap"><img class="hero-logo" src="assets/logo.png" alt="Rockwall Fitness"></div>
+    <div class="hero-stamp">WEEKLY<small>STUDIO FLOOR</small></div>
+
+    <div class="hero-kicker">DANCE CLASSES · ALL LEVELS WELCOME</div>
+    <h1 class="hero-headline">
+      <span class="line">WEIGHTS DOWN.</span>
+      <span class="line lime">HIPS UP.</span>
+    </h1>
+    <div class="hero-tag">
+      ROCKWALL FITNESS <span class="dot"></span> BANGALORE <span class="dot"></span> ONE FREE TRIAL
+    </div>
+  </section>
+
+  <!-- ========== SECTION TITLE ========== -->
+  <section class="sec">
+    <span class="sec-word">TIMETABLE</span>
+    <div class="sec-sub">WEEKLY DANCE SCHEDULE &nbsp;·&nbsp; EVENING BATCH &nbsp;·&nbsp; STUDIO FLOOR</div>
+  </section>
+
+  <!-- ========== SCHEDULE TABLE ========== -->
+  <div class="table">
+    <div class="row odd">
+      <div class="day">MON</div>
+      <div class="cls">ZUMBA</div>
+      <div class="meta"><span class="time">7:00 PM</span><span class="lvl">ALL LEVELS · 60 MIN</span></div>
+    </div>
+    <div class="row even">
+      <div class="day">TUE</div>
+      <div class="cls">BOLLYWOOD</div>
+      <div class="meta"><span class="time">7:00 PM</span><span class="lvl">ALL LEVELS · 60 MIN</span></div>
+    </div>
+    <div class="row odd">
+      <div class="day">WED</div>
+      <div class="cls">HIP-HOP</div>
+      <div class="meta"><span class="time">7:00 PM</span><span class="lvl">BEGINNER+ · 60 MIN</span></div>
+    </div>
+    <div class="row even">
+      <div class="day">THU</div>
+      <div class="cls">AFRO-DANCE</div>
+      <div class="meta"><span class="time">7:00 PM</span><span class="lvl">ALL LEVELS · 60 MIN</span></div>
+    </div>
+    <div class="row odd">
+      <div class="day">FRI</div>
+      <div class="cls">DANCE CARDIO</div>
+      <div class="meta"><span class="time">7:00 PM</span><span class="lvl">HIGH ENERGY · 60 MIN</span></div>
+    </div>
+    <div class="row even">
+      <div class="day">SAT</div>
+      <div class="cls">ZUMBA · MORNING</div>
+      <div class="meta"><span class="time">10:00 AM</span><span class="lvl">ALL LEVELS · 60 MIN</span></div>
+    </div>
+  </div>
+
+  <!-- ========== FREE TRIAL CTA ========== -->
+  <div class="trial">
+    <div>
+      <div class="trial-text">DANCE FREE ONCE.</div>
+      <div class="trial-sub">ONE TRIAL CLASS · NO MEMBERSHIP NEEDED · JUST SHOW UP</div>
+    </div>
+    <div class="trial-arrow">→</div>
+    <div class="seal">
+      <span class="s1">FIRST</span>
+      <span class="s2">FREE</span>
+      <span class="s3">CLASS</span>
+    </div>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <div class="foot">
+    <div class="foot-cta">
+      <div>
+        <div class="foot-cta-text">
+          BOOK YOUR SPOT<br>
+          <span class="lime">AT RECEPTION.</span>
+        </div>
+        <div class="foot-cta-sub">WALK IN OR CALL &nbsp;·&nbsp; +91 99727 67936 &nbsp;·&nbsp; +91 80499 15898</div>
+      </div>
+      <div class="foot-qr">
+        <img src="assets/qr.png" alt="QR rockwallfitness.in">
+        <div class="foot-qr-cap">SCAN · BOOK</div>
+      </div>
+    </div>
+    <div class="foot-bar">
+      <div><b>@</b>ROCKWALLFITNESS</div>
+      <div class="addr">SV TOWERS · 2ND FLOOR · KRISHNANAGAR · HOSUR ROAD · BANGALORE 560029</div>
+      <div>OPEN 7/7</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
