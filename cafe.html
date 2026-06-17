@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Rockwall Fitness — Weekly Dance Classes (A3)</title>
+<title>Rockwall Fitness — Fuel Bar / Cafe Menu (A3)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@400;500;700;800;900&display=swap" rel="stylesheet">
@@ -29,31 +29,30 @@
     overflow: hidden;
   }
 
-  /* ============== HERO (kinetic type, no photo) ============== */
+  /* ============== HERO ============== */
   .hero {
     position: relative;
     width: 100%; height: 150mm;
     overflow: hidden;
     background:
-      radial-gradient(130% 100% at 88% 4%, rgba(207,255,60,0.16) 0%, rgba(5,5,5,0) 52%),
+      radial-gradient(120% 90% at 80% 0%, rgba(207,255,60,0.10) 0%, rgba(5,5,5,0) 55%),
       var(--ink);
   }
-  /* single deliberate ghost beat: huge low DANCE bleeding off-frame */
   .hero-ghost {
     position: absolute;
-    bottom: -26mm; right: -10mm;
+    top: 28mm; left: -14mm;
     font-family: 'Anybody', sans-serif;
     font-weight: 900;
     font-variation-settings: "wdth" 150;
-    font-size: 168pt;
+    font-size: 200pt;
     line-height: 0.8;
-    letter-spacing: -0.03em;
-    color: rgba(207,255,60,0.05);
+    letter-spacing: -0.02em;
+    color: rgba(207,255,60,0.07);
     text-transform: uppercase;
+    transform: rotate(-7deg);
     white-space: nowrap;
-    z-index: 1;
+    z-index: 0;
   }
-  /* lime keyline frame with cut-breaks */
   .hero-frame {
     position: absolute;
     top: 8mm; right: 8mm; bottom: 8mm; left: 8mm;
@@ -69,7 +68,6 @@
   .hero-frame::before { top: -1mm; left: 14mm; }
   .hero-frame::after  { bottom: -1mm; right: 14mm; }
 
-  /* logo chip top-left */
   .hero-logo-wrap {
     position: absolute;
     top: 16mm; left: 16mm;
@@ -79,7 +77,6 @@
     clip-path: polygon(0 0, 100% 0, 96% 50%, 100% 100%, 0 100%, 4% 50%);
   }
   .hero-logo { height: 14mm; display: block; }
-  /* WEEKLY stamp top-right */
   .hero-stamp {
     position: absolute;
     top: 18mm; right: 18mm;
@@ -103,10 +100,9 @@
     margin-top: 1.5mm;
   }
 
-  /* kicker + headline */
   .hero-kicker {
     position: absolute;
-    bottom: 74mm; left: 18mm;
+    top: 52mm; left: 18mm;
     z-index: 4;
     font-family: 'Inter Tight', sans-serif;
     font-weight: 800;
@@ -117,22 +113,22 @@
   }
   .hero-headline {
     position: absolute;
-    bottom: 26mm; left: 18mm; right: 18mm;
+    bottom: 24mm; left: 18mm; right: 18mm;
     z-index: 4;
     font-family: 'Anybody', sans-serif;
     font-weight: 900;
     font-variation-settings: "wdth" 110;
-    font-size: 92pt;
+    font-size: 88pt;
     color: var(--paper);
     letter-spacing: -0.01em;
-    line-height: 0.84;
+    line-height: 0.86;
     text-transform: uppercase;
   }
   .hero-headline .line { display: block; white-space: nowrap; }
   .hero-headline .lime { color: var(--lime); }
   .hero-tag {
     position: absolute;
-    bottom: 14mm; left: 18mm;
+    bottom: 15mm; left: 18mm;
     z-index: 4;
     font-family: 'Inter Tight', sans-serif;
     font-weight: 800;
@@ -150,7 +146,7 @@
   /* ============== SECTION TITLE (ghost knockout) ============== */
   .sec {
     position: relative;
-    padding: 9mm 18mm 2mm;
+    padding: 11mm 18mm 3mm;
     text-align: center;
   }
   .sec-word {
@@ -159,7 +155,7 @@
     font-family: 'Anybody', sans-serif;
     font-weight: 900;
     font-variation-settings: "wdth" 150;
-    font-size: 60pt;
+    font-size: 64pt;
     line-height: 0.9;
     letter-spacing: 0.02em;
     color: var(--paper);
@@ -167,7 +163,7 @@
     transform: scaleX(1.05);
   }
   .sec-word::before {
-    content: "TIMETABLE";
+    content: "THE FUEL BAR";
     position: absolute;
     top: 0; left: 0; width: 100%;
     color: var(--lime);
@@ -179,86 +175,84 @@
     letter-spacing: 0.02em;
   }
   .sec-sub {
-    margin-top: 4.5mm;
+    margin-top: 5mm;
     font-family: 'Inter Tight', sans-serif;
     font-weight: 800;
     font-size: 9pt;
-    letter-spacing: 0.42em;
+    letter-spacing: 0.5em;
     color: var(--lime);
     text-transform: uppercase;
   }
 
-  /* ============== SCHEDULE TABLE ============== */
+  /* ============== MENU TABLE ============== */
   .table {
-    margin: 5mm 18mm 0;
+    margin: 4mm 18mm 0;
     border: 1.2mm solid var(--lime);
   }
   .row {
     display: flex;
     align-items: center;
     border-bottom: 0.6mm solid var(--lime);
-    min-height: 19mm;
-    padding: 0 9mm;
+    min-height: 25mm;
+    padding: 0 12mm;
   }
   .row:last-child { border-bottom: none; }
   .row.odd  { background: var(--lime); color: var(--ink); }
   .row.even { background: var(--ink); color: var(--paper); }
-  .day {
-    flex: 0 0 24mm;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Anybody', sans-serif;
-    font-weight: 900;
-    font-variation-settings: "wdth" 150;
-    font-size: 15pt;
-    letter-spacing: 0.06em;
-    height: 11mm;
-    border: 0.7mm solid;
-    margin-right: 8mm;
-  }
-  .row.even .day { color: var(--ink); background: var(--lime); border-color: var(--lime); }
-  .row.odd  .day { color: var(--lime); background: var(--ink); border-color: var(--ink); }
-  .cls {
+  .item {
     flex: 1 1 auto;
     font-family: 'Anybody', sans-serif;
     font-weight: 900;
     font-variation-settings: "wdth" 110;
-    font-size: 27pt;
+    font-size: 31pt;
     line-height: 0.9;
     letter-spacing: -0.01em;
     text-transform: uppercase;
     white-space: nowrap;
     padding-top: 1mm;
   }
-  .meta {
-    flex: 0 0 52mm;
-    text-align: right;
+  .desc {
+    flex: 0 0 64mm;
     font-family: 'Inter Tight', sans-serif;
     font-weight: 800;
-    font-size: 8.5pt;
+    font-size: 9pt;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    line-height: 1.4;
+    padding: 0 8mm 0 4mm;
   }
-  .meta .time {
-    display: block;
+  .row.even .desc { color: rgba(246,246,242,0.62); }
+  .row.odd  .desc { color: rgba(5,5,5,0.6); }
+  .price {
+    flex: 0 0 46mm;
+    text-align: right;
     font-family: 'Anybody', sans-serif;
     font-weight: 900;
     font-variation-settings: "wdth" 150;
-    font-size: 17pt;
-    letter-spacing: 0;
+    font-size: 30pt;
+    line-height: 0.85;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
   }
-  .row.even .meta .time { color: var(--lime); }
-  .row.odd  .meta .time { color: var(--ink); }
-  .row.even .meta .lvl { color: rgba(246,246,242,0.7); }
-  .row.odd  .meta .lvl { color: rgba(5,5,5,0.65); }
+  .price small {
+    display: block;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: 8pt;
+    letter-spacing: 0.2em;
+    margin-top: 1.5mm;
+  }
+  .row.even .price { color: var(--lime); }
+  .row.odd  .price { color: var(--ink); }
+  .row.even .price small { color: rgba(246,246,242,0.6); }
+  .row.odd  .price small { color: rgba(5,5,5,0.6); }
 
-  /* ============== FREE TRIAL CTA BAR + SEAL ============== */
+  /* ============== COUNTER CTA BAR + SEAL ============== */
   .trial {
     position: relative;
-    margin: 10mm 18mm 0;
-    background: var(--lime);
-    color: var(--ink);
-    padding: 7.5mm 14mm;
+    margin: 13mm 18mm 0;
+    background: var(--ink);
+    color: var(--lime);
+    padding: 8mm 14mm;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -268,11 +262,11 @@
     font-family: 'Anybody', sans-serif;
     font-weight: 900;
     font-variation-settings: "wdth" 150;
-    font-size: 31pt;
-    line-height: 0.98;
+    font-size: 30pt;
+    line-height: 1;
     letter-spacing: -0.01em;
     text-transform: uppercase;
-    color: var(--ink);
+    color: var(--lime);
   }
   .trial-sub {
     font-family: 'Inter Tight', sans-serif;
@@ -281,18 +275,25 @@
     letter-spacing: 0.32em;
     margin-top: 2.5mm;
     text-transform: uppercase;
-    color: var(--ink);
+    color: var(--paper);
   }
-  /* rotated FREE TRIAL seal, overlapping the trial bar top edge */
+  .trial-arrow {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 46pt;
+    line-height: 0.8;
+    color: var(--lime);
+  }
   .seal {
     position: absolute;
-    top: -15mm; right: 12mm;
-    width: 42mm; height: 42mm;
+    top: -14mm; right: 14mm;
+    width: 40mm; height: 40mm;
     border-radius: 50%;
-    background: var(--ink);
-    color: var(--lime);
-    border: 1.2mm solid var(--lime);
-    transform: rotate(-8deg);
+    background: var(--lime);
+    color: var(--ink);
+    border: 1mm solid var(--ink);
+    transform: rotate(-9deg);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -302,30 +303,26 @@
     font-family: 'Anybody', sans-serif;
     font-weight: 900;
     font-variation-settings: "wdth" 110;
-    line-height: 0.9;
+    line-height: 0.92;
   }
-  .seal .s1 {
-    font-family: 'Inter Tight', sans-serif;
-    font-weight: 800; font-size: 7pt; letter-spacing: 0.34em;
-    color: var(--paper); margin-bottom: 1mm;
-  }
-  .seal .s2 { font-size: 30pt; letter-spacing: -0.01em; }
+  .seal .s1 { font-size: 22pt; letter-spacing: -0.01em; }
+  .seal .s2 { font-size: 22pt; letter-spacing: -0.01em; margin-top: 0.5mm; }
   .seal .s3 {
     font-family: 'Inter Tight', sans-serif;
-    font-weight: 800; font-size: 7pt; letter-spacing: 0.3em;
-    margin-top: 1mm; color: var(--paper);
+    font-weight: 800; font-size: 6.5pt; letter-spacing: 0.28em;
+    margin-top: 1.5mm;
   }
 
-  /* ============== FOOTER (reception + qr + address) ============== */
+  /* ============== FOOTER ============== */
   .foot {
     position: absolute;
-    top: 354mm; left: 0; right: 0;
+    top: 348mm; left: 0; right: 0;
     padding: 0 18mm;
-    height: 66mm;
+    height: 70mm;
   }
   .foot-cta {
     border-top: 0.8mm solid var(--lime);
-    padding-top: 7mm;
+    padding-top: 8mm;
     display: grid;
     grid-template-columns: 1fr 34mm;
     gap: 12mm;
@@ -388,72 +385,63 @@
 
   <!-- ========== HERO ========== -->
   <section class="hero">
-    <div class="hero-ghost">DANCE</div>
+    <div class="hero-ghost">FUEL</div>
     <div class="hero-frame"></div>
 
     <div class="hero-logo-wrap"><img class="hero-logo" src="assets/logo.png" alt="Rockwall Fitness"></div>
-    <div class="hero-stamp">WEEKLY<small>DANCE CLASSES</small></div>
+    <div class="hero-stamp">CAFE<small>AT THE COUNTER</small></div>
 
-    <div class="hero-kicker">SIX NIGHTS · ALL LEVELS · ONE FREE TRIAL</div>
+    <div class="hero-kicker">PRE-WORKOUT · ENERGY · PROTEIN</div>
     <h1 class="hero-headline">
-      <span class="line">WEIGHTS DOWN.</span>
-      <span class="line lime">BEATS UP.</span>
+      <span class="line">FUEL UP.</span>
+      <span class="line lime">NOT BROKE.</span>
     </h1>
     <div class="hero-tag">
-      ROCKWALL FITNESS <span class="dot"></span> BANGALORE <span class="dot"></span> SWEAT TO THE BEAT
+      ROCKWALL FITNESS <span class="dot"></span> GRAB &amp; GO <span class="dot"></span> PAY AT THE DESK
     </div>
   </section>
 
   <!-- ========== SECTION TITLE ========== -->
   <section class="sec">
-    <span class="sec-word">TIMETABLE</span>
-    <div class="sec-sub">PICK YOUR NIGHT &nbsp;·&nbsp; SHOW UP &nbsp;·&nbsp; MOVE</div>
+    <span class="sec-word">THE FUEL BAR</span>
+    <div class="sec-sub">GRAB-AND-GO COUNTER &nbsp;·&nbsp; CHILLED &amp; READY &nbsp;·&nbsp; PAY AS YOU GO</div>
   </section>
 
-  <!-- ========== SCHEDULE TABLE ========== -->
+  <!-- ========== MENU TABLE ========== -->
   <div class="table">
     <div class="row odd">
-      <div class="day">MON</div>
-      <div class="cls">ZUMBA</div>
-      <div class="meta"><span class="time">7:00 PM</span><span class="lvl">ALL LEVELS · 60 MIN</span></div>
+      <div class="item">PRE-WORKOUT</div>
+      <div class="desc">US-MADE · IMPORTED QUALITY · PER SERVE</div>
+      <div class="price">₹100</div>
     </div>
     <div class="row even">
-      <div class="day">TUE</div>
-      <div class="cls">BOLLYWOOD</div>
-      <div class="meta"><span class="time">7:00 PM</span><span class="lvl">ALL LEVELS · 60 MIN</span></div>
+      <div class="item">MONSTER</div>
+      <div class="desc">ENERGY · CHILLED · FULL CAN</div>
+      <div class="price">MRP <span style="font-variation-settings:'wdth' 110;">+₹10</span><small>MARKED PRICE PLUS ₹10</small></div>
     </div>
     <div class="row odd">
-      <div class="day">WED</div>
-      <div class="cls">HIP-HOP</div>
-      <div class="meta"><span class="time">7:00 PM</span><span class="lvl">BEGINNER+ · 60 MIN</span></div>
+      <div class="item">PREDATOR</div>
+      <div class="desc">ENERGY · CHILLED · FULL CAN</div>
+      <div class="price">₹60</div>
     </div>
     <div class="row even">
-      <div class="day">THU</div>
-      <div class="cls">AFRO-DANCE</div>
-      <div class="meta"><span class="time">7:00 PM</span><span class="lvl">ALL LEVELS · 60 MIN</span></div>
-    </div>
-    <div class="row odd">
-      <div class="day">FRI</div>
-      <div class="cls">DANCE CARDIO</div>
-      <div class="meta"><span class="time">7:00 PM</span><span class="lvl">HIGH ENERGY · 45 MIN</span></div>
-    </div>
-    <div class="row even">
-      <div class="day">SAT</div>
-      <div class="cls">MORNING ZUMBA</div>
-      <div class="meta"><span class="time">10:00 AM</span><span class="lvl">ALL LEVELS · 60 MIN</span></div>
+      <div class="item">BOILED EGGS</div>
+      <div class="desc">LEAN PROTEIN · FRESH DAILY</div>
+      <div class="price">₹15<small>PER EGG</small></div>
     </div>
   </div>
 
-  <!-- ========== FREE TRIAL CTA ========== -->
+  <!-- ========== COUNTER CTA ========== -->
   <div class="trial">
     <div>
-      <div class="trial-text">YOUR FIRST CLASS<br>IS ON US.</div>
-      <div class="trial-sub">ONE FREE TRIAL · NO MEMBERSHIP · NO COMMITMENT</div>
+      <div class="trial-text">GRAB IT AT THE DESK.</div>
+      <div class="trial-sub">ASK THE FRONT DESK · CHILLED &amp; READY · PAY AS YOU GO</div>
     </div>
+    <div class="trial-arrow">→</div>
     <div class="seal">
-      <span class="s1">FREE</span>
-      <span class="s2">TRIAL</span>
-      <span class="s3">ON US</span>
+      <span class="s1">US</span>
+      <span class="s2">MADE</span>
+      <span class="s3">PRE-WORKOUT</span>
     </div>
   </div>
 
@@ -462,14 +450,14 @@
     <div class="foot-cta">
       <div>
         <div class="foot-cta-text">
-          GRAB YOUR SPOT<br>
-          <span class="lime">AT RECEPTION.</span>
+          REFUEL BEFORE<br>
+          <span class="lime">YOU LIFT.</span>
         </div>
-        <div class="foot-cta-sub">WALK IN OR CALL &nbsp;·&nbsp; +91 99727 67936 &nbsp;·&nbsp; +91 80499 15898</div>
+        <div class="foot-cta-sub">AT THE FRONT DESK &nbsp;·&nbsp; +91 99727 67936 &nbsp;·&nbsp; +91 80499 15898</div>
       </div>
       <div class="foot-qr">
         <img src="assets/qr.png" alt="QR rockwallfitness.in">
-        <div class="foot-qr-cap">SCAN · BOOK</div>
+        <div class="foot-qr-cap">SCAN · MENU</div>
       </div>
     </div>
     <div class="foot-bar">
