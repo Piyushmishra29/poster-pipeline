@@ -35,23 +35,23 @@
     width: 100%; height: 150mm;
     overflow: hidden;
     background:
-      radial-gradient(120% 90% at 80% 0%, rgba(207,255,60,0.10) 0%, rgba(5,5,5,0) 55%),
+      radial-gradient(130% 100% at 88% 4%, rgba(207,255,60,0.16) 0%, rgba(5,5,5,0) 52%),
       var(--ink);
   }
+  /* single deliberate ghost beat: huge low FUEL bleeding off-frame */
   .hero-ghost {
     position: absolute;
-    top: 28mm; left: -14mm;
+    bottom: -26mm; right: -10mm;
     font-family: 'Anybody', sans-serif;
     font-weight: 900;
     font-variation-settings: "wdth" 150;
-    font-size: 200pt;
+    font-size: 168pt;
     line-height: 0.8;
-    letter-spacing: -0.02em;
-    color: rgba(207,255,60,0.07);
+    letter-spacing: -0.03em;
+    color: rgba(207,255,60,0.05);
     text-transform: uppercase;
-    transform: rotate(-7deg);
     white-space: nowrap;
-    z-index: 0;
+    z-index: 1;
   }
   .hero-frame {
     position: absolute;
@@ -102,7 +102,7 @@
 
   .hero-kicker {
     position: absolute;
-    top: 52mm; left: 18mm;
+    top: 54mm; left: 18mm;
     z-index: 4;
     font-family: 'Inter Tight', sans-serif;
     font-weight: 800;
@@ -113,15 +113,15 @@
   }
   .hero-headline {
     position: absolute;
-    bottom: 24mm; left: 18mm; right: 18mm;
+    bottom: 26mm; left: 18mm; right: 18mm;
     z-index: 4;
     font-family: 'Anybody', sans-serif;
     font-weight: 900;
     font-variation-settings: "wdth" 110;
-    font-size: 88pt;
+    font-size: 92pt;
     color: var(--paper);
     letter-spacing: -0.01em;
-    line-height: 0.86;
+    line-height: 0.84;
     text-transform: uppercase;
   }
   .hero-headline .line { display: block; white-space: nowrap; }
@@ -194,11 +194,25 @@
     align-items: center;
     border-bottom: 0.6mm solid var(--lime);
     min-height: 25mm;
-    padding: 0 12mm;
+    padding: 0 9mm;
   }
   .row:last-child { border-bottom: none; }
   .row.odd  { background: var(--lime); color: var(--ink); }
   .row.even { background: var(--ink); color: var(--paper); }
+  .cat {
+    flex: 0 0 22mm;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "wdth" 150;
+    font-size: 13pt;
+    letter-spacing: 0.04em;
+    height: 11mm;
+    border: 0.7mm solid;
+    margin-right: 8mm;
+  }
+  .row.even .cat { color: var(--ink); background: var(--lime); border-color: var(--lime); }
+  .row.odd  .cat { color: var(--lime); background: var(--ink); border-color: var(--ink); }
   .item {
     flex: 1 1 auto;
     font-family: 'Anybody', sans-serif;
@@ -212,18 +226,19 @@
     padding-top: 1mm;
   }
   .desc {
-    flex: 0 0 64mm;
+    flex: 0 0 72mm;
     font-family: 'Inter Tight', sans-serif;
     font-weight: 800;
     font-size: 9pt;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    padding: 0 8mm 0 4mm;
+    white-space: nowrap;
+    padding: 0 8mm 0 0;
   }
   .row.even .desc { color: rgba(246,246,242,0.62); }
   .row.odd  .desc { color: rgba(5,5,5,0.6); }
   .price {
-    flex: 0 0 46mm;
+    flex: 0 0 42mm;
     text-align: right;
     font-family: 'Anybody', sans-serif;
     font-weight: 900;
@@ -249,10 +264,10 @@
   /* ============== COUNTER CTA BAR + SEAL ============== */
   .trial {
     position: relative;
-    margin: 13mm 18mm 0;
-    background: var(--ink);
-    color: var(--lime);
-    padding: 8mm 14mm;
+    margin: 10mm 18mm 0;
+    background: var(--lime);
+    color: var(--ink);
+    padding: 7.5mm 14mm;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -262,11 +277,11 @@
     font-family: 'Anybody', sans-serif;
     font-weight: 900;
     font-variation-settings: "wdth" 150;
-    font-size: 30pt;
-    line-height: 1;
+    font-size: 31pt;
+    line-height: 0.98;
     letter-spacing: -0.01em;
     text-transform: uppercase;
-    color: var(--lime);
+    color: var(--ink);
   }
   .trial-sub {
     font-family: 'Inter Tight', sans-serif;
@@ -275,25 +290,18 @@
     letter-spacing: 0.32em;
     margin-top: 2.5mm;
     text-transform: uppercase;
-    color: var(--paper);
+    color: var(--ink);
   }
-  .trial-arrow {
-    font-family: 'Anybody', sans-serif;
-    font-weight: 900;
-    font-variation-settings: "wdth" 150;
-    font-size: 46pt;
-    line-height: 0.8;
-    color: var(--lime);
-  }
+  /* rotated US-MADE seal, overlapping the CTA bar top edge */
   .seal {
     position: absolute;
-    top: -14mm; right: 14mm;
-    width: 40mm; height: 40mm;
+    top: -15mm; right: 12mm;
+    width: 42mm; height: 42mm;
     border-radius: 50%;
-    background: var(--lime);
-    color: var(--ink);
-    border: 1mm solid var(--ink);
-    transform: rotate(-9deg);
+    background: var(--ink);
+    color: var(--lime);
+    border: 1.2mm solid var(--lime);
+    transform: rotate(-8deg);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -303,14 +311,18 @@
     font-family: 'Anybody', sans-serif;
     font-weight: 900;
     font-variation-settings: "wdth" 110;
-    line-height: 0.92;
+    line-height: 0.9;
   }
-  .seal .s1 { font-size: 22pt; letter-spacing: -0.01em; }
-  .seal .s2 { font-size: 22pt; letter-spacing: -0.01em; margin-top: 0.5mm; }
+  .seal .s1 {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800; font-size: 7pt; letter-spacing: 0.34em;
+    color: var(--paper); margin-bottom: 1mm;
+  }
+  .seal .s2 { font-size: 30pt; letter-spacing: -0.01em; }
   .seal .s3 {
     font-family: 'Inter Tight', sans-serif;
-    font-weight: 800; font-size: 6.5pt; letter-spacing: 0.28em;
-    margin-top: 1.5mm;
+    font-weight: 800; font-size: 7pt; letter-spacing: 0.3em;
+    margin-top: 1mm; color: var(--paper);
   }
 
   /* ============== FOOTER ============== */
@@ -410,21 +422,25 @@
   <!-- ========== MENU TABLE ========== -->
   <div class="table">
     <div class="row odd">
+      <div class="cat">01</div>
       <div class="item">PRE-WORKOUT</div>
-      <div class="desc">US-MADE · IMPORTED QUALITY · PER SERVE</div>
+      <div class="desc">US-MADE · IMPORTED · PER SERVE</div>
       <div class="price">₹100</div>
     </div>
     <div class="row even">
+      <div class="cat">02</div>
       <div class="item">MONSTER</div>
       <div class="desc">ENERGY · CHILLED · FULL CAN</div>
-      <div class="price">MRP <span style="font-variation-settings:'wdth' 110;">+₹10</span><small>MARKED PRICE PLUS ₹10</small></div>
+      <div class="price">+₹10<small>OVER MRP</small></div>
     </div>
     <div class="row odd">
+      <div class="cat">03</div>
       <div class="item">PREDATOR</div>
       <div class="desc">ENERGY · CHILLED · FULL CAN</div>
       <div class="price">₹60</div>
     </div>
     <div class="row even">
+      <div class="cat">04</div>
       <div class="item">BOILED EGGS</div>
       <div class="desc">LEAN PROTEIN · FRESH DAILY</div>
       <div class="price">₹15<small>PER EGG</small></div>
@@ -437,10 +453,9 @@
       <div class="trial-text">GRAB IT AT THE DESK.</div>
       <div class="trial-sub">ASK THE FRONT DESK · CHILLED &amp; READY · PAY AS YOU GO</div>
     </div>
-    <div class="trial-arrow">→</div>
     <div class="seal">
-      <span class="s1">US</span>
-      <span class="s2">MADE</span>
+      <span class="s1">US-MADE</span>
+      <span class="s2">₹100</span>
       <span class="s3">PRE-WORKOUT</span>
     </div>
   </div>
