@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#FFFFFF"/>
+  <g transform="translate(-14,14)" fill="#FFFFFF" stroke="#000000" stroke-width="14" stroke-linejoin="round" stroke-linecap="round">
+
+    <!-- BOULDER BODY: chunky rounded lumpy rock, centered ~(185,205) -->
+    <path d="M183 100
+             C 233 95 276 125 280 168
+             C 300 178 302 218 280 233
+             C 292 268 260 300 220 298
+             C 195 317 145 317 125 295
+             C 90 295 75 255 98 232
+             C 80 205 92 165 125 165
+             C 130 122 148 103 183 100 Z"/>
+
+    <!-- FLEXING ARM: bent bicep silhouette, traced as one closed outline.
+         Underside of upper arm -> round elbow -> up outer forearm ->
+         round FIST at top -> down inner forearm -> BICEP bulge -> shoulder. -->
+    <path d="M268 224
+             C 296 236 322 230 332 206
+             C 338 188 336 168 330 154
+             C 338 140 332 122 316 122
+             C 300 122 296 138 302 152
+             C 296 162 296 178 304 188
+             C 290 192 280 188 276 180
+             C 270 172 262 178 262 196 Z"
+          fill="#FFFFFF" stroke-width="14" stroke-linejoin="round"/>
+
+    <!-- LIME moss/chalk patch on lower-left body (single accent) -->
+    <path d="M135 232
+             C 153 224 171 236 169 254
+             C 181 264 173 284 155 282
+             C 141 292 123 280 127 264
+             C 113 254 119 236 135 232 Z"
+          fill="#CFFF3C"/>
+
+    <!-- FACE: eyes -->
+    <circle cx="163" cy="190" r="9" fill="#000000" stroke="none"/>
+    <circle cx="207" cy="190" r="9" fill="#000000" stroke="none"/>
+
+    <!-- SMILE -->
+    <path d="M168 213 C 181 232 201 232 210 212" fill="none" stroke-width="8"/>
+
+  </g>
+</svg>

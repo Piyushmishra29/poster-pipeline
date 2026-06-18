@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#FFFFFF"/>
+  <g fill="#FFFFFF" stroke="#000000" stroke-width="14" stroke-linejoin="round" stroke-linecap="round">
+
+    <!-- TOP BUTTON: rounded knob on top center -->
+    <rect x="182" y="58" width="36" height="34" rx="12" fill="#CFFF3C"/>
+    <!-- Two tiny side lugs connecting button to body -->
+    <path d="M168 96 L 175 84" fill="none" stroke-width="12"/>
+    <path d="M232 96 L 225 84" fill="none" stroke-width="12"/>
+
+    <!-- WATCH BODY: big round circle, white fill -->
+    <circle cx="200" cy="222" r="120" fill="#FFFFFF"/>
+
+    <!-- TINY U-ARMS on the sides -->
+    <path d="M84 210 C 54 214 50 248 72 258" fill="none" stroke-width="11"/>
+    <path d="M316 210 C 346 214 350 248 328 258" fill="none" stroke-width="11"/>
+
+    <!-- TINY LEGS with little feet -->
+    <path d="M168 336 L 162 358 C 161 366 152 367 146 362" fill="none" stroke-width="11"/>
+    <path d="M232 336 L 238 358 C 239 366 248 367 254 362" fill="none" stroke-width="11"/>
+
+    <!-- CLOCK HANDS from center, pointing energetically to ~12 and ~2 -->
+    <!-- long hand to 12 -->
+    <path d="M200 222 L 200 150" fill="none" stroke-width="13"/>
+    <!-- short hand to ~2 o'clock -->
+    <path d="M200 222 L 248 188" fill="none" stroke-width="13"/>
+    <!-- center hub -->
+    <circle cx="200" cy="222" r="9" fill="#000000" stroke="none"/>
+
+    <!-- FACE: dot eyes in lower part of dial -->
+    <circle cx="170" cy="262" r="9" fill="#000000" stroke="none"/>
+    <circle cx="230" cy="262" r="9" fill="#000000" stroke="none"/>
+
+    <!-- SMILE: U-curve below eyes -->
+    <path d="M176 286 C 190 304 210 304 224 286" fill="none" stroke-width="8"/>
+
+  </g>
+</svg>

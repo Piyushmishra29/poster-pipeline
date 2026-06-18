@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#FFFFFF"/>
+  <g stroke="#000000" stroke-width="14" stroke-linejoin="round" stroke-linecap="round" fill="#FFFFFF">
+
+    <!-- Legs (behind body) -->
+    <path d="M178 250 L172 310" stroke-width="12" fill="none"/>
+    <path d="M222 250 L228 310" stroke-width="12" fill="none"/>
+    <!-- Feet -->
+    <path d="M172 310 L150 312" stroke-width="12" fill="none"/>
+    <path d="M228 310 L250 312" stroke-width="12" fill="none"/>
+
+    <!-- Lime end weights (plates) -->
+    <rect x="48" y="120" width="62" height="150" rx="30" fill="#CFFF3C"/>
+    <rect x="290" y="120" width="62" height="150" rx="30" fill="#CFFF3C"/>
+
+    <!-- Inner collars -->
+    <rect x="100" y="148" width="40" height="94" rx="20"/>
+    <rect x="260" y="148" width="40" height="94" rx="20"/>
+
+    <!-- Handle bar (center body) -->
+    <rect x="135" y="160" width="130" height="70" rx="30"/>
+
+    <!-- Arms: short little U-nubs curling outward from the bar bottom -->
+    <path d="M150 230 Q132 250 144 266" stroke-width="11" fill="none"/>
+    <path d="M250 230 Q268 250 256 266" stroke-width="11" fill="none"/>
+
+  </g>
+
+  <!-- Face on center handle -->
+  <g fill="#000000">
+    <circle cx="182" cy="190" r="9"/>
+    <circle cx="218" cy="190" r="9"/>
+  </g>
+  <path d="M186 208 Q200 220 214 208" stroke="#000000" stroke-width="8" stroke-linecap="round" fill="none"/>
+</svg>

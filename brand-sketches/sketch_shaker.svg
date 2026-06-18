@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#FFFFFF"/>
+  <g stroke="#000000" stroke-width="14" stroke-linejoin="round" stroke-linecap="round" fill="#FFFFFF">
+
+    <!-- Arms (behind body) -->
+    <path d="M128 232 Q92 246 100 282" stroke-width="10" fill="none"/>
+    <path d="M272 232 Q308 246 300 282" stroke-width="10" fill="none"/>
+
+    <!-- Bottle body -->
+    <path d="M132 138
+             L132 318
+             Q132 348 162 348
+             L238 348
+             Q268 348 268 318
+             L268 138
+             Q268 126 256 126
+             L144 126
+             Q132 126 132 138 Z"/>
+
+    <!-- Cap / lid -->
+    <rect x="142" y="84" width="116" height="46" rx="14"/>
+    <!-- Flip spout -->
+    <path d="M178 84 L178 64 Q178 56 188 56 L212 56 Q222 56 222 64 L222 84"/>
+
+  </g>
+
+  <!-- Lime drink level (clipped to bottle interior) -->
+  <clipPath id="bottleClip">
+    <path d="M132 138
+             L132 318
+             Q132 348 162 348
+             L238 348
+             Q268 348 268 318
+             L268 138
+             Q268 126 256 126
+             L144 126
+             Q132 126 132 138 Z"/>
+  </clipPath>
+  <g clip-path="url(#bottleClip)">
+    <rect x="125" y="238" width="150" height="130" fill="#CFFF3C"/>
+  </g>
+  <!-- Liquid surface line -->
+  <line x1="132" y1="238" x2="268" y2="238" stroke="#000000" stroke-width="14" stroke-linecap="round"/>
+
+  <!-- Re-stroke bottle outline on top so clip doesn't cover it -->
+  <path d="M132 138
+           L132 318
+           Q132 348 162 348
+           L238 348
+           Q268 348 268 318
+           L268 138
+           Q268 126 256 126
+           L144 126
+           Q132 126 132 138 Z"
+        fill="none" stroke="#000000" stroke-width="14" stroke-linejoin="round" stroke-linecap="round"/>
+
+  <!-- Face on bottle body (above liquid) -->
+  <g fill="#000000">
+    <circle cx="178" cy="182" r="9"/>
+    <circle cx="222" cy="182" r="9"/>
+  </g>
+  <path d="M182 202 Q200 216 218 202" stroke="#000000" stroke-width="8" stroke-linecap="round" fill="none"/>
+</svg>
