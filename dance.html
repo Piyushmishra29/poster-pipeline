@@ -3,9 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Rockwall Fitness — Weekly Dance Classes (A3)</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,75..150,400..900;1,75..150,400..900&family=Inter+Tight:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/fonts.css">
 <style>
   @page {
     size: 297mm 420mm;
@@ -121,10 +119,11 @@
     z-index: 4;
     font-family: 'Anybody', sans-serif;
     font-weight: 900;
-    font-variation-settings: "wdth" 110;
-    font-size: 92pt;
+    font-stretch: 105%;
+    font-variation-settings: "wdth" 105;
+    font-size: 82pt;
     color: var(--paper);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
     line-height: 0.84;
     text-transform: uppercase;
   }
@@ -197,7 +196,7 @@
     display: flex;
     align-items: center;
     border-bottom: 0.6mm solid var(--lime);
-    min-height: 24mm;
+    min-height: 20mm;
     padding: 0 9mm;
   }
   .row:last-child { border-bottom: none; }
@@ -254,10 +253,10 @@
 
   /* ============== TRAINER BAND ============== */
   .trainer {
-    margin: 9mm 18mm 0;
+    margin: 8mm 18mm 0;
     border: 1.2mm solid var(--lime);
     background: var(--ink);
-    padding: 8mm 14mm;
+    padding: 6mm 14mm;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -265,18 +264,18 @@
   .trainer-label {
     font-family: 'Inter Tight', sans-serif;
     font-weight: 800; font-size: 9pt; letter-spacing: 0.4em;
-    color: var(--lime); text-transform: uppercase; margin-bottom: 3mm;
+    color: var(--lime); text-transform: uppercase; margin-bottom: 2.5mm;
   }
   .trainer-name {
     font-family: 'Anybody', sans-serif;
     font-weight: 900; font-variation-settings: "wdth" 150;
-    font-size: 46pt; line-height: 0.86; letter-spacing: -0.01em;
+    font-size: 40pt; line-height: 0.86; letter-spacing: -0.01em;
     color: var(--paper); text-transform: uppercase;
   }
   .trainer-meta {
     font-family: 'Inter Tight', sans-serif;
     font-weight: 800; font-size: 10pt; letter-spacing: 0.2em;
-    color: var(--paper); text-transform: uppercase; margin-top: 4mm;
+    color: var(--paper); text-transform: uppercase; margin-top: 3mm;
   }
   .trainer-meta b { color: var(--lime); font-weight: 900; }
   .trainer-badge {
@@ -290,10 +289,10 @@
   /* ============== FREE TRIAL CTA BAR + SEAL ============== */
   .trial {
     position: relative;
-    margin: 10mm 18mm 0;
+    margin: 7mm 18mm 0;
     background: var(--lime);
     color: var(--ink);
-    padding: 7.5mm 14mm;
+    padding: 6mm 14mm;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -302,9 +301,10 @@
   .trial-text {
     font-family: 'Anybody', sans-serif;
     font-weight: 900;
+    font-stretch: 150%;
     font-variation-settings: "wdth" 150;
-    font-size: 31pt;
-    line-height: 0.98;
+    font-size: 27pt;
+    line-height: 0.94;
     letter-spacing: -0.01em;
     text-transform: uppercase;
     color: var(--ink);
