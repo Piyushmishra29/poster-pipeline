@@ -197,7 +197,7 @@
     display: flex;
     align-items: center;
     border-bottom: 0.6mm solid var(--lime);
-    min-height: 19mm;
+    min-height: 24mm;
     padding: 0 9mm;
   }
   .row:last-child { border-bottom: none; }
@@ -251,6 +251,41 @@
   .row.odd  .meta .time { color: var(--ink); }
   .row.even .meta .lvl { color: rgba(246,246,242,0.7); }
   .row.odd  .meta .lvl { color: rgba(5,5,5,0.65); }
+
+  /* ============== TRAINER BAND ============== */
+  .trainer {
+    margin: 9mm 18mm 0;
+    border: 1.2mm solid var(--lime);
+    background: var(--ink);
+    padding: 8mm 14mm;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .trainer-label {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800; font-size: 9pt; letter-spacing: 0.4em;
+    color: var(--lime); text-transform: uppercase; margin-bottom: 3mm;
+  }
+  .trainer-name {
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900; font-variation-settings: "wdth" 150;
+    font-size: 46pt; line-height: 0.86; letter-spacing: -0.01em;
+    color: var(--paper); text-transform: uppercase;
+  }
+  .trainer-meta {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800; font-size: 10pt; letter-spacing: 0.2em;
+    color: var(--paper); text-transform: uppercase; margin-top: 4mm;
+  }
+  .trainer-meta b { color: var(--lime); font-weight: 900; }
+  .trainer-badge {
+    flex: 0 0 auto; text-align: right;
+    font-family: 'Anybody', sans-serif;
+    font-weight: 900; font-variation-settings: "wdth" 150;
+    font-size: 24pt; line-height: 0.92; letter-spacing: -0.01em;
+    color: var(--lime); text-transform: uppercase;
+  }
 
   /* ============== FREE TRIAL CTA BAR + SEAL ============== */
   .trial {
@@ -392,9 +427,9 @@
     <div class="hero-frame"></div>
 
     <div class="hero-logo-wrap"><img class="hero-logo" src="assets/logo.png" alt="Rockwall Fitness"></div>
-    <div class="hero-stamp">WEEKLY<small>DANCE CLASSES</small></div>
+    <div class="hero-stamp">EVENINGS<small>TUE · THU · SAT</small></div>
 
-    <div class="hero-kicker">SIX NIGHTS · ALL LEVELS · ONE FREE TRIAL</div>
+    <div class="hero-kicker">ALL LEVELS WELCOME · ONE FREE TRIAL</div>
     <h1 class="hero-headline">
       <span class="line">WEIGHTS DOWN.</span>
       <span class="line lime">BEATS UP.</span>
@@ -407,41 +442,36 @@
   <!-- ========== SECTION TITLE ========== -->
   <section class="sec">
     <span class="sec-word">TIMETABLE</span>
-    <div class="sec-sub">PICK YOUR NIGHT &nbsp;·&nbsp; SHOW UP &nbsp;·&nbsp; MOVE</div>
+    <div class="sec-sub">EVENINGS ONLY &nbsp;·&nbsp; 60 MINUTES &nbsp;·&nbsp; ALL LEVELS</div>
   </section>
 
-  <!-- ========== SCHEDULE TABLE ========== -->
+  <!-- ========== SCHEDULE TABLE (3 evenings) ========== -->
   <div class="table">
     <div class="row odd">
-      <div class="day">MON</div>
-      <div class="cls">ZUMBA</div>
-      <div class="meta"><span class="time">7:00 PM</span><span class="lvl">ALL LEVELS · 60 MIN</span></div>
-    </div>
-    <div class="row even">
       <div class="day">TUE</div>
-      <div class="cls">BOLLYWOOD</div>
-      <div class="meta"><span class="time">7:00 PM</span><span class="lvl">ALL LEVELS · 60 MIN</span></div>
-    </div>
-    <div class="row odd">
-      <div class="day">WED</div>
-      <div class="cls">HIP-HOP</div>
-      <div class="meta"><span class="time">7:00 PM</span><span class="lvl">BEGINNER+ · 60 MIN</span></div>
+      <div class="cls">ZUMBA</div>
+      <div class="meta"><span class="time">7:00 PM</span></div>
     </div>
     <div class="row even">
       <div class="day">THU</div>
-      <div class="cls">AFRO-DANCE</div>
-      <div class="meta"><span class="time">7:00 PM</span><span class="lvl">ALL LEVELS · 60 MIN</span></div>
+      <div class="cls">BOLLYWOOD</div>
+      <div class="meta"><span class="time">7:00 PM</span></div>
     </div>
     <div class="row odd">
-      <div class="day">FRI</div>
-      <div class="cls">DANCE CARDIO</div>
-      <div class="meta"><span class="time">7:00 PM</span><span class="lvl">HIGH ENERGY · 45 MIN</span></div>
-    </div>
-    <div class="row even">
       <div class="day">SAT</div>
-      <div class="cls">MORNING ZUMBA</div>
-      <div class="meta"><span class="time">10:00 AM</span><span class="lvl">ALL LEVELS · 60 MIN</span></div>
+      <div class="cls">HIP-HOP</div>
+      <div class="meta"><span class="time">7:00 PM</span></div>
     </div>
+  </div>
+
+  <!-- ========== TRAINER ========== -->
+  <div class="trainer">
+    <div>
+      <div class="trainer-label">YOUR TRAINER</div>
+      <div class="trainer-name">LAKSH</div>
+      <div class="trainer-meta">DANCER &middot; ATHLETE &middot; <b>@LAKSH_MAN____</b></div>
+    </div>
+    <div class="trainer-badge">LED<br>BY A PRO</div>
   </div>
 
   <!-- ========== FREE TRIAL CTA ========== -->
