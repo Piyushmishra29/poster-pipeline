@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rockwall Dance — IG Post 4:5</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+  @page { size: 1080px 1350px; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --ink:#050505; --lime:#CFFF3C; --paper:#F6F6F2; }
+  html, body {
+    width: 1080px; height: 1350px;
+    background: var(--ink); color: var(--paper);
+    font-family: 'Inter Tight', sans-serif;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .page {
+    position: relative;
+    width: 1080px; height: 1350px;
+    background:
+      radial-gradient(120% 80% at 90% 2%, rgba(207,255,60,0.15) 0%, rgba(5,5,5,0) 50%),
+      var(--ink);
+    overflow: hidden;
+    padding: 64px;
+  }
+  .ghost {
+    position: absolute; bottom: -70px; right: -30px;
+    font-family:'Anybody',sans-serif; font-weight:900; font-variation-settings:"wdth" 150;
+    font-size: 360px; line-height:0.8; letter-spacing:-0.03em;
+    color: rgba(207,255,60,0.045); text-transform:uppercase; white-space:nowrap; z-index:0;
+  }
+  .content { position: relative; z-index: 2; height: 100%; display:flex; flex-direction:column; }
+
+  /* top bar */
+  .top { display:flex; align-items:flex-start; justify-content:space-between; }
+  .logo-chip {
+    background: var(--ink); padding: 16px 26px 16px 20px;
+    clip-path: polygon(0 0,100% 0,96% 50%,100% 100%,0 100%,4% 50%);
+    border: 2px solid rgba(207,255,60,0.25);
+  }
+  .logo-chip img { height: 42px; display:block; }
+  .stamp {
+    text-align:right; font-family:'Anybody',sans-serif; font-weight:900;
+    font-variation-settings:"wdth" 150; font-size: 40px; color: var(--lime);
+    letter-spacing:0.04em; line-height:1;
+  }
+  .stamp small {
+    display:block; font-family:'Inter Tight',sans-serif; font-weight:800;
+    font-size: 13px; letter-spacing:0.34em; color:var(--paper); margin-top:6px;
+  }
+
+  /* headline */
+  .kicker {
+    margin-top: 54px;
+    font-family:'Inter Tight',sans-serif; font-weight:800; font-size: 16px;
+    letter-spacing:0.34em; color: var(--lime); text-transform:uppercase;
+  }
+  .headline {
+    margin-top: 14px;
+    font-family:'Anybody',sans-serif; font-weight:900; font-variation-settings:"wdth" 100;
+    font-size: 112px; line-height:0.82; letter-spacing:-0.02em;
+    color: var(--paper); text-transform:uppercase;
+  }
+  .headline .line { display:block; white-space:nowrap; }
+  .headline .lime { color: var(--lime); }
+
+  /* timetable */
+  .table { margin-top: 40px; border: 3px solid var(--lime); }
+  .row { display:flex; align-items:center; border-bottom: 2px solid var(--lime); height: 96px; padding: 0 26px; }
+  .row:last-child { border-bottom:none; }
+  .row.odd  { background: var(--lime); color: var(--ink); }
+  .row.even { background: var(--ink);  color: var(--paper); }
+  .day {
+    flex:0 0 78px; display:flex; align-items:center; justify-content:center;
+    font-family:'Anybody',sans-serif; font-weight:900; font-variation-settings:"wdth" 150;
+    font-size: 22px; letter-spacing:0.05em; height: 50px; border: 2px solid; margin-right: 26px;
+  }
+  .row.even .day { color:var(--ink); background:var(--lime); border-color:var(--lime); }
+  .row.odd  .day { color:var(--lime); background:var(--ink); border-color:var(--ink); }
+  .cls {
+    flex:1 1 auto; font-family:'Anybody',sans-serif; font-weight:900; font-variation-settings:"wdth" 110;
+    font-size: 46px; line-height:0.9; letter-spacing:-0.01em; text-transform:uppercase; white-space:nowrap;
+  }
+  .time {
+    flex:0 0 auto; font-family:'Anybody',sans-serif; font-weight:900; font-variation-settings:"wdth" 150;
+    font-size: 30px; letter-spacing:0;
+  }
+  .row.even .time { color: var(--lime); }
+  .row.odd  .time { color: var(--ink); }
+
+  /* trial bar */
+  .trial {
+    position: relative; margin-top: 36px; background: var(--lime); color: var(--ink);
+    padding: 30px 36px; display:flex; align-items:center; justify-content:space-between;
+  }
+  .trial-text {
+    font-family:'Anybody',sans-serif; font-weight:900; font-variation-settings:"wdth" 150;
+    font-size: 50px; line-height:0.9; letter-spacing:-0.01em; text-transform:uppercase; color:var(--ink);
+  }
+  .trial-sub {
+    font-family:'Inter Tight',sans-serif; font-weight:800; font-size:14px;
+    letter-spacing:0.24em; margin-top:8px; text-transform:uppercase; color:var(--ink);
+  }
+  .seal {
+    flex:0 0 auto; width: 120px; height:120px; border-radius:50%; background:var(--ink);
+    color:var(--lime); border:3px solid var(--lime); transform:rotate(-8deg);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
+    font-family:'Anybody',sans-serif; font-weight:900; font-variation-settings:"wdth" 110; line-height:0.9;
+  }
+  .seal .s1 { font-family:'Inter Tight',sans-serif; font-weight:800; font-size:11px; letter-spacing:0.3em; color:var(--paper); margin-bottom:3px; }
+  .seal .s2 { font-size: 38px; }
+  .seal .s3 { font-family:'Inter Tight',sans-serif; font-weight:800; font-size:10px; letter-spacing:0.26em; margin-top:3px; color:var(--paper); }
+
+  /* footer */
+  .foot { margin-top: auto; border-top: 2px solid rgba(207,255,60,0.4); padding-top: 22px; }
+  .foot-book {
+    font-family:'Anybody',sans-serif; font-weight:900; font-variation-settings:"wdth" 150;
+    font-size: 34px; color: var(--paper); text-transform:uppercase; letter-spacing:-0.01em; line-height:0.92;
+  }
+  .foot-book .lime { color: var(--lime); }
+  .foot-phone {
+    margin-top: 12px; font-family:'Inter Tight',sans-serif; font-weight:800;
+    font-size: 17px; letter-spacing:0.14em; color: var(--lime); text-transform:uppercase;
+  }
+  .foot-bar {
+    margin-top: 18px; display:flex; justify-content:space-between; align-items:center;
+    font-family:'Inter Tight',sans-serif; font-weight:600; font-size:13px;
+    color:var(--paper); letter-spacing:0.08em; text-transform:uppercase;
+    border-top: 1px solid rgba(207,255,60,0.25); padding-top: 14px;
+  }
+  .foot-bar b { color: var(--lime); font-weight:900; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="ghost">DANCE</div>
+  <div class="content">
+
+    <div class="top">
+      <div class="logo-chip"><img src="assets/logo.png" alt="Rockwall Fitness"></div>
+      <div class="stamp">EVENINGS<small>TUE · THU · SAT</small></div>
+    </div>
+
+    <div class="kicker">ALL LEVELS WELCOME · ONE FREE TRIAL</div>
+    <h1 class="headline">
+      <span class="line">WEIGHTS DOWN.</span>
+      <span class="line lime">BEATS UP.</span>
+    </h1>
+
+    <div class="table">
+      <div class="row odd"><div class="day">TUE</div><div class="cls">BOLLYWOOD</div><div class="time">6:00 PM</div></div>
+      <div class="row even"><div class="day">THU</div><div class="cls">FREESTYLE</div><div class="time">6:00 PM</div></div>
+      <div class="row odd"><div class="day">SAT</div><div class="cls">CONTEMPORARY</div><div class="time">6:00 PM</div></div>
+    </div>
+
+    <div class="trial">
+      <div>
+        <div class="trial-text">FIRST CLASS<br>IS ON US.</div>
+        <div class="trial-sub">NO MEMBERSHIP · NO COMMITMENT</div>
+      </div>
+      <div class="seal"><span class="s1">FREE</span><span class="s2">TRIAL</span><span class="s3">ON US</span></div>
+    </div>
+
+    <div class="foot">
+      <div class="foot-book">BOOK AT RECEPTION. <span class="lime">WALK IN OR CALL.</span></div>
+      <div class="foot-phone">+91 99727 67936 &nbsp;·&nbsp; +91 80499 15898</div>
+      <div class="foot-bar">
+        <div><b>@</b>ROCKWALLFITNESS</div>
+        <div>KRISHNANAGAR · HOSUR RD · BLR</div>
+        <div>OPEN 7/7</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
